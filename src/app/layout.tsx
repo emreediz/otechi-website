@@ -19,12 +19,8 @@ export const metadata: Metadata = {
   },
   description:
     "Otechi is a technology studio building digital products and software solutions for businesses, startups and individuals.",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/images/brand/otechi-mark.svg", type: "image/svg+xml" },
-    ],
-  },
+  // Favicon: served via the src/app/icon.svg file convention (Otechi mark) —
+  // Next.js generates the <link rel="icon"> automatically, no manual entry needed.
 };
 
 export default function RootLayout({
