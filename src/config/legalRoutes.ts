@@ -7,4 +7,5 @@ export const NAMAZ_LEGAL = {
   privacy: "/urunler/namaz-motivasyonu/gizlilik-politikasi",
   kvkk: "/urunler/namaz-motivasyonu/kvkk-aydinlatma-metni",
   terms: "/urunler/namaz-motivasyonu/kullanici-sozlesmesi",
+  accountDeletion: "/urunler/namaz-motivasyonu/hesap-silme",
 } as const;
