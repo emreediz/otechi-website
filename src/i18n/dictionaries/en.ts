@@ -371,10 +371,16 @@ export const en: Dictionary = {
   contact: {
     meta: {
       title: "Contact — Otechi",
-      description: "Ways to contact Otechi will be available here very soon.",
+      description: "Get in touch with Otechi by phone or email.",
     },
     title: "Contact",
-    body: "Our contact channels will be available here very soon.",
+    body: "For any questions or requests, you can reach us by phone or email.",
+    phoneLabel: "Phone",
+    phone: "0 (232) 332 18 14",
+    phoneHref: "tel:+902323321814",
+    emailLabel: "Email",
+    email: "info@oletr.com",
+    emailHref: "mailto:info@oletr.com",
     secondary: "In the meantime, take a look at our products.",
     cta: "Explore products",
   },

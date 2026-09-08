@@ -372,11 +372,17 @@ export const tr = {
   contact: {
     meta: {
       title: "İletişim — Otechi",
-      description: "Otechi ile iletişim kanalları çok yakında burada olacak.",
+      description: "Otechi ile telefon veya e-posta üzerinden iletişime geçin.",
     },
     title: "İletişim",
-    body: "İletişim kanallarımız çok yakında burada olacak.",
-    secondary: "Bu sırada ürünlerimize göz atabilirsin.",
+    body: "Sorularınız ve talepleriniz için bize telefon veya e-posta ile ulaşabilirsiniz.",
+    phoneLabel: "Telefon",
+    phone: "0 (232) 332 18 14",
+    phoneHref: "tel:+902323321814",
+    emailLabel: "E-posta",
+    email: "info@oletr.com",
+    emailHref: "mailto:info@oletr.com",
+    secondary: "Bu sırada ürünlerimize göz atabilirsiniz.",
     cta: "Ürünleri Keşfet",
   },
 
