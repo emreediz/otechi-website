@@ -8,7 +8,6 @@ export const en: Dictionary = {
     comingSoon: "Coming soon",
     learnMore: "Learn more",
     newTab: "(opens in a new tab)",
-    backToProducts: "Back to products",
     draftNotice: "This text is a draft and will be updated before launch.",
     cta: {
       kicker: "Have an idea?",
@@ -71,8 +70,6 @@ export const en: Dictionary = {
     what: {
       kicker: "Studio",
       title: "A product-focused technology studio.",
-      intro:
-        "Otechi is a technology studio building digital products and software solutions.",
       items: [
         {
           title: "End-to-end product work",
@@ -542,8 +539,6 @@ export const en: Dictionary = {
       qrForm: "Ole business dashboard — QR code generation form",
       verify: "Ole business dashboard — 6-digit code verification",
       winback: "Ole notification — “Seni Özledik!” reminder",
-      campaign: "Ole app — welcome campaign card",
-      business: "Ole app — business page",
       nfc: "Ole NFC hardware",
       panel: "Ole business dashboard",
     },
@@ -736,7 +731,6 @@ export const en: Dictionary = {
       studioTitle: "From idea to launch, in one process.",
       studioBody:
         "We treat design, engineering and product thinking as one process, building functional, scalable and well-designed digital experiences for businesses, startups and individuals.",
-      oleLogoAlt: "Ole logo",
       namazLogoAlt: "Namaz Motivasyonu key art",
     },
     ole: {

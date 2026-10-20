@@ -6,10 +6,9 @@
 export const tr = {
   common: {
     comingSoon: "Yakında",
-    learnMore: "İncele",
+    learnMore: "İnceleyin",
     // Screen-reader suffix for links that open in a new tab.
     newTab: "(yeni sekmede açılır)",
-    backToProducts: "Ürünlere dön",
     draftNotice:
       "Bu metin taslak hâlindedir ve yayın öncesi güncellenecektir.",
     // Closing call to action (links to the Contact page).
@@ -25,7 +24,7 @@ export const tr = {
     products: "Ürünler",
     about: "Hakkımızda",
     contact: "İletişim",
-    cta: "Ürünleri Keşfet",
+    cta: "Ürünleri Keşfedin",
     openMenu: "Menüyü aç",
     closeMenu: "Menüyü kapat",
     language: "Dil",
@@ -67,7 +66,7 @@ export const tr = {
       title: "İyi fikirleri, güçlü dijital ürünlere dönüştürüyoruz.",
       subtitle:
         "Otechi; işletmeler, girişimler ve bireyler için modern dijital ürünler ve yazılım çözümleri geliştirir. Fikrin ilk taslağından yayına kadar tasarım, geliştirme ve ürün deneyimini bir bütün olarak ele alırız.",
-      ctaPrimary: "Ürünlerimizi Keşfet",
+      ctaPrimary: "Ürünlerimizi Keşfedin",
       ctaSecondary: "Bizi Tanıyın",
       // Must appear verbatim inside `title`; it is set in the accent colour.
       highlight: "dijital ürünlere",
@@ -76,8 +75,6 @@ export const tr = {
     what: {
       kicker: "Stüdyo",
       title: "Ürün odaklı bir teknoloji stüdyosu.",
-      intro:
-        "Otechi, dijital ürünler ve yazılım çözümleri geliştiren bir teknoloji stüdyosudur.",
       items: [
         {
           title: "Uçtan uca ürün geliştirme",
@@ -105,7 +102,7 @@ export const tr = {
       },
       oleCategory: "Sadakat ve kampanya platformu",
       namazCategory: "Namaz takibi ve motivasyon",
-      explore: "Keşfet",
+      explore: "Keşfedin",
     },
     work: {
       kicker: "Seçili işler",
@@ -181,7 +178,7 @@ export const tr = {
         },
         {
           q: "Ole’yi nasıl kullanmaya başlarım?",
-          a: "Ole sayfasındaki bilgileri inceleyip oletr.com üzerinden başlayabilirsin.",
+          a: "Ole sayfasındaki bilgileri inceleyip oletr.com üzerinden başlayabilirsiniz.",
         },
         {
           q: "Sizinle nasıl iletişime geçebilirim?",
@@ -191,9 +188,9 @@ export const tr = {
       ],
     },
     closing: {
-      title: "Ürünlerimize göz at.",
-      ctaOle: "Ole’yi İncele",
-      ctaNamaz: "Namaz Motivasyonu’nu İncele",
+      title: "Ürünlerimize göz atın.",
+      ctaOle: "Ole’yi İnceleyin",
+      ctaNamaz: "Namaz Motivasyonu’nu İnceleyin",
     },
   },
 
@@ -550,8 +547,6 @@ export const tr = {
       qrForm: "Ole işletme paneli — QR kod üretimi formu",
       verify: "Ole işletme paneli — 6 haneli kod doğrulama",
       winback: "Ole bildirimi — “Seni Özledik!” hatırlatması",
-      campaign: "Ole uygulaması — hoş geldin kampanyası kartı",
-      business: "Ole uygulaması — işletme sayfası",
       nfc: "Ole NFC donanımı",
       panel: "Ole işletme paneli",
     },
@@ -679,7 +674,7 @@ export const tr = {
     email: "info@oletr.com",
     emailHref: "mailto:info@oletr.com",
     secondary: "Bu sırada ürünlerimize göz atabilirsiniz.",
-    cta: "Ürünleri Keşfet",
+    cta: "Ürünleri Keşfedin",
   },
 
   legal: {
@@ -744,7 +739,6 @@ export const tr = {
       studioTitle: "Fikirden yayına, tek süreçte.",
       studioBody:
         "Tasarım, yazılım geliştirme ve ürün yaklaşımını aynı süreç içinde ele alırız; işletmeler, girişimler ve bireyler için işlevsel, ölçeklenebilir ve iyi tasarlanmış dijital deneyimler kurarız.",
-      oleLogoAlt: "Ole logosu",
       namazLogoAlt: "Namaz Motivasyonu görseli",
     },
     ole: {

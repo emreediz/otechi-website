@@ -103,7 +103,7 @@ Analytics, form servisi, CMS, veritabanı veya harici API entegrasyonu kodda **y
 - `src/app/[lang]/...` — iki dilli sayfalar. Slug'lar dile göre farklı; her sayfa klasörü `generateStaticParams` ile yalnızca kendi dilini üretiyor (`src/lib/localePage.ts`: `trParam` / `enParam`).
   - TR: `/tr`, `/tr/urunler`, `/tr/urunler/ole`, `/tr/urunler/namaz-motivasyonu`, `/tr/hakkimizda`, `/tr/iletisim`, `/tr/gizlilik`, `/tr/kullanim-sartlari`, `/tr/kvkk`
   - EN: `/en`, `/en/products`, `/en/products/ole`, `/en/products/namaz-motivasyonu`, `/en/about`, `/en/contact`, `/en/privacy`, `/en/terms`, `/en/kvkk`
-- `src/i18n/routes.ts` — tüm sayfa yollarının tek kaynağı. İç linkler `localizedPath()` / `<LocaleLink>` ile verilmeli, elle yazılmamalı. Dil değiştirici eşdeğer sayfaya geçiyor.
+- `src/i18n/routes.ts` — tüm sayfa yollarının tek kaynağı. İç linkler `localizedPath()` ile verilmeli, elle yazılmamalı. Dil değiştirici eşdeğer sayfaya geçiyor; yalnızca Türkçe olan Namaz belgelerinde TR aynı sayfada kalır, EN Namaz ürün sayfasına gider.
 - `/` → `/tr`: `public/_redirects` (Cloudflare 302) + `src/app/page.tsx` (meta refresh + istemci tarafı yönlendirme, `noindex`).
 - `src/app/urunler/namaz-motivasyonu/*` — dil ön eki olmayan, sabit, yalnızca Türkçe sayfalar: `gizlilik-politikasi`, `kvkk-aydinlatma-metni`, `kullanici-sozlesmesi`, `hesap-silme`. Yollar `src/config/legalRoutes.ts` içinde (sitemap ve ürün sayfası butonları buradan okuyor).
 
@@ -113,15 +113,16 @@ Analytics, form servisi, CMS, veritabanı veya harici API entegrasyonu kodda **y
 |---|---|
 | `src/i18n/dictionaries/tr.ts`, `en.ts` | Tüm arayüz metinleri (tipli sözlükler). Metin bileşenlere gömülmez. |
 | `src/config/brand.ts` | Marka/ürün adları: "Otechi", "Ole", "Namaz Motivasyonu" — çevrilmez, büyük/küçük harfi değiştirilmez. |
-| `src/config/site.ts` | Site adı, `url` (`https://otechi.com`, sitemap/canonical için), Ole yayın tarihi. |
+| `src/config/site.ts` | Site adı ve `url` (`https://otechi.com`, sitemap/canonical için). |
+| `src/config/ole.ts` | Bütün Ole linkleri (yalnızca `oletr.com` ana alan adı, mağaza ve panel linkleri) ve Ole fiyatları. Bkz. §11. |
 | `src/config/assets.ts` | Sitede kullanılan optimize görsel yolları ve boyutları. |
 | `src/content/legal/namaz-motivasyonu/*.ts` | Sözleşme metinleri (`content/contracts/namaz-motivasyonu/*.docx` dosyalarından çıkarılmış). |
 | `src/views/*View.tsx` | Sayfa gövdeleri; `src/app` altındaki `page.tsx` dosyaları ince sarmalayıcılar. |
-| `src/components/` | `layout/` (Navbar, Footer, LanguageSwitcher), `content/`, `visual/` (cihaz/tarayıcı çerçeveleri), `ui/`, `legal/`. |
+| `src/components/` | `layout/` (Navbar, MobileMenu, Footer, LanguageSwitcher), `content/` (PageIntro, NumberedList, ClosingCta, ContactRows, StoreLinks, StoryRows, Faq), `showcase/` (ProductTiles, IndexList, DragGallery, ScrollFillText), `product/` (Ole: ChapterNav, OlePricing, PricingCalculator), `legal/`, `ui/`, `motion/` (Reveal, PageTransition), `visual/` (ScreenStage). |
 | `src/lib/pageMetadata.ts` | Sayfa başına canonical/hreflang/OpenGraph metadata. |
 | `src/app/sitemap.ts`, `robots.ts` | Statik `sitemap.xml` ve `robots.txt`. |
 | `src/app/globals.css` | Tema değişkenleri (Otechi / Ole / Namaz kimlikleri `data-theme` ile). |
-| `public/images/products/*/README.md` | Görsel kaynakları ve eksik görsel listesi (Türkçe). |
+| `public/images/products/*/README.md` | Görsel kaynakları ve web kopyalarında yapılan temizlikler (Türkçe). |
 
 ## 7. Mevcut özellikler
 
@@ -165,3 +166,18 @@ Kod yorumları ve commit mesajlarından çıkarılmıştır:
 4. `site.ts` TODO yorumunu, Ole görsel README'sini ve kök `README.md`'yi güncelle.
 5. Eksik görseller (ör. Namaz Motivasyonu hatırlatıcı/ilerleme ekranları) hazır olduğunda `src/config/assets.ts` üzerinden ekle.
 6. Push öncesi düzenli olarak `npm run lint && npm run build` çalıştır (push = canlı yayın).
+
+## 11. Yeniden tasarım (Ekim 2026, `redesign/site` dalı)
+
+Bütün site Metalab'den yalnızca tasarım yaklaşımı olarak ilham alan editoryal bir yapıya geçirildi (kod/metin/görsel kopyalanmadı). Route'lar, dil sistemi, yasal metinler ve statik export değişmedi.
+
+- **Tasarım sistemi (`globals.css`):** Poppins (300–700), akışkan tip ölçeği (`text-display-xl/l/m`, `text-heading`, `text-statement`, `text-row`, `text-number`, `text-lead`), `ease-out-expo`, koyu yüzey (`data-surface="dark"`; Ole'de lacivert `#000D26`, Namaz'da `#006B4D`). Temel kurallar `@layer base` içinde. Turuncu dolgulu butonlarda siyah (Ole'de lacivert) metin — beyaz 3,1:1 ile AA'yı geçmiyordu.
+- **Hareket:** CSS + IntersectionObserver; kütüphane yok. Sayfa geçişleri React `<ViewTransition>` (`PageTransition`), header sabit. `prefers-reduced-motion` her şeyi kapatır; içerik JS olmadan da görünür.
+- **Ole:** İçerik yeni Ole sitesinin geçici adresinden araştırıldı; o adres sitede hiçbir yerde görünmez. Demo / fiyatlandırma / entegrasyon sayfaları `oletr.com` üzerinde henüz yayında değil (2026-10-20: 404), bu yüzden `src/config/ole.ts` içinde `NEW_PAGES_LIVE = false` iken ana sayfaya gider. **Yayından önce bu adresleri tekrar kontrol edip bayrağı `true` yapın.** Fiyat hesaplayıcı Ole'nin formülünü birebir kullanır (`src/lib/oleScenario.ts`).
+- **Görseller:** Ole web kopyalarında maskot, kullanıcı adı, gerçek görünümlü QR ve müşteri kodu temizlendi (orijinaller değişmedi; ayrıntı `public/images/products/ole/README.md`).
+- **Yasal sayfalar:** Metinler değişmedi; render edilen metin yeniden tasarım öncesiyle karşılaştırılarak doğrulandı. Belge sayfalarında içindekiler ve "Diğer belgeler", footer'da hesap silme dahil Namaz belgeleri grubu var.
+- **404:** `src/app/not-found.tsx` → `out/404.html` (TR + EN).
+- **Kullanılmayan türev kopyalar (silinmedi, onay bekliyor):** `public/images/products/ole/web/token.png`, `web/screen-notification.jpg`, `web/logo.png`, `public/images/home/hero/web/hero.png`.
+- **Dikkat — orijinaller:** Maskot, kullanıcı adı ve QR içeren Ole orijinalleri (`ole-bildirim.PNG`, `ole-işletme-sayfası.PNG`, `ole-panel.png`, `ole-home-page.PNG`) kurala göre yerinde duruyor; sitede link verilmiyor ama `public/` altında oldukları için URL ile erişilebilirler. Yayınlanmayan bir klasöre taşınmaları ayrıca karar gerektirir.
+
+

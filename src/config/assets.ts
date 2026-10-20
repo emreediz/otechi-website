@@ -1,17 +1,9 @@
 /**
- * Web-optimised product imagery. Generated with `sips` into each product's
- * `web/` folder; the originals in the parent folders are never modified.
- * These screenshots are full-screen captures (no marketing banners); see
- * the Ole notes below for the few regions that were cleaned.
+ * Web-optimised product imagery, generated (sips / canvas) into each
+ * product's `web/` folder; the originals in the parent folders are never
+ * modified. See the Ole notes below for the few regions that were cleaned.
  */
 export const IMG = {
-  home: {
-    // Single unified hero mockup (Ole + Namaz Motivasyonu phones, transparent).
-    // Original file used directly (unresized, uncropped) at the user's request.
-    hero: "/images/home/hero/ole-namaz-motivasyon-hero-page-photo.png",
-    heroW: 1080,
-    heroH: 1080,
-  },
   ole: {
     // 3D glass token (transparent WebP, 640px — the PNG was 732 KB)
     art: "/images/products/ole/web/token.webp",
@@ -21,20 +13,15 @@ export const IMG = {
     nfc: "/images/products/ole/web/nfc.webp",
     nfcW: 382,
     nfcH: 760,
-    // "ole" wordmark (transparent)
-    logo: "/images/products/ole/web/logo.png",
-    logoW: 680,
-    logoH: 380,
     // Mobile app screens — 900 x 1947 (9 : 19.5). Cleaned in the web copies
     // (canvas edit, originals untouched): the mascot is removed from the
-    // business/notification "Menü" card and the user's name from the home
+    // business "Menü" card and the user's name from the home
     // greeting. The panel copy has the account name removed and the QR code
     // and customer code blurred.
     screenW: 900,
     screenH: 1947,
     screenHome: "/images/products/ole/web/screen-home.jpg",
     screenLoyalty: "/images/products/ole/web/screen-loyalty.jpg",
-    screenNotification: "/images/products/ole/web/screen-notification.jpg",
     screenBusiness: "/images/products/ole/web/screen-business.jpg",
     // Web management panel — 1800 x 1047 (~16 : 9.3)
     panel: "/images/products/ole/web/panel.jpg",

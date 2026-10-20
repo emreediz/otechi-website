@@ -4,8 +4,7 @@ import { NAMAZ_LEGAL } from "@/config/legalRoutes";
 /**
  * Every page in the site, keyed by a stable id. The URL path segments are
  * localized (TR uses "urunler", EN uses "products", etc.), so all internal
- * links must go through `localizedPath()` / `<LocaleLink>` rather than being
- * hard-coded.
+ * links must go through `localizedPath()` rather than being hard-coded.
  */
 export type RouteKey =
   | "home"

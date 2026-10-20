@@ -397,13 +397,6 @@ html.js [data-calm] [data-reveal] .stagger-item {
     transform 0.7s var(--ease-out-expo);
 }
 
-/* Orange underline in the Ole hero — draws in on load. */
-html.js .draw-line {
-  transform: scaleX(0);
-  transform-origin: left center;
-  animation: drawline 0.6s 0.5s var(--ease-out-expo) forwards;
-}
-
 /* Media that opens upward when its reveal trigger scrolls in. */
 html.js [data-reveal] .clip-reveal {
   clip-path: inset(0 0 100% 0 round 1.5rem);
@@ -436,17 +429,6 @@ html.js .hero-rise-4 {
   animation-delay: 0.29s;
 }
 
-/* Ambient motion for decorative visuals. */
-.anim-float {
-  animation: floaty 8s ease-in-out infinite;
-}
-.anim-float-slow {
-  animation: floaty 11s ease-in-out infinite;
-}
-.anim-drift {
-  animation: drift 34s ease-in-out infinite;
-}
-
 @keyframes rise {
   from {
     opacity: 0;
@@ -457,32 +439,9 @@ html.js .hero-rise-4 {
     transform: none;
   }
 }
-@keyframes drawline {
-  to {
-    transform: scaleX(1);
-  }
-}
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-@keyframes drift {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate(1.4%, -1.4%) rotate(1.4deg);
-  }
-}
 
 /* ------------------------------------------------------------------ *
- * Homepage
+ * Editorial motion: masked headlines, scroll fill, tilt, scrollers
  * ------------------------------------------------------------------ */
 
 /* Hero headline: each word slides up out of a clipping mask on load. */
@@ -531,15 +490,6 @@ html.js .mask-word > span {
   display: none;
 }
 
-/* No ambient float / drift on small screens (battery + jank). */
-@media (max-width: 768px) {
-  .anim-float,
-  .anim-float-slow,
-  .anim-drift {
-    animation: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -555,9 +505,6 @@ html.js .mask-word > span {
     opacity: 1 !important;
     transform: none !important;
   }
-  .draw-line {
-    transform: none !important;
-  }
   html.js .mask-word > span {
     transform: none !important;
   }
@@ -569,10 +516,5 @@ html.js .mask-word > span {
   }
   .clip-reveal {
     clip-path: none !important;
-  }
-  .anim-float,
-  .anim-float-slow,
-  .anim-drift {
-    animation: none !important;
   }
 }
