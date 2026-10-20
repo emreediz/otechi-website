@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import type { PointerEvent } from "react";
+import type { PointerEvent, ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -17,8 +17,10 @@ export type IndexRow = {
   suffix?: string;
   kind: string;
   desc: string;
-  href: string;
-  image: { src: string; w: number; h: number };
+  /** Without `href` the row is plain text (still previews on hover). */
+  href?: string;
+  /** `contain` for screens and objects shown whole on a tinted card. */
+  image?: { src: string; w: number; h: number; fit?: "cover" | "contain" };
 };
 
 /**
@@ -27,13 +29,14 @@ export type IndexRow = {
  * Desktop (mouse): hovering a row dims the others and shows a floating
  * preview image that follows the pointer. Touch / small screens: each row
  * shows a small inline thumbnail instead. The preview is decorative
- * (`aria-hidden`); the row link text carries the meaning.
+ * (`aria-hidden`); the row text carries the meaning.
  */
 export function IndexList({ rows }: { rows: IndexRow[] }) {
   const listRef = useRef<HTMLUListElement | null>(null);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const frame = useRef(0);
   const [active, setActive] = useState<string | null>(null);
+  const activeHasImage = rows.some((r) => r.id === active && r.image);
 
   function onPointerMove(e: PointerEvent<HTMLUListElement>) {
     if (e.pointerType !== "mouse") return;
@@ -62,25 +65,19 @@ export function IndexList({ rows }: { rows: IndexRow[] }) {
         onPointerLeave={() => setActive(null)}
         className="group/list border-t border-fg/15"
       >
-        {rows.map((row, i) => (
-          <li key={row.id} className="border-b border-fg/15">
-            <Link
-              href={row.href}
-              onPointerEnter={(e) => {
-                if (e.pointerType === "mouse") setActive(row.id);
-              }}
-              onFocus={() => setActive(null)}
-              className={cn(
-                "group/row grid grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-1 py-6 transition-opacity duration-300 sm:gap-x-8 md:grid-cols-[3rem_1.4fr_1fr_auto] md:py-8",
-                active && active !== row.id && "md:opacity-50",
-              )}
-            >
+        {rows.map((row, i) => {
+          const rowClass = cn(
+            "group/row grid grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-1 py-6 transition-opacity duration-300 sm:gap-x-8 md:grid-cols-[3rem_1.4fr_1fr_auto] md:py-8",
+            active && active !== row.id && "md:opacity-50",
+          );
+          const content: ReactNode = (
+            <>
               <span className="self-start pt-2 text-xs tabular-nums tracking-widest text-fg-muted md:self-center md:pt-0">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
               <span className="min-w-0">
-                <span className="block text-row transition-transform duration-500 ease-out-expo md:group-hover/row:translate-x-3">
+                <span className="block text-row text-balance transition-transform duration-500 ease-out-expo md:group-hover/row:translate-x-3">
                   {row.name}
                   {row.suffix ? (
                     <span className="text-fg-muted"> {row.suffix}</span>
@@ -98,24 +95,57 @@ export function IndexList({ rows }: { rows: IndexRow[] }) {
               </span>
 
               {/* Mobile thumbnail / desktop arrow */}
-              <span className="relative block h-16 w-20 overflow-hidden rounded-lg bg-bg-subtle md:hidden">
-                <Image
-                  src={row.image.src}
-                  alt=""
-                  fill
-                  sizes="5rem"
-                  className="object-cover"
-                />
-              </span>
-              <span
-                aria-hidden="true"
-                className="hidden size-12 items-center justify-center rounded-full border border-fg/15 transition-colors duration-300 group-hover/row:border-accent group-hover/row:bg-accent group-hover/row:text-accent-fg md:inline-flex"
-              >
-                <ArrowRight className="size-5 transition-transform duration-300 group-hover/row:-rotate-45" />
-              </span>
-            </Link>
-          </li>
-        ))}
+              {row.image ? (
+                <span className="relative block h-16 w-20 overflow-hidden rounded-lg bg-bg-subtle md:hidden">
+                  <Image
+                    src={row.image.src}
+                    alt=""
+                    fill
+                    sizes="5rem"
+                    className={
+                      row.image.fit === "contain"
+                        ? "object-contain p-1.5"
+                        : "object-cover"
+                    }
+                  />
+                </span>
+              ) : (
+                <span className="md:hidden" />
+              )}
+              {row.href ? (
+                <span
+                  aria-hidden="true"
+                  className="hidden size-12 items-center justify-center rounded-full border border-fg/15 transition-colors duration-300 group-hover/row:border-accent group-hover/row:bg-accent group-hover/row:text-accent-fg md:inline-flex"
+                >
+                  <ArrowRight className="size-5 transition-transform duration-300 group-hover/row:-rotate-45" />
+                </span>
+              ) : (
+                <span className="hidden md:block" />
+              )}
+            </>
+          );
+          const onPointerEnter = (e: PointerEvent<HTMLElement>) => {
+            if (e.pointerType === "mouse") setActive(row.id);
+          };
+          return (
+            <li key={row.id} className="border-b border-fg/15">
+              {row.href ? (
+                <Link
+                  href={row.href}
+                  onPointerEnter={onPointerEnter}
+                  onFocus={() => setActive(null)}
+                  className={rowClass}
+                >
+                  {content}
+                </Link>
+              ) : (
+                <div onPointerEnter={onPointerEnter} className={rowClass}>
+                  {content}
+                </div>
+              )}
+            </li>
+          );
+        })}
       </ul>
 
       {/* Floating preview (desktop + mouse only) */}
@@ -126,23 +156,28 @@ export function IndexList({ rows }: { rows: IndexRow[] }) {
       >
         <div
           className={cn(
-            "relative -mt-28 h-56 w-80 overflow-hidden rounded-2xl shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)] transition-[opacity,scale] duration-300 ease-out-expo",
-            active ? "scale-100 opacity-100" : "scale-75 opacity-0",
+            "relative -mt-28 h-56 w-80 overflow-hidden rounded-2xl bg-bg-subtle shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)] transition-[opacity,scale] duration-300 ease-out-expo",
+            activeHasImage ? "scale-100 opacity-100" : "scale-75 opacity-0",
           )}
         >
-          {rows.map((row) => (
-            <Image
-              key={row.id}
-              src={row.image.src}
-              alt=""
-              fill
-              sizes="20rem"
-              className={cn(
-                "object-cover transition-opacity duration-300",
-                active === row.id ? "opacity-100" : "opacity-0",
-              )}
-            />
-          ))}
+          {rows.map((row) =>
+            row.image ? (
+              <Image
+                key={row.id}
+                src={row.image.src}
+                alt=""
+                fill
+                sizes="20rem"
+                className={cn(
+                  "transition-opacity duration-300",
+                  row.image.fit === "contain"
+                    ? "object-contain p-4"
+                    : "object-cover",
+                  active === row.id ? "opacity-100" : "opacity-0",
+                )}
+              />
+            ) : null,
+          )}
         </div>
       </div>
     </div>

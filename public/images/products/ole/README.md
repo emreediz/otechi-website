@@ -1,43 +1,36 @@
 # Ole görselleri
 
-## Orijinaller (bu klasör — DEĞİŞTİRİLMEZ)
+## Orijinaller (bu klasör — DEĞİŞTİRİLMEZ, SİLİNMEZ)
 
 | Dosya | İçerik |
 |---|---|
-| `ole-logo.png` | "ole" kelime markası (turuncu, şeffaf) |
-| `ole-glass-token-1.png` | 3B Ole jetonu — lacivert zemin (hero görseli) |
-| `ole-glass-token-2.png` | 3B jeton — alternatif render |
-| `ole-home-page.jpg` | App Store görseli — "İşletmeleri Keşfet" |
-| `ole-first-page.jpg` | App Store görseli — "Harcadıkça Kazan" |
-| `ole-campaign-page.jpg` | App Store görseli — "Kampanyaları Keşfet" |
-| `ole-token-page.jpg` | App Store görseli — "Jetonların Tek Sayfada" (Ödüller) |
+| `ole-logo.png` | "ole" kelime markası |
+| `ole-glass-token-1.png`, `ole-glass-token-2.png` | 3B cam Ole jetonu |
+| `ole-home-page.PNG` | Uygulama ana ekranı |
+| `ole-sadakat-sistemi.PNG` | Ödüller ekranı |
+| `ole-işletme-sayfası.PNG` | İşletme sayfası (maskot içerir — sitede kullanılmaz) |
+| `ole-bildirim.PNG` | "Seni Özledik" bildirimi (maskot içerir — sitede kullanılmaz) |
+| `ole-panel.png` | İşletme paneli (hesap adı, QR ve müşteri kodu içerir — sitede kullanılmaz) |
 
-## `web/` — sitede kullanılan optimize kopyalar
+## `web/` — sitede kullanılan kopyalar
 
-`sips` (macOS yerleşik) ile üretildi. App Store görüntülerinin **üst pazarlama başlığı kırpıldı**.
+Orijinallerden üretildi (macOS `sips` ya da tarayıcı canvas'ı; ek paket yok).
+Maskot, kişisel ad, gerçek görünümlü QR ve müşteri kodu bu kopyalarda yoktur.
 
 | Dosya | Kaynak | İşlem |
 |---|---|---|
-| `web/token.png` | `ole-glass-token-1.png` | 760 px'e küçültüldü |
-| `web/logo.png` | `ole-logo.png` | 640 px'e küçültüldü |
-| `web/screen-rewards.jpg` | `ole-token-page.jpg` | başlık kırpıldı, 900 px |
-| `web/screen-campaigns.jpg` | `ole-campaign-page.jpg` | başlık kırpıldı, 900 px |
-| `web/screen-discover.jpg` | `ole-home-page.jpg` | başlık kırpıldı, 900 px |
-| `web/screen-earn.jpg` | `ole-first-page.jpg` | başlık kırpıldı, 900 px |
+| `token.webp` (640²) | `ole-glass-token-1.png` | Şeffaf WebP |
+| `logo.png` | `ole-logo.png` | Küçültüldü |
+| `screen-home.jpg` (900×1947) | `ole-home-page.PNG` | Selamlamadaki kullanıcı adı kaldırıldı |
+| `screen-loyalty.jpg` (900×1947) | `ole-sadakat-sistemi.PNG` | Küçültüldü |
+| `screen-business.jpg` (900×1947) | `ole-işletme-sayfası.PNG` | "Menü" kartındaki maskot kaldırıldı |
+| `screen-notification.jpg` (900×1947) | `ole-bildirim.PNG` | "Menü" kartındaki maskot kaldırıldı |
+| `screen-campaign.jpg` (900×445) | `ole-işletme-sayfası.PNG` | Kampanya kartı kırpımı |
+| `screen-winback.jpg` (900×740) | `ole-bildirim.PNG` | Bildirim kırpımı (üst bölüm) |
+| `panel.jpg` (1800×1047) | `ole-panel.png` | Hesap adı kaldırıldı, QR ve müşteri kodu bulanıklaştırıldı |
+| `panel-qr-form.jpg` (860×1020) | `ole-panel.png` | "QR Kod Üretimi" formu kırpımı |
+| `panel-verify.jpg` (860×714) | `ole-panel.png` | "Kod Doğrulama" kartı kırpımı |
+| `nfc.webp` (382×760) | Ole'nin kendi site görseli | Olduğu gibi |
+| `token.png` (760²) | `ole-glass-token-1.png` | Eski kopya — artık kullanılmıyor |
 
-## Eksik — yer tutucu gösteriliyor (eklenince siteye düşürülür)
-
-Web yönetim paneli görselleri henüz yok. Şu dosyalar `web/` altına eklenmeli
-(oran **16:10**, ~1600–2000 px genişlik, JPG):
-
-- `web/panel-overview.jpg` — panel genel bakış
-- `web/panel-campaigns.jpg` — kampanya yönetimi
-- `web/panel-analytics.jpg` — ziyaret / etkileşim istatistikleri
-
-Opsiyonel ek mobil ekranlar (oran 9:19, başlıksız, ~900 px):
-
-- `web/screen-notification.jpg` — bildirim ekranı
-- `web/screen-qr.jpg` — QR okutma ekranı
-
-> Dosyalar hazır olduğunda `src/config/assets.ts` içine yolları ekleyip ilgili
-> `ImagePlaceholder` / `BrowserFrame` çağrılarına `src` verilmesi yeterli.
+Yollar ve boyutlar: `src/config/assets.ts`.

@@ -13,10 +13,14 @@ export const IMG = {
     heroH: 1080,
   },
   ole: {
-    // 3D key art (transparent, navy-lit)
-    art: "/images/products/ole/web/token.png",
-    artW: 760,
-    artH: 760,
+    // 3D glass token (transparent WebP, 640px — the PNG was 732 KB)
+    art: "/images/products/ole/web/token.webp",
+    artW: 640,
+    artH: 640,
+    // Ole NFC hardware (transparent WebP, from Ole's own site assets)
+    nfc: "/images/products/ole/web/nfc.webp",
+    nfcW: 382,
+    nfcH: 760,
     // "ole" wordmark (transparent)
     logo: "/images/products/ole/web/logo.png",
     logoW: 680,
@@ -36,6 +40,28 @@ export const IMG = {
     panel: "/images/products/ole/web/panel.jpg",
     panelW: 1800,
     panelH: 1047,
+    // Crops (canvas, from the originals). Panel cards contain no QR code or
+    // customer data; the phone crops contain no mascot.
+    panelQrForm: {
+      src: "/images/products/ole/web/panel-qr-form.jpg",
+      w: 860,
+      h: 1020,
+    },
+    panelVerify: {
+      src: "/images/products/ole/web/panel-verify.jpg",
+      w: 860,
+      h: 714,
+    },
+    screenCampaign: {
+      src: "/images/products/ole/web/screen-campaign.jpg",
+      w: 900,
+      h: 445,
+    },
+    screenWinback: {
+      src: "/images/products/ole/web/screen-winback.jpg",
+      w: 900,
+      h: 740,
+    },
   },
   namaz: {
     // 3D key art (neon mihrab on deep green)

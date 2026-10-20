@@ -239,126 +239,321 @@ export const tr = {
 
   ole: {
     meta: {
-      title: "Ole — işletmeler için dijital sadakat ve kampanya platformu",
+      title: "Ole — işletmeler için dijital müşteri sadakati",
       description:
-        "Ole; işletmeler için dijital sadakat ve kampanya yönetim platformu. QR ile sadakat, jeton ve ödül sistemi, kampanya yönetimi, çoklu şube ve müşteri bildirimleri tek panelde. Şubat 2026’da kullanıma açıldı.",
+        "Ole; işletmeler için dijital müşteri sadakati platformu: QR ve NFC ile jeton, ödüller, kampanyalar, bildirimler ve çoklu şube yönetimi tek panelde. Müşteriler için ücretsiz.",
     },
     hero: {
       kicker: "Bir Otechi ürünü",
-      tagline:
-        "İşletmeler için dijital sadakat ve kampanya yönetim platformu. Teknik altyapı kurmadan, yaklaşık 15 dakikada kendi dijital işletme sayfanı oluştur.",
-      launched: "Şubat 2026’da kullanıma açıldı.",
-      ctaDemo: "Demo İste",
-      ctaDownload: "Uygulamayı İndir",
+      statement: "İlk ziyaretten müdavimliğe.",
+      lead: "Müşterilerini ödüllendir. Kampanyalarını duyur. Yeniden gelmeleri için bir sebep ver.",
+      ctaDemo: "Demo talep et",
+      ctaPricing: "Fiyatları gör",
+      panelLogin: "Panel girişi",
+      ctaAppStore: "App Store",
+      ctaGooglePlay: "Google Play",
     },
-    benefit: {
-      title: "Ole ne sağlar?",
-      body: "İşletmeler teknik altyapı kurmadan yaklaşık 15 dakikada kendi dijital işletme sayfasını oluşturur; sadakat programını, kampanyalarını ve müşteri iletişimini tek panelden yönetir.",
+    facts: {
+      platformLabel: "Platform",
+      platform: "iOS · Android · Web paneli",
+      modelLabel: "İş modeli",
+      model: "Abonelik, komisyon yok",
+      customersLabel: "Müşteriler için",
+      customers: "Ücretsiz",
+      statusLabel: "Durum",
+      status: "Şubat 2026’dan beri yayında",
     },
-    features: {
-      title: "Öne çıkan özellikler",
-      items: [
-        {
-          title: "QR kod ile dijital sadakat",
-          body: "Müşteriler QR okutarak sadakat programına katılır; kartlar dijital olarak takip edilir.",
-        },
-        {
-          title: "Jeton/puan ve ödül sistemi",
-          body: "Her ziyarette jeton veya puan; belirlenen eşikte ödül.",
-        },
-        {
-          title: "Kampanya oluşturma ve yönetme",
-          body: "İndirim ve döneme özel kampanyaları panelden oluştur ve yönet.",
-        },
-        {
-          title: "Müşterilere bildirim gönderme",
-          body: "Kampanya ve duyuruları uygulama üzerinden müşterilere ilet.",
-        },
-        {
-          title: "İşletme sayfası oluşturma",
-          body: "Yaklaşık 15 dakikada kendi dijital işletme sayfanı yayına al.",
-        },
-        {
-          title: "Çoklu şube yönetimi",
-          body: "Tüm şubeleri tek hesaptan yönet.",
-        },
-        {
-          title: "Ziyaret ve etkileşim takibi",
-          body: "Ziyaret sıklığı, geri dönüş ve kampanya performansını panelde gör.",
-        },
-      ],
+    chapters: {
+      label: "Sayfa bölümleri",
+      how: "Nasıl çalışır",
+      features: "Özellikler",
+      panel: "Panel",
+      integrations: "Entegrasyonlar",
+      pricing: "Fiyatlandırma",
+      faq: "SSS",
+    },
+    // In-page anchor ids (also the URL fragments).
+    anchors: {
+      how: "nasil-calisir",
+      features: "ozellikler",
+      panel: "panel",
+      integrations: "entegrasyonlar",
+      pricing: "fiyatlandirma",
+      faq: "sss",
+    },
+    sides: {
+      statement: "Bir tarafta müşterin. Diğer tarafta kontrol sende.",
+      business: {
+        title: "İşletme",
+        items: [
+          "Ödülünü ve hedef jeton sayısını belirle",
+          "Panelde QR üret, müşterine jeton kazandır",
+          "Ödül ve kampanya kullanımını 6 haneli kodla doğrula",
+          "Hoş geldin, doğum günü, öğrenci ve genel kampanyalar yayınla",
+          "Manuel bildirim ve otomatik hatırlatma gönder",
+          "Şubelerini, işlem geçmişini ve raporlarını tek panelden izle",
+        ],
+      },
+      customer: {
+        title: "Müşteri",
+        items: [
+          "Ole uygulamasını ücretsiz indirir",
+          "QR’ı okutur ya da Ole NFC’ye yaklaştırır, jeton kazanır",
+          "Hedefe ulaşınca “Ödülü Al” ile ödülünü kullanır",
+          "Kampanyaları keşfeder, 6 haneli kodla kullanır",
+          "İşletmeleri semt ya da adla bulur",
+        ],
+      },
     },
     how: {
-      title: "Nasıl çalışır?",
+      kicker: "Nasıl çalışır",
+      title: "Dört adımda sadakat döngüsü.",
       steps: [
         {
-          title: "İşletme sayfanı oluştur",
-          body: "Yaklaşık 15 dakikada temel bilgileri girip yayına al.",
+          title: "Ödülünü belirle",
+          body: "Bir ödül ve hedef jeton sayısı seç; örneğin 5 jetonda bir kahve ikramı.",
         },
         {
-          title: "Sadakat kuralını ve kampanyanı tanımla",
-          body: "Jeton/ödül eşiklerini ve kampanyaları belirle.",
+          title: "QR ile jeton kazandır",
+          body: "Panelde harcama tutarı ya da ürün/jeton sayısıyla tek kullanımlık bir QR üret. Müşterin okutur, jetonları hesabına geçer.",
         },
         {
-          title: "Müşteriler QR ile katılsın",
-          body: "Sen paneli kullan; ziyaret ve ödül takibini Ole yürütsün.",
+          title: "Kodla doğrula",
+          body: "Hedefe ulaşan müşterin uygulamada “Ödülü Al”a dokunur ve 6 haneli bir kod oluşur. Personelin kodu panelde doğrular, ödülü verir.",
+        },
+        {
+          title: "Yeniden davet et",
+          body: "Bir süredir uğramayan müşterilerine otomatik hatırlatma gider; kampanyalarını manuel bildirimlerle duyurursun.",
         },
       ],
+      nfcNote:
+        "QR yerine Ole NFC: müşterin telefonunu yaklaştırır, jeton kazanır ya da ödülünü kullanır. Donanım isteğe bağlıdır.",
     },
-    audience: {
-      title: "Kimler için?",
+    features: {
+      kicker: "Özellikler",
+      title: "Sadakat için gereken her şey, tek yerde.",
+      items: {
+        loyalty: {
+          name: "Sadakat ve ödüller",
+          kind: "İşletme · Müşteri",
+          desc: "Hedef jeton sayısına ulaşan müşteriye ödül.",
+        },
+        qr: {
+          name: "QR ile jeton",
+          kind: "İşletme paneli",
+          desc: "Her işlem için tek kullanımlık QR kod.",
+        },
+        code: {
+          name: "6 haneli kodla doğrulama",
+          kind: "İşletme paneli",
+          desc: "Ödül ve kampanya kullanımını kodla onayla.",
+        },
+        campaigns: {
+          name: "Kampanyalar",
+          kind: "Hoş geldin · Doğum günü · Öğrenci · Genel",
+          desc: "Koşul ve geçerlilik süresi belirle; yayına al ya da durdur.",
+        },
+        notifications: {
+          name: "Bildirimler",
+          kind: "Manuel · Otomatik",
+          desc: "Yalnızca izin veren ve hedefe uyan müşterilere; gönderimler limitlere tabidir.",
+        },
+        branches: {
+          name: "Çoklu şube",
+          kind: "İşletme paneli",
+          desc: "Tüm şubelerini tek hesaptan yönet.",
+        },
+        reports: {
+          name: "İşlem geçmişi ve raporlar",
+          kind: "İşletme paneli",
+          desc: "Jeton ve ödül hareketleri, kampanya kullanımı.",
+        },
+        businessPage: {
+          name: "Uygulamada işletme sayfası",
+          kind: "Müşteri uygulaması",
+          desc: "Ayrı bir mobil uygulamaya gerek yok; müşterilerin seni Ole’de bulur.",
+        },
+        nfc: {
+          name: "Ole NFC",
+          kind: "İsteğe bağlı donanım",
+          desc: "Yaklaştır, kazan, kullan. DNA çip ve kopyalamaya karşı koruma.",
+        },
+        pos: {
+          name: "Kasa entegrasyonu",
+          kind: "Simpra · Roxpos",
+          desc: "Hesap kapanınca jetonlar otomatik yüklenir.",
+        },
+      },
+    },
+    panel: {
+      kicker: "İşletme paneli",
+      title: "Tüm şubelerini tek hesaptan yönet.",
+      body: "QR kod üretimi, kod doğrulama, sadakat programı, kampanyalar, bildirimler ve raporlar web tabanlı panelde. Şubelerin işlemleri panelden takip edilir.",
+      menu: [
+        "İşlem Geçmişi",
+        "İşletme Yönetimi",
+        "Sadakat Program Yönetimi",
+        "Kampanya Yönetimi",
+        "Bildirimler",
+        "Kullanıcı Puan Takibi",
+        "Raporlar",
+      ],
+      menuTitle: "Paneldeki modüller",
+    },
+    integrations: {
+      kicker: "Entegrasyonlar",
+      title: "Kasa sisteminle birlikte çalışır.",
+      body: "Entegrasyonla panele girmen gerekmez; jetonlar hesap kapanınca otomatik yüklenir.",
+      partners: [
+        { name: "Simpra", status: "Entegre" },
+        { name: "Roxpos", status: "Entegrasyon aşamasında" },
+      ],
+      steps: [
+        { body: "Müşterin, Ole uygulamasındaki kişisel QR’ını gösterir." },
+        { body: "Personelin kasadaki QR okuyucuyla okutur; müşteri adisyonla eşleşir." },
+        { body: "Hesap kapanınca jetonlar otomatik olarak yüklenir." },
+      ],
+      cta: "Entegrasyon talep et",
+    },
+    sectors: {
+      kicker: "Kimler için",
+      title: "Müdavimi olan her işletme için.",
       items: [
-        "Kafe ve restoranlar",
-        "Güzellik merkezleri",
-        "Kuaförler",
-        "Şarküteriler",
-        "Farklı sektörlerden işletmeler",
+        "Kafe",
+        "Restoran",
+        "Fırın & Pastane",
+        "Kuaför & Güzellik",
+        "Perakende",
+        "Çok şubeli işletmeler",
       ],
     },
     pricing: {
-      title: "İş modeli",
-      items: [
-        "İşletmeler için ücretli abonelik",
-        "Müşteriler için ücretsiz kullanım",
-        "Komisyon sistemi yok",
-      ],
-      note: "Fiyatlandırma detayları yakında paylaşılacak.",
+      kicker: "Fiyatlandırma",
+      title: "Tek paket, sade fiyat.",
+      plan: {
+        name: "Sınırsız Paket",
+        period: "Yıllık",
+        unit: "+ KDV / şube başına",
+        included: [
+          "Jeton ve ödül programı",
+          "QR kod ile jeton kazandırma",
+          "6 haneli kod ile ödül doğrulama",
+          "Hoş geldin, doğum günü, öğrenci ve genel kampanyalar",
+          "Manuel ve otomatik bildirimler",
+          "İşletme paneli, işlem geçmişi ve raporlar",
+          "Ole müşteri uygulamasında işletme sayfası",
+        ],
+      },
+      cta: "Demo talep et",
+      nfc: {
+        label: "İsteğe bağlı ek",
+        name: "Ole NFC Donanımı",
+        period: "Tek seferlik",
+        unit: "+ KDV",
+        lead: "Panele girmeden günlük işlemlerini saniyeler içinde tamamla.",
+        benefits: [
+          "Jeton kazandırma ve ödül kullanımı",
+          "Panele girmeden hızlı işlem",
+          "DNA çip teknolojisi",
+          "Kopyalamaya karşı koruma için tasarlanmış güvenlik altyapısı",
+        ],
+        note: "Donanım zorunlu değildir. Ole panelini NFC donanımı olmadan da QR kod ve 6 haneli kodla rahatça ve hızlıca kullanabilirsin.",
+      },
+      calculator: {
+        // {price} is replaced with the yearly plan price.
+        title: "{price} işletmende nasıl karşılık bulabilir?",
+        question: "Bir yılda kaç müşterin Ole’ye katılacak?",
+        help: "Toplam müşteri sayını değil, Ole uygulamasıyla sadakat programına katılacak müşteri sayısını seç.",
+        unit: "Ole kullanıcısı / yıl",
+        yearly: "Yıllık tahmini ek ciro",
+        monthly: "Aylık ortalama karşılığı:",
+        returningLabel: "Birden çok gelmesi beklenen müşteri sayısı",
+        returningUnit: "müşteri",
+        audienceLabel: "Bildirimle kendini yeniden hatırlat",
+        audienceUnit: "kişilik potansiyel kitle",
+        audienceNote: "Uygunluk ve bildirim izinlerine bağlıdır.",
+        disclaimer:
+          "Örnek senaryodur, sonuç garantisi değildir. Ole kullanıcılarının ilk ziyareti dışındaki tekrar ziyaretlerinden hesaplanır. Ciro kâr değildir; gösterilen tutardan abonelik ve işletme maliyetleri düşülmemiştir. Tutarlar KDV hariçtir.",
+        // Spoken by screen readers after the slider stops.
+        live: "{members} Ole kullanıcısı için yıllık tahmini ek ciro {yearly}, aylık ortalama {monthly}.",
+      },
+      source: "Fiyatlar KDV hariçtir; güncel fiyat ve koşullar Ole tarafından belirlenir:",
+      sourceLink: "oletr.com",
     },
-    platforms: {
-      title: "Platformlar",
-      items: [
-        "iOS ve Android mobil uygulama (müşteriler için)",
-        "Web tabanlı yönetim paneli (işletmeler için)",
+    gallery: {
+      kicker: "Sahada",
+      title: "Gündelik ziyaretler, kalıcı müşteriler.",
+    },
+    onboarding: {
+      kicker: "Başlarken",
+      title: "Ole ekibi başlangıçta sana yardımcı olur.",
+      steps: [
+        { title: "Formu gönder", body: "Demo talep formunu doldur." },
+        {
+          title: "Seninle iletişime geçelim",
+          body: "Ole ekibi işletmeni tanımak için sana ulaşır.",
+        },
+        {
+          title: "Kurguyu birlikte planlayalım",
+          body: "Ödül, kampanya ve bildirim kurgun işletmene göre hazırlanır.",
+        },
       ],
     },
     faq: {
       title: "Sıkça sorulan sorular",
       items: [
         {
-          q: "Kurulum ne kadar sürüyor?",
-          a: "Temel işletme sayfası yaklaşık 15 dakikada hazırlanabilir.",
+          q: "Teknik bilgi gerekiyor mu?",
+          a: "Hayır. Ole paneli tarayıcı üzerinden kullanılır; ayrı bir altyapı kurmana gerek yoktur. Başlangıçta Ole ekibi sana yardımcı olur.",
         },
         {
-          q: "Teknik bilgi gerekiyor mu?",
-          a: "Hayır. Ole tarayıcı üzerinden yönetilir; ayrı bir altyapı kurmana gerek yoktur.",
+          q: "İşletmem için ayrı bir mobil uygulama gerekir mi?",
+          a: "Hayır. İşletmen, Ole müşteri uygulamasında kendi işletme sayfasıyla yer alır.",
         },
         {
           q: "Birden fazla şubem var, sorun olur mu?",
-          a: "Hayır. Çoklu şube yönetimi tek hesap üzerinden yapılır.",
+          a: "Hayır. Tüm şubelerini tek hesaptan yönetirsin; fiyatlandırma şube başınadır.",
+        },
+        {
+          q: "NFC donanımı zorunlu mu?",
+          a: "Hayır. Ole’yi NFC donanımı olmadan da QR kod ve 6 haneli kodla kullanabilirsin.",
+        },
+        {
+          q: "Kasa sistemimle birlikte çalışır mı?",
+          a: "Simpra ile entegre çalışır; Roxpos entegrasyonu ise entegrasyon aşamasındadır. Diğer sistemler için entegrasyon talebinde bulunabilirsin.",
         },
         {
           q: "Müşteriler ödeme yapıyor mu?",
-          a: "Hayır. Müşteriler Ole’yi ücretsiz kullanır.",
+          a: "Hayır. Ole uygulaması müşteriler için ücretsizdir.",
         },
         {
           q: "Komisyon alıyor musunuz?",
-          a: "Hayır. Komisyon sistemi yoktur; işletmeler abonelik öder.",
+          a: "Hayır. Ole satışlarından komisyon almaz; işletmeler yıllık abonelik öder.",
         },
       ],
     },
+    docs: {
+      title: "Ole belgeleri ve destek",
+      cookies: "Çerez Politikası",
+      kvkk: "KVKK Müşteri Aydınlatma Metni",
+      membership: "Üyelik Sözleşmesi",
+      support: "Destek merkezi",
+    },
     closing: {
-      title: "Ole’yi işletmen için değerlendir.",
-      body: "Ole hakkında daha fazla bilgi ve başlangıç için oletr.com adresini ziyaret edebilirsin.",
+      kicker: "Başlayalım",
+      title: "Ole’yi işletmende dene.",
+      supportLabel: "Ole destek",
+    },
+    alt: {
+      stage: "Ole uygulaması ana ekranı",
+      loyalty: "Ole uygulaması — ödüller ekranı",
+      qrForm: "Ole işletme paneli — QR kod üretimi formu",
+      verify: "Ole işletme paneli — 6 haneli kod doğrulama",
+      winback: "Ole bildirimi — “Seni Özledik!” hatırlatması",
+      campaign: "Ole uygulaması — hoş geldin kampanyası kartı",
+      business: "Ole uygulaması — işletme sayfası",
+      nfc: "Ole NFC donanımı",
+      panel: "Ole işletme paneli",
     },
   },
 
@@ -554,51 +749,6 @@ export const tr = {
     },
     ole: {
       artAlt: "Ole jetonu görseli",
-      heroShotAlt: "Ole uygulaması — sadakat ekranı",
-      homeShotAlt: "Ole uygulaması — ana ekran",
-      loyaltyShotAlt: "Ole uygulaması — ödüller ekranı",
-      notificationShotAlt: "Ole uygulaması — bildirim ekranı",
-      businessShotAlt: "Ole uygulaması — işletme sayfası",
-      panelShotAlt: "Ole işletme yönetim paneli",
-      flowTitle: "Sadakat, kampanya ve iletişim — tek akışta",
-      flow: [
-        {
-          title: "QR ile dijital sadakat",
-          body: "Müşteri işletmenin QR kodunu okutur; jetonlar ve ödüller uygulamada otomatik işlenir.",
-        },
-        {
-          title: "Kampanyalarını duyur",
-          body: "Kampanya ve fırsatlar, müşterinin uygulamasında işletme sayfasında görünür.",
-        },
-        {
-          title: "Müşterilere bildirim gönder",
-          body: "Yeni kampanya ve hatırlatmaları uygulama bildirimiyle doğrudan müşteriye ilet.",
-        },
-        {
-          title: "Tek panelden yönet",
-          body: "QR üretimi, sadakat kuralları, şubeler ve raporlar web yönetim panelinde.",
-        },
-      ],
-      panelTitle: "İşletme yönetim paneli",
-      panelBody:
-        "QR kod üretimi, kod doğrulama, sadakat programı, kampanyalar, çoklu şube ve raporlar tek web panelinden yönetilir.",
-      panelCaption: "Ole işletme yönetim paneli",
-      galleryTitle: "Uygulamadan kareler",
-      gallery: [
-        "Ana ekran",
-        "Sadakat ve ödüller",
-        "Bildirimler",
-        "İşletme sayfası",
-      ],
-      docsTitle: "Belgeler",
-      docsNote:
-        "Ole’ye özel sözleşme ve yasal belgeler yakında bu alanda yer alacak.",
-      docs: [
-        "Gizlilik Politikası",
-        "Kullanım Şartları",
-        "KVKK Aydınlatma Metni",
-        "Abonelik ve Ödeme Koşulları",
-      ],
     },
     namaz: {
       artAlt: "Namaz Motivasyonu görseli",

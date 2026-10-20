@@ -30,6 +30,8 @@ type CommonProps = {
 type ButtonAsLink = CommonProps & {
   href: string;
   external?: boolean;
+  /** Screen-reader suffix for external links, e.g. "(opens in a new tab)". */
+  newTabLabel?: string;
   onClick?: () => void;
 };
 
@@ -55,6 +57,9 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
           onClick={props.onClick}
         >
           {children}
+          {props.newTabLabel ? (
+            <span className="sr-only"> {props.newTabLabel}</span>
+          ) : null}
         </a>
       );
     }

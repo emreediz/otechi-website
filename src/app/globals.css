@@ -228,7 +228,7 @@
     transition: background-size 0.35s var(--ease-out-expo);
   }
   @media (hover: hover) {
-    a:hover > .link-underline {
+    a:hover .link-underline {
       background-size: 100% 1px;
     }
   }
@@ -262,6 +262,13 @@
   }
   html:has(.menu-dialog[open]) {
     overflow: hidden;
+  }
+
+  /* Native range input in the brand colour with a 44px touch target. */
+  .range-input {
+    height: 2.75rem;
+    cursor: pointer;
+    accent-color: var(--accent);
   }
 }
 
@@ -347,6 +354,20 @@ html.js .draw-line {
   transform: scaleX(0);
   transform-origin: left center;
   animation: drawline 0.6s 0.5s var(--ease-out-expo) forwards;
+}
+
+/* Media that opens upward when its reveal trigger scrolls in. */
+html.js [data-reveal] .clip-reveal {
+  clip-path: inset(0 0 100% 0 round 1.5rem);
+  transition: clip-path 1s var(--ease-out-expo);
+}
+html.js [data-reveal][data-shown] .clip-reveal {
+  clip-path: inset(0 0 0 0 round 1.5rem);
+}
+
+/* Controls that only work with JS (the static render shows defaults). */
+html:not(.js) .js-only {
+  display: none;
 }
 
 /* Hero entrance (above the fold — plays on load, not on scroll). */
@@ -497,6 +518,9 @@ html.js .mask-word > span {
   }
   .tilt-layer {
     transform: none !important;
+  }
+  .clip-reveal {
+    clip-path: none !important;
   }
   .anim-float,
   .anim-float-slow,

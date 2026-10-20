@@ -234,126 +234,318 @@ export const en: Dictionary = {
 
   ole: {
     meta: {
-      title: "Ole — a digital loyalty and campaign platform for businesses",
+      title: "Ole — digital customer loyalty for businesses",
       description:
-        "Ole is a digital loyalty and campaign platform for businesses: loyalty via QR, a points and rewards system, campaign management, multi-branch support, and customer notifications in one dashboard. Available since February 2026.",
+        "Ole is a digital customer-loyalty platform for businesses: tokens via QR and NFC, rewards, campaigns, notifications and multi-branch management in one dashboard. Free for customers.",
     },
     hero: {
       kicker: "An Otechi product",
-      tagline:
-        "A digital loyalty and campaign platform for businesses. Launch your own business page in about 15 minutes — no technical setup required.",
-      launched: "Available since February 2026.",
+      statement: "From first visit to regular.",
+      lead: "Reward your customers. Announce your campaigns. Give them a reason to come back.",
       ctaDemo: "Request a demo",
-      ctaDownload: "Download the app",
+      ctaPricing: "See pricing",
+      panelLogin: "Dashboard login",
+      ctaAppStore: "App Store",
+      ctaGooglePlay: "Google Play",
     },
-    benefit: {
-      title: "What Ole gives you",
-      body: "Businesses create their own digital business page in about 15 minutes with no technical setup, and manage their loyalty program, campaigns, and customer communication from a single dashboard.",
+    facts: {
+      platformLabel: "Platform",
+      platform: "iOS · Android · Web dashboard",
+      modelLabel: "Business model",
+      model: "Subscription, no commission",
+      customersLabel: "For customers",
+      customers: "Free",
+      statusLabel: "Status",
+      status: "Live since February 2026",
     },
-    features: {
-      title: "Key features",
-      items: [
-        {
-          title: "Digital loyalty via QR code",
-          body: "Customers join the loyalty program by scanning a QR code, and cards are tracked digitally.",
-        },
-        {
-          title: "Points and rewards system",
-          body: "Points on every visit, with rewards unlocked at thresholds you set.",
-        },
-        {
-          title: "Create and manage campaigns",
-          body: "Build and run discounts and seasonal campaigns from the dashboard.",
-        },
-        {
-          title: "Send customer notifications",
-          body: "Share campaigns and announcements with customers through the app.",
-        },
-        {
-          title: "Build a business page",
-          body: "Publish your own digital business page in about 15 minutes.",
-        },
-        {
-          title: "Multi-branch management",
-          body: "Run every branch from a single account.",
-        },
-        {
-          title: "Visit and engagement tracking",
-          body: "See visit frequency, return rates, and campaign performance in the dashboard.",
-        },
-      ],
+    chapters: {
+      label: "On this page",
+      how: "How it works",
+      features: "Features",
+      panel: "Dashboard",
+      integrations: "Integrations",
+      pricing: "Pricing",
+      faq: "FAQ",
+    },
+    anchors: {
+      how: "how-it-works",
+      features: "features",
+      panel: "dashboard",
+      integrations: "integrations",
+      pricing: "pricing",
+      faq: "faq",
+    },
+    sides: {
+      statement: "Your customer on one side. You in control on the other.",
+      business: {
+        title: "Business",
+        items: [
+          "Set a reward and a target number of tokens",
+          "Generate a QR code in the dashboard to award tokens",
+          "Verify rewards and campaigns with a 6-digit code",
+          "Run welcome, birthday, student and general campaigns",
+          "Send manual notifications and automatic reminders",
+          "Follow branches, transactions and reports in one dashboard",
+        ],
+      },
+      customer: {
+        title: "Customer",
+        items: [
+          "Downloads the Ole app for free",
+          "Scans the QR code or taps Ole NFC to earn tokens",
+          "Redeems the reward with “Ödülü Al” once the target is reached",
+          "Discovers campaigns and redeems them with a 6-digit code",
+          "Finds businesses by neighbourhood or name",
+        ],
+      },
     },
     how: {
-      title: "How it works",
+      kicker: "How it works",
+      title: "A loyalty loop in four steps.",
       steps: [
         {
-          title: "Create your business page",
-          body: "Enter the basics and publish in about 15 minutes.",
+          title: "Set your reward",
+          body: "Pick a reward and a target number of tokens — say, a free coffee at 5 tokens.",
         },
         {
-          title: "Define your loyalty rules and campaigns",
-          body: "Set your points and reward thresholds and create campaigns.",
+          title: "Award tokens by QR",
+          body: "Generate a single-use QR code in the dashboard from the amount spent or a number of items/tokens. Your customer scans it and the tokens land in their account.",
         },
         {
-          title: "Customers join via QR",
-          body: "You use the dashboard; Ole handles visit and reward tracking.",
+          title: "Verify with a code",
+          body: "When customers reach the target they tap “Ödülü Al” in the app and get a 6-digit code. Your staff verify it in the dashboard and hand over the reward.",
+        },
+        {
+          title: "Invite them back",
+          body: "Customers who haven't visited for a while get an automatic reminder, and you announce campaigns with manual notifications.",
         },
       ],
+      nfcNote:
+        "Ole NFC instead of QR: customers tap their phone to earn tokens or redeem a reward. The hardware is optional.",
     },
-    audience: {
-      title: "Who it's for",
+    features: {
+      kicker: "Features",
+      title: "Everything loyalty needs, in one place.",
+      items: {
+        loyalty: {
+          name: "Loyalty and rewards",
+          kind: "Business · Customer",
+          desc: "A reward once the target number of tokens is reached.",
+        },
+        qr: {
+          name: "Tokens by QR",
+          kind: "Business dashboard",
+          desc: "A single-use QR code for every transaction.",
+        },
+        code: {
+          name: "6-digit code verification",
+          kind: "Business dashboard",
+          desc: "Confirm rewards and campaign use with a code.",
+        },
+        campaigns: {
+          name: "Campaigns",
+          kind: "Welcome · Birthday · Student · General",
+          desc: "Set conditions and validity; publish or pause.",
+        },
+        notifications: {
+          name: "Notifications",
+          kind: "Manual · Automatic",
+          desc: "Only to customers who opted in and match the audience; sends are subject to limits.",
+        },
+        branches: {
+          name: "Multiple branches",
+          kind: "Business dashboard",
+          desc: "Manage every branch from one account.",
+        },
+        reports: {
+          name: "Transactions and reports",
+          kind: "Business dashboard",
+          desc: "Token and reward activity, campaign usage.",
+        },
+        businessPage: {
+          name: "Your page in the app",
+          kind: "Customer app",
+          desc: "No separate app needed — customers find you in Ole.",
+        },
+        nfc: {
+          name: "Ole NFC",
+          kind: "Optional hardware",
+          desc: "Tap, earn, redeem. DNA chip with copy protection.",
+        },
+        pos: {
+          name: "Till integration",
+          kind: "Simpra · Roxpos",
+          desc: "Tokens are added automatically when the bill closes.",
+        },
+      },
+    },
+    panel: {
+      kicker: "Business dashboard",
+      title: "Run every branch from one account.",
+      body: "QR code generation, code verification, the loyalty programme, campaigns, notifications and reports live in the web dashboard, where each branch's transactions are tracked.",
+      menu: [
+        "Transaction history",
+        "Business management",
+        "Loyalty programme",
+        "Campaign management",
+        "Notifications",
+        "Customer points",
+        "Reports",
+      ],
+      menuTitle: "Dashboard modules",
+    },
+    integrations: {
+      kicker: "Integrations",
+      title: "Works with your till.",
+      body: "With an integration you don't need the dashboard at the counter — tokens are added automatically when the bill closes.",
+      partners: [
+        { name: "Simpra", status: "Integrated" },
+        { name: "Roxpos", status: "Integration in progress" },
+      ],
+      steps: [
+        { body: "Your customer shows their personal QR code in the Ole app." },
+        { body: "Staff scan it with the till's QR scanner; the customer is matched to the bill." },
+        { body: "Tokens are added automatically when the bill closes." },
+      ],
+      cta: "Request an integration",
+    },
+    sectors: {
+      kicker: "Who it's for",
+      title: "For every business with regulars.",
       items: [
-        "Cafés and restaurants",
-        "Beauty salons",
-        "Hairdressers",
-        "Delicatessens",
-        "Businesses across other sectors",
+        "Cafés",
+        "Restaurants",
+        "Bakeries & patisseries",
+        "Hair & beauty",
+        "Retail",
+        "Multi-branch businesses",
       ],
     },
     pricing: {
-      title: "Business model",
-      items: [
-        "Paid subscription for businesses",
-        "Free for customers",
-        "No commission",
-      ],
-      note: "Pricing details will be shared soon.",
+      kicker: "Pricing",
+      title: "One plan, simple pricing.",
+      plan: {
+        name: "Unlimited plan",
+        period: "Yearly",
+        unit: "+ VAT / per branch",
+        included: [
+          "Token and reward programme",
+          "Awarding tokens by QR code",
+          "Reward verification by 6-digit code",
+          "Welcome, birthday, student and general campaigns",
+          "Manual and automatic notifications",
+          "Business dashboard, transaction history and reports",
+          "A business page in the Ole customer app",
+        ],
+      },
+      cta: "Request a demo",
+      nfc: {
+        label: "Optional add-on",
+        name: "Ole NFC hardware",
+        period: "One-off",
+        unit: "+ VAT",
+        lead: "Handle everyday transactions in seconds, without opening the dashboard.",
+        benefits: [
+          "Awarding tokens and redeeming rewards",
+          "Fast transactions without the dashboard",
+          "DNA chip technology",
+          "Security designed to protect against copying",
+        ],
+        note: "The hardware is optional. You can use the Ole dashboard quickly and easily with QR codes and 6-digit codes, without NFC.",
+      },
+      calculator: {
+        title: "How could {price} pay off in your business?",
+        question: "How many customers will join Ole in a year?",
+        help: "Not your total number of customers — the number who will join the loyalty programme in the Ole app.",
+        unit: "Ole users / year",
+        yearly: "Estimated extra revenue per year",
+        monthly: "Monthly average:",
+        returningLabel: "Customers expected to come more than once",
+        returningUnit: "customers",
+        audienceLabel: "Remind them with a notification",
+        audienceUnit: "people you can reach",
+        audienceNote: "Subject to eligibility and notification permissions.",
+        disclaimer:
+          "An example scenario, not a guaranteed result. Calculated from Ole users' repeat visits after their first visit. Revenue is not profit; subscription and operating costs are not deducted. Amounts exclude VAT.",
+        live: "For {members} Ole users, estimated extra revenue is {yearly} a year, about {monthly} a month.",
+      },
+      source: "Prices exclude VAT; current prices and terms are set by Ole:",
+      sourceLink: "oletr.com",
     },
-    platforms: {
-      title: "Platforms",
-      items: [
-        "iOS and Android app (for customers)",
-        "Web-based management dashboard (for businesses)",
+    gallery: {
+      kicker: "In the wild",
+      title: "Everyday visits, lasting customers.",
+    },
+    onboarding: {
+      kicker: "Getting started",
+      title: "The Ole team helps you get set up.",
+      steps: [
+        { title: "Send the form", body: "Fill in the demo request form." },
+        {
+          title: "We get in touch",
+          body: "The Ole team reaches out to get to know your business.",
+        },
+        {
+          title: "Plan it together",
+          body: "Your rewards, campaigns and notifications are set up for your business.",
+        },
       ],
     },
     faq: {
       title: "Frequently asked questions",
       items: [
         {
-          q: "How long does setup take?",
-          a: "A basic business page can be ready in about 15 minutes.",
-        },
-        {
           q: "Do I need technical knowledge?",
-          a: "No. Ole runs in the browser — there's no separate infrastructure to set up.",
+          a: "No. The Ole dashboard runs in the browser, with nothing to install, and the Ole team helps you get started.",
         },
         {
-          q: "I have multiple branches — is that a problem?",
-          a: "No. Multi-branch management works from a single account.",
+          q: "Do I need a separate app for my business?",
+          a: "No. Your business gets its own page inside the Ole customer app.",
         },
         {
-          q: "Do customers pay anything?",
-          a: "No. Customers use Ole for free.",
+          q: "I have several branches — is that a problem?",
+          a: "No. You manage every branch from one account; pricing is per branch.",
+        },
+        {
+          q: "Is the NFC hardware required?",
+          a: "No. You can use Ole with QR codes and 6-digit codes, without NFC.",
+        },
+        {
+          q: "Does it work with my till?",
+          a: "Ole is integrated with Simpra, and the Roxpos integration is in progress. You can request an integration for other systems.",
+        },
+        {
+          q: "Do customers pay?",
+          a: "No. The Ole app is free for customers.",
         },
         {
           q: "Do you take a commission?",
-          a: "No. There is no commission; businesses pay a subscription.",
+          a: "No. Ole takes no commission on your sales; businesses pay a yearly subscription.",
         },
       ],
     },
+    docs: {
+      title: "Ole documents and support (in Turkish)",
+      cookies: "Cookie policy",
+      kvkk: "KVKK customer notice",
+      membership: "Membership agreement",
+      support: "Support centre",
+    },
     closing: {
-      title: "Consider Ole for your business.",
-      body: "For more about Ole and to get started, visit oletr.com.",
+      kicker: "Let's start",
+      title: "Try Ole in your business.",
+      supportLabel: "Ole support",
+    },
+    alt: {
+      stage: "Ole app home screen",
+      loyalty: "Ole app — rewards screen",
+      qrForm: "Ole business dashboard — QR code generation form",
+      verify: "Ole business dashboard — 6-digit code verification",
+      winback: "Ole notification — “Seni Özledik!” reminder",
+      campaign: "Ole app — welcome campaign card",
+      business: "Ole app — business page",
+      nfc: "Ole NFC hardware",
+      panel: "Ole business dashboard",
     },
   },
 
@@ -549,46 +741,6 @@ export const en: Dictionary = {
     },
     ole: {
       artAlt: "Ole token key art",
-      heroShotAlt: "Ole app — loyalty screen",
-      homeShotAlt: "Ole app — home screen",
-      loyaltyShotAlt: "Ole app — rewards screen",
-      notificationShotAlt: "Ole app — notification screen",
-      businessShotAlt: "Ole app — business page",
-      panelShotAlt: "Ole business management panel",
-      flowTitle: "Loyalty, campaigns and messaging — one flow",
-      flow: [
-        {
-          title: "Digital loyalty via QR",
-          body: "A customer scans the business's QR code; tokens and rewards are handled automatically in the app.",
-        },
-        {
-          title: "Announce your campaigns",
-          body: "Campaigns and offers appear on the business page in the customer's app.",
-        },
-        {
-          title: "Send customer notifications",
-          body: "Push new campaigns and reminders straight to customers as app notifications.",
-        },
-        {
-          title: "Manage it all from one panel",
-          body: "QR generation, loyalty rules, branches and reports live in the web management panel.",
-        },
-      ],
-      panelTitle: "Business management panel",
-      panelBody:
-        "QR code generation, code verification, the loyalty program, campaigns, multiple branches and reports are all managed from one web panel.",
-      panelCaption: "Ole business management panel",
-      galleryTitle: "From the app",
-      gallery: ["Home", "Loyalty & rewards", "Notifications", "Business page"],
-      docsTitle: "Documents",
-      docsNote:
-        "Ole's contracts and legal documents will be available in this area soon.",
-      docs: [
-        "Privacy Policy",
-        "Terms of Use",
-        "Data Protection Notice (KVKK)",
-        "Subscription & Payment Terms",
-      ],
     },
     namaz: {
       artAlt: "Namaz Motivasyonu key art",
