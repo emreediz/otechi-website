@@ -50,8 +50,12 @@ export const tr = {
         "Otechi; işletmeler, girişimler ve bireyler için modern dijital ürünler ve yazılım çözümleri geliştirir. Fikrin ilk taslağından yayına kadar tasarım, geliştirme ve ürün deneyimini bir bütün olarak ele alırız.",
       ctaPrimary: "Ürünlerimizi Keşfet",
       ctaSecondary: "Bizi Tanıyın",
+      // Must appear verbatim inside `title`; it is set in the accent colour.
+      highlight: "dijital ürünlere",
+      scroll: "Kaydırın",
     },
     what: {
+      kicker: "Stüdyo",
       title: "Ürün odaklı bir teknoloji stüdyosu.",
       intro:
         "Otechi, dijital ürünler ve yazılım çözümleri geliştiren bir teknoloji stüdyosudur.",
@@ -80,8 +84,58 @@ export const tr = {
       namaz: {
         tagline: "Beş vakit namaz takibi ve motivasyon uygulaması.",
       },
+      oleCategory: "Sadakat ve kampanya platformu",
+      namazCategory: "Namaz takibi ve motivasyon",
+      explore: "Keşfet",
+    },
+    work: {
+      kicker: "Seçili işler",
+      title: "Geliştirdiğimiz ürünler.",
+      rows: {
+        ole: {
+          kind: "Mobil uygulama",
+          desc: "Dijital sadakat, kampanyalar ve bildirimler",
+        },
+        olePanel: {
+          suffix: "Panel",
+          kind: "Web paneli",
+          desc: "İşletmeler için yönetim paneli",
+        },
+        namaz: {
+          kind: "Mobil uygulama",
+          desc: "Beş vakit takibi ve grup motivasyonu",
+        },
+        next: {
+          name: "Sıradaki fikir",
+          kind: "Stüdyo",
+          desc: "Fikrinizi birlikte ürüne dönüştürelim",
+        },
+      },
+    },
+    gallery: {
+      kicker: "Ürünlerin dünyasından",
+      title: "Gerçek insanlar, gündelik anlar.",
+      hint: "Sürükleyerek keşfedin",
+      label: "Görsel galerisi",
+      prev: "Önceki görseller",
+      next: "Sonraki görseller",
+      items: {
+        ole1: "Kafede müşterisini karşılayan işletme sahibi",
+        ole2: "Bir kafede sohbet eden arkadaş grubu",
+        ole3: "Kafesinin tezgâhında gülümseyen işletme sahibi",
+        ole4: "Dükkân kapısında müşterisine kahve uzatan çalışan",
+        namaz1: "Gün batımında seccadesinde namaz kılan bir adam",
+        namaz2: "Bir caminin avlusunda sohbet eden üç arkadaş",
+        namaz3: "Seccadesini seren genç bir kadın",
+        namaz4: "Akşam ezanı vaktinde camiye yürüyen bir adam",
+        oleLoyalty: "Uygulamanın sadakat ve ödüller ekranı",
+        olePanel: "İşletme yönetim paneli",
+        namazToday: "Uygulamanın Bugün ekranı",
+        namazGroup: "Uygulamanın grup ekranı",
+      },
     },
     approach: {
+      kicker: "Yaklaşım",
       title: "Nasıl çalışıyoruz?",
       items: [
         "Önce problemi netleştiririz.",
@@ -112,7 +166,8 @@ export const tr = {
         },
         {
           q: "Sizinle nasıl iletişime geçebilirim?",
-          a: "İletişim kanallarımız çok yakında sitede yer alacak.",
+          a: "Bize telefon veya e-posta ile ulaşabilirsiniz; tüm iletişim bilgilerimiz İletişim sayfasında.",
+          contactLink: "İletişim sayfasına git",
         },
       ],
     },
@@ -120,6 +175,8 @@ export const tr = {
       title: "Ürünlerimize göz at.",
       ctaOle: "Ole’yi İncele",
       ctaNamaz: "Namaz Motivasyonu’nu İncele",
+      kicker: "Bir fikriniz mi var?",
+      contactTitle: "Birlikte üretelim.",
     },
   },
 

@@ -49,8 +49,11 @@ export const en: Dictionary = {
         "Otechi builds modern digital products and software solutions for businesses, startups and individuals. From the first sketch of an idea to launch, we treat design, engineering and product experience as one whole.",
       ctaPrimary: "Explore our products",
       ctaSecondary: "Get to know us",
+      highlight: "digital products",
+      scroll: "Scroll",
     },
     what: {
+      kicker: "Studio",
       title: "A product-focused technology studio.",
       intro:
         "Otechi is a technology studio building digital products and software solutions.",
@@ -80,8 +83,58 @@ export const en: Dictionary = {
         tagline:
           "An app for tracking the five daily prayers and staying motivated.",
       },
+      oleCategory: "Loyalty & campaign platform",
+      namazCategory: "Prayer tracking & motivation",
+      explore: "Explore",
+    },
+    work: {
+      kicker: "Selected work",
+      title: "Products we've built.",
+      rows: {
+        ole: {
+          kind: "Mobile app",
+          desc: "Digital loyalty, campaigns and notifications",
+        },
+        olePanel: {
+          suffix: "Dashboard",
+          kind: "Web dashboard",
+          desc: "A management dashboard for businesses",
+        },
+        namaz: {
+          kind: "Mobile app",
+          desc: "Five daily prayers, tracked together",
+        },
+        next: {
+          name: "Your idea next",
+          kind: "Studio",
+          desc: "Let's turn your idea into a product",
+        },
+      },
+    },
+    gallery: {
+      kicker: "Inside our products",
+      title: "Real people, everyday moments.",
+      hint: "Drag to explore",
+      label: "Image gallery",
+      prev: "Previous images",
+      next: "Next images",
+      items: {
+        ole1: "A café owner welcoming a customer",
+        ole2: "Friends chatting at a café",
+        ole3: "A café owner smiling behind the counter",
+        ole4: "A shop worker handing a coffee to a customer at the door",
+        namaz1: "A man praying on his prayer mat at sunset",
+        namaz2: "Three friends talking in a mosque courtyard",
+        namaz3: "A young woman unrolling her prayer mat",
+        namaz4: "A man walking towards a mosque at dusk",
+        oleLoyalty: "The app's loyalty and rewards screen",
+        olePanel: "The business management dashboard",
+        namazToday: "The app's Today screen",
+        namazGroup: "The app's group screen",
+      },
     },
     approach: {
+      kicker: "Approach",
       title: "How we work",
       items: [
         "We start by getting the problem clear.",
@@ -112,7 +165,8 @@ export const en: Dictionary = {
         },
         {
           q: "How can I contact you?",
-          a: "Our contact channels will be on the site very soon.",
+          a: "You can reach us by phone or email — all our contact details are on the Contact page.",
+          contactLink: "Go to the Contact page",
         },
       ],
     },
@@ -120,6 +174,8 @@ export const en: Dictionary = {
       title: "Take a look at our products.",
       ctaOle: "Explore Ole",
       ctaNamaz: "Explore Namaz Motivasyonu",
+      kicker: "Have an idea?",
+      contactTitle: "Let's build it together.",
     },
   },
 

@@ -1,8 +1,11 @@
-import { Plus } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Plus } from "lucide-react";
 
 export type QA = {
   q: string;
   a: string;
+  /** Optional internal link shown under the answer. */
+  link?: { href: string; label: string };
 };
 
 /**
@@ -21,9 +24,16 @@ export function Faq({ items }: { items: QA[] }) {
               aria-hidden="true"
             />
           </summary>
-          <p className="pb-4 text-sm leading-relaxed text-fg-muted">
-            {item.a}
-          </p>
+          <p className="pb-4 text-sm leading-relaxed text-fg-muted">{item.a}</p>
+          {item.link ? (
+            <Link
+              href={item.link.href}
+              className="mb-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-accent hover:gap-2.5"
+            >
+              {item.link.label}
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          ) : null}
         </details>
       ))}
     </div>

@@ -38,4 +38,18 @@ export const IMG = {
     screenToday: "/images/products/namaz-motivasyonu/web/screen-today.jpg",
     screenGroup: "/images/products/namaz-motivasyonu/web/screen-group.jpg",
   },
+  // Lifestyle photography — web copies (max 1400px, JPEG) generated with
+  // `sips` into `photo assets/web/`; the PNG originals are never modified.
+  photos: {
+    ole1: { src: "/images/photo assets/web/ole-1.jpg", w: 1400, h: 788 },
+    ole2: { src: "/images/photo assets/web/ole-2.jpg", w: 1400, h: 933 },
+    ole3: { src: "/images/photo assets/web/ole-3.jpg", w: 1400, h: 1400 },
+    ole4: { src: "/images/photo assets/web/ole-4.jpg", w: 1120, h: 1400 },
+    namaz1: { src: "/images/photo assets/web/namaz-1.jpg", w: 1400, h: 788 },
+    namaz2: { src: "/images/photo assets/web/namaz-2.jpg", w: 1400, h: 933 },
+    namaz3: { src: "/images/photo assets/web/namaz-3.jpg", w: 1400, h: 1400 },
+    namaz4: { src: "/images/photo assets/web/namaz-4.jpg", w: 1120, h: 1400 },
+  },
 } as const;
+
+export type PhotoKey = keyof typeof IMG.photos;

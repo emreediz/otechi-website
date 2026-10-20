@@ -221,6 +221,56 @@ html.js .hero-rise-4 {
   }
 }
 
+/* ------------------------------------------------------------------ *
+ * Homepage
+ * ------------------------------------------------------------------ */
+
+/* Hero headline: each word slides up out of a clipping mask on load. */
+.mask-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* room for descenders inside the mask */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+html.js .mask-word > span {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: wordup 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(0.08s + var(--i, 0) * 0.06s);
+}
+@keyframes wordup {
+  to {
+    transform: none;
+  }
+}
+
+/* Scroll-linked text fill: `--p` (0..1) is set on the parent by JS,
+   each word carries its index `--i` out of `--n`. Defaults to filled. */
+.fill-word {
+  opacity: clamp(0.16, calc(var(--p, 1) * (var(--n, 1) + 4) - var(--i, 0)), 1);
+  transition: opacity 0.2s linear;
+}
+
+/* Pointer-driven tilt / parallax for product tiles. `--px` / `--py` are
+   -1..1, set by JS on the tile; both default to 0 (flat). */
+.tilt-layer {
+  transform: perspective(900px)
+    translate3d(calc(var(--px, 0) * 14px), calc(var(--py, 0) * 14px), 0)
+    rotateX(calc(var(--py, 0) * -7deg)) rotateY(calc(var(--px, 0) * 7deg));
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Native horizontal scroller without a visible scrollbar. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* No ambient float / drift on small screens (battery + jank). */
 @media (max-width: 768px) {
   .anim-float,
@@ -246,6 +296,15 @@ html.js .hero-rise-4 {
     transform: none !important;
   }
   .draw-line {
+    transform: none !important;
+  }
+  html.js .mask-word > span {
+    transform: none !important;
+  }
+  .fill-word {
+    opacity: 1 !important;
+  }
+  .tilt-layer {
     transform: none !important;
   }
   .anim-float,
