@@ -2,6 +2,7 @@ import type { Dictionary } from "@/i18n/getDictionary";
 import { Container } from "@/components/ui/Container";
 import { Kicker } from "@/components/ui/Kicker";
 import { LegalHeader } from "@/components/legal/LegalHeader";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 type LegalKind = "privacy" | "terms" | "kvkk";
 
@@ -19,7 +20,7 @@ export function LegalView({
   const t = dict.legal[kind];
 
   return (
-    <>
+    <PageTransition>
       <LegalHeader
         eyebrow={<Kicker>{dict.footer.legalTitle}</Kicker>}
         title={t.title}
@@ -52,6 +53,6 @@ export function LegalView({
           </ol>
         </div>
       </Container>
-    </>
+    </PageTransition>
   );
 }

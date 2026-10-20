@@ -10,6 +10,7 @@ import { PageIntro } from "@/components/content/PageIntro";
 import { NumberedList } from "@/components/content/NumberedList";
 import { ClosingCta } from "@/components/content/ClosingCta";
 import { IndexList } from "@/components/showcase/IndexList";
+import { PageTransition } from "@/components/motion/PageTransition";
 import { ScrollFillText } from "@/components/showcase/ScrollFillText";
 
 export function AboutView({
@@ -23,7 +24,7 @@ export function AboutView({
   const [first, ...rest] = t.paragraphs;
 
   return (
-    <>
+    <PageTransition>
       <PageIntro kicker={t.title} title={t.lead} />
 
       {/* Narrative: first paragraph fills in on scroll, the rest beside it */}
@@ -99,6 +100,6 @@ export function AboutView({
         title={dict.common.cta.title}
         href={localizedPath("contact", locale)}
       />
-    </>
+    </PageTransition>
   );
 }

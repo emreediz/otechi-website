@@ -21,6 +21,7 @@ import {
   DragGallery,
   type GalleryItem,
 } from "@/components/showcase/DragGallery";
+import { PageTransition } from "@/components/motion/PageTransition";
 import { ScrollFillText } from "@/components/showcase/ScrollFillText";
 
 /** Gallery order: lifestyle photos interleaved with app screens. */
@@ -94,7 +95,7 @@ export function HomeView({
   });
 
   return (
-    <>
+    <PageTransition>
       {/* ------------------------------------------------ Hero */}
       <PageIntro
         kicker={t.hero.kicker}
@@ -272,6 +273,6 @@ export function HomeView({
           </Link>
         </div>
       </ClosingCta>
-    </>
+    </PageTransition>
   );
 }

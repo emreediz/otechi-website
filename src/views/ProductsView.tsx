@@ -12,6 +12,7 @@ import { PageIntro } from "@/components/content/PageIntro";
 import { NumberedList } from "@/components/content/NumberedList";
 import { ClosingCta } from "@/components/content/ClosingCta";
 import { ProductTiles } from "@/components/showcase/ProductTiles";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 export function ProductsView({
   locale,
@@ -28,7 +29,7 @@ export function ProductsView({
   ];
 
   return (
-    <>
+    <PageTransition>
       <PageIntro kicker={t.title} title={t.intro} />
 
       <section className="pb-24 sm:pb-32">
@@ -112,6 +113,6 @@ export function ProductsView({
         title={dict.common.cta.title}
         href={localizedPath("contact", locale)}
       />
-    </>
+    </PageTransition>
   );
 }

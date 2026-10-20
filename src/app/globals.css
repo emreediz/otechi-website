@@ -272,6 +272,54 @@
   }
 }
 
+/* ------------------------------------------------------------------ *
+ * Page transitions (React <ViewTransition>, see PageTransition.tsx).
+ * Old page fades out quickly; the new one fades in with a small rise.
+ * The header is anchored; clicks pass through the transition overlay.
+ * ------------------------------------------------------------------ */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+::view-transition-old(.page-exit) {
+  animation: vt-fade-out 160ms ease-in both;
+}
+::view-transition-new(.page-enter) {
+  animation: vt-rise-in 360ms var(--ease-out-expo) 80ms both;
+}
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-rise-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
 /* The Contact page already shows the contact rows; skip the footer copy.
    Unlayered on purpose: it must beat the block's own `grid` utility. */
 body:has([data-page="contact"]) .footer-contact {

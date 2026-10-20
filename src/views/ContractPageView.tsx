@@ -10,6 +10,7 @@ import {
   blockId,
   type ContractBlock,
 } from "@/components/legal/ContractDocument";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 /**
  * Shared page shell for the Namaz Motivasyonu contract pages. Turkish-only,
@@ -33,26 +34,28 @@ export function ContractPageView({
   );
 
   return (
-    <div data-theme="namaz" className="bg-bg text-fg">
-      <LegalHeader
-        eyebrow={<NamazBackLink />}
-        title={title}
-        meta={`${tr.legal.lastUpdatedLabel}: ${lastUpdated}`}
-      />
+    <PageTransition>
+      <div data-theme="namaz" className="bg-bg text-fg">
+        <LegalHeader
+          eyebrow={<NamazBackLink />}
+          title={title}
+          meta={`${tr.legal.lastUpdatedLabel}: ${lastUpdated}`}
+        />
 
-      <Container className="py-12 sm:py-20">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-          <LegalToc
-            title={tr.legal.toc}
-            items={toc}
-            className="lg:col-span-3"
-          />
-          <div className="min-w-0 lg:col-span-8 lg:col-start-5">
-            <ContractDocument blocks={blocks} />
-            <RelatedDocs current={doc} className="mt-20" />
+        <Container className="py-12 sm:py-20">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+            <LegalToc
+              title={tr.legal.toc}
+              items={toc}
+              className="lg:col-span-3"
+            />
+            <div className="min-w-0 lg:col-span-8 lg:col-start-5">
+              <ContractDocument blocks={blocks} />
+              <RelatedDocs current={doc} className="mt-20" />
+            </div>
           </div>
-        </div>
-      </Container>
-    </div>
+        </Container>
+      </div>
+    </PageTransition>
   );
 }
