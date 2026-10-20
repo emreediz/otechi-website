@@ -34,7 +34,7 @@ export function ProductsView({
 
       <section className="pb-24 sm:pb-32">
         <Container>
-          <h2 className="sr-only">{dict.home.products.title}</h2>
+          <h2 className="sr-only">{dict.home.products.title2}</h2>
           <Reveal>
             <ProductTiles
               exploreLabel={dict.home.products.explore}

@@ -74,36 +74,44 @@ export const tr = {
     },
     hero: {
       kicker: "Yazılım ve dijital ürün stüdyosu",
-      title: "İyi fikirleri, güçlü dijital ürünlere dönüştürüyoruz.",
-      subtitle:
-        "Otechi; işletmeler, girişimler ve bireyler için modern dijital ürünler ve yazılım çözümleri geliştirir. Fikrin ilk taslağından yayına kadar tasarım, geliştirme ve ürün deneyimini bir bütün olarak ele alırız.",
-      ctaPrimary: "Ürünlerimizi Keşfedin",
+      titleLines: ["Fikirden", "ürüne."],
+      lead: "İşletmeler, girişimler ve bireyler için dijital ürünler ve yazılım geliştiriyoruz.",
+      ctaPrimary: "Ürünleri Keşfedin",
       ctaSecondary: "Bizi Tanıyın",
-      // Must appear verbatim inside `title`; it is set in the accent colour.
-      highlight: "dijital ürünlere",
-      scroll: "Kaydırın",
+      capsulesLabel: "Ürünlerimiz",
     },
-    what: {
-      kicker: "Stüdyo",
-      title: "Ürün odaklı bir teknoloji stüdyosu.",
-      items: [
-        {
-          title: "Uçtan uca ürün geliştirme",
-          body: "Fikrin ilk taslağından yayına kadar tasarım, geliştirme ve ürün deneyimini bir bütün olarak ele alırız.",
-        },
-        {
-          title: "İyi tasarım",
-          body: "Sade arayüz, hızlı öğrenme ve gereksiz karmaşadan kaçınma.",
-        },
-        {
-          title: "Uzun vadeli sahiplenme",
-          body: "Geliştirdiğimiz ürünleri yayından sonra da uzun vadeli olarak iyileştiririz.",
-        },
-      ],
+    intro: {
+      statement:
+        "Tasarımı, yazılımı ve ürün yaklaşımını tek süreçte birleştiriyoruz. Fikrin ilk taslağından yayına kadar her adımı birlikte yürütüyor, yayından sonra da ürünü büyütmeye devam ediyoruz.",
     },
     products: {
-      title: "Ürünlerimiz",
-      subtitle: "Otechi çatısı altında geliştirdiğimiz dijital ürünler.",
+      kicker: "Ürünler",
+      title: "Üç ürün.",
+      titleMuted: "Tek stüdyo.",
+      lead: "Kendi geliştirdiğimiz ve bugün yayında olan uygulamalar.",
+      explore: "Keşfedin",
+      items: {
+        ole: {
+          label: "Mobil uygulama",
+          title: "İlk ziyaretten müdavimliğe.",
+          body: "İşletmeler için dijital sadakat: müşteriler QR ya da NFC ile jeton kazanır, ödülünü alır, kampanyaları takip eder.",
+          cta: "Ole’yi inceleyin",
+        },
+        panel: {
+          label: "Web paneli",
+          title: "Kontrol işletmede.",
+          body: "QR kod üretimi, ödül doğrulama, kampanyalar, bildirimler ve tüm şubeler tek panelde.",
+          cta: "Ole Panel’i inceleyin",
+        },
+        namaz: {
+          label: "Mobil uygulama",
+          title: "Beş vakit, tek bakışta.",
+          body: "Kıldığın vakitleri işaretle, istatistiklerle ilerlemeni gör, grubunla birlikte motive ol.",
+          cta: "Namaz Motivasyonu’nu inceleyin",
+        },
+      },
+      // Older product tiles (product pages) — replaced in the next phase.
+      title2: "Ürünlerimiz",
       ole: {
         tagline:
           "İşletmeler için dijital sadakat ve kampanya yönetim platformu. QR ile sadakat, kampanya yönetimi ve müşteri iletişimi tek panelde.",
@@ -113,8 +121,105 @@ export const tr = {
       },
       oleCategory: "Sadakat ve kampanya platformu",
       namazCategory: "Namaz takibi ve motivasyon",
-      explore: "Keşfedin",
     },
+    playground: {
+      kicker: "Deneme alanı",
+      title: "Bakmakla kalmayın.",
+      titleMuted: "Deneyin.",
+      lead: "Ürünlerimizin temel akışlarını burada deneyebilirsiniz.",
+      note: "Temsili deneme alanıdır; gerçek işlem yapılmaz.",
+      tablist: "Ürün seçin",
+      ole: {
+        title: "Jeton biriktir, ödülü al.",
+        steps: [
+          "Siparişinizi verirken QR kodu okutun.",
+          "Her okutmada hesabınıza jeton eklenir.",
+          "Beş jetonda ödülünüz hazır.",
+        ],
+        scan: "QR okut",
+        redeem: "Ödülü kullan",
+        scanned: "Jeton eklendi: {n} / 5",
+        redeemed: "Ödül kullanıldı. Afiyet olsun!",
+      },
+      panel: {
+        title: "Kod üret, kampanyayı yayınla.",
+        steps: [
+          "Şubeyi ve jeton sayısını seçin.",
+          "QR kodu üretin; kod kısa süre geçerlidir.",
+          "Kampanyayı tek tıkla yayına alın.",
+        ],
+        generate: "QR kod üret",
+        publish: "Kampanyayı yayınla",
+        unpublish: "Yayından kaldır",
+        generated: "QR kod üretildi.",
+        published: "Kampanya yayında.",
+        unpublished: "Kampanya taslağa alındı.",
+      },
+      namaz: {
+        title: "Vakitlerini işaretle.",
+        steps: [
+          "Kıldığınız vakitte “Kıldım”a dokunun.",
+          "Günlük ilerlemeniz anında güncellenir.",
+          "İstatistikler haftalık ve aylık ilerlemenizi gösterir.",
+        ],
+        hint: "Sağdaki “Kıldım” düğmelerine dokunun.",
+        progress: "{n} / 5 vakit işaretlendi.",
+      },
+    },
+    approach: {
+      kicker: "Yaklaşım",
+      title: "Nasıl çalışıyoruz?",
+      items: [
+        "Önce problemi netleştiririz.",
+        "En küçük çalışan çözümü yayınlarız.",
+        "Kullanıcı geri bildirimiyle iyileştiririz.",
+        "Erişilebilirliği baştan düşünürüz.",
+      ],
+    },
+    faq: {
+      kicker: "Sık sorulan sorular",
+      title: "Aklınızdaki sorular.",
+      body: "Stüdyomuz ve ürünlerimiz hakkında merak edilenler.",
+      ask: "Bize sorun",
+      tabs: [
+        {
+          label: "Genel",
+          items: [
+            {
+              q: "Otechi ne tür işler yapıyor?",
+              a: "İşletmeler, girişimler ve bireyler için dijital ürünler ve yazılım çözümleri geliştiriyoruz; tasarımdan yayına kadar süreci bir bütün olarak yürütüyoruz.",
+            },
+            {
+              q: "Sizinle nasıl iletişime geçebilirim?",
+              a: "Bize telefon veya e-posta ile ulaşabilirsiniz; tüm iletişim bilgilerimiz İletişim sayfasında.",
+              contactLink: "İletişim sayfasına gidin",
+            },
+          ],
+        },
+        {
+          label: "Ürünler",
+          items: [
+            {
+              q: "Şu anda hangi ürünler var?",
+              a: "İşletmeler için Ole ve Ole Panel, bireyler için Namaz Motivasyonu yayında.",
+            },
+            {
+              q: "Ole ile Ole Panel arasındaki fark nedir?",
+              a: "Ole, müşterilerin jeton kazanıp ödül aldığı mobil uygulamadır. Ole Panel ise işletmelerin QR kod ürettiği, ödülleri doğruladığı ve kampanyalarını yönettiği web panelidir.",
+            },
+            {
+              q: "Ole’yi nasıl kullanmaya başlarım?",
+              a: "Ole sayfasındaki bilgileri inceleyip oletr.com üzerinden başlayabilirsiniz.",
+            },
+            {
+              q: "Namaz Motivasyonu’nu nereden indirebilirim?",
+              a: "App Store ve Google Play’den indirebilirsiniz.",
+            },
+          ],
+        },
+      ],
+    },
+    // Legacy rows for the About page (replaced in a later phase).
     work: {
       kicker: "Seçili işler",
       title: "Geliştirdiğimiz ürünler.",
@@ -138,70 +243,6 @@ export const tr = {
           desc: "Fikrinizi birlikte ürüne dönüştürelim",
         },
       },
-    },
-    gallery: {
-      kicker: "Ürünlerin dünyasından",
-      title: "Gerçek insanlar, gündelik anlar.",
-      hint: "Sürükleyerek keşfedin",
-      label: "Görsel galerisi",
-      prev: "Önceki görseller",
-      next: "Sonraki görseller",
-      items: {
-        ole1: "Kafede müşterisini karşılayan işletme sahibi",
-        ole2: "Bir kafede sohbet eden arkadaş grubu",
-        ole3: "Kafesinin tezgâhında gülümseyen işletme sahibi",
-        ole4: "Dükkân kapısında müşterisine kahve uzatan çalışan",
-        namaz1: "Gün batımında seccadesinde namaz kılan bir adam",
-        namaz2: "Bir caminin avlusunda sohbet eden üç arkadaş",
-        namaz3: "Seccadesini seren genç bir kadın",
-        namaz4: "Akşam ezanı vaktinde camiye yürüyen bir adam",
-        oleLoyalty: "Uygulamanın sadakat ve ödüller ekranı",
-        olePanel: "İşletme yönetim paneli",
-        namazToday: "Uygulamanın Bugün ekranı",
-        namazGroup: "Uygulamanın grup ekranı",
-      },
-    },
-    approach: {
-      kicker: "Yaklaşım",
-      title: "Nasıl çalışıyoruz?",
-      items: [
-        "Önce problemi netleştiririz.",
-        "En küçük çalışan çözümü yayınlarız.",
-        "Kullanıcı geri bildirimiyle iyileştiririz.",
-        "Erişilebilirliği baştan düşünürüz.",
-      ],
-    },
-    aboutStrip: {
-      title: "Otechi hakkında",
-      body: "Dijital ürünler ve yazılım çözümleri geliştiren bir teknoloji stüdyosuyuz. Ole ve Namaz Motivasyonu geliştirdiğimiz ürünlerden ikisi; farklı fikir ve projeler için de dijital ürün ve yazılım geliştiriyoruz.",
-      cta: "Hakkımızda",
-    },
-    faq: {
-      title: "Sıkça sorulan sorular",
-      items: [
-        {
-          q: "Otechi ne tür işler yapıyor?",
-          a: "İşletmeler, girişimler ve bireyler için dijital ürünler ve yazılım çözümleri geliştiriyoruz.",
-        },
-        {
-          q: "Şu anda hangi ürünler var?",
-          a: "İşletmeler için Ole, bireyler için Namaz Motivasyonu yayında. Yeni fikirler için geliştirmeye devam ediyoruz.",
-        },
-        {
-          q: "Ole’yi nasıl kullanmaya başlarım?",
-          a: "Ole sayfasındaki bilgileri inceleyip oletr.com üzerinden başlayabilirsiniz.",
-        },
-        {
-          q: "Sizinle nasıl iletişime geçebilirim?",
-          a: "Bize telefon veya e-posta ile ulaşabilirsiniz; tüm iletişim bilgilerimiz İletişim sayfasında.",
-          contactLink: "İletişim sayfasına gidin",
-        },
-      ],
-    },
-    closing: {
-      title: "Ürünlerimize göz atın.",
-      ctaOle: "Ole’yi İnceleyin",
-      ctaNamaz: "Namaz Motivasyonu’nu İnceleyin",
     },
   },
 
@@ -460,6 +501,63 @@ export const tr = {
         { heading: "Aktarım", body: "Bu bölüm hazırlanıyor." },
         { heading: "Haklarınız ve başvuru", body: "Bu bölüm hazırlanıyor." },
       ],
+    },
+  },
+
+  // Strings inside the coded app mock-ups (illustrative UI, sample data).
+  mock: {
+    caption: "Temsili arayüz",
+    ole: {
+      category: "3. nesil kahveci",
+      rewardLabel: "Ödül",
+      reward: "Kahve ikramı",
+      tokensLeft: "Ödüle {n} jeton kaldı",
+      rewardReady: "Ödülün hazır!",
+      now: "şimdi",
+      notifTitle: "Seni özledik!",
+      notifBody: "Bir süredir uğramadın; en sevdiğin kahve seni bekliyor.",
+      open: "Açık",
+    },
+    panel: {
+      nav: ["Genel bakış", "QR kod", "Kampanyalar", "Bildirimler", "Şubeler", "Raporlar"],
+      kpis: [
+        { label: "Bugün okutulan QR", value: "128" },
+        { label: "Kullanılan ödül", value: "23" },
+        { label: "Aktif kampanya", value: "3" },
+      ],
+      chartTitle: "Jeton hareketleri",
+      days: ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"],
+      campaignsTitle: "Kampanyalar",
+      campaigns: [
+        "İlk ziyarete özel ikram",
+        "Doğum gününe tatlı ikramı",
+        "Hafta içi kahve kampanyası",
+      ],
+      live: "Yayında",
+      draft: "Taslak",
+      qrTitle: "QR kod üretimi",
+      branch: "Şube",
+      branchValue: "Merkez şube",
+      tokens: "Jeton sayısı",
+      generate: "QR kod üret",
+      validFor: "Kalan süre",
+      verifyTitle: "Kod doğrulama",
+      verify: "Doğrula",
+      verified: "Ödül teslim edildi",
+    },
+    namaz: {
+      today: "Bugün",
+      prayers: ["Sabah", "Öğle", "İkindi", "Akşam", "Yatsı"],
+      times: ["05:11", "13:16", "16:52", "19:44", "21:08"],
+      done: "{n} / 5 vakit tamamlandı",
+      mark: "Kıldım",
+      weekTitle: "Haftalık kayıt oranı",
+      periods: ["Hafta", "Ay", "Yıl"],
+      days: ["Pt", "Sa", "Ça", "Pe", "Cu", "Ct", "Pz"],
+      streak: "Mevcut tam gün serisi",
+      groupName: "Dostluk Halkası",
+      groupMeta: "3 üye · bugünkü namaz durumu",
+      invite: "Davet kodu",
     },
   },
 

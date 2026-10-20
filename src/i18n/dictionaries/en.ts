@@ -69,35 +69,43 @@ export const en: Dictionary = {
     },
     hero: {
       kicker: "Software & digital product studio",
-      title: "We turn good ideas into strong digital products.",
-      subtitle:
-        "Otechi builds modern digital products and software solutions for businesses, startups and individuals. From the first sketch of an idea to launch, we treat design, engineering and product experience as one whole.",
+      titleLines: ["From idea", "to product."],
+      lead: "We build digital products and software for businesses, startups and individuals.",
       ctaPrimary: "Explore our products",
       ctaSecondary: "Get to know us",
-      highlight: "digital products",
-      scroll: "Scroll",
+      capsulesLabel: "Our products",
     },
-    what: {
-      kicker: "Studio",
-      title: "A product-focused technology studio.",
-      items: [
-        {
-          title: "End-to-end product work",
-          body: "From the first sketch of an idea to launch, we handle design, engineering and product experience as one whole.",
-        },
-        {
-          title: "Considered design",
-          body: "Simple interfaces, a short learning curve, and no unnecessary complexity.",
-        },
-        {
-          title: "Long-term ownership",
-          body: "We keep improving the products we build long after they ship.",
-        },
-      ],
+    intro: {
+      statement:
+        "We bring design, engineering and product thinking together in one process — from the first sketch of an idea to launch, and on to growing the product after it ships.",
     },
     products: {
-      title: "Our products",
-      subtitle: "The digital products we build under Otechi.",
+      kicker: "Products",
+      title: "Three products.",
+      titleMuted: "One studio.",
+      lead: "Apps we build ourselves — all live today.",
+      explore: "Explore",
+      items: {
+        ole: {
+          label: "Mobile app",
+          title: "From first visit to regular.",
+          body: "Digital loyalty for businesses: customers earn tokens with a QR code or NFC, collect rewards and follow campaigns.",
+          cta: "Explore Ole",
+        },
+        panel: {
+          label: "Web dashboard",
+          title: "The business stays in control.",
+          body: "QR codes, reward checks, campaigns, notifications and every branch in one dashboard.",
+          cta: "Explore Ole Panel",
+        },
+        namaz: {
+          label: "Mobile app",
+          title: "Five prayers at a glance.",
+          body: "Mark the prayers you’ve performed, see your progress in statistics and stay motivated with your group.",
+          cta: "Explore Namaz Motivasyonu",
+        },
+      },
+      title2: "Our products",
       ole: {
         tagline:
           "A digital loyalty and campaign platform for businesses. Loyalty via QR, campaign management, and customer messaging in a single dashboard.",
@@ -108,7 +116,103 @@ export const en: Dictionary = {
       },
       oleCategory: "Loyalty & campaign platform",
       namazCategory: "Prayer tracking & motivation",
-      explore: "Explore",
+    },
+    playground: {
+      kicker: "Try it",
+      title: "Don’t just look.",
+      titleMuted: "Try it.",
+      lead: "Try the core flows of our products right here.",
+      note: "A demo area — nothing real happens.",
+      tablist: "Choose a product",
+      ole: {
+        title: "Collect tokens, get the reward.",
+        steps: [
+          "Scan the QR code when you order.",
+          "Every scan adds a token to your account.",
+          "Five tokens and your reward is ready.",
+        ],
+        scan: "Scan QR",
+        redeem: "Redeem reward",
+        scanned: "Token added: {n} / 5",
+        redeemed: "Reward redeemed. Enjoy!",
+      },
+      panel: {
+        title: "Generate a code, publish a campaign.",
+        steps: [
+          "Pick the branch and the number of tokens.",
+          "Generate the QR code — it’s valid for a short time.",
+          "Publish the campaign in one click.",
+        ],
+        generate: "Generate QR code",
+        publish: "Publish campaign",
+        unpublish: "Unpublish",
+        generated: "QR code generated.",
+        published: "Campaign is live.",
+        unpublished: "Campaign moved to drafts.",
+      },
+      namaz: {
+        title: "Mark your prayers.",
+        steps: [
+          "Tap “Prayed” when you’ve performed a prayer.",
+          "Your daily progress updates instantly.",
+          "Statistics show your weekly and monthly progress.",
+        ],
+        hint: "Tap the “Prayed” buttons on the right.",
+        progress: "{n} / 5 prayers marked.",
+      },
+    },
+    approach: {
+      kicker: "Approach",
+      title: "How we work",
+      items: [
+        "We start by getting the problem clear.",
+        "We ship the smallest thing that works.",
+        "We improve it with real user feedback.",
+        "We think about accessibility from the start.",
+      ],
+    },
+    faq: {
+      kicker: "Frequently asked questions",
+      title: "Questions on your mind.",
+      body: "What people ask about our studio and our products.",
+      ask: "Ask us",
+      tabs: [
+        {
+          label: "General",
+          items: [
+            {
+              q: "What kind of work does Otechi do?",
+              a: "We build digital products and software solutions for businesses, startups and individuals, and run the whole process from design to launch.",
+            },
+            {
+              q: "How can I contact you?",
+              a: "You can reach us by phone or email — all our contact details are on the Contact page.",
+              contactLink: "Go to the Contact page",
+            },
+          ],
+        },
+        {
+          label: "Products",
+          items: [
+            {
+              q: "Which products are available right now?",
+              a: "Ole and Ole Panel for businesses, and Namaz Motivasyonu for individuals, are all live.",
+            },
+            {
+              q: "What’s the difference between Ole and Ole Panel?",
+              a: "Ole is the mobile app where customers earn tokens and collect rewards. Ole Panel is the web dashboard where businesses generate QR codes, verify rewards and manage their campaigns.",
+            },
+            {
+              q: "How do I get started with Ole?",
+              a: "You can read through the Ole page and get started at oletr.com.",
+            },
+            {
+              q: "Where can I download Namaz Motivasyonu?",
+              a: "It’s on the App Store and Google Play.",
+            },
+          ],
+        },
+      ],
     },
     work: {
       kicker: "Selected work",
@@ -133,70 +237,6 @@ export const en: Dictionary = {
           desc: "Let's turn your idea into a product",
         },
       },
-    },
-    gallery: {
-      kicker: "Inside our products",
-      title: "Real people, everyday moments.",
-      hint: "Drag to explore",
-      label: "Image gallery",
-      prev: "Previous images",
-      next: "Next images",
-      items: {
-        ole1: "A café owner welcoming a customer",
-        ole2: "Friends chatting at a café",
-        ole3: "A café owner smiling behind the counter",
-        ole4: "A shop worker handing a coffee to a customer at the door",
-        namaz1: "A man praying on his prayer mat at sunset",
-        namaz2: "Three friends talking in a mosque courtyard",
-        namaz3: "A young woman unrolling her prayer mat",
-        namaz4: "A man walking towards a mosque at dusk",
-        oleLoyalty: "The app's loyalty and rewards screen",
-        olePanel: "The business management dashboard",
-        namazToday: "The app's Today screen",
-        namazGroup: "The app's group screen",
-      },
-    },
-    approach: {
-      kicker: "Approach",
-      title: "How we work",
-      items: [
-        "We start by getting the problem clear.",
-        "We ship the smallest thing that works.",
-        "We improve it with real user feedback.",
-        "We think about accessibility from the start.",
-      ],
-    },
-    aboutStrip: {
-      title: "About Otechi",
-      body: "We're a technology studio building digital products and software solutions. Ole and Namaz Motivasyonu are two of the products we've built; we also develop digital products and software for other ideas and projects.",
-      cta: "About us",
-    },
-    faq: {
-      title: "Frequently asked questions",
-      items: [
-        {
-          q: "What kind of work does Otechi do?",
-          a: "We build digital products and software solutions for businesses, startups and individuals.",
-        },
-        {
-          q: "Which products are available right now?",
-          a: "Ole for businesses and Namaz Motivasyonu for individuals are both live — and we keep building for new ideas.",
-        },
-        {
-          q: "How do I get started with Ole?",
-          a: "You can read through the Ole page and get started at oletr.com.",
-        },
-        {
-          q: "How can I contact you?",
-          a: "You can reach us by phone or email — all our contact details are on the Contact page.",
-          contactLink: "Go to the Contact page",
-        },
-      ],
-    },
-    closing: {
-      title: "Take a look at our products.",
-      ctaOle: "Explore Ole",
-      ctaNamaz: "Explore Namaz Motivasyonu",
     },
   },
 
@@ -453,6 +493,62 @@ export const en: Dictionary = {
         { heading: "Transfers", body: "This section is in progress." },
         { heading: "Your rights and how to apply", body: "This section is in progress." },
       ],
+    },
+  },
+
+  mock: {
+    caption: "Illustrative UI",
+    ole: {
+      category: "Specialty coffee",
+      rewardLabel: "Reward",
+      reward: "Free coffee",
+      tokensLeft: "{n} tokens to your reward",
+      rewardReady: "Your reward is ready!",
+      now: "now",
+      notifTitle: "We miss you!",
+      notifBody: "It’s been a while — your favourite coffee is waiting.",
+      open: "Open",
+    },
+    panel: {
+      nav: ["Overview", "QR code", "Campaigns", "Notifications", "Branches", "Reports"],
+      kpis: [
+        { label: "QR scans today", value: "128" },
+        { label: "Rewards redeemed", value: "23" },
+        { label: "Active campaigns", value: "3" },
+      ],
+      chartTitle: "Token activity",
+      days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      campaignsTitle: "Campaigns",
+      campaigns: [
+        "A treat for first visits",
+        "Birthday dessert",
+        "Weekday coffee offer",
+      ],
+      live: "Live",
+      draft: "Draft",
+      qrTitle: "Generate a QR code",
+      branch: "Branch",
+      branchValue: "Main branch",
+      tokens: "Tokens",
+      generate: "Generate QR code",
+      validFor: "Time left",
+      verifyTitle: "Verify a code",
+      verify: "Verify",
+      verified: "Reward handed over",
+    },
+    namaz: {
+      today: "Today",
+      prayers: ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"],
+      times: ["05:11", "13:16", "16:52", "19:44", "21:08"],
+      done: "{n} / 5 prayers done",
+      mark: "Prayed",
+      weekTitle: "Weekly log rate",
+      periods: ["Week", "Month", "Year"],
+      days: ["M", "T", "W", "T", "F", "S", "S"],
+      streak: "Current full-day streak",
+      groupName: "Circle of Friends",
+      groupMeta: "3 members · today’s prayers",
+      invite: "Invite code",
     },
   },
 

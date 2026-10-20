@@ -118,7 +118,7 @@ export function Navbar({
             <Button
               href={localizedPath("contact", locale)}
               size="sm"
-              className="ml-1 hidden md:inline-flex"
+              className="ml-1 max-md:hidden"
             >
               {dict.cta}
             </Button>

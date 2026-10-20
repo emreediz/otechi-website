@@ -9,6 +9,12 @@ export const IMG = {
     art: "/images/products/ole/web/token.webp",
     artW: 640,
     artH: 640,
+    // Same token at 96px for small UI use (coded app mock-ups)
+    token: "/images/products/ole/web/token-96.webp",
+    // "ole" wordmark (680 x 380)
+    logo: "/images/products/ole/web/logo.png",
+    logoW: 680,
+    logoH: 380,
     // Ole NFC hardware (transparent WebP, from Ole's own site assets)
     nfc: "/images/products/ole/web/nfc.webp",
     nfcW: 382,
