@@ -183,7 +183,7 @@ export function NamazWeek({
         ))}
       </div>
       <div className="mt-4 flex items-center gap-2 rounded-xl bg-[#f3f7f5] px-3 py-2 text-xs">
-        <Flame className="size-4 text-brand" aria-hidden="true" />
+        <Flame className="size-4" style={{ color: GREEN }} aria-hidden="true" />
         <span className="font-semibold tabular-nums">{fullDays}</span>
         <span className="text-fg-soft">{copy.streak}</span>
       </div>

@@ -250,35 +250,28 @@ export const tr = {
     meta: {
       title: "Ürünler — Otechi",
       description:
-        "Otechi çatısı altında geliştirdiğimiz dijital ürünler: işletmeler için Ole, bireyler için Namaz Motivasyonu.",
+        "Otechi çatısı altında geliştirdiğimiz dijital ürünler: işletmeler için Ole ve Ole Panel, bireyler için Namaz Motivasyonu.",
     },
-    title: "Ürünler",
-    intro: "Otechi çatısı altında geliştirdiğimiz dijital ürünler.",
-    detailsKicker: "Ayrıntılar",
-    detailsTitle: "Ürünlere yakından bakış.",
+    kicker: "Ürünler",
+    titleLines: ["Geliştirdiğimiz", "ürünler."],
+    lead: "İşletmeler ve bireyler için yayında olan üç uygulama.",
     factLabels: {
       platform: "Platform",
       audience: "Kimin için",
       status: "Durum",
     },
-    ole: {
-      tagline:
-        "İşletmeler için dijital sadakat ve kampanya yönetim platformu.",
-      points: [
-        "QR kod ile dijital sadakat",
-        "Kampanya oluşturma ve yönetme",
-        "Çoklu şube yönetimi",
-      ],
-      facts: {
-        platform: "iOS · Android · Web paneli",
-        audience: "İşletmeler ve müşterileri",
-        status: "Şubat 2026’dan beri yayında",
+    facts: {
+      ole: {
+        platform: "iOS · Android",
+        audience: "İşletmelerin müşterileri",
+        status: "App Store ve Google Play’de",
       },
-    },
-    namaz: {
-      tagline: "Beş vakit namaz takibi ve motivasyon uygulaması.",
-      points: ["Beş vakit takibi", "İstatistikler", "Gruplar ve odalar"],
-      facts: {
+      panel: {
+        platform: "Web",
+        audience: "Ole kullanan işletmeler",
+        status: "Yayında",
+      },
+      namaz: {
         platform: "iOS · Android",
         audience: "Bireyler",
         status: "App Store ve Google Play’de",
@@ -294,57 +287,108 @@ export const tr = {
     },
     hero: {
       kicker: "Bir Otechi ürünü",
-      statement: "İlk ziyaretten müdavimliğe.",
+      titleLines: ["İlk ziyaretten", "müdavimliğe."],
       lead: "Müşterilerini ödüllendir. Kampanyalarını duyur. Yeniden gelmeleri için bir sebep ver.",
       ctaDemo: "Demo talep et",
-      panelLogin: "Panel girişi",
-      ctaAppStore: "App Store",
-      ctaGooglePlay: "Google Play",
+      capsules: ["Sadakat", "Bildirimler", "Kampanyalar", "Ödüller", "Çoklu şube", "Raporlar"],
+    },
+    intro:
+      "Ole, sadakat programını, kampanyaları ve bildirimleri tek uygulamada toplar. Müşterin her ziyarette jeton kazanır; sen de onu yeniden ağırlarsın.",
+    features: {
+      kicker: "Müşteri tarafı",
+      title: "Her ziyaret",
+      titleMuted: "bir adım daha.",
+      reward: {
+        title: "Jeton biriktir, ödülü al.",
+        body: "Her ziyarette jeton; hedefe ulaşınca ödül hazır.",
+      },
+      scan: {
+        title: "Okut ya da yaklaştır.",
+        body: "Müşterin QR’ı okutur ya da telefonunu Ole NFC’ye yaklaştırır.",
+      },
+      notify: {
+        title: "Geri gelmesi için bir sebep.",
+        body: "Bir süredir uğramayanlara otomatik hatırlatma gider.",
+      },
+      campaign: {
+        title: "Kampanyaların görünür.",
+        body: "Kampanyaların, Ole’deki işletme sayfanda müşterine görünür.",
+      },
+    },
+    panelLink: {
+      label: "İşletme tarafı",
+      title: "Hepsini tek panelden yönet.",
+      cta: "Ole Panel’i incele",
     },
     facts: {
       platformLabel: "Platform",
-      platform: "iOS · Android · Web paneli",
+      platform: "iOS · Android",
       modelLabel: "İş modeli",
       model: "Abonelik, komisyon yok",
       customersLabel: "Müşteriler için",
       customers: "Ücretsiz",
       statusLabel: "Durum",
-      status: "Şubat 2026’dan beri yayında",
-    },
-    story: {
-      kicker: "Müşteri tarafı",
-      title: "Her ziyaret bir adım daha.",
-      beats: [
-        { title: "Okut.", body: "Müşterin QR’ı okutur ya da Ole NFC’ye yaklaştırır." },
-        { title: "Biriktir.", body: "Her ziyarette jeton kazanır; hedefe ulaşınca ödül hazır." },
-        { title: "Keşfet.", body: "Kampanyaların, Ole’deki işletme sayfanda görünür." },
-        { title: "Geri gel.", body: "Bir süredir uğramayanlara otomatik hatırlatma gider." },
-      ],
-    },
-    business: {
-      kicker: "İşletme tarafı",
-      title: "Kontrol sende.",
-      panel: "Tüm şubelerin tek panelde.",
-      qr: "Tek kullanımlık QR üret.",
-      verify: "Ödülü 6 haneli kodla doğrula.",
-      campaign: "Kampanyanı yayınla.",
-      nfc: "İstersen Ole NFC ile, panele girmeden.",
+      status: "App Store ve Google Play’de",
     },
     closing: {
-      kicker: "Başlayalım",
-      title: "Ole’yi işletmende dene.",
+      lines: ["Ole’yi", "işletmende dene."],
       supportLabel: "Ole destek",
     },
     alt: {
-      home: "Ole uygulaması ana ekranı",
-      loyalty: "Ole uygulaması — ödüller ekranı",
-      business: "Ole uygulaması — işletme sayfası ve kampanyalar",
-      notification: "Ole bildirimi — “Seni Özledik!” hatırlatması",
-      panel: "Ole işletme paneli",
-      qrForm: "Ole işletme paneli — QR kod üretimi",
-      verify: "Ole işletme paneli — 6 haneli kod doğrulama",
-      campaign: "Ole uygulaması — hoş geldin kampanyası kartı",
       nfc: "Ole NFC donanımı",
+    },
+  },
+
+  olePanel: {
+    meta: {
+      title: "Ole Panel — işletmeler için sadakat yönetim paneli",
+      description:
+        "Ole Panel; Ole kullanan işletmelerin QR kod ürettiği, ödülleri doğruladığı, kampanya ve bildirimlerini yönettiği, tüm şubelerini tek yerden izlediği web paneli.",
+    },
+    hero: {
+      kicker: "Bir Otechi ürünü",
+      titleLines: ["Kontrol", "sende."],
+      lead: "Ödülleri, kampanyaları ve bildirimleri tek panelden yönet. Tüm şubelerin aynı ekranda.",
+      ctaPanel: "Panele giriş yap",
+      ctaDemo: "Demo talep et",
+      capsules: ["QR kod", "Kod doğrulama", "Kampanyalar", "Raporlar"],
+    },
+    features: {
+      kicker: "İşletme tarafı",
+      title: "Günlük işler,",
+      titleMuted: "birkaç tıkta.",
+      qr: {
+        title: "QR kodu saniyeler içinde üret.",
+        body: "Şubeyi ve jeton sayısını seç; müşterin okuttuğunda jeton hesabına eklenir.",
+      },
+      verify: {
+        title: "Ödülü kodla doğrula.",
+        body: "Müşterinin paylaştığı 6 haneli kodu gir, ödülü teslim et.",
+      },
+      campaigns: {
+        title: "Kampanyaların tek ekranda.",
+        body: "Hoş geldin, doğum günü ve dönemsel kampanyaları oluştur, düzenle, yayına al.",
+      },
+      notify: {
+        title: "Müşterinle iletişimde kal.",
+        body: "Bildirim gönder ya da otomatik hatırlatmaları aç.",
+      },
+      branches: {
+        title: "Çoklu şube.",
+        body: "Tüm şubelerini tek hesaptan yönet.",
+      },
+      reports: {
+        title: "Raporlar.",
+        body: "Jeton ve ödül hareketlerini takip et.",
+      },
+    },
+    appLink: {
+      label: "Müşteri tarafı",
+      title: "Müşterilerin Ole uygulamasında.",
+      cta: "Ole’yi incele",
+    },
+    closing: {
+      lines: ["İşletmeni", "tek panelden yönet."],
     },
   },
 
@@ -356,15 +400,14 @@ export const tr = {
     },
     hero: {
       kicker: "Bir Otechi ürünü",
-      tagline:
-        "Beş vakit namazını takip et, ilerlemeni gör, motivasyonunu koru.",
-      ctaAppStore: "App Store",
-      ctaGooglePlay: "Google Play",
-      statement: "Yeniden başlamak her zaman mümkün.",
+      titleLines: ["Beş vakit,", "tek bakışta."],
+      lead: "Beş vakit namazını takip et, ilerlemeni gör, motivasyonunu koru.",
+      capsules: ["Beş vakit", "İstatistikler", "Gruplar", "Seri"],
     },
-    story: {
+    features: {
       kicker: "Uygulamada",
-      title: "Sade, sakin, senin temponda.",
+      title: "Sade, sakin,",
+      titleMuted: "senin temponda.",
       beats: [
         {
           title: "İşaretle.",
@@ -385,7 +428,7 @@ export const tr = {
       body: "Uygulamanın hangi verileri hangi amaçlarla işlediği ve nasıl sakladığı; Gizlilik Politikası, KVKK Aydınlatma Metni ve Kullanıcı Sözleşmesi’nde açıklanmıştır. Hesabını uygulama içinden silebilirsin; hesabınla ilişkili veriler, yasal saklama yükümlülükleri saklı kalmak kaydıyla silinir.",
     },
     closing: {
-      // Follows the product name: "Namaz Motivasyonu App Store ve …".
+      // Follows the product name: "Namaz Motivasyonu / App Store ve …".
       title: "App Store ve Google Play’de.",
     },
   },
@@ -517,6 +560,10 @@ export const tr = {
       notifTitle: "Seni özledik!",
       notifBody: "Bir süredir uğramadın; en sevdiğin kahve seni bekliyor.",
       open: "Açık",
+      campaignBadge: "Hoş geldin",
+      campaignTitle: "İlk kahven bizden",
+      campaignBody: "İlk ziyaretine özel; kahveni seç, keyfini çıkar.",
+      campaignDays: "30 gün",
     },
     panel: {
       nav: ["Genel bakış", "QR kod", "Kampanyalar", "Bildirimler", "Şubeler", "Raporlar"],
@@ -544,6 +591,12 @@ export const tr = {
       verifyTitle: "Kod doğrulama",
       verify: "Doğrula",
       verified: "Ödül teslim edildi",
+      autoTitle: "Otomatik hatırlatma",
+      autoRule: "30 gündür uğramayan müşterilere",
+      on: "Açık",
+      sendTitle: "Bildirim gönder",
+      branches: ["Merkez şube", "Kadıköy şubesi", "Beşiktaş şubesi"],
+      allBranches: "Tüm şubeler",
     },
     namaz: {
       today: "Bugün",
@@ -562,7 +615,7 @@ export const tr = {
   },
 
   showcase: {
-    otherProduct: "Diğer Otechi ürünü",
+    otherProduct: "Diğer Otechi ürünleri",
     home: {
       studioTitle: "Fikirden yayına, tek süreçte.",
       studioBody:

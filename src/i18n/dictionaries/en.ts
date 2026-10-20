@@ -244,34 +244,28 @@ export const en: Dictionary = {
     meta: {
       title: "Products — Otechi",
       description:
-        "The digital products we build under Otechi: Ole for businesses and Namaz Motivasyonu for individuals.",
+        "The digital products we build under Otechi: Ole and Ole Panel for businesses, Namaz Motivasyonu for individuals.",
     },
-    title: "Products",
-    intro: "The digital products we build under Otechi.",
-    detailsKicker: "Details",
-    detailsTitle: "A closer look at each product.",
+    kicker: "Products",
+    titleLines: ["Products", "we’ve built."],
+    lead: "Three apps for businesses and individuals, all live today.",
     factLabels: {
       platform: "Platform",
-      audience: "For",
+      audience: "Who it's for",
       status: "Status",
     },
-    ole: {
-      tagline: "A digital loyalty and campaign platform for businesses.",
-      points: [
-        "Digital loyalty via QR code",
-        "Create and manage campaigns",
-        "Multi-branch management",
-      ],
-      facts: {
-        platform: "iOS · Android · Web dashboard",
-        audience: "Businesses and their customers",
-        status: "Live since February 2026",
+    facts: {
+      ole: {
+        platform: "iOS · Android",
+        audience: "Businesses’ customers",
+        status: "On the App Store and Google Play",
       },
-    },
-    namaz: {
-      tagline: "An app for tracking the five daily prayers and staying motivated.",
-      points: ["Tracking the five daily prayers", "Statistics", "Groups and rooms"],
-      facts: {
+      panel: {
+        platform: "Web",
+        audience: "Businesses using Ole",
+        status: "Live",
+      },
+      namaz: {
         platform: "iOS · Android",
         audience: "Individuals",
         status: "On the App Store and Google Play",
@@ -287,57 +281,108 @@ export const en: Dictionary = {
     },
     hero: {
       kicker: "An Otechi product",
-      statement: "From first visit to regular.",
+      titleLines: ["From first visit", "to regular."],
       lead: "Reward your customers. Announce your campaigns. Give them a reason to come back.",
       ctaDemo: "Request a demo",
-      panelLogin: "Dashboard login",
-      ctaAppStore: "App Store",
-      ctaGooglePlay: "Google Play",
+      capsules: ["Loyalty", "Notifications", "Campaigns", "Rewards", "Branches", "Reports"],
+    },
+    intro:
+      "Ole brings your loyalty programme, campaigns and notifications together in one app. Customers earn tokens on every visit — and you get to welcome them back.",
+    features: {
+      kicker: "For customers",
+      title: "Every visit,",
+      titleMuted: "one step closer.",
+      reward: {
+        title: "Collect tokens, get the reward.",
+        body: "Tokens on every visit; at the target, a reward is ready.",
+      },
+      scan: {
+        title: "Scan or tap.",
+        body: "Your customer scans a QR code or taps their phone on Ole NFC.",
+      },
+      notify: {
+        title: "A reason to come back.",
+        body: "Customers who haven’t visited for a while get an automatic reminder.",
+      },
+      campaign: {
+        title: "Campaigns in plain sight.",
+        body: "Your campaigns show up on your business page in Ole.",
+      },
+    },
+    panelLink: {
+      label: "For businesses",
+      title: "Run it all from one dashboard.",
+      cta: "Explore Ole Panel",
     },
     facts: {
       platformLabel: "Platform",
-      platform: "iOS · Android · Web dashboard",
+      platform: "iOS · Android",
       modelLabel: "Business model",
       model: "Subscription, no commission",
       customersLabel: "For customers",
       customers: "Free",
       statusLabel: "Status",
-      status: "Live since February 2026",
-    },
-    story: {
-      kicker: "For your customers",
-      title: "Every visit, one step closer.",
-      beats: [
-        { title: "Scan.", body: "Your customer scans a QR code or taps Ole NFC." },
-        { title: "Collect.", body: "Tokens add up with every visit; at the target, a reward is ready." },
-        { title: "Discover.", body: "Your campaigns show up on your business page in Ole." },
-        { title: "Come back.", body: "Customers who haven't visited for a while get an automatic reminder." },
-      ],
-    },
-    business: {
-      kicker: "For your business",
-      title: "You're in control.",
-      panel: "Every branch in one dashboard.",
-      qr: "Generate a single-use QR code.",
-      verify: "Verify rewards with a 6-digit code.",
-      campaign: "Publish a campaign.",
-      nfc: "Or use Ole NFC — no dashboard needed.",
+      status: "On the App Store and Google Play",
     },
     closing: {
-      kicker: "Let's start",
-      title: "Try Ole in your business.",
+      lines: ["Try Ole", "in your business."],
       supportLabel: "Ole support",
     },
     alt: {
-      home: "Ole app home screen",
-      loyalty: "Ole app — rewards screen",
-      business: "Ole app — business page and campaigns",
-      notification: "Ole notification — a “We miss you!” reminder",
-      panel: "Ole business dashboard",
-      qrForm: "Ole business dashboard — QR code generation",
-      verify: "Ole business dashboard — 6-digit code verification",
-      campaign: "Ole app — welcome campaign card",
       nfc: "Ole NFC hardware",
+    },
+  },
+
+  olePanel: {
+    meta: {
+      title: "Ole Panel — the loyalty dashboard for businesses",
+      description:
+        "Ole Panel is the web dashboard where businesses using Ole generate QR codes, verify rewards, manage campaigns and notifications, and follow every branch in one place.",
+    },
+    hero: {
+      kicker: "An Otechi product",
+      titleLines: ["You’re in", "control."],
+      lead: "Manage rewards, campaigns and notifications from one dashboard — every branch on the same screen.",
+      ctaPanel: "Log in to the dashboard",
+      ctaDemo: "Request a demo",
+      capsules: ["QR codes", "Code check", "Campaigns", "Reports"],
+    },
+    features: {
+      kicker: "For businesses",
+      title: "Everyday tasks,",
+      titleMuted: "a few clicks away.",
+      qr: {
+        title: "Generate a QR code in seconds.",
+        body: "Pick the branch and the number of tokens; when your customer scans it, the tokens land in their account.",
+      },
+      verify: {
+        title: "Verify rewards with a code.",
+        body: "Enter the 6-digit code your customer shares and hand over the reward.",
+      },
+      campaigns: {
+        title: "All your campaigns on one screen.",
+        body: "Create, edit and publish welcome, birthday and seasonal campaigns.",
+      },
+      notify: {
+        title: "Stay in touch with customers.",
+        body: "Send a notification or switch on automatic reminders.",
+      },
+      branches: {
+        title: "Multiple branches.",
+        body: "Manage every branch from a single account.",
+      },
+      reports: {
+        title: "Reports.",
+        body: "Follow token and reward activity.",
+      },
+    },
+    appLink: {
+      label: "For customers",
+      title: "Your customers use the Ole app.",
+      cta: "Explore Ole",
+    },
+    closing: {
+      lines: ["Run your business", "from one dashboard."],
     },
   },
 
@@ -349,19 +394,18 @@ export const en: Dictionary = {
     },
     hero: {
       kicker: "An Otechi product",
-      tagline:
-        "Track your five daily prayers, see your progress, and stay motivated.",
-      ctaAppStore: "App Store",
-      ctaGooglePlay: "Google Play",
-      statement: "Starting again is always possible.",
+      titleLines: ["Five prayers,", "at a glance."],
+      lead: "Track your five daily prayers, see your progress and keep your motivation.",
+      capsules: ["Five prayers", "Statistics", "Groups", "Streak"],
     },
-    story: {
+    features: {
       kicker: "In the app",
-      title: "Simple, calm, at your own pace.",
+      title: "Simple, calm,",
+      titleMuted: "at your own pace.",
       beats: [
         {
           title: "Mark.",
-          body: "Mark the prayers you've done and see how your day went.",
+          body: "Mark the prayers you’ve performed and see how your day went.",
         },
         {
           title: "See.",
@@ -369,7 +413,7 @@ export const en: Dictionary = {
         },
         {
           title: "Together.",
-          body: "Start a group or room, join with an invite code, and stay motivated together.",
+          body: "Create a group or room, join with an invite code, and keep each other motivated.",
         },
       ],
     },
@@ -508,6 +552,10 @@ export const en: Dictionary = {
       notifTitle: "We miss you!",
       notifBody: "It’s been a while — your favourite coffee is waiting.",
       open: "Open",
+      campaignBadge: "Welcome",
+      campaignTitle: "Your first coffee’s on us",
+      campaignBody: "For your first visit — pick a coffee and enjoy.",
+      campaignDays: "30 days",
     },
     panel: {
       nav: ["Overview", "QR code", "Campaigns", "Notifications", "Branches", "Reports"],
@@ -535,6 +583,12 @@ export const en: Dictionary = {
       verifyTitle: "Verify a code",
       verify: "Verify",
       verified: "Reward handed over",
+      autoTitle: "Automatic reminder",
+      autoRule: "To customers who haven’t visited in 30 days",
+      on: "On",
+      sendTitle: "Send a notification",
+      branches: ["Main branch", "Kadıköy branch", "Beşiktaş branch"],
+      allBranches: "All branches",
     },
     namaz: {
       today: "Today",
@@ -553,7 +607,7 @@ export const en: Dictionary = {
   },
 
   showcase: {
-    otherProduct: "Another Otechi product",
+    otherProduct: "Other Otechi products",
     home: {
       studioTitle: "From idea to launch, in one process.",
       studioBody:

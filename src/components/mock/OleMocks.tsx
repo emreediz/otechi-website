@@ -137,3 +137,49 @@ export function OleNotification({
     </div>
   );
 }
+
+/** Ole business page — a campaign card ("Welcome: first coffee on us"). */
+export function OleCampaignCard({
+  copy,
+  className,
+}: {
+  copy: OleCopy;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex w-full max-w-[24rem] overflow-hidden rounded-[1.375rem] bg-white text-left shadow-lg ring-1 ring-fg/5",
+        className,
+      )}
+    >
+      <div className="relative grid w-[38%] shrink-0 place-items-center bg-[radial-gradient(120%_90%_at_30%_10%,#ff9a52,#fd5e00_55%,#d94a00)] p-3">
+        <Image
+          src={IMG.ole.token}
+          alt=""
+          width={96}
+          height={96}
+          className="size-14 drop-shadow-[0_8px_14px_rgb(120_30_0/0.45)]"
+        />
+      </div>
+      <div className="min-w-0 flex-1 p-4">
+        <div className="flex items-center gap-2">
+          <BusinessMark className="size-7" />
+          <p className="truncate text-sm font-semibold">{DEMO_BUSINESS}</p>
+        </div>
+        <p className="mt-3 text-[0.9375rem] font-semibold leading-snug">
+          {copy.campaignTitle}
+        </p>
+        <p className="mt-1 text-xs leading-relaxed text-fg-soft">
+          {copy.campaignBody}
+        </p>
+        <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold text-[#c24a00]">
+          <span className="whitespace-nowrap rounded-full bg-accent-soft px-2 py-0.5">
+            {copy.campaignBadge}
+          </span>
+          <span className="tabular-nums">{copy.campaignDays}</span>
+        </div>
+      </div>
+    </div>
+  );
+}

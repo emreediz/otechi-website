@@ -7,6 +7,10 @@ export function productLinks(locale: Locale) {
   return [
     { href: localizedPath("productOle", locale), label: BRAND.products.ole },
     {
+      href: localizedPath("productPanel", locale),
+      label: BRAND.products.olePanel,
+    },
+    {
       href: localizedPath("productNamaz", locale),
       label: BRAND.products.namaz,
     },

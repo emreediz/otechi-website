@@ -1,28 +1,56 @@
 import Image from "next/image";
-import { ArrowUpRight, Mail } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BarChart3,
+  Bell,
+  Gift,
+  Heart,
+  Mail,
+  Store,
+  Tag,
+} from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
+import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import { IMG } from "@/config/assets";
 import { OLE_LINKS } from "@/config/ole";
-import { productTiles } from "@/lib/showcaseData";
+import { productCapsules } from "@/lib/productCapsules";
+import { storeBadges } from "@/lib/stores";
 import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
 import { Kicker } from "@/components/ui/Kicker";
 import { SectionHead } from "@/components/ui/SectionHead";
-import { MaskedTitle } from "@/components/ui/MaskedTitle";
-import { MetaList } from "@/components/ui/MetaList";
-import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
-import { StoreLinks } from "@/components/content/StoreLinks";
-import { ScreenStage } from "@/components/visual/ScreenStage";
-import { ProductTiles } from "@/components/showcase/ProductTiles";
-import { ScrollStory } from "@/components/showcase/ScrollStory";
+import { StoreBadges } from "@/components/content/StoreBadges";
+import { Closing } from "@/components/content/Closing";
+import type { CapsuleColor } from "@/components/visual/Capsule";
+import { ProductHero, SPOTS_SIX } from "@/components/showcase/ProductHero";
+import { FeatureCard } from "@/components/showcase/FeatureCard";
+import { OtherProducts } from "@/components/showcase/OtherProducts";
+import {
+  OleCampaignCard,
+  OleNotification,
+  OleRewardCard,
+} from "@/components/mock/OleMocks";
+import { PanelDashboard, QrPattern } from "@/components/mock/PanelMocks";
+
+const FIELD_ICONS = [Heart, Bell, Tag, Gift, Store, BarChart3];
+const FIELD_COLORS: CapsuleColor[] = [
+  "orange",
+  "orange",
+  "orange",
+  "navy",
+  "navy",
+  "navy",
+];
 
 /**
- * Ole: a short product page — what it is, how it feels for customers (scroll
- * story), what the business gets (visual grid), and how to start. Every
- * external link comes from `config/ole.ts` (main domain only).
+ * Ole: hero with feature capsules, a one-line statement with the store
+ * badges, a bento of coded mock-ups, a link to Ole Panel and the closing.
+ * Every external link comes from `config/ole.ts` (main domain only).
  */
 export function OleView({
   locale,
@@ -32,246 +60,230 @@ export function OleView({
   dict: Dictionary;
 }) {
   const t = dict.ole;
+  const mock = dict.mock;
   const newTab = dict.common.newTab;
-  const ole = IMG.ole;
-  const phone = { w: ole.screenW, h: ole.screenH };
+  const capsules = productCapsules(locale);
+  const panelHref = localizedPath("productPanel", locale);
 
-  const stores = [
-    { label: t.hero.ctaAppStore, href: OLE_LINKS.appStore },
-    { label: t.hero.ctaGooglePlay, href: OLE_LINKS.googlePlay },
-  ];
+  const field = t.hero.capsules.map((label, i) => {
+    const Icon = FIELD_ICONS[i];
+    return {
+      key: label,
+      label,
+      color: FIELD_COLORS[i],
+      icon: <Icon aria-hidden="true" />,
+    };
+  });
 
-  const screens = [
-    { src: ole.screenHome, alt: t.alt.home },
-    { src: ole.screenLoyalty, alt: t.alt.loyalty },
-    { src: ole.screenBusiness, alt: t.alt.business },
-    { src: ole.screenNotification, alt: t.alt.notification },
-  ];
-
-  const tiles = [
-    {
-      kind: "card" as const,
-      caption: t.business.qr,
-      alt: t.alt.qrForm,
-      ...ole.panelQrForm,
-    },
-    {
-      kind: "card" as const,
-      caption: t.business.verify,
-      alt: t.alt.verify,
-      ...ole.panelVerify,
-    },
-    {
-      kind: "card" as const,
-      caption: t.business.campaign,
-      alt: t.alt.campaign,
-      ...ole.screenCampaign,
-    },
-    {
-      kind: "object" as const,
-      caption: t.business.nfc,
-      alt: t.alt.nfc,
-      src: ole.nfc,
-      w: ole.nfcW,
-      h: ole.nfcH,
-    },
+  const facts = [
+    { label: t.facts.platformLabel, value: t.facts.platform },
+    { label: t.facts.modelLabel, value: t.facts.model },
+    { label: t.facts.customersLabel, value: t.facts.customers },
+    { label: t.facts.statusLabel, value: t.facts.status },
   ];
 
   return (
     <PageTransition>
-      <div data-theme="ole" className="bg-bg text-fg">
-        {/* ---------------------------------------------- Hero */}
-        <section>
-          <Container className="grid gap-12 pb-12 pt-14 sm:pt-24 lg:grid-cols-12 lg:items-center lg:gap-8 lg:pt-28">
-            <div className="lg:col-span-6">
-              <Kicker className="hero-rise hero-rise-1">{t.hero.kicker}</Kicker>
-              <h1 className="mt-8 text-display-xl sm:mt-10">
-                <MaskedTitle text={BRAND.products.ole} />
-              </h1>
-              <p className="hero-rise hero-rise-2 mt-6 text-heading text-balance">
-                {t.hero.statement}
-              </p>
-              <p className="hero-rise hero-rise-3 mt-6 max-w-md text-lead text-fg-muted">
-                {t.hero.lead}
-              </p>
-              <div className="hero-rise hero-rise-4 mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-                <Button
-                  href={OLE_LINKS.demo}
-                  external
-                  newTabLabel={newTab}
-                  size="lg"
-                >
-                  {t.hero.ctaDemo}
-                </Button>
-                <a
-                  href={OLE_LINKS.panel}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium underline decoration-accent decoration-2 underline-offset-4"
-                >
-                  {t.hero.panelLogin}
-                  <ArrowUpRight className="size-4" aria-hidden="true" />
-                  <span className="sr-only"> {newTab}</span>
-                </a>
-              </div>
-              <StoreLinks
-                className="hero-rise hero-rise-4 mt-6"
-                items={stores}
+      <div data-theme="ole">
+        <ProductHero
+          name={BRAND.products.ole}
+          color="orange"
+          icon={capsules[0].icon}
+          kicker={t.hero.kicker}
+          titleLines={t.hero.titleLines}
+          lead={t.hero.lead}
+          capsules={field}
+          spots={SPOTS_SIX}
+          actions={
+            <>
+              <Button
+                href={OLE_LINKS.demo}
+                external
                 newTabLabel={newTab}
-              />
-            </div>
+                size="lg"
+              >
+                {t.hero.ctaDemo}
+              </Button>
+              <Button href={panelHref} variant="secondary" size="lg">
+                {t.panelLink.cta}
+              </Button>
+            </>
+          }
+        />
 
-            {/* Navy stage: the glass token */}
-            <div className="hero-rise hero-rise-3 lg:col-span-6">
-              <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-3xl bg-ole-navy sm:aspect-[5/4] lg:aspect-[4/5]">
-                <Image
-                  src={ole.art}
-                  alt={dict.showcase.ole.artAlt}
-                  width={ole.artW}
-                  height={ole.artH}
-                  loading="eager"
-                  sizes="(min-width: 1024px) 26rem, 70vw"
-                  className="w-[64%] drop-shadow-[0_40px_60px_rgba(0,0,0,0.55)] sm:w-[46%] lg:w-[64%]"
-                />
-              </div>
-            </div>
-          </Container>
-          <Container className="pb-16 sm:pb-20">
-            <MetaList
-              columns={4}
-              className="hero-rise hero-rise-4"
-              items={[
-                { label: t.facts.platformLabel, value: t.facts.platform },
-                { label: t.facts.modelLabel, value: t.facts.model },
-                { label: t.facts.customersLabel, value: t.facts.customers },
-                { label: t.facts.statusLabel, value: t.facts.status },
-              ]}
-            />
-          </Container>
-        </section>
-
-        {/* ---------------------------------------------- Customer story (navy) */}
-        <section data-surface="dark" className="py-24 sm:py-32">
+        {/* Statement + stores */}
+        <section className="pb-[clamp(5rem,11vw,9.5rem)] pt-6">
           <Container>
-            <Reveal>
-              <SectionHead kicker={t.story.kicker} title={t.story.title} />
-            </Reveal>
-            <div className="mt-6 lg:mt-0">
-              <ScrollStory
-                beats={t.story.beats.map((beat, i) => ({
-                  ...beat,
-                  image: { ...screens[i], ...phone },
-                }))}
+            <Reveal className="mx-auto max-w-4xl text-center">
+              <Image
+                src={IMG.ole.token}
+                alt=""
+                width={96}
+                height={96}
+                className="mx-auto size-14"
               />
-            </div>
+              <p className="mt-6 text-statement text-balance">{t.intro}</p>
+              <StoreBadges
+                items={storeBadges(dict, "ole")}
+                newTabLabel={newTab}
+                className="mt-10 justify-center"
+              />
+            </Reveal>
           </Container>
         </section>
 
-        {/* ---------------------------------------------- Business side */}
-        <section className="py-24 sm:py-32">
+        {/* Features (bento) */}
+        <section className="section-surface py-[clamp(5rem,11vw,9.5rem)]">
           <Container>
             <Reveal>
               <SectionHead
-                kicker={t.business.kicker}
-                title={t.business.title}
+                kicker={t.features.kicker}
+                title={t.features.title}
+                titleMuted={t.features.titleMuted}
               />
             </Reveal>
             <Reveal
               variant="trigger"
-              className="mt-12 grid grid-cols-2 gap-x-4 gap-y-8 sm:mt-16 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-4"
+              className="mt-[clamp(3rem,6vw,5rem)] grid gap-4 lg:grid-cols-12 lg:gap-5"
             >
-              <figure className="col-span-2 lg:col-span-4">
-                <ScreenStage
-                  kind="browser"
-                  src={ole.panel}
-                  alt={t.alt.panel}
-                  w={ole.panelW}
-                  h={ole.panelH}
-                  sizes="(min-width: 1152px) 72rem, 100vw"
-                />
-                <figcaption className="mt-4 text-lg font-semibold">
-                  {t.business.panel}
-                </figcaption>
-              </figure>
-              {tiles.map((tile) => (
-                <figure key={tile.src}>
-                  <ScreenStage
-                    kind={tile.kind}
-                    src={tile.src}
-                    alt={tile.alt}
-                    w={tile.w}
-                    h={tile.h}
-                    sizes="(min-width: 1024px) 17rem, 45vw"
+              <FeatureCard
+                large
+                className="lg:col-span-7"
+                title={t.features.reward.title}
+                body={t.features.reward.body}
+              >
+                <OleRewardCard copy={mock.ole} filled={3} />
+              </FeatureCard>
+              <FeatureCard
+                className="lg:col-span-5"
+                title={t.features.scan.title}
+                body={t.features.scan.body}
+              >
+                <div className="flex items-center gap-6">
+                  <QrPattern className="size-28 rounded-2xl bg-white p-3 shadow-md" />
+                  <Image
+                    src={IMG.ole.nfc}
+                    alt={t.alt.nfc}
+                    width={IMG.ole.nfcW}
+                    height={IMG.ole.nfcH}
+                    sizes="6rem"
+                    className="h-44 w-auto -rotate-6 drop-shadow-[0_18px_24px_rgb(120_40_0/0.3)]"
                   />
-                  <figcaption className="mt-3 text-sm font-semibold sm:mt-4 sm:text-base">
-                    {tile.caption}
-                  </figcaption>
-                </figure>
+                </div>
+              </FeatureCard>
+              <FeatureCard
+                className="lg:col-span-5"
+                title={t.features.notify.title}
+                body={t.features.notify.body}
+              >
+                <OleNotification copy={mock.ole} />
+              </FeatureCard>
+              <FeatureCard
+                large
+                className="lg:col-span-7"
+                title={t.features.campaign.title}
+                body={t.features.campaign.body}
+              >
+                <OleCampaignCard copy={mock.ole} />
+              </FeatureCard>
+            </Reveal>
+
+            <Reveal
+              variant="trigger"
+              className="mt-4 grid grid-cols-2 gap-4 lg:mt-5 lg:grid-cols-4 lg:gap-5"
+            >
+              {facts.map((f) => (
+                <div key={f.label} className="card stagger-item !p-5 sm:!p-6">
+                  <p className="text-sm text-fg-soft">{f.label}</p>
+                  <p className="mt-1.5 font-semibold text-balance">{f.value}</p>
+                </div>
               ))}
             </Reveal>
+            <p className="mt-8 text-center text-xs text-fg-faint">
+              {mock.caption}
+            </p>
           </Container>
         </section>
 
-        {/* ---------------------------------------------- Closing (navy) */}
-        <section data-surface="dark" className="py-24 sm:py-32">
+        {/* Ole Panel (business side) */}
+        <section className="py-[clamp(5rem,11vw,9.5rem)]">
           <Container>
             <Reveal>
-              <Kicker>{t.closing.kicker}</Kicker>
-              <h2 className="mt-8">
-                <a
-                  href={OLE_LINKS.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-6"
-                >
-                  <span className="text-display-xl text-balance transition-colors duration-300 group-hover:text-accent">
-                    {t.closing.title}
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-accent text-accent-fg transition-transform duration-500 ease-out-expo group-hover:rotate-45 group-focus-visible:rotate-45 sm:size-24"
-                  >
-                    <ArrowUpRight className="size-6 sm:size-10" />
-                  </span>
-                  <span className="sr-only"> {newTab}</span>
-                </a>
-              </h2>
-            </Reveal>
-            <Reveal className="mt-16 flex flex-col gap-6 border-t border-fg/20 pt-8 sm:mt-24 sm:flex-row sm:items-center sm:justify-between">
-              <a
-                href={`mailto:${OLE_LINKS.supportEmail}`}
-                className="inline-flex min-h-11 items-center gap-3"
+              <Link
+                href={panelHref}
+                className="group grid overflow-hidden rounded-panel bg-ole-navy text-white lg:grid-cols-[1fr_1.15fr]"
               >
-                <Mail className="size-5 text-accent" aria-hidden="true" />
-                <span>
-                  <span className="block text-sm text-fg-muted">
-                    {t.closing.supportLabel}
+                <span className="flex flex-col p-8 sm:p-12">
+                  <span className="text-sm text-white/75">
+                    {t.panelLink.label}
                   </span>
-                  <span className="link-underline font-semibold">
-                    {OLE_LINKS.supportEmail}
+                  <span className="mt-3 text-display-m text-balance">
+                    {t.panelLink.title}
+                  </span>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-10 font-semibold">
+                    <span className="border-b-[1.5px] border-brand pb-0.5">
+                      {t.panelLink.cta}
+                    </span>
+                    <ArrowRight
+                      className="size-4 transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
                   </span>
                 </span>
-              </a>
-              <StoreLinks items={stores} newTabLabel={newTab} />
+                <span
+                  aria-hidden="true"
+                  className="block px-6 pt-2 sm:px-10 lg:pt-12"
+                >
+                  <PanelDashboard
+                    copy={mock.panel}
+                    className="translate-y-6 text-fg transition-transform duration-700 ease-out-expo group-hover:translate-y-2"
+                  />
+                </span>
+              </Link>
             </Reveal>
           </Container>
         </section>
 
-        {/* ---------------------------------------------- The other product */}
-        <section className="py-24 sm:py-32">
+        {/* The other products */}
+        <section className="pb-[clamp(5rem,11vw,9.5rem)]">
           <Container>
             <Reveal>
               <Kicker as="h2">{dict.showcase.otherProduct}</Kicker>
-            </Reveal>
-            <Reveal className="mt-8">
-              <ProductTiles
-                tiles={[productTiles(dict, locale).namaz]}
-                exploreLabel={dict.home.products.explore}
-                calm
+              <OtherProducts
+                items={capsules.filter((c) => c.key !== "ole")}
+                dict={dict}
+                className="mt-8"
               />
             </Reveal>
           </Container>
         </section>
+
+        <Closing
+          lines={[t.closing.lines[0], t.closing.lines[1]]}
+          capsules={capsules}
+          capsulesLabel={dict.home.hero.capsulesLabel}
+          action={
+            <>
+              <Button
+                href={OLE_LINKS.demo}
+                external
+                newTabLabel={newTab}
+                size="lg"
+              >
+                {t.hero.ctaDemo}
+              </Button>
+              <Button
+                href={`mailto:${OLE_LINKS.supportEmail}`}
+                variant="secondary"
+                size="lg"
+              >
+                <Mail className="size-4" aria-hidden="true" />
+                <span className="sr-only">{t.closing.supportLabel}: </span>
+                {OLE_LINKS.supportEmail}
+              </Button>
+            </>
+          }
+        />
       </div>
     </PageTransition>
   );

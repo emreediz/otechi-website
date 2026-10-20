@@ -10,6 +10,7 @@ export type RouteKey =
   | "home"
   | "products"
   | "productOle"
+  | "productPanel"
   | "productNamaz"
   | "about"
   | "contact"
@@ -21,6 +22,10 @@ const paths: Record<RouteKey, Record<Locale, string>> = {
   home: { tr: "/tr", en: "/en" },
   products: { tr: "/tr/urunler", en: "/en/products" },
   productOle: { tr: "/tr/urunler/ole", en: "/en/products/ole" },
+  productPanel: {
+    tr: "/tr/urunler/ole-panel",
+    en: "/en/products/ole-panel",
+  },
   productNamaz: {
     tr: "/tr/urunler/namaz-motivasyonu",
     en: "/en/products/namaz-motivasyonu",

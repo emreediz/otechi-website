@@ -3,6 +3,7 @@ import Image from "next/image";
 import {
   BarChart3,
   Bell,
+  Check,
   ChevronDown,
   LayoutDashboard,
   Megaphone,
@@ -277,6 +278,184 @@ export function PanelQrCard({
           </p>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** Ole Panel — six-digit reward code check, already verified. */
+export function PanelVerifyCard({
+  copy,
+  className,
+}: {
+  copy: PanelCopy;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-5 text-left shadow-lg ring-1 ring-fg/5",
+        className,
+      )}
+    >
+      <p className="text-sm font-semibold">{copy.verifyTitle}</p>
+      <div className="mt-4 flex gap-1.5" aria-hidden="true">
+        {"482917".split("").map((d, i) => (
+          <span
+            key={i}
+            className="mock-pop grid h-10 flex-1 place-items-center rounded-lg border border-border-strong text-base font-semibold tabular-nums"
+            style={{ "--i": i } as CSSProperties}
+          >
+            {d}
+          </span>
+        ))}
+      </div>
+      <p className="mt-4 flex items-center gap-2 rounded-xl bg-[#e8f7ee] px-3 py-2.5 text-xs font-semibold text-[#0d7a3d]">
+        <Check className="size-4" aria-hidden="true" />
+        {copy.verified}
+      </p>
+    </div>
+  );
+}
+
+/** Ole Panel — notifications: the automatic reminder switched on. */
+export function PanelNotifyCard({
+  copy,
+  className,
+}: {
+  copy: PanelCopy;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-5 text-left shadow-lg ring-1 ring-fg/5",
+        className,
+      )}
+    >
+      <p className="flex items-center gap-2 text-sm font-semibold">
+        <Bell className="size-4 text-brand" aria-hidden="true" />
+        {copy.autoTitle}
+      </p>
+      <div className="mt-4 flex items-center justify-between gap-3 rounded-xl bg-surface p-3">
+        <p className="text-xs leading-snug text-fg-muted">{copy.autoRule}</p>
+        <span
+          aria-hidden="true"
+          className="relative h-6 w-10 shrink-0 rounded-full bg-[#12a150]"
+        >
+          <span className="absolute right-0.5 top-0.5 size-5 rounded-full bg-white shadow-sm" />
+        </span>
+      </div>
+      <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#0d7a3d]">
+        <span aria-hidden="true" className="size-1.5 rounded-full bg-[#12a150]" />
+        {copy.on}
+      </p>
+    </div>
+  );
+}
+
+/** Ole Panel — branch switcher (multi-branch accounts). */
+export function PanelBranches({
+  copy,
+  className,
+}: {
+  copy: PanelCopy;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-4 text-left shadow-lg ring-1 ring-fg/5",
+        className,
+      )}
+    >
+      <p className="px-1 text-xs text-fg-soft">{copy.allBranches}</p>
+      <ul className="mt-2 grid gap-1.5 text-xs">
+        {copy.branches.map((b, i) => (
+          <li
+            key={b}
+            className={cn(
+              "flex items-center gap-2 rounded-lg px-3 py-2.5",
+              i === 0 ? "bg-ole-navy text-white" : "bg-surface text-fg-muted",
+            )}
+          >
+            <Store className="size-3.5" aria-hidden="true" />
+            {b}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Ole Panel — compact weekly token chart (reports). */
+export function PanelReportCard({
+  copy,
+  className,
+}: {
+  copy: PanelCopy;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-4 text-left shadow-lg ring-1 ring-fg/5",
+        className,
+      )}
+    >
+      <p className="text-xs font-semibold">{copy.chartTitle}</p>
+      <div className="mt-3 flex h-20 items-end gap-1.5" aria-hidden="true">
+        {BARS.map((v, i) => (
+          <span
+            key={i}
+            className={cn(
+              "mock-bar flex-1 origin-bottom rounded-t-md",
+              i === 5 ? "bg-brand" : "bg-ole-navy/15",
+            )}
+            style={{ height: `${v * 100}%`, "--i": i } as CSSProperties}
+          />
+        ))}
+      </div>
+      <div className="mt-1.5 flex gap-1.5 text-center text-[0.5625rem] text-fg-faint">
+        {copy.days.map((d) => (
+          <span key={d} className="flex-1">
+            {d}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Ole Panel — the campaign list with live/draft status. */
+export function PanelCampaignsCard({
+  copy,
+  className,
+}: {
+  copy: PanelCopy;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "w-full max-w-[20rem] rounded-[1.375rem] bg-white p-4 text-left shadow-lg ring-1 ring-fg/5",
+        className,
+      )}
+    >
+      <p className="flex items-center gap-2 px-1 text-xs font-semibold">
+        <Megaphone className="size-3.5 text-brand" aria-hidden="true" />
+        {copy.campaignsTitle}
+      </p>
+      <ul className="mt-2 grid gap-1.5">
+        {copy.campaigns.map((c, i) => (
+          <li
+            key={c}
+            className="flex items-center justify-between gap-2 rounded-lg bg-surface px-3 py-2.5 text-xs"
+          >
+            <span className="min-w-0 truncate text-fg-muted">{c}</span>
+            <StatusChip live={i < 2} copy={copy} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

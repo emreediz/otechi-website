@@ -17,8 +17,7 @@ export type ProductCapsule = {
 
 /**
  * One glass capsule per product: Ole (orange), Ole Panel (navy),
- * Namaz Motivasyonu (green). Ole Panel links to the Ole page until it has
- * a page of its own.
+ * Namaz Motivasyonu (green).
  */
 export function productCapsules(locale: Locale): ProductCapsule[] {
   return [
@@ -33,7 +32,7 @@ export function productCapsules(locale: Locale): ProductCapsule[] {
       key: "panel",
       color: "navy",
       label: BRAND.products.olePanel,
-      href: localizedPath("productOle", locale),
+      href: localizedPath("productPanel", locale),
       icon: <LayoutDashboard aria-hidden="true" />,
     },
     {

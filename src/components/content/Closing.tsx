@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import type { ProductCapsule } from "@/lib/productCapsules";
 import { Reveal } from "@/components/motion/Reveal";
+import type { CapsuleColor } from "@/components/visual/Capsule";
+import type { FieldCapsule } from "@/components/visual/CapsuleField";
 import { CapsulePile } from "@/components/visual/CapsulePile";
 
 /**
@@ -12,11 +13,13 @@ export function Closing({
   action,
   capsules,
   capsulesLabel,
+  fillers,
 }: {
   lines: [string, string];
   action: ReactNode;
-  capsules: ProductCapsule[];
-  capsulesLabel: string;
+  capsules: FieldCapsule[];
+  capsulesLabel?: string;
+  fillers?: CapsuleColor[];
 }) {
   return (
     <section className="section-surface overflow-clip px-(--gutter) pt-[clamp(5rem,11vw,9rem)] text-center">
@@ -30,7 +33,11 @@ export function Closing({
         </div>
       </Reveal>
       <Reveal variant="trigger">
-        <CapsulePile items={capsules} label={capsulesLabel} />
+        <CapsulePile
+          items={capsules}
+          label={capsulesLabel}
+          fillers={fillers}
+        />
       </Reveal>
     </section>
   );

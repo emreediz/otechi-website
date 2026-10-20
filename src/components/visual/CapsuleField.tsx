@@ -1,11 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
-import type { ProductCapsule } from "@/lib/productCapsules";
-import { Capsule } from "./Capsule";
+import { Capsule, type CapsuleColor } from "./Capsule";
+
+/** A capsule in the field; with `href` it is a link, otherwise decoration. */
+export type FieldCapsule = {
+  key: string;
+  color: CapsuleColor;
+  label: string;
+  icon?: ReactNode;
+  href?: string;
+};
 
 /**
  * Where a capsule sits: desktop `x/y`, tablet `tx/ty`, phone `mx/my`
@@ -24,12 +32,17 @@ export type CapsuleSpot = {
   d: string;
   fo: string;
   depth: number;
+  /** false: hidden on phones (not enough room above/below the headline). */
+  phone?: boolean;
+  /** false: hidden below the desktop layout (side spots beside the text). */
+  tablet?: boolean;
 };
 
 /**
- * Floating product capsules around the hero headline. Each capsule pops in,
- * floats, drifts with the pointer (fine pointers, motion allowed) and links
- * to its product page.
+ * Floating capsules around a hero headline. Each capsule pops in, floats
+ * and drifts with the pointer (fine pointers, motion allowed). Product
+ * capsules link to their pages (a labelled nav); feature capsules are
+ * decorative and hidden from assistive technology.
  */
 export function CapsuleField({
   items,
@@ -37,12 +50,14 @@ export function CapsuleField({
   label,
   className,
 }: {
-  items: ProductCapsule[];
+  items: FieldCapsule[];
   spots: CapsuleSpot[];
-  label: string;
+  /** Accessible name of the nav when the capsules are links. */
+  label?: string;
   className?: string;
 }) {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const links = items.some((item) => item.href);
 
   useEffect(() => {
     const field = ref.current;
@@ -80,42 +95,41 @@ export function CapsuleField({
     };
   }, []);
 
-  return (
-    <nav
-      ref={ref}
-      aria-label={label}
-      className={cn("pointer-events-none absolute inset-0 z-[1]", className)}
-    >
-      <ul>
-        {items.map((item, i) => {
-          const s = spots[i];
-          return (
-            <li
-              key={item.key}
-              className="capsule-slot"
-              style={
-                {
-                  "--x": s.x,
-                  "--y": s.y,
-                  "--tx": s.tx,
-                  "--ty": s.ty,
-                  "--mx": s.mx,
-                  "--my": s.my,
-                  "--r": s.r,
-                  "--s": s.s ?? 1,
-                  "--depth": s.depth,
-                } as CSSProperties
-              }
+  const list = (
+    <ul>
+      {items.map((item, i) => {
+        const s = spots[i];
+        return (
+          <li
+            key={item.key}
+            className={cn(
+              "capsule-slot",
+              s.phone === false && "max-[719px]:hidden",
+            )}
+            style={
+              {
+                "--x": s.x,
+                "--y": s.y,
+                "--tx": s.tx,
+                "--ty": s.ty,
+                "--mx": s.mx,
+                "--my": s.my,
+                "--r": s.r,
+                "--s": s.s ?? 1,
+                "--depth": s.depth,
+              } as CSSProperties
+            }
+          >
+            <div
+              className="capsule-enter"
+              style={{ "--d": s.d } as CSSProperties}
             >
-              <div
-                className="capsule-enter"
-                style={{ "--d": s.d } as CSSProperties}
+              <span
+                className="capsule-float"
+                style={{ "--fo": s.fo } as CSSProperties}
               >
-                <span
-                  className="capsule-float"
-                  style={{ "--fo": s.fo } as CSSProperties}
-                >
-                  <span className="capsule-parallax">
+                <span className="capsule-parallax">
+                  {item.href ? (
                     <Link
                       href={item.href}
                       className="capsule-link pointer-events-auto"
@@ -124,13 +138,27 @@ export function CapsuleField({
                         {item.label}
                       </Capsule>
                     </Link>
-                  </span>
+                  ) : (
+                    <Capsule color={item.color} icon={item.icon}>
+                      {item.label}
+                    </Capsule>
+                  )}
                 </span>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+              </span>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+
+  return (
+    <div
+      ref={ref}
+      aria-hidden={links ? undefined : true}
+      className={cn("pointer-events-none absolute inset-0 z-[1]", className)}
+    >
+      {links ? <nav aria-label={label}>{list}</nav> : list}
+    </div>
   );
 }

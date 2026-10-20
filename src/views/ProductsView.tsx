@@ -1,19 +1,25 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { localizedPath } from "@/i18n/routes";
-import { productTiles } from "@/lib/showcaseData";
+import { productCapsules, type ProductKey } from "@/lib/productCapsules";
 import { Container } from "@/components/ui/Container";
-import { SectionHead } from "@/components/ui/SectionHead";
-import { MetaList } from "@/components/ui/MetaList";
+import { Button } from "@/components/ui/Button";
+import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/motion/Reveal";
-import { PageIntro } from "@/components/content/PageIntro";
-import { NumberedList } from "@/components/content/NumberedList";
-import { ClosingCta } from "@/components/content/ClosingCta";
-import { ProductTiles } from "@/components/showcase/ProductTiles";
 import { PageTransition } from "@/components/motion/PageTransition";
+import { Closing } from "@/components/content/Closing";
+import { Capsule } from "@/components/visual/Capsule";
+import { OleRewardCard } from "@/components/mock/OleMocks";
+import { PanelQrCard } from "@/components/mock/PanelMocks";
+import { NamazToday } from "@/components/mock/NamazMocks";
 
+/**
+ * Products: a short centred intro, then one tall card per product (coded
+ * mock-up on top; name, one line, three facts and the link below).
+ */
 export function ProductsView({
   locale,
   dict,
@@ -22,96 +28,120 @@ export function ProductsView({
   dict: Dictionary;
 }) {
   const t = dict.products;
-  const tiles = productTiles(dict, locale);
-  const details = [
-    { tile: tiles.ole, copy: t.ole },
-    { tile: tiles.namaz, copy: t.namaz },
-  ];
+  const copy = dict.home.products.items;
+  const mock = dict.mock;
+  const capsules = productCapsules(locale);
+  const contactHref = localizedPath("contact", locale);
+
+  const visuals: Record<ProductKey, ReactNode> = {
+    ole: <OleRewardCard copy={mock.ole} filled={3} />,
+    panel: <PanelQrCard copy={mock.panel} />,
+    namaz: (
+      <NamazToday copy={mock.namaz} done={[true, true, true, false, false]} />
+    ),
+  };
 
   return (
     <PageTransition>
-      <PageIntro kicker={t.title} title={t.intro} />
-
-      <section className="pb-24 sm:pb-32">
+      <section className="pb-16 pt-16 text-center sm:pt-24">
         <Container>
-          <h2 className="sr-only">{dict.home.products.title2}</h2>
-          <Reveal>
-            <ProductTiles
-              exploreLabel={dict.home.products.explore}
-              tiles={[tiles.ole, tiles.namaz]}
-            />
-          </Reveal>
+          <Kicker className="hero-rise hero-rise-1">{t.kicker}</Kicker>
+          <h1 className="mt-6 text-display-l">
+            {t.titleLines.map((line) => (
+              <span key={line} className="hero-line">
+                <span>{line}</span>
+              </span>
+            ))}
+          </h1>
+          <p className="hero-rise hero-rise-3 mx-auto mt-6 max-w-[36ch] text-lead text-fg-muted">
+            {t.lead}
+          </p>
         </Container>
       </section>
 
-      <section className="border-t border-fg/10 py-24 sm:py-32">
+      <section className="pb-[clamp(5rem,11vw,9.5rem)]">
         <Container>
-          <Reveal>
-            <SectionHead kicker={t.detailsKicker} title={t.detailsTitle} />
-          </Reveal>
-
-          <div className="mt-12 sm:mt-16">
-            {details.map(({ tile, copy }) => (
-              <Reveal key={tile.theme}>
+          <Reveal
+            variant="trigger"
+            className="grid gap-4 lg:grid-cols-3 lg:gap-5"
+          >
+            {capsules.map((product) => {
+              const facts = t.facts[product.key];
+              return (
                 <article
-                  data-theme={tile.theme}
-                  className="grid gap-10 border-t border-fg/15 py-12 lg:grid-cols-12 lg:gap-8"
+                  key={product.key}
+                  data-theme={product.key}
+                  className="card stagger-item flex flex-col !p-0"
                 >
-                  <div className="lg:col-span-4">
-                    <span className="text-xs tabular-nums tracking-widest text-fg-muted">
-                      {tile.index}
-                    </span>
-                    <h3 className="mt-3 text-heading">{tile.name}</h3>
-                    <p className="mt-4 max-w-sm leading-relaxed text-fg-muted">
-                      {copy.tagline}
-                    </p>
-                    <Link
-                      href={tile.href}
-                      className="group mt-6 inline-flex min-h-11 items-center gap-2 font-semibold"
+                  <div
+                    aria-hidden="true"
+                    className="grid h-[25rem] place-items-center overflow-hidden bg-[radial-gradient(80%_70%_at_50%_100%,var(--accent-soft),var(--surface))] p-6 [mask-image:linear-gradient(to_bottom,#000_82%,transparent)]"
+                  >
+                    <div className="origin-center scale-[0.9]">
+                      {visuals[product.key]}
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
+                    <Capsule
+                      color={product.color}
+                      icon={product.icon}
+                      className="self-start [--h:2.75rem]"
                     >
-                      <span className="link-underline">
-                        {dict.common.learnMore}
+                      {product.label}
+                    </Capsule>
+                    <h2 className="mt-6 text-title text-balance">
+                      <span className="sr-only">{product.label} — </span>
+                      {copy[product.key].title}
+                    </h2>
+                    <p className="mt-2.5 text-fg-soft">
+                      {copy[product.key].body}
+                    </p>
+                    <dl className="mt-6 grid gap-2 border-t border-border pt-5 text-sm">
+                      {(["platform", "audience", "status"] as const).map(
+                        (key) => (
+                          <div key={key} className="flex justify-between gap-4">
+                            <dt className="text-fg-soft">
+                              {t.factLabels[key]}
+                            </dt>
+                            <dd className="text-right font-medium">
+                              {facts[key]}
+                            </dd>
+                          </div>
+                        ),
+                      )}
+                    </dl>
+                    <Link
+                      href={product.href}
+                      className="group mt-auto inline-flex min-h-11 items-center gap-2 self-start pt-8 font-semibold"
+                    >
+                      <span className="border-b-[1.5px] border-accent pb-0.5">
+                        {copy[product.key].cta}
                       </span>
                       <ArrowRight
-                        className="size-4 text-accent transition-transform group-hover:translate-x-1"
+                        className="size-4 transition-transform group-hover:translate-x-1"
                         aria-hidden="true"
                       />
                     </Link>
                   </div>
-                  <div className="min-w-0 lg:col-span-7 lg:col-start-6">
-                    <MetaList
-                      items={[
-                        {
-                          label: t.factLabels.platform,
-                          value: copy.facts.platform,
-                        },
-                        {
-                          label: t.factLabels.audience,
-                          value: copy.facts.audience,
-                        },
-                        {
-                          label: t.factLabels.status,
-                          value: copy.facts.status,
-                        },
-                      ]}
-                    />
-                    <Reveal variant="trigger" className="mt-10">
-                      <NumberedList
-                        items={copy.points.map((title) => ({ title }))}
-                      />
-                    </Reveal>
-                  </div>
                 </article>
-              </Reveal>
-            ))}
-          </div>
+              );
+            })}
+          </Reveal>
+          <p className="mt-8 text-center text-xs text-fg-faint">
+            {mock.caption}
+          </p>
         </Container>
       </section>
 
-      <ClosingCta
-        kicker={dict.common.cta.kicker}
-        title={dict.common.cta.title}
-        href={localizedPath("contact", locale)}
+      <Closing
+        lines={[dict.common.cta.kicker, dict.common.cta.title]}
+        capsules={capsules}
+        capsulesLabel={dict.home.hero.capsulesLabel}
+        action={
+          <Button href={contactHref} size="lg">
+            {dict.nav.cta}
+          </Button>
+        }
       />
     </PageTransition>
   );
