@@ -39,7 +39,10 @@ export default function RootLayout({
       <body className="min-h-dvh">
         <script
           dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
+            // Before first paint: enable JS-gated motion and set the
+            // document language on /en/* (the static HTML says "tr").
+            __html:
+              "var d=document.documentElement;d.classList.add('js');if(/^\\/en(\\/|$)/.test(location.pathname))d.lang='en'",
           }}
         />
         {children}

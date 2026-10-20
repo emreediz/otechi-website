@@ -24,6 +24,9 @@ export const tr = {
     language: "Dil",
     turkish: "Türkçe",
     english: "İngilizce",
+    mainNav: "Ana menü",
+    menu: "Menü",
+    close: "Kapat",
   },
 
   footer: {
@@ -35,6 +38,15 @@ export const tr = {
     privacy: "Gizlilik Politikası",
     terms: "Kullanım Şartları",
     kvkk: "KVKK Aydınlatma Metni",
+    contactTitle: "İletişim",
+    // Follows the product name: "Namaz Motivasyonu belgeleri".
+    docsLabel: "belgeleri",
+    backToTop: "Başa dön",
+  },
+  notFound: {
+    title: "Sayfa bulunamadı.",
+    body: "Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir.",
+    pages: "Sayfalar",
   },
 
   home: {
@@ -561,7 +573,12 @@ export const tr = {
       gallery: ["Bugün ekranı", "Grup ekranı"],
       docsTitle: "Yasal Belgeler",
       docsNote: "Bu belgeler yalnızca Türkçe olarak yayımlanmıştır.",
-      docs: ["Gizlilik Politikası", "KVKK Aydınlatma Metni", "Kullanıcı Sözleşmesi"],
+      docs: {
+        privacy: "Gizlilik Politikası",
+        kvkk: "KVKK Aydınlatma Metni",
+        terms: "Kullanıcı Sözleşmesi",
+        accountDeletion: "Hesap ve Verileri Silme",
+      },
     },
   },
 };

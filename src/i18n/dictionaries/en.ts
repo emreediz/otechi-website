@@ -23,6 +23,9 @@ export const en: Dictionary = {
     language: "Language",
     turkish: "Turkish",
     english: "English",
+    mainNav: "Main menu",
+    menu: "Menu",
+    close: "Close",
   },
 
   footer: {
@@ -34,6 +37,14 @@ export const en: Dictionary = {
     privacy: "Privacy Policy",
     terms: "Terms of Use",
     kvkk: "Data Protection Notice (KVKK)",
+    contactTitle: "Contact",
+    docsLabel: "documents",
+    backToTop: "Back to top",
+  },
+  notFound: {
+    title: "Page not found.",
+    body: "The page you're looking for may have moved or never existed.",
+    pages: "Pages",
   },
 
   home: {
@@ -554,11 +565,12 @@ export const en: Dictionary = {
       gallery: ["Today screen", "Group screen"],
       docsTitle: "Legal Documents",
       docsNote: "These documents are published in Turkish only.",
-      docs: [
-        "Privacy Policy",
-        "Data Protection Notice (KVKK)",
-        "User Agreement",
-      ],
+      docs: {
+        privacy: "Privacy Policy",
+        kvkk: "Data Protection Notice (KVKK)",
+        terms: "User Agreement",
+        accountDeletion: "Account & data deletion",
+      },
     },
   },
 };

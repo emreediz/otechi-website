@@ -147,13 +147,13 @@ export function NamazView({
         <SectionHeading title={s.docsTitle} intro={s.docsNote} />
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href={NAMAZ_LEGAL.privacy} variant="secondary">
-            {s.docs[0]}
+            {s.docs.privacy}
           </Button>
           <Button href={NAMAZ_LEGAL.kvkk} variant="secondary">
-            {s.docs[1]}
+            {s.docs.kvkk}
           </Button>
           <Button href={NAMAZ_LEGAL.terms} variant="secondary">
-            {s.docs[2]}
+            {s.docs.terms}
           </Button>
         </div>
       </Section>

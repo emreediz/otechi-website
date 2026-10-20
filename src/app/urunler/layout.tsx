@@ -1,4 +1,5 @@
 import { getDictionary } from "@/i18n/getDictionary";
+import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
@@ -17,17 +18,25 @@ export default async function UrunlerLayout({
 
   return (
     <div className="flex min-h-dvh flex-col">
+      {/* Client navigations from /en/* would otherwise keep lang="en". */}
+      <HtmlLangSync locale="tr" />
       <a
         href="#main"
         className="sr-only rounded-md bg-fg px-4 py-2 text-sm text-bg focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60]"
       >
         {dict.nav.skipToContent}
       </a>
-      <Navbar locale="tr" dict={dict.nav} />
+      <Navbar locale="tr" dict={dict.nav} contact={dict.contact} />
       <main id="main" className="flex-1">
         {children}
       </main>
-      <Footer locale="tr" footer={dict.footer} nav={dict.nav} />
+      <Footer
+        locale="tr"
+        footer={dict.footer}
+        nav={dict.nav}
+        contact={dict.contact}
+        namazDocs={dict.showcase.namaz}
+      />
     </div>
   );
 }

@@ -172,6 +172,100 @@
 }
 
 /* ------------------------------------------------------------------ *
+ * Site frame: header pill, link underline, mobile menu dialog.
+ * ------------------------------------------------------------------ */
+@layer components {
+  .site-header {
+    background-color: var(--bg);
+    border-bottom: 1px solid color-mix(in oklab, var(--fg) 10%, transparent);
+    transition:
+      background-color 0.4s ease,
+      border-color 0.4s ease;
+  }
+  .site-header[data-scrolled] {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  /* Sizes live here (not in utilities) so the scrolled state can win. */
+  .site-header__bar {
+    max-width: 72rem;
+    height: 4rem;
+    padding-inline: 1.25rem;
+    transition:
+      max-width 0.55s var(--ease-out-expo),
+      height 0.55s var(--ease-out-expo),
+      translate 0.55s var(--ease-out-expo),
+      padding 0.55s var(--ease-out-expo),
+      border-radius 0.55s var(--ease-out-expo),
+      background-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+  @media (min-width: 640px) {
+    .site-header__bar {
+      padding-inline: 2rem;
+    }
+  }
+  .site-header[data-scrolled] .site-header__bar {
+    max-width: min(52rem, calc(100% - 1.5rem));
+    height: 3.25rem;
+    translate: 0 0.375rem;
+    padding-inline: 1rem 0.375rem;
+    border-radius: 9999px;
+    background-color: color-mix(in oklab, var(--bg) 86%, transparent);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--fg) 10%, transparent),
+      0 12px 32px -16px rgb(0 0 0 / 0.3);
+  }
+
+  /* Underline that draws in from the left on hover (text-bound). */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.35s var(--ease-out-expo);
+  }
+  @media (hover: hover) {
+    a:hover > .link-underline {
+      background-size: 100% 1px;
+    }
+  }
+
+  /* Full-screen mobile menu (<dialog>); fades/slides in, stagger on items. */
+  .menu-dialog {
+    opacity: 0;
+    translate: 0 -0.75rem;
+    transition:
+      opacity 0.35s var(--ease-out-expo),
+      translate 0.35s var(--ease-out-expo),
+      overlay 0.35s allow-discrete,
+      display 0.35s allow-discrete;
+  }
+  .menu-dialog[open] {
+    opacity: 1;
+    translate: 0 0;
+  }
+  @starting-style {
+    .menu-dialog[open] {
+      opacity: 0;
+      translate: 0 -0.75rem;
+    }
+  }
+  .menu-dialog::backdrop {
+    background: transparent;
+  }
+  .menu-dialog[open] .menu-item {
+    animation: rise 0.6s var(--ease-out-expo) both;
+    animation-delay: calc(0.08s + var(--i, 3) * 0.05s);
+  }
+  html:has(.menu-dialog[open]) {
+    overflow: hidden;
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Motion — CSS + IntersectionObserver only, no animation library.
  * All initial-hidden states are gated behind `html.js` so content is
  * always visible if JS is unavailable, and neutralised under

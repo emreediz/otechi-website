@@ -1,41 +1,51 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { locales, type Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/getDictionary";
 import { localeFromPath, switchLocalePath } from "@/i18n/routes";
 import { cn } from "@/lib/cn";
 
-const flag: Record<Locale, string> = { tr: "🇹🇷", en: "🇬🇧" };
-const ariaLabel: Record<Locale, string> = {
-  tr: "Türkçe'ye geç",
-  en: "Switch to English",
-};
-
-export function LanguageSwitcher({ className }: { className?: string }) {
+/** "TR / EN" text switch; each code links to the same page in that locale. */
+export function LanguageSwitcher({
+  dict,
+  className,
+}: {
+  dict: Pick<Dictionary["nav"], "language" | "turkish" | "english">;
+  className?: string;
+}) {
   const pathname = usePathname() || "/tr";
   const current = localeFromPath(pathname);
+  const name: Record<Locale, string> = { tr: dict.turkish, en: dict.english };
 
   return (
     <div
-      className={cn("inline-flex items-center gap-0.5", className)}
+      className={cn("inline-flex items-center text-sm font-medium", className)}
       role="group"
-      aria-label="Türkçe / English"
+      aria-label={dict.language}
     >
-      {locales.map((loc) => (
-        <Link
-          key={loc}
-          href={switchLocalePath(pathname, loc)}
-          hrefLang={loc}
-          aria-label={ariaLabel[loc]}
-          aria-current={loc === current ? "true" : undefined}
-          className={cn(
-            "inline-flex size-11 items-center justify-center rounded-md text-lg leading-none transition-opacity",
-            loc === current ? "opacity-100" : "opacity-45 hover:opacity-100",
-          )}
-        >
-          <span aria-hidden="true">{flag[loc]}</span>
-        </Link>
+      {locales.map((loc, i) => (
+        <Fragment key={loc}>
+          {i > 0 ? (
+            <span aria-hidden="true" className="text-fg-muted/60">
+              /
+            </span>
+          ) : null}
+          <Link
+            href={switchLocalePath(pathname, loc)}
+            hrefLang={loc}
+            aria-label={name[loc]}
+            aria-current={loc === current ? "true" : undefined}
+            className={cn(
+              "inline-flex size-11 items-center justify-center rounded-full uppercase transition-colors",
+              loc === current ? "text-fg" : "text-fg-muted hover:text-fg",
+            )}
+          >
+            {loc}
+          </Link>
+        </Fragment>
       ))}
     </div>
   );

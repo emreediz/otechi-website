@@ -32,11 +32,17 @@ export default async function LocaleLayout({
       >
         {dict.nav.skipToContent}
       </a>
-      <Navbar locale={locale} dict={dict.nav} />
+      <Navbar locale={locale} dict={dict.nav} contact={dict.contact} />
       <main id="main" className="flex-1">
         {children}
       </main>
-      <Footer locale={locale} footer={dict.footer} nav={dict.nav} />
+      <Footer
+        locale={locale}
+        footer={dict.footer}
+        nav={dict.nav}
+        contact={dict.contact}
+        namazDocs={dict.showcase.namaz}
+      />
     </div>
   );
 }

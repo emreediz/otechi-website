@@ -14,10 +14,11 @@ const RATIO_H = 273;
  */
 export function Logo({
   className,
-  priority = false,
+  eager = false,
 }: {
   className?: string;
-  priority?: boolean;
+  /** Above-the-fold logo: load immediately instead of lazily. */
+  eager?: boolean;
 }) {
   return (
     <Image
@@ -25,7 +26,7 @@ export function Logo({
       alt="Otechi"
       width={RATIO_W}
       height={RATIO_H}
-      priority={priority}
+      loading={eager ? "eager" : undefined}
       className={cn("w-auto object-contain", className)}
     />
   );

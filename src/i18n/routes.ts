@@ -1,4 +1,5 @@
 import type { Locale } from "./config";
+import { NAMAZ_LEGAL } from "@/config/legalRoutes";
 
 /**
  * Every page in the site, keyed by a stable id. The URL path segments are
@@ -40,7 +41,8 @@ export function localizedPath(key: RouteKey, locale: Locale): string {
 
 /** Strip a single trailing slash (but keep "/"). */
 function normalize(pathname: string): string {
-  if (pathname.length > 1 && pathname.endsWith("/")) return pathname.slice(0, -1);
+  if (pathname.length > 1 && pathname.endsWith("/"))
+    return pathname.slice(0, -1);
   return pathname;
 }
 
@@ -59,9 +61,15 @@ export function localeFromPath(pathname: string): Locale {
 
 /**
  * Given the current pathname, return the equivalent page in `target` locale.
- * Falls back to that locale's home page when the page can't be identified.
+ * The Turkish-only Namaz Motivasyonu documents stay put for TR and go to the
+ * product page for EN. Anything else unknown falls back to the home page.
  */
 export function switchLocalePath(pathname: string, target: Locale): string {
-  const key = routeKeyFromPath(pathname);
-  return key ? paths[key][target] : paths.home[target];
+  const p = normalize(pathname);
+  const key = routeKeyFromPath(p);
+  if (key) return paths[key][target];
+  if ((Object.values(NAMAZ_LEGAL) as string[]).includes(p)) {
+    return target === "tr" ? p : paths.productNamaz.en;
+  }
+  return paths.home[target];
 }
