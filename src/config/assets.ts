@@ -15,13 +15,14 @@ export const IMG = {
     nfcH: 760,
     // Mobile app screens — 900 x 1947 (9 : 19.5). Cleaned in the web copies
     // (canvas edit, originals untouched): the mascot is removed from the
-    // business "Menü" card and the user's name from the home
+    // business/notification "Menü" card and the user's name from the home
     // greeting. The panel copy has the account name removed and the QR code
     // and customer code blurred.
     screenW: 900,
     screenH: 1947,
     screenHome: "/images/products/ole/web/screen-home.jpg",
     screenLoyalty: "/images/products/ole/web/screen-loyalty.jpg",
+    screenNotification: "/images/products/ole/web/screen-notification.jpg",
     screenBusiness: "/images/products/ole/web/screen-business.jpg",
     // Web management panel — 1800 x 1047 (~16 : 9.3)
     panel: "/images/products/ole/web/panel.jpg",
@@ -44,11 +45,6 @@ export const IMG = {
       w: 900,
       h: 445,
     },
-    screenWinback: {
-      src: "/images/products/ole/web/screen-winback.jpg",
-      w: 900,
-      h: 740,
-    },
   },
   namaz: {
     // 3D key art (neon mihrab on deep green)
@@ -60,6 +56,8 @@ export const IMG = {
     screenH: 1650,
     screenToday: "/images/products/namaz-motivasyonu/web/screen-today.jpg",
     screenGroup: "/images/products/namaz-motivasyonu/web/screen-group.jpg",
+    // Statistics screen (app capture, cropped to the same 900 x 1650 frame)
+    screenStats: "/images/products/namaz-motivasyonu/web/screen-stats.jpg",
   },
   // Lifestyle photography — web copies (max 1400px, JPEG) generated with
   // `sips` into `photo assets/web/`; the PNG originals are never modified.

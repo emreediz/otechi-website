@@ -5,7 +5,6 @@ import type { Dictionary } from "./tr";
 
 export const en: Dictionary = {
   common: {
-    comingSoon: "Coming soon",
     learnMore: "Learn more",
     newTab: "(opens in a new tab)",
     draftNotice: "This text is a draft and will be updated before launch.",
@@ -170,7 +169,7 @@ export const en: Dictionary = {
         },
         {
           q: "Which products are available right now?",
-          a: "Ole for businesses is live, and Namaz Motivasyonu for individuals is coming soon to the app stores — and we keep building for new ideas.",
+          a: "Ole for businesses and Namaz Motivasyonu for individuals are both live — and we keep building for new ideas.",
         },
         {
           q: "How do I get started with Ole?",
@@ -220,11 +219,11 @@ export const en: Dictionary = {
     },
     namaz: {
       tagline: "An app for tracking the five daily prayers and staying motivated.",
-      points: ["Tracking the five daily prayers", "Reminders", "Progress and motivation"],
+      points: ["Tracking the five daily prayers", "Statistics", "Groups and rooms"],
       facts: {
         platform: "iOS · Android",
         audience: "Individuals",
-        status: "Coming soon",
+        status: "On the App Store and Google Play",
       },
     },
   },
@@ -240,7 +239,6 @@ export const en: Dictionary = {
       statement: "From first visit to regular.",
       lead: "Reward your customers. Announce your campaigns. Give them a reason to come back.",
       ctaDemo: "Request a demo",
-      ctaPricing: "See pricing",
       panelLogin: "Dashboard login",
       ctaAppStore: "App Store",
       ctaGooglePlay: "Google Play",
@@ -255,278 +253,24 @@ export const en: Dictionary = {
       statusLabel: "Status",
       status: "Live since February 2026",
     },
-    chapters: {
-      label: "On this page",
-      how: "How it works",
-      features: "Features",
-      panel: "Dashboard",
-      integrations: "Integrations",
-      pricing: "Pricing",
-      faq: "FAQ",
-    },
-    anchors: {
-      how: "how-it-works",
-      features: "features",
-      panel: "dashboard",
-      integrations: "integrations",
-      pricing: "pricing",
-      faq: "faq",
-    },
-    sides: {
-      statement: "Your customer on one side. You in control on the other.",
-      business: {
-        title: "Business",
-        items: [
-          "Set a reward and a target number of tokens",
-          "Generate a QR code in the dashboard to award tokens",
-          "Verify rewards and campaigns with a 6-digit code",
-          "Run welcome, birthday, student and general campaigns",
-          "Send manual notifications and automatic reminders",
-          "Follow branches, transactions and reports in one dashboard",
-        ],
-      },
-      customer: {
-        title: "Customer",
-        items: [
-          "Downloads the Ole app for free",
-          "Scans the QR code or taps Ole NFC to earn tokens",
-          "Claims the reward in the app once the target is reached",
-          "Discovers campaigns and redeems them with a 6-digit code",
-          "Finds businesses by neighbourhood or name",
-        ],
-      },
-    },
-    how: {
-      kicker: "How it works",
-      title: "A loyalty loop in four steps.",
-      steps: [
-        {
-          title: "Set your reward",
-          body: "Pick a reward and a target number of tokens — say, a free coffee at 5 tokens.",
-        },
-        {
-          title: "Award tokens by QR",
-          body: "Generate a single-use QR code in the dashboard from the amount spent or a number of items/tokens. Your customer scans it and the tokens land in their account.",
-        },
-        {
-          title: "Verify with a code",
-          body: "When customers reach the target they claim the reward in the app and get a 6-digit code. Your staff verify it in the dashboard and hand over the reward.",
-        },
-        {
-          title: "Invite them back",
-          body: "Customers who haven't visited for a while get an automatic reminder, and you announce campaigns with manual notifications.",
-        },
-      ],
-      nfcNote:
-        "Ole NFC instead of QR: customers tap their phone to earn tokens or redeem a reward. The hardware is optional.",
-    },
-    features: {
-      kicker: "Features",
-      title: "Everything loyalty needs, in one place.",
-      items: {
-        loyalty: {
-          name: "Loyalty and rewards",
-          kind: "Business · Customer",
-          desc: "A reward once the target number of tokens is reached.",
-        },
-        qr: {
-          name: "Tokens by QR",
-          kind: "Business dashboard",
-          desc: "A single-use QR code for every transaction.",
-        },
-        code: {
-          name: "6-digit code verification",
-          kind: "Business dashboard",
-          desc: "Confirm rewards and campaign use with a code.",
-        },
-        campaigns: {
-          name: "Campaigns",
-          kind: "Welcome · Birthday · Student · General",
-          desc: "Set conditions and validity; publish or pause.",
-        },
-        notifications: {
-          name: "Notifications",
-          kind: "Manual · Automatic",
-          desc: "Only to customers who opted in and match the audience; sends are subject to limits.",
-        },
-        branches: {
-          name: "Multiple branches",
-          kind: "Business dashboard",
-          desc: "Manage every branch from one account.",
-        },
-        reports: {
-          name: "Transactions and reports",
-          kind: "Business dashboard",
-          desc: "Token and reward activity, campaign usage.",
-        },
-        businessPage: {
-          name: "Your page in the app",
-          kind: "Customer app",
-          desc: "No separate app needed — customers find you in Ole.",
-        },
-        nfc: {
-          name: "Ole NFC",
-          kind: "Optional hardware",
-          desc: "Tap, earn, redeem. DNA chip with copy protection.",
-        },
-        pos: {
-          name: "Till integration",
-          kind: "Simpra · Roxpos (coming soon)",
-          desc: "Tokens are added automatically when the bill closes.",
-        },
-      },
-    },
-    panel: {
-      kicker: "Business dashboard",
-      title: "Run every branch from one account.",
-      body: "QR code generation, code verification, the loyalty programme, campaigns, notifications and reports live in the web dashboard, where each branch's transactions are tracked.",
-      menu: [
-        "Transaction history",
-        "Business management",
-        "Loyalty programme",
-        "Campaign management",
-        "Notifications",
-        "Customer points",
-        "Reports",
-      ],
-      menuTitle: "Dashboard modules",
-    },
-    integrations: {
-      kicker: "Integrations",
-      title: "Can integrate with your till.",
-      body: "With an integration you don't need the dashboard at the counter — tokens are added automatically when the bill closes.",
-      partners: [
-        { name: "Simpra", status: "Integrated" },
-        { name: "Roxpos", status: "Integration in progress" },
-      ],
-      steps: [
-        { body: "Your customer shows their personal QR code in the Ole app." },
-        { body: "Staff scan it with the till's QR scanner; the customer is matched to the bill." },
-        { body: "Tokens are added automatically when the bill closes." },
-      ],
-      cta: "Request an integration",
-    },
-    sectors: {
-      kicker: "Who it's for",
-      title: "For every business with regulars.",
-      items: [
-        "Cafés",
-        "Restaurants",
-        "Bakeries & patisseries",
-        "Hair & beauty",
-        "Retail",
-        "Multi-branch businesses",
+    story: {
+      kicker: "For your customers",
+      title: "Every visit, one step closer.",
+      beats: [
+        { title: "Scan.", body: "Your customer scans a QR code or taps Ole NFC." },
+        { title: "Collect.", body: "Tokens add up with every visit; at the target, a reward is ready." },
+        { title: "Discover.", body: "Your campaigns show up on your business page in Ole." },
+        { title: "Come back.", body: "Customers who haven't visited for a while get an automatic reminder." },
       ],
     },
-    pricing: {
-      kicker: "Pricing",
-      title: "One plan, simple pricing.",
-      plan: {
-        name: "Unlimited plan",
-        period: "Yearly",
-        unit: "+ VAT / branch / year",
-        included: [
-          "Token and reward programme",
-          "Awarding tokens by QR code",
-          "Reward verification by 6-digit code",
-          "Welcome, birthday, student and general campaigns",
-          "Manual and automatic notifications",
-          "Business dashboard, transaction history and reports",
-          "A business page in the Ole customer app",
-        ],
-      },
-      cta: "Request a demo",
-      nfc: {
-        label: "Optional add-on",
-        name: "Ole NFC hardware",
-        period: "One-off",
-        unit: "+ VAT",
-        lead: "Handle everyday transactions in seconds, without opening the dashboard.",
-        benefits: [
-          "Awarding tokens and redeeming rewards",
-          "Fast transactions without the dashboard",
-          "DNA chip technology",
-          "Security designed to protect against copying",
-        ],
-        note: "The hardware is optional. You can use the Ole dashboard quickly and easily with QR codes and 6-digit codes, without NFC.",
-      },
-      calculator: {
-        title: "How could {price} pay off in your business?",
-        question: "How many customers will join Ole in a year?",
-        help: "Not your total number of customers — the number who will join the loyalty programme in the Ole app.",
-        unit: "Ole users / year",
-        yearly: "Estimated extra revenue per year",
-        monthly: "Monthly average:",
-        returningLabel: "Customers expected to come more than once",
-        returningUnit: "customers",
-        audienceLabel: "Remind them with a notification",
-        audienceUnit: "people you can reach",
-        audienceNote: "Subject to eligibility and notification permissions.",
-        disclaimer:
-          "An example scenario, not a guaranteed result. Calculated from Ole users' repeat visits after their first visit. Revenue is not profit; subscription and operating costs are not deducted. Amounts exclude VAT.",
-        live: "For {members} Ole users, estimated extra revenue is {yearly} a year, about {monthly} a month.",
-      },
-      source: "Prices exclude VAT; current prices and terms are set by Ole:",
-      sourceLink: "oletr.com",
-    },
-    gallery: {
-      kicker: "In the wild",
-      title: "Everyday visits, lasting customers.",
-    },
-    onboarding: {
-      kicker: "Getting started",
-      title: "The Ole team helps you get set up.",
-      steps: [
-        { title: "Send the form", body: "Fill in the demo request form." },
-        {
-          title: "We get in touch",
-          body: "The Ole team reaches out to get to know your business.",
-        },
-        {
-          title: "Plan it together",
-          body: "Your rewards, campaigns and notifications are set up for your business.",
-        },
-      ],
-    },
-    faq: {
-      title: "Frequently asked questions",
-      items: [
-        {
-          q: "Do I need technical knowledge?",
-          a: "No. The Ole dashboard runs in the browser, with nothing to install, and the Ole team helps you get started.",
-        },
-        {
-          q: "Do I need a separate app for my business?",
-          a: "No. Your business gets its own page inside the Ole customer app.",
-        },
-        {
-          q: "I have several branches — is that a problem?",
-          a: "No. You manage every branch from one account; pricing is per branch.",
-        },
-        {
-          q: "Is the NFC hardware required?",
-          a: "No. You can use Ole with QR codes and 6-digit codes, without NFC.",
-        },
-        {
-          q: "Does it work with my till?",
-          a: "Ole is integrated with Simpra, and a Roxpos integration is in progress. You can request an integration for other systems.",
-        },
-        {
-          q: "Do customers pay?",
-          a: "No. The Ole app is free for customers.",
-        },
-        {
-          q: "Do you take a commission?",
-          a: "No. Ole takes no commission on your sales; businesses pay a yearly subscription.",
-        },
-      ],
-    },
-    docs: {
-      title: "Ole documents and support (in Turkish)",
-      cookies: "Cookie policy",
-      kvkk: "KVKK customer notice",
-      membership: "Membership agreement",
-      support: "Support centre",
+    business: {
+      kicker: "For your business",
+      title: "You're in control.",
+      panel: "Every branch in one dashboard.",
+      qr: "Generate a single-use QR code.",
+      verify: "Verify rewards with a 6-digit code.",
+      campaign: "Publish a campaign.",
+      nfc: "Or use Ole NFC — no dashboard needed.",
     },
     closing: {
       kicker: "Let's start",
@@ -534,13 +278,15 @@ export const en: Dictionary = {
       supportLabel: "Ole support",
     },
     alt: {
-      stage: "Ole app home screen",
+      home: "Ole app home screen",
       loyalty: "Ole app — rewards screen",
-      qrForm: "Ole business dashboard — QR code generation form",
-      verify: "Ole business dashboard — 6-digit code verification",
-      winback: "Ole notification — a “We miss you!” reminder",
-      nfc: "Ole NFC hardware",
+      business: "Ole app — business page and campaigns",
+      notification: "Ole notification — a “We miss you!” reminder",
       panel: "Ole business dashboard",
+      qrForm: "Ole business dashboard — QR code generation",
+      verify: "Ole business dashboard — 6-digit code verification",
+      campaign: "Ole app — welcome campaign card",
+      nfc: "Ole NFC hardware",
     },
   },
 
@@ -548,56 +294,31 @@ export const en: Dictionary = {
     meta: {
       title: "Namaz Motivasyonu — track the five daily prayers and stay motivated",
       description:
-        "Namaz Motivasyonu is a simple app for tracking the five daily prayers, with reminders, progress, and motivation.",
+        "Namaz Motivasyonu is a simple app for tracking the five daily prayers, with statistics and group motivation. On the App Store and Google Play.",
     },
     hero: {
       kicker: "An Otechi product",
       tagline:
-        "Track your five daily prayers, keep a steady routine with reminders, see your progress, and stay motivated.",
+        "Track your five daily prayers, see your progress, and stay motivated.",
       ctaAppStore: "App Store",
       ctaGooglePlay: "Google Play",
       statement: "Starting again is always possible.",
     },
-    intro: {
-      title: "A warm, encouraging approach",
-      body: "Sometimes we forget; sometimes motivation dips. Namaz Motivasyonu reminds you, shows your progress, and encourages you. Starting again is always possible.",
-    },
-    features: {
-      title: "What's inside",
-      items: [
+    story: {
+      kicker: "In the app",
+      title: "Simple, calm, at your own pace.",
+      beats: [
         {
-          title: "Tracking the five daily prayers",
-          body: "Mark the prayers you've done and see your consistency.",
+          title: "Mark.",
+          body: "Mark the prayers you've done and see how your day went.",
         },
         {
-          title: "Reminders",
-          body: "Get reminders at times that work for you.",
+          title: "See.",
+          body: "Follow your progress and streak with weekly, monthly and yearly statistics.",
         },
         {
-          title: "Progress and motivation",
-          body: "Follow your progress and streak, and set your own goals.",
-        },
-        {
-          title: "Groups and rooms",
-          body: "Create a group or room, or join one with an invite code, and stay motivated with friends. Your display name and progress are visible to the group's members.",
-        },
-      ],
-      note: "Features may change with the current version of the app.",
-    },
-    how: {
-      title: "How it works",
-      steps: [
-        {
-          title: "Choose your city",
-          body: "Enter your location or city to see prayer times.",
-        },
-        {
-          title: "Set your reminders",
-          body: "Pick how often you're reminded for each prayer.",
-        },
-        {
-          title: "Mark as you go",
-          body: "Check off each prayer and grow your streak.",
+          title: "Together.",
+          body: "Start a group or room, join with an invite code, and stay motivated together.",
         },
       ],
     },
@@ -606,8 +327,7 @@ export const en: Dictionary = {
       body: "What data the app processes, why, and how it is stored is set out in the Privacy Policy, the KVKK Notice and the User Agreement (published in Turkish). You can delete your account in the app; the associated data is then deleted, subject to legal retention obligations.",
     },
     closing: {
-      title: "Namaz Motivasyonu is coming to the app stores soon.",
-      body: "Download links will be shared on this page once they're ready.",
+      title: "is on the App Store and Google Play.",
     },
   },
 
@@ -739,10 +459,8 @@ export const en: Dictionary = {
     namaz: {
       artAlt: "Namaz Motivasyonu key art",
       heroShotAlt: "Namaz Motivasyonu — Today screen",
-      galleryTitle: "From the app",
-      gallery: { today: "Today screen", group: "Group screen" },
       groupShotAlt: "Namaz Motivasyonu — group screen",
-      dayTitle: "Through the day.",
+      statsShotAlt: "Namaz Motivasyonu — statistics screen",
       docsTitle: "Legal Documents",
       docsNote: "These documents are published in Turkish only.",
       docs: {

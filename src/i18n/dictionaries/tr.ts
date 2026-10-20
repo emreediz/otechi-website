@@ -5,7 +5,6 @@
 
 export const tr = {
   common: {
-    comingSoon: "Yakında",
     learnMore: "İnceleyin",
     // Screen-reader suffix for links that open in a new tab.
     newTab: "(yeni sekmede açılır)",
@@ -174,7 +173,7 @@ export const tr = {
         },
         {
           q: "Şu anda hangi ürünler var?",
-          a: "İşletmeler için Ole yayında; bireyler için Namaz Motivasyonu yakında mağazalarda. Yeni fikirler için geliştirmeye devam ediyoruz.",
+          a: "İşletmeler için Ole, bireyler için Namaz Motivasyonu yayında. Yeni fikirler için geliştirmeye devam ediyoruz.",
         },
         {
           q: "Ole’yi nasıl kullanmaya başlarım?",
@@ -225,11 +224,11 @@ export const tr = {
     },
     namaz: {
       tagline: "Beş vakit namaz takibi ve motivasyon uygulaması.",
-      points: ["Beş vakit takibi", "Hatırlatıcılar", "İlerleme ve motivasyon"],
+      points: ["Beş vakit takibi", "İstatistikler", "Gruplar ve odalar"],
       facts: {
         platform: "iOS · Android",
         audience: "Bireyler",
-        status: "Yakında",
+        status: "App Store ve Google Play’de",
       },
     },
   },
@@ -245,7 +244,6 @@ export const tr = {
       statement: "İlk ziyaretten müdavimliğe.",
       lead: "Müşterilerini ödüllendir. Kampanyalarını duyur. Yeniden gelmeleri için bir sebep ver.",
       ctaDemo: "Demo talep et",
-      ctaPricing: "Fiyatları gör",
       panelLogin: "Panel girişi",
       ctaAppStore: "App Store",
       ctaGooglePlay: "Google Play",
@@ -260,281 +258,24 @@ export const tr = {
       statusLabel: "Durum",
       status: "Şubat 2026’dan beri yayında",
     },
-    chapters: {
-      label: "Sayfa bölümleri",
-      how: "Nasıl çalışır",
-      features: "Özellikler",
-      panel: "Panel",
-      integrations: "Entegrasyonlar",
-      pricing: "Fiyatlandırma",
-      faq: "SSS",
-    },
-    // In-page anchor ids (also the URL fragments).
-    anchors: {
-      how: "nasil-calisir",
-      features: "ozellikler",
-      panel: "panel",
-      integrations: "entegrasyonlar",
-      pricing: "fiyatlandirma",
-      faq: "sss",
-    },
-    sides: {
-      statement: "Bir tarafta müşterin. Diğer tarafta kontrol sende.",
-      business: {
-        title: "İşletme",
-        items: [
-          "Ödülünü ve hedef jeton sayısını belirle",
-          "Panelde QR üret, müşterine jeton kazandır",
-          "Ödül ve kampanya kullanımını 6 haneli kodla doğrula",
-          "Hoş geldin, doğum günü, öğrenci ve genel kampanyalar yayınla",
-          "Manuel bildirim ve otomatik hatırlatma gönder",
-          "Şubelerini, işlem geçmişini ve raporlarını tek panelden izle",
-        ],
-      },
-      customer: {
-        title: "Müşteri",
-        items: [
-          "Ole uygulamasını ücretsiz indirir",
-          "QR’ı okutur ya da Ole NFC’ye yaklaştırır, jeton kazanır",
-          "Hedefe ulaşınca “Ödülü Al” ile ödülünü kullanır",
-          "Kampanyaları keşfeder, 6 haneli kodla kullanır",
-          "İşletmeleri semt ya da adla bulur",
-        ],
-      },
-    },
-    how: {
-      kicker: "Nasıl çalışır",
-      title: "Dört adımda sadakat döngüsü.",
-      steps: [
-        {
-          title: "Ödülünü belirle",
-          body: "Bir ödül ve hedef jeton sayısı seç; örneğin 5 jetonda bir kahve ikramı.",
-        },
-        {
-          title: "QR ile jeton kazandır",
-          body: "Panelde harcama tutarı ya da ürün/jeton sayısıyla tek kullanımlık bir QR üret. Müşterin okutur, jetonları hesabına geçer.",
-        },
-        {
-          title: "Kodla doğrula",
-          body: "Hedefe ulaşan müşterin uygulamada “Ödülü Al”a dokunur ve 6 haneli bir kod oluşur. Personelin kodu panelde doğrular, ödülü verir.",
-        },
-        {
-          title: "Yeniden davet et",
-          body: "Bir süredir uğramayan müşterilerine otomatik hatırlatma gider; kampanyalarını manuel bildirimlerle duyurursun.",
-        },
-      ],
-      nfcNote:
-        "QR yerine Ole NFC: müşterin telefonunu yaklaştırır, jeton kazanır ya da ödülünü kullanır. Donanım isteğe bağlıdır.",
-    },
-    features: {
-      kicker: "Özellikler",
-      title: "Sadakat için gereken her şey, tek yerde.",
-      items: {
-        loyalty: {
-          name: "Sadakat ve ödüller",
-          kind: "İşletme · Müşteri",
-          desc: "Hedef jeton sayısına ulaşan müşteriye ödül.",
-        },
-        qr: {
-          name: "QR ile jeton",
-          kind: "İşletme paneli",
-          desc: "Her işlem için tek kullanımlık QR kod.",
-        },
-        code: {
-          name: "6 haneli kodla doğrulama",
-          kind: "İşletme paneli",
-          desc: "Ödül ve kampanya kullanımını kodla onayla.",
-        },
-        campaigns: {
-          name: "Kampanyalar",
-          kind: "Hoş geldin · Doğum günü · Öğrenci · Genel",
-          desc: "Koşul ve geçerlilik süresi belirle; yayına al ya da durdur.",
-        },
-        notifications: {
-          name: "Bildirimler",
-          kind: "Manuel · Otomatik",
-          desc: "Yalnızca izin veren ve hedefe uyan müşterilere; gönderimler limitlere tabidir.",
-        },
-        branches: {
-          name: "Çoklu şube",
-          kind: "İşletme paneli",
-          desc: "Tüm şubelerini tek hesaptan yönet.",
-        },
-        reports: {
-          name: "İşlem geçmişi ve raporlar",
-          kind: "İşletme paneli",
-          desc: "Jeton ve ödül hareketleri, kampanya kullanımı.",
-        },
-        businessPage: {
-          name: "Uygulamada işletme sayfası",
-          kind: "Müşteri uygulaması",
-          desc: "Ayrı bir mobil uygulamaya gerek yok; müşterilerin seni Ole’de bulur.",
-        },
-        nfc: {
-          name: "Ole NFC",
-          kind: "İsteğe bağlı donanım",
-          desc: "Yaklaştır, kazan, kullan. DNA çip ve kopyalamaya karşı koruma.",
-        },
-        pos: {
-          name: "Kasa entegrasyonu",
-          kind: "Simpra · Roxpos (yakında)",
-          desc: "Hesap kapanınca jetonlar otomatik yüklenir.",
-        },
-      },
-    },
-    panel: {
-      kicker: "İşletme paneli",
-      title: "Tüm şubelerini tek hesaptan yönet.",
-      body: "QR kod üretimi, kod doğrulama, sadakat programı, kampanyalar, bildirimler ve raporlar web tabanlı panelde. Şubelerin işlemleri panelden takip edilir.",
-      menu: [
-        "İşlem Geçmişi",
-        "İşletme Yönetimi",
-        "Sadakat Program Yönetimi",
-        "Kampanya Yönetimi",
-        "Bildirimler",
-        "Kullanıcı Puan Takibi",
-        "Raporlar",
-      ],
-      menuTitle: "Paneldeki modüller",
-    },
-    integrations: {
-      kicker: "Entegrasyonlar",
-      title: "Kasa sisteminle entegre çalışabilir.",
-      body: "Entegrasyonla panele girmen gerekmez; jetonlar hesap kapanınca otomatik yüklenir.",
-      partners: [
-        { name: "Simpra", status: "Entegre" },
-        { name: "Roxpos", status: "Entegrasyon aşamasında" },
-      ],
-      steps: [
-        { body: "Müşterin, Ole uygulamasındaki kişisel QR’ını gösterir." },
-        { body: "Personelin kasadaki QR okuyucuyla okutur; müşteri adisyonla eşleşir." },
-        { body: "Hesap kapanınca jetonlar otomatik olarak yüklenir." },
-      ],
-      cta: "Entegrasyon talep et",
-    },
-    sectors: {
-      kicker: "Kimler için",
-      title: "Müdavimi olan her işletme için.",
-      items: [
-        "Kafe",
-        "Restoran",
-        "Fırın & Pastane",
-        "Kuaför & Güzellik",
-        "Perakende",
-        "Çok şubeli işletmeler",
+    story: {
+      kicker: "Müşteri tarafı",
+      title: "Her ziyaret bir adım daha.",
+      beats: [
+        { title: "Okut.", body: "Müşterin QR’ı okutur ya da Ole NFC’ye yaklaştırır." },
+        { title: "Biriktir.", body: "Her ziyarette jeton kazanır; hedefe ulaşınca ödül hazır." },
+        { title: "Keşfet.", body: "Kampanyaların, Ole’deki işletme sayfanda görünür." },
+        { title: "Geri gel.", body: "Bir süredir uğramayanlara otomatik hatırlatma gider." },
       ],
     },
-    pricing: {
-      kicker: "Fiyatlandırma",
-      title: "Tek paket, sade fiyat.",
-      plan: {
-        name: "Sınırsız Paket",
-        period: "Yıllık",
-        unit: "+ KDV / şube / yıl",
-        included: [
-          "Jeton ve ödül programı",
-          "QR kod ile jeton kazandırma",
-          "6 haneli kod ile ödül doğrulama",
-          "Hoş geldin, doğum günü, öğrenci ve genel kampanyalar",
-          "Manuel ve otomatik bildirimler",
-          "İşletme paneli, işlem geçmişi ve raporlar",
-          "Ole müşteri uygulamasında işletme sayfası",
-        ],
-      },
-      cta: "Demo talep et",
-      nfc: {
-        label: "İsteğe bağlı ek",
-        name: "Ole NFC Donanımı",
-        period: "Tek seferlik",
-        unit: "+ KDV",
-        lead: "Panele girmeden günlük işlemlerini saniyeler içinde tamamla.",
-        benefits: [
-          "Jeton kazandırma ve ödül kullanımı",
-          "Panele girmeden hızlı işlem",
-          "DNA çip teknolojisi",
-          "Kopyalamaya karşı koruma için tasarlanmış güvenlik altyapısı",
-        ],
-        note: "Donanım zorunlu değildir. Ole panelini NFC donanımı olmadan da QR kod ve 6 haneli kodla rahatça ve hızlıca kullanabilirsin.",
-      },
-      calculator: {
-        // {price} is replaced with the yearly plan price.
-        title: "{price} işletmende nasıl karşılık bulabilir?",
-        question: "Bir yılda kaç müşterin Ole’ye katılacak?",
-        help: "Toplam müşteri sayını değil, Ole uygulamasıyla sadakat programına katılacak müşteri sayısını seç.",
-        unit: "Ole kullanıcısı / yıl",
-        yearly: "Yıllık tahmini ek ciro",
-        monthly: "Aylık ortalama karşılığı:",
-        returningLabel: "Birden çok kez gelmesi beklenen müşteri sayısı",
-        returningUnit: "müşteri",
-        audienceLabel: "Bildirimle kendini yeniden hatırlat",
-        audienceUnit: "kişilik potansiyel kitle",
-        audienceNote: "Uygunluk ve bildirim izinlerine bağlıdır.",
-        disclaimer:
-          "Örnek senaryodur, sonuç garantisi değildir. Ole kullanıcılarının ilk ziyareti dışındaki tekrar ziyaretlerinden hesaplanır. Ciro kâr değildir; gösterilen tutardan abonelik ve işletme maliyetleri düşülmemiştir. Tutarlar KDV hariçtir.",
-        // Spoken by screen readers after the slider stops.
-        live: "{members} Ole kullanıcısı için yıllık tahmini ek ciro {yearly}, aylık ortalama {monthly}.",
-      },
-      source: "Fiyatlar KDV hariçtir; güncel fiyat ve koşullar Ole tarafından belirlenir:",
-      sourceLink: "oletr.com",
-    },
-    gallery: {
-      kicker: "Sahada",
-      title: "Gündelik ziyaretler, kalıcı müşteriler.",
-    },
-    onboarding: {
-      kicker: "Başlarken",
-      title: "Ole ekibi başlangıçta sana yardımcı olur.",
-      steps: [
-        { title: "Formu gönder", body: "Demo talep formunu doldur." },
-        {
-          title: "Seninle iletişime geçelim",
-          body: "Ole ekibi işletmeni tanımak için sana ulaşır.",
-        },
-        {
-          title: "Kurguyu birlikte planlayalım",
-          body: "Ödül, kampanya ve bildirim kurgun işletmene göre hazırlanır.",
-        },
-      ],
-    },
-    faq: {
-      title: "Sıkça sorulan sorular",
-      items: [
-        {
-          q: "Teknik bilgi gerekiyor mu?",
-          a: "Hayır. Ole paneli tarayıcı üzerinden kullanılır; ayrı bir altyapı kurmana gerek yoktur. Başlangıçta Ole ekibi sana yardımcı olur.",
-        },
-        {
-          q: "İşletmem için ayrı bir mobil uygulama gerekir mi?",
-          a: "Hayır. İşletmen, Ole müşteri uygulamasında kendi işletme sayfasıyla yer alır.",
-        },
-        {
-          q: "Birden fazla şubem var, sorun olur mu?",
-          a: "Hayır. Tüm şubelerini tek hesaptan yönetirsin; fiyatlandırma şube başınadır.",
-        },
-        {
-          q: "NFC donanımı zorunlu mu?",
-          a: "Hayır. Ole’yi NFC donanımı olmadan da QR kod ve 6 haneli kodla kullanabilirsin.",
-        },
-        {
-          q: "Kasa sistemimle birlikte çalışır mı?",
-          a: "Simpra ile entegre çalışır; Roxpos için entegrasyon süreci devam ediyor. Diğer sistemler için entegrasyon talebinde bulunabilirsin.",
-        },
-        {
-          q: "Müşteriler ödeme yapıyor mu?",
-          a: "Hayır. Ole uygulaması müşteriler için ücretsizdir.",
-        },
-        {
-          q: "Komisyon alıyor musunuz?",
-          a: "Hayır. Ole, senin satışlarından komisyon almaz; işletmeler yıllık abonelik öder.",
-        },
-      ],
-    },
-    docs: {
-      title: "Ole belgeleri ve destek",
-      cookies: "Çerez Politikası",
-      kvkk: "KVKK Müşteri Aydınlatma Metni",
-      membership: "Üyelik Sözleşmesi",
-      support: "Destek merkezi",
+    business: {
+      kicker: "İşletme tarafı",
+      title: "Kontrol sende.",
+      panel: "Tüm şubelerin tek panelde.",
+      qr: "Tek kullanımlık QR üret.",
+      verify: "Ödülü 6 haneli kodla doğrula.",
+      campaign: "Kampanyanı yayınla.",
+      nfc: "İstersen Ole NFC ile, panele girmeden.",
     },
     closing: {
       kicker: "Başlayalım",
@@ -542,13 +283,15 @@ export const tr = {
       supportLabel: "Ole destek",
     },
     alt: {
-      stage: "Ole uygulaması ana ekranı",
+      home: "Ole uygulaması ana ekranı",
       loyalty: "Ole uygulaması — ödüller ekranı",
-      qrForm: "Ole işletme paneli — QR kod üretimi formu",
-      verify: "Ole işletme paneli — 6 haneli kod doğrulama",
-      winback: "Ole bildirimi — “Seni Özledik!” hatırlatması",
-      nfc: "Ole NFC donanımı",
+      business: "Ole uygulaması — işletme sayfası ve kampanyalar",
+      notification: "Ole bildirimi — “Seni Özledik!” hatırlatması",
       panel: "Ole işletme paneli",
+      qrForm: "Ole işletme paneli — QR kod üretimi",
+      verify: "Ole işletme paneli — 6 haneli kod doğrulama",
+      campaign: "Ole uygulaması — hoş geldin kampanyası kartı",
+      nfc: "Ole NFC donanımı",
     },
   },
 
@@ -556,56 +299,31 @@ export const tr = {
     meta: {
       title: "Namaz Motivasyonu — beş vakit namaz takibi ve motivasyon",
       description:
-        "Namaz Motivasyonu; beş vakit namaz takibi, hatırlatıcılar, ilerleme ve motivasyon için sade bir uygulama.",
+        "Namaz Motivasyonu; beş vakit namaz takibi, istatistikler ve grup motivasyonu için sade bir uygulama. App Store ve Google Play’de.",
     },
     hero: {
       kicker: "Bir Otechi ürünü",
       tagline:
-        "Beş vakit namazını takip et, hatırlatıcılarla düzenli kıl, ilerlemeni gör ve motivasyonunu koru.",
+        "Beş vakit namazını takip et, ilerlemeni gör, motivasyonunu koru.",
       ctaAppStore: "App Store",
       ctaGooglePlay: "Google Play",
       statement: "Yeniden başlamak her zaman mümkün.",
     },
-    intro: {
-      title: "Sıcak, teşvik edici bir yaklaşım",
-      body: "Bazen unutuyoruz, bazen motivasyon düşüyor. Namaz Motivasyonu hatırlatır, ilerlemeni gösterir ve seni teşvik eder. Yeniden başlamak her zaman mümkün.",
-    },
-    features: {
-      title: "Neler var?",
-      items: [
+    story: {
+      kicker: "Uygulamada",
+      title: "Sade, sakin, senin temponda.",
+      beats: [
         {
-          title: "Beş vakit takibi",
-          body: "Kıldığın vakitleri işaretle, istikrarını gör.",
+          title: "İşaretle.",
+          body: "Kıldığın vakitleri işaretle, günün nasıl geçtiğini gör.",
         },
         {
-          title: "Hatırlatıcılar",
-          body: "Sana uygun zamanlarda hatırlatıcılar al.",
+          title: "Gör.",
+          body: "Haftalık, aylık ve yıllık istatistiklerle ilerlemeni ve serini takip et.",
         },
         {
-          title: "İlerleme ve motivasyon",
-          body: "İlerlemeni ve serini takip et, kendine hedefler koy.",
-        },
-        {
-          title: "Gruplar ve odalar",
-          body: "Grup ya da oda oluştur veya davet koduyla bir gruba katıl, arkadaşlarınla birlikte motive ol. Grupta görünen adın ve ilerlemen grup üyelerince görülebilir.",
-        },
-      ],
-      note: "Özellikler, uygulamanın güncel sürümüne göre değişebilir.",
-    },
-    how: {
-      title: "Nasıl çalışır?",
-      steps: [
-        {
-          title: "Şehrini seç",
-          body: "Namaz vakitlerini görmek için konum veya şehir bilgisini gir.",
-        },
-        {
-          title: "Hatırlatıcıları ayarla",
-          body: "Vakitlere göre hatırlatıcı sıklığını belirle.",
-        },
-        {
-          title: "Kıldıkça işaretle",
-          body: "Her vakti işaretle, istikrar serini büyüt.",
+          title: "Birlikte.",
+          body: "Grup ya da oda kur, davet koduyla katıl; birlikte motive ol.",
         },
       ],
     },
@@ -614,8 +332,8 @@ export const tr = {
       body: "Uygulamanın hangi verileri hangi amaçlarla işlediği ve nasıl sakladığı; Gizlilik Politikası, KVKK Aydınlatma Metni ve Kullanıcı Sözleşmesi’nde açıklanmıştır. Hesabını uygulama içinden silebilirsin; hesabınla ilişkili veriler, yasal saklama yükümlülükleri saklı kalmak kaydıyla silinir.",
     },
     closing: {
-      title: "Namaz Motivasyonu yakında mağazalarda.",
-      body: "İndirme bağlantıları hazır olduğunda bu sayfada paylaşılacak.",
+      // Follows the product name: "Namaz Motivasyonu App Store ve …".
+      title: "App Store ve Google Play’de.",
     },
   },
 
@@ -747,10 +465,8 @@ export const tr = {
     namaz: {
       artAlt: "Namaz Motivasyonu görseli",
       heroShotAlt: "Namaz Motivasyonu — Bugün ekranı",
-      galleryTitle: "Uygulamadan kareler",
-      gallery: { today: "Bugün ekranı", group: "Grup ekranı" },
       groupShotAlt: "Namaz Motivasyonu — grup ekranı",
-      dayTitle: "Bir günün içinde.",
+      statsShotAlt: "Namaz Motivasyonu — istatistik ekranı",
       docsTitle: "Yasal Belgeler",
       docsNote: "Bu belgeler yalnızca Türkçe olarak yayımlanmıştır.",
       docs: {

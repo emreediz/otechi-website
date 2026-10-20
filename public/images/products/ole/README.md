@@ -20,13 +20,13 @@ Maskot, kişisel ad, gerçek görünümlü QR ve müşteri kodu bu kopyalarda yo
 | Dosya | Kaynak | İşlem |
 |---|---|---|
 | `token.webp` (640²) | `ole-glass-token-1.png` | Şeffaf WebP |
-| `logo.png` | `ole-logo.png` | Küçültüldü |
+| `logo.png` | `ole-logo.png` | Küçültülmüş eski kopya — artık kullanılmıyor |
 | `screen-home.jpg` (900×1947) | `ole-home-page.PNG` | Selamlamadaki kullanıcı adı kaldırıldı |
 | `screen-loyalty.jpg` (900×1947) | `ole-sadakat-sistemi.PNG` | Küçültüldü |
 | `screen-business.jpg` (900×1947) | `ole-işletme-sayfası.PNG` | "Menü" kartındaki maskot kaldırıldı |
 | `screen-notification.jpg` (900×1947) | `ole-bildirim.PNG` | "Menü" kartındaki maskot kaldırıldı |
 | `screen-campaign.jpg` (900×445) | `ole-işletme-sayfası.PNG` | Kampanya kartı kırpımı |
-| `screen-winback.jpg` (900×740) | `ole-bildirim.PNG` | Bildirim kırpımı (üst bölüm) |
+| `screen-winback.jpg` (900×740) | `ole-bildirim.PNG` | Bildirim kırpımı — artık kullanılmıyor |
 | `panel.jpg` (1800×1047) | `ole-panel.png` | Hesap adı kaldırıldı, QR ve müşteri kodu bulanıklaştırıldı |
 | `panel-qr-form.jpg` (860×1020) | `ole-panel.png` | "QR Kod Üretimi" formu kırpımı |
 | `panel-verify.jpg` (860×714) | `ole-panel.png` | "Kod Doğrulama" kartı kırpımı |

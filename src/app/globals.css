@@ -170,15 +170,9 @@
     }
   }
 
-  /* Anchors and focused elements stay clear of the sticky header (and, on
-     the Ole page, the sticky chapter bar). */
+  /* Anchors and focused elements stay clear of the sticky header. */
   html {
     scroll-padding-top: 5rem;
-  }
-  @media (min-width: 1024px) {
-    html:has([data-chapter-nav]) {
-      scroll-padding-top: 8.5rem;
-    }
   }
 }
 
@@ -287,13 +281,6 @@
   }
   html:has(.menu-dialog[open]) {
     overflow: hidden;
-  }
-
-  /* Native range input in the brand colour with a 44px touch target. */
-  .range-input {
-    height: 2.75rem;
-    cursor: pointer;
-    accent-color: var(--accent);
   }
 }
 
@@ -436,9 +423,14 @@ html.js [data-reveal][data-shown] .clip-reveal {
   clip-path: inset(0 0 0 0 round 1.5rem);
 }
 
-/* Controls that only work with JS (the static render shows defaults). */
-html:not(.js) .js-only {
-  display: none;
+/* Scroll story (desktop): beats away from the centre are dimmed. */
+@media (min-width: 1024px) {
+  .scroll-story__copy {
+    transition: opacity 0.5s var(--ease-out-expo);
+  }
+  html.js .scroll-story > li:not([data-active]) .scroll-story__copy {
+    opacity: 0.4;
+  }
 }
 
 /* Hero entrance (above the fold — plays on load, not on scroll). */
