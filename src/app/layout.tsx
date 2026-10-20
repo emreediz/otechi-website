@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { site } from "@/config/site";
+import { CursorDot } from "@/components/frame/CursorDot";
 import "./globals.css";
 
 // Single type family for the whole site.
@@ -39,13 +40,15 @@ export default function RootLayout({
       <body className="min-h-dvh">
         <script
           dangerouslySetInnerHTML={{
-            // Before first paint: enable JS-gated motion and set the
-            // document language on /en/* (the static HTML says "tr").
+            // Before first paint: enable JS-gated motion, set the document
+            // language on /en/* (the static HTML says "tr") and apply the
+            // stored light/dark choice (dark is the default).
             __html:
-              "var d=document.documentElement;d.classList.add('js');if(/^\\/en(\\/|$)/.test(location.pathname))d.lang='en'",
+              "var d=document.documentElement;d.classList.add('js');if(/^\\/en(\\/|$)/.test(location.pathname))d.lang='en';try{if(localStorage.getItem('otechi-mode')==='light')d.dataset.mode='light'}catch(e){}",
           }}
         />
         {children}
+        <CursorDot />
       </body>
     </html>
   );

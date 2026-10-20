@@ -43,6 +43,20 @@ export const tr = {
     mainNav: "Ana menü",
     menu: "Menü",
     close: "Kapat",
+    city: "İzmir",
+    themeLight: "Açık tema",
+    mail: "E-posta gönderin",
+    productsTitle: "Ürünlerimiz",
+    allProducts: "Tüm ürünler",
+    newsTitle: "Duyurular",
+    dismiss: "Duyuruyu kapat",
+    // Short announcements in the menu (verified facts only).
+    news: {
+      namaz: "İstatistikler geldi: haftalık, aylık ve yıllık ilerlemeni gör.",
+      panel: "QR kod, kampanya ve bildirimler tek panelde.",
+      ole: "App Store ve Google Play’de.",
+    },
+    newLabel: "Yeni",
   },
 
   footer: {
@@ -79,6 +93,19 @@ export const tr = {
       ctaPrimary: "Ürünleri Keşfedin",
       ctaSecondary: "Bizi Tanıyın",
       capsulesLabel: "Ürünlerimiz",
+    },
+    stage: {
+      label: "Ürün vitrini",
+      scroll: "Kaydırın",
+      open: "İnceleyin",
+      allTitle: "Tüm ürünler",
+      allBody: "İşletmeler ve bireyler için yayında olan üç uygulama.",
+      allCta: "Ürünlere göz atın",
+      tags: {
+        ole: "Mobil uygulama · Sadakat · Kampanyalar",
+        panel: "Web paneli · Yönetim · Raporlar",
+        namaz: "Mobil uygulama · Takip · İstatistikler",
+      },
     },
     intro: {
       statement:

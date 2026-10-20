@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { productLinks } from "@/lib/siteNav";
+import { showcaseItems } from "@/lib/showcase";
 import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -34,14 +35,9 @@ export default async function LocaleLayout({
       >
         {dict.nav.skipToContent}
       </a>
-      <Navbar
-        locale={locale}
-        dict={dict.nav}
-        contact={dict.contact}
-        products={products}
-      />
-      {/* Top padding clears the fixed header (96px at the top of the page). */}
-      <main id="main" tabIndex={-1} className="flex-1 pt-24 outline-none">
+      <Navbar locale={locale} dict={dict} items={showcaseItems(locale)} />
+      {/* The bar is fixed and transparent; each page sets its own top space. */}
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {children}
       </main>
       <Footer locale={locale} dict={dict} products={products} />

@@ -42,6 +42,7 @@ export function OleRewardCard({
   const left = goal - filled;
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-5 shadow-lg ring-1 ring-fg/5",
         className,
@@ -118,6 +119,7 @@ export function OleNotification({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "flex w-full max-w-[20rem] gap-3 rounded-[1.25rem] bg-white/90 p-3.5 shadow-lg ring-1 ring-fg/5 backdrop-blur",
         className,
@@ -148,6 +150,7 @@ export function OleCampaignCard({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "flex w-full max-w-[24rem] overflow-hidden rounded-[1.375rem] bg-white text-left shadow-lg ring-1 ring-fg/5",
         className,

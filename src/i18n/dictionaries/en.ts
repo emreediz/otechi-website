@@ -39,6 +39,19 @@ export const en: Dictionary = {
     mainNav: "Main menu",
     menu: "Menu",
     close: "Close",
+    city: "Izmir",
+    themeLight: "Light theme",
+    mail: "Send us an email",
+    productsTitle: "Our products",
+    allProducts: "All products",
+    newsTitle: "News",
+    dismiss: "Dismiss",
+    news: {
+      namaz: "Statistics are here: see your weekly, monthly and yearly progress.",
+      panel: "QR codes, campaigns and notifications in one dashboard.",
+      ole: "On the App Store and Google Play.",
+    },
+    newLabel: "New",
   },
 
   footer: {
@@ -74,6 +87,19 @@ export const en: Dictionary = {
       ctaPrimary: "Explore our products",
       ctaSecondary: "Get to know us",
       capsulesLabel: "Our products",
+    },
+    stage: {
+      label: "Product showcase",
+      scroll: "Scroll",
+      open: "Explore",
+      allTitle: "All products",
+      allBody: "Three apps for businesses and individuals, all live today.",
+      allCta: "Browse the products",
+      tags: {
+        ole: "Mobile app · Loyalty · Campaigns",
+        panel: "Web dashboard · Management · Reports",
+        namaz: "Mobile app · Tracking · Statistics",
+      },
     },
     intro: {
       statement:

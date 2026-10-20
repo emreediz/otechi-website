@@ -36,6 +36,7 @@ export function NamazToday({
   const pct = Math.round((count / 5) * 100);
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[20rem] rounded-[1.375rem] bg-[#f3f7f5] p-3 text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -138,6 +139,7 @@ export function NamazWeek({
   const fullDays = WEEK.filter((d) => d.every(Boolean)).length;
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[20rem] rounded-[1.375rem] bg-white p-4 text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -207,6 +209,7 @@ export function NamazGroup({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[20rem] rounded-[1.375rem] bg-[#f3f7f5] p-3 text-left shadow-lg ring-1 ring-fg/5",
         className,

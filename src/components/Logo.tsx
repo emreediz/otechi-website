@@ -1,16 +1,17 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 
-// Trimmed derivative of otechi-logo-primary.svg (transparent canvas removed only).
-// True aspect ratio ≈ 810 : 272.62.
-const SRC = "/images/brand/otechi-logo-primary-trimmed.svg";
+// Original wordmark (black ink) and a derived copy for dark backgrounds
+// (ink turned white, orange mark unchanged). Aspect ratio ≈ 810 : 273.
+const ON_LIGHT = "/images/brand/otechi-logo-primary-trimmed.svg";
+const ON_DARK = "/images/brand/web/otechi-logo-light.png";
 const RATIO_W = 810;
 const RATIO_H = 273;
 
 /**
- * Otechi wordmark. Height is controlled via `className` (e.g. "h-7");
- * width stays auto and the image is shown with object-contain so the
- * original proportions are never distorted.
+ * Otechi wordmark. Height comes from `className` (e.g. "h-7"). Both
+ * variants are rendered; CSS (`.logo-on-dark` / `.logo-on-light` in
+ * globals.css) shows the one that matches the current surface or mode.
  */
 export function Logo({
   className,
@@ -20,14 +21,25 @@ export function Logo({
   /** Above-the-fold logo: load immediately instead of lazily. */
   eager?: boolean;
 }) {
+  const common = {
+    width: RATIO_W,
+    height: RATIO_H,
+    loading: eager ? ("eager" as const) : undefined,
+  };
   return (
-    <Image
-      src={SRC}
-      alt="Otechi"
-      width={RATIO_W}
-      height={RATIO_H}
-      loading={eager ? "eager" : undefined}
-      className={cn("w-auto object-contain", className)}
-    />
+    <>
+      <Image
+        {...common}
+        alt="Otechi"
+        src={ON_DARK}
+        className={cn("logo-on-dark w-auto object-contain", className)}
+      />
+      <Image
+        {...common}
+        alt="Otechi"
+        src={ON_LIGHT}
+        className={cn("logo-on-light w-auto object-contain", className)}
+      />
+    </>
   );
 }

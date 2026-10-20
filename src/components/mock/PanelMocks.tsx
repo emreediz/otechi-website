@@ -57,6 +57,7 @@ export function PanelDashboard({
   const statuses = [true, true, campaignLive];
   return (
     <div
+      data-surface="light"
       className={cn(
         "overflow-hidden rounded-[1.375rem] bg-white text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -231,6 +232,7 @@ export function PanelQrCard({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[21rem] rounded-[1.375rem] bg-white p-5 text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -292,6 +294,7 @@ export function PanelVerifyCard({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-5 text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -327,6 +330,7 @@ export function PanelNotifyCard({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-5 text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -363,6 +367,7 @@ export function PanelBranches({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-4 text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -397,6 +402,7 @@ export function PanelReportCard({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[19rem] rounded-[1.375rem] bg-white p-4 text-left shadow-lg ring-1 ring-fg/5",
         className,
@@ -436,6 +442,7 @@ export function PanelCampaignsCard({
 }) {
   return (
     <div
+      data-surface="light"
       className={cn(
         "w-full max-w-[20rem] rounded-[1.375rem] bg-white p-4 text-left shadow-lg ring-1 ring-fg/5",
         className,
