@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
-import { ArrowDown } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
-import { localizedPath } from "@/i18n/routes";
 import { IMG } from "@/config/assets";
 import { cn } from "@/lib/cn";
 import { GLASS, showcaseItems, type ShowcaseKey } from "@/lib/showcase";
@@ -21,15 +19,11 @@ import { NamazToday, NamazWeek } from "@/components/mock/NamazMocks";
 const rise = (i: number) => ({ "--i": i }) as CSSProperties;
 
 /** The glass logo, huge and slowly turning, drifting with the pointer. */
-function GlassBackdrop({ size = "hero" }: { size?: "hero" | "small" }) {
+function GlassBackdrop() {
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
       <div
-        className={
-          size === "hero"
-            ? "absolute left-1/2 top-[46%] w-[175vw] -translate-x-[30%] -translate-y-1/2 md:top-1/2 md:w-[max(135svh,92vw)] md:-translate-x-[38%]"
-            : "absolute left-1/2 top-1/2 w-[min(70svh,80vw)] -translate-x-1/2 -translate-y-1/2"
-        }
+        className="absolute left-1/2 top-[46%] w-[175vw] -translate-x-[30%] -translate-y-1/2 md:top-1/2 md:w-[max(135svh,92vw)] md:-translate-x-[38%]"
       >
         <div className="[translate:calc(var(--px,0)*-22px)_calc(var(--py,0)*-14px)] transition-[translate] duration-1000 ease-out-expo">
           <div className="stage-media">
@@ -40,12 +34,8 @@ function GlassBackdrop({ size = "hero" }: { size?: "hero" | "small" }) {
                 width={GLASS.w}
                 height={GLASS.h}
                 sizes="140vw"
-                priority={size === "hero"}
-                className={
-                  size === "hero"
-                    ? "glass-spin w-full brightness-[0.62] contrast-[1.08]"
-                    : "glass-spin w-full blur-[1px] brightness-[0.34]"
-                }
+                priority
+                className="glass-spin w-full brightness-[0.62] contrast-[1.08]"
               />
             </div>
           </div>
@@ -118,7 +108,6 @@ export function HomeView({
   const s = t.stage;
   const mock = dict.mock;
   const items = showcaseItems(locale);
-  const productsHref = localizedPath("products", locale);
 
   const backgrounds: Record<ShowcaseKey, ReactNode> = {
     ole: <PhotoBackdrop src={IMG.photos.ole2.src} tint="rgb(253 94 0 / 0.28)" />,
@@ -220,31 +209,6 @@ export function HomeView({
     };
   });
 
-  const allSlide: StageSlide = {
-    key: "all",
-    label: s.allTitle,
-    href: productsHref,
-    background: <GlassBackdrop size="small" />,
-    content: (
-      <div className="absolute inset-0 grid place-items-center px-4 text-center">
-        <div>
-          <h2 className="stage-rise text-display-xl" style={rise(0)}>
-            <Link href={productsHref}>{s.allTitle}</Link>
-          </h2>
-          <p
-            className="stage-rise mx-auto mt-6 max-w-[28ch] text-lead text-fg-muted"
-            style={rise(1)}
-          >
-            {s.allBody}
-          </p>
-          <div className="stage-rise mt-4 inline-block" style={rise(2)}>
-            <StageLink href={productsHref}>{s.allCta}</StageLink>
-          </div>
-        </div>
-      </div>
-    ),
-  };
-
   return (
     <PageTransition>
       <HomeStage
@@ -266,16 +230,9 @@ export function HomeView({
                 {t.hero.titleLines[1]}
               </span>
             </h1>
-            <p
-              className="stage-rise absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs uppercase tracking-[0.2em] text-fg-soft md:flex"
-              style={rise(4)}
-            >
-              <ArrowDown className="size-3.5 animate-bounce" aria-hidden="true" />
-              {s.scroll}
-            </p>
           </div>
         }
-        slides={[...productSlides, allSlide]}
+        slides={productSlides}
       />
     </PageTransition>
   );

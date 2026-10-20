@@ -90,11 +90,7 @@ export const en: Dictionary = {
     },
     stage: {
       label: "Product showcase",
-      scroll: "Scroll",
       open: "Explore",
-      allTitle: "All products",
-      allBody: "Three apps for businesses and individuals, all live today.",
-      allCta: "Browse the products",
       tags: {
         ole: "Mobile app · Loyalty · Campaigns",
         panel: "Web dashboard · Management · Reports",

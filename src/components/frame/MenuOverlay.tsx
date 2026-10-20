@@ -249,6 +249,9 @@ export function MenuOverlay({
           </aside>
         </div>
       </div>
+      {/* The dialog renders above the page's cursor dot; this one follows
+          the pointer while the menu is open (CursorDot.tsx). */}
+      <div aria-hidden="true" data-hidden="" className="cursor-dot" />
     </dialog>
   );
 }

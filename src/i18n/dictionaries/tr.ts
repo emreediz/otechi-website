@@ -96,11 +96,7 @@ export const tr = {
     },
     stage: {
       label: "Ürün vitrini",
-      scroll: "Kaydırın",
       open: "İnceleyin",
-      allTitle: "Tüm ürünler",
-      allBody: "İşletmeler ve bireyler için yayında olan üç uygulama.",
-      allCta: "Ürünlere göz atın",
       tags: {
         ole: "Mobil uygulama · Sadakat · Kampanyalar",
         panel: "Web paneli · Yönetim · Raporlar",

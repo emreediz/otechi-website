@@ -382,7 +382,8 @@ html[data-mode="light"] [data-surface="dark"] .logo-on-light {
 }
 
 /* Cursor dot: replaces the system cursor on fine pointers once the dot
-   component has mounted (`html.has-dot`). */
+   component has mounted (`html.has-dot`). The menu dialog sits in the top
+   layer and carries its own dot (CursorDot.tsx moves every `.cursor-dot`). */
 html.has-dot,
 html.has-dot * {
   cursor: none !important;
@@ -396,22 +397,55 @@ html.has-dot * {
   height: 0.875rem;
   margin: -0.4375rem 0 0 -0.4375rem;
   border-radius: 9999px;
+  /* White dot with a dark rim: visible on black, white and mid-tones. */
   background: #fff;
-  mix-blend-mode: difference;
+  box-shadow: 0 0 0 1.5px rgb(0 0 0 / 0.8);
   pointer-events: none;
   transition:
     width 0.25s var(--ease-out-expo),
     height 0.25s var(--ease-out-expo),
     margin 0.25s var(--ease-out-expo),
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
     opacity 0.2s ease;
 }
+/* Over links and buttons: an open two-tone ring that never hides text. */
 .cursor-dot[data-hover] {
   width: 2.75rem;
   height: 2.75rem;
   margin: -1.375rem 0 0 -1.375rem;
+  background: transparent;
+  box-shadow:
+    inset 0 0 0 1.5px #fff,
+    0 0 0 1.5px rgb(0 0 0 / 0.8);
 }
 .cursor-dot[data-hidden] {
   opacity: 0;
+}
+/* Contrast themes remove the dot's colours: fall back to the system cursor. */
+@media (forced-colors: active) {
+  html.has-dot,
+  html.has-dot * {
+    cursor: auto !important;
+  }
+  .cursor-dot {
+    display: none;
+  }
+}
+/* Keep the page's dot above page transitions (only the body-level dot is
+   named — the menu has its own, and names must be unique). */
+body > .cursor-dot {
+  view-transition-name: cursor-dot;
+}
+::view-transition-group(cursor-dot) {
+  animation: none;
+  z-index: 101;
+}
+::view-transition-old(cursor-dot) {
+  display: none;
+}
+::view-transition-new(cursor-dot) {
+  animation: none;
 }
 
 /* Glass logo: a very slow turn plus a gentle breath. */
@@ -469,8 +503,10 @@ html.has-dot * {
 .stage-slide[data-active] .stage-media {
   scale: 1;
 }
-html:has([data-home-stage]) {
-  scroll-snap-type: y proximity;
+/* The home page is a single screen (no scrolling): no footer there.
+   Unlayered on purpose so it beats the footer's own utilities. */
+body:has([data-home-stage]) .site-footer {
+  display: none;
 }
 
 /* ------------------------------------------------------------------ *

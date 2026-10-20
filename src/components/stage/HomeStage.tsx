@@ -18,11 +18,10 @@ export type StageSlide = {
 };
 
 /**
- * Home stage: a sticky full-screen stage over a tall scroll track. Each
- * 100svh of scroll moves to the next slide (intro, the products, all
- * products); the pills on the left show where you are, preview a slide on
- * hover/focus and link to its page. Native scrolling only (with soft snap
- * points) — nothing hijacks the wheel.
+ * Home stage: one full screen, no scrolling. The intro (glass logo and
+ * headline) shows by default; hovering or focusing a product pill on the
+ * left swaps the whole stage to that product's preview, and the pill links
+ * to its page.
  */
 export function HomeStage({
   intro,
@@ -38,29 +37,9 @@ export function HomeStage({
   label: string;
   className?: string;
 }) {
-  const count = slides.length + 1;
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const stageRef = useRef<HTMLDivElement | null>(null);
-  const [active, setActive] = useState(0);
+  const stageRef = useRef<HTMLElement | null>(null);
   const [peek, setPeek] = useState<number | null>(null);
-  const shown = peek ?? active;
-
-  // Which 100svh band crosses the middle of the viewport.
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const marks = [...track.querySelectorAll<HTMLElement>("[data-mark]")];
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(Number(e.target.getAttribute("data-mark")));
-        }
-      },
-      { rootMargin: "-50% 0px -50% 0px" },
-    );
-    marks.forEach((m) => io.observe(m));
-    return () => io.disconnect();
-  }, []);
+  const shown = peek ?? 0;
 
   // Pointer parallax for the background layers (fine pointers only).
   useEffect(() => {
@@ -87,72 +66,59 @@ export function HomeStage({
 
   return (
     <section
+      ref={stageRef}
       data-home-stage=""
       data-surface="dark"
-      className={cn("relative bg-bg text-fg", className)}
-      style={{ height: `calc(${count} * 100svh)` }}
+      className={cn("relative h-svh overflow-hidden bg-bg text-fg", className)}
     >
-      <div ref={trackRef} aria-hidden="true">
-        {Array.from({ length: count }, (_, i) => (
-          <div
-            key={i}
-            data-mark={i}
-            className="absolute inset-x-0 h-svh snap-start"
-            style={{ top: `calc(${i} * 100svh)` }}
-          />
-        ))}
+      {/* Intro */}
+      <div
+        className="stage-slide absolute inset-0"
+        data-active={shown === 0 ? "" : undefined}
+        aria-hidden={shown !== 0}
+      >
+        {introBackground}
+        {intro}
       </div>
 
-      <div ref={stageRef} className="sticky top-0 h-svh overflow-hidden">
-        {/* Intro */}
+      {slides.map((slide, i) => (
         <div
+          key={slide.key}
           className="stage-slide absolute inset-0"
-          data-active={shown === 0 ? "" : undefined}
-          aria-hidden={shown !== 0}
+          data-active={shown === i + 1 ? "" : undefined}
+          aria-hidden={shown !== i + 1}
         >
-          {introBackground}
-          {intro}
+          {slide.background}
+          {slide.content}
         </div>
+      ))}
 
-        {slides.map((slide, i) => (
-          <div
-            key={slide.key}
-            className="stage-slide absolute inset-0"
-            data-active={shown === i + 1 ? "" : undefined}
-            aria-hidden={shown !== i + 1}
-          >
-            {slide.background}
-            {slide.content}
-          </div>
-        ))}
-
-        {/* Pills */}
-        <nav
-          aria-label={label}
-          className="absolute bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-[clamp(1rem,2vw,1.75rem)] z-10 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
-        >
-          <ul className="grid justify-items-start gap-1.5 md:gap-2">
-            {slides.map((slide, i) => (
-              <li key={slide.key}>
-                <Link
-                  href={slide.href}
-                  onPointerEnter={(e) => {
-                    if (e.pointerType === "mouse") setPeek(i + 1);
-                  }}
-                  onPointerLeave={() => setPeek(null)}
-                  onFocus={() => setPeek(i + 1)}
-                  onBlur={() => setPeek(null)}
-                  data-active={shown === i + 1 ? "" : undefined}
-                  className="pill md:h-11 md:px-5 md:text-[1.0625rem]"
-                  style={{ "--i": i } as CSSProperties}
-                >
-                  {slide.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      {/* Pills */}
+      <nav
+        aria-label={label}
+        className="absolute bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-[clamp(1rem,2vw,1.75rem)] z-10 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
+      >
+        <ul className="grid justify-items-start gap-1.5 md:gap-2">
+          {slides.map((slide, i) => (
+            <li key={slide.key}>
+              <Link
+                href={slide.href}
+                onPointerEnter={(e) => {
+                  if (e.pointerType === "mouse") setPeek(i + 1);
+                }}
+                onPointerLeave={() => setPeek(null)}
+                onFocus={() => setPeek(i + 1)}
+                onBlur={() => setPeek(null)}
+                data-active={shown === i + 1 ? "" : undefined}
+                className="pill md:h-11 md:px-5 md:text-[1.0625rem]"
+                style={{ "--i": i } as CSSProperties}
+              >
+                {slide.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </section>
   );
 }

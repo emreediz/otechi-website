@@ -70,7 +70,7 @@ export function Footer({
   ];
 
   return (
-    <footer className="pb-10 pt-14 sm:pt-[5.5rem] print:hidden">
+    <footer className="site-footer pb-10 pt-14 sm:pt-[5.5rem] print:hidden">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(4,1fr)] lg:gap-10">
           <div className="max-w-sm">
