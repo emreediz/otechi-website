@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { CSSProperties, RefObject } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import type { CSSProperties, MouseEvent, RefObject } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,10 +12,13 @@ import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import { cn } from "@/lib/cn";
 import { GLASS, type ShowcaseItem, type ShowcaseKey } from "@/lib/showcase";
+import { closeMenu } from "@/lib/menuTransition";
 import { Logo } from "@/components/Logo";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { CityClock } from "./CityClock";
 import { ModeToggle } from "./ModeToggle";
+
+const NAV_TYPES = ["menu-nav"];
 
 /**
  * Full-screen menu on a native modal <dialog> (focus trap, Esc and focus
@@ -38,11 +41,38 @@ export function MenuOverlay({
   const pathname = usePathname();
   const [preview, setPreview] = useState<ShowcaseKey | null>(null);
   const [dismissed, setDismissed] = useState<ShowcaseKey[]>([]);
-  const close = () => dialogRef.current?.close();
+  // The close button and Esc animate the page back out of the centre frame.
+  const closeAnimated = () => closeMenu(dialogRef.current);
 
-  useEffect(() => {
+  // Menu links navigate with the "menu-nav" transition type: the menu stays
+  // on screen and the new page wipes up over it (globals.css). A link to
+  // the current page just closes the menu.
+  const leave = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+      return;
+    }
+    if (e.currentTarget.getAttribute("href") === pathname) {
+      e.preventDefault();
+      closeAnimated();
+    }
+  };
+
+  // Close as part of the navigation commit (inside React's transition
+  // update), so the new page's snapshot no longer contains the menu.
+  useLayoutEffect(() => {
     dialogRef.current?.close();
   }, [pathname, dialogRef]);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const onCancel = (e: Event) => {
+      e.preventDefault();
+      closeMenu(dialog);
+    };
+    dialog.addEventListener("cancel", onCancel);
+    return () => dialog.removeEventListener("cancel", onCancel);
+  }, [dialogRef]);
 
   const links = [
     { href: localizedPath("products", locale), label: nav.products },
@@ -61,15 +91,15 @@ export function MenuOverlay({
       id="site-menu"
       aria-label={nav.mainNav}
       data-surface="light"
-      className="menu-dialog pointer-events-auto m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto border-0 bg-bg p-0 text-fg"
+      className="menu-dialog pointer-events-auto m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overflow-x-hidden border-0 bg-bg p-0 text-fg"
     >
-      <div className="flex min-h-full flex-col">
+      <div className="flex min-h-full flex-col overflow-x-clip">
         {/* Bar (mirrors the site bar) */}
         <div className="grid h-[3.75rem] shrink-0 grid-cols-[1fr_auto_1fr] items-center px-[clamp(1rem,2vw,1.75rem)]">
           <div>
             <button
               type="button"
-              onClick={close}
+              onClick={closeAnimated}
               className="pill border border-fg !bg-transparent"
             >
               {nav.close}
@@ -79,7 +109,8 @@ export function MenuOverlay({
           <Link
             href={localizedPath("home", locale)}
             aria-label={`${BRAND.company} – ${nav.home}`}
-            onClick={close}
+            onClick={leave}
+                    transitionTypes={NAV_TYPES}
             className="inline-flex"
           >
             <Logo className="h-6 sm:h-7" />
@@ -108,12 +139,13 @@ export function MenuOverlay({
               {links.map((l, i) => (
                 <li
                   key={l.href}
-                  className="menu-item"
+                  className="menu-item menu-from-left"
                   style={{ "--i": i } as CSSProperties}
                 >
                   <Link
                     href={l.href}
-                    onClick={close}
+                    onClick={leave}
+                    transitionTypes={NAV_TYPES}
                     aria-current={pathname === l.href ? "page" : undefined}
                     className="inline-flex min-h-11 items-center text-menu"
                   >
@@ -124,7 +156,7 @@ export function MenuOverlay({
             </ul>
 
             <p
-              className="menu-item mt-12 text-sm text-fg-soft"
+              className="menu-item menu-from-left mt-12 text-sm text-fg-soft"
               style={{ "--i": 4 } as CSSProperties}
             >
               {nav.productsTitle}
@@ -133,12 +165,13 @@ export function MenuOverlay({
               {items.map((item, i) => (
                 <li
                   key={item.key}
-                  className="menu-item"
+                  className="menu-item menu-from-left"
                   style={{ "--i": 5 + i } as CSSProperties}
                 >
                   <Link
                     href={item.href}
-                    onClick={close}
+                    onClick={leave}
+                    transitionTypes={NAV_TYPES}
                     onPointerEnter={() => setPreview(item.key)}
                     onPointerLeave={() => setPreview(null)}
                     onFocus={() => setPreview(item.key)}
@@ -150,10 +183,14 @@ export function MenuOverlay({
                   </Link>
                 </li>
               ))}
-              <li className="menu-item" style={{ "--i": 8 } as CSSProperties}>
+              <li
+                className="menu-item menu-from-left"
+                style={{ "--i": 8 } as CSSProperties}
+              >
                 <Link
                   href={localizedPath("products", locale)}
-                  onClick={close}
+                  onClick={leave}
+                    transitionTypes={NAV_TYPES}
                   className="pill pill-lg"
                 >
                   {nav.allProducts}
@@ -163,13 +200,14 @@ export function MenuOverlay({
 
             <LanguageSwitcher
               dict={nav}
-              className="menu-item mt-10 -ml-3"
+              className="menu-item menu-from-left mt-10 -ml-3 [--i:9]"
             />
           </nav>
 
           {/* Centre: preview */}
           <div
             aria-hidden="true"
+            data-menu-frame=""
             className="relative hidden overflow-hidden rounded-md bg-black lg:block lg:max-h-[calc(100dvh-7.5rem)]"
           >
             <div
@@ -210,7 +248,7 @@ export function MenuOverlay({
             {news.map(({ key, item }, i) => (
               <article
                 key={key}
-                className="menu-item rounded-lg bg-surface p-4"
+                className="menu-item menu-from-right rounded-lg bg-surface p-4"
                 style={{ "--i": 4 + i } as CSSProperties}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -229,7 +267,8 @@ export function MenuOverlay({
                 </div>
                 <Link
                   href={item.href}
-                  onClick={close}
+                  onClick={leave}
+                    transitionTypes={NAV_TYPES}
                   className="mt-3 flex items-center gap-4"
                 >
                   <Image

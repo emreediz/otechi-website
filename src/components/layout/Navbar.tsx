@@ -9,6 +9,7 @@ import type { Dictionary } from "@/i18n/getDictionary";
 import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import type { ShowcaseItem } from "@/lib/showcase";
+import { openMenu } from "@/lib/menuTransition";
 import { Logo } from "@/components/Logo";
 import { CityClock } from "@/components/frame/CityClock";
 import { ModeToggle } from "@/components/frame/ModeToggle";
@@ -72,7 +73,7 @@ export function Navbar({
               type="button"
               aria-haspopup="dialog"
               aria-controls="site-menu"
-              onClick={() => menuRef.current?.showModal()}
+              onClick={() => openMenu(menuRef.current)}
               className="pill"
             >
               {nav.menu}

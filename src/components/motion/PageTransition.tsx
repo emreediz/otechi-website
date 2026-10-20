@@ -2,8 +2,9 @@ import { ViewTransition } from "react";
 import type { ReactNode } from "react";
 
 /**
- * Wraps a page's content so route changes crossfade with a small rise
- * (`.page-exit` / `.page-enter` in globals.css). Must sit inside the page,
+ * Wraps a page's content so route changes animate: the old page sinks and
+ * dims while the new one wipes up (`.page-exit` / `.page-enter` in
+ * globals.css). Must sit inside the page,
  * not a layout — layouts persist, so enter/exit would never fire there.
  *
  * Browsers without the View Transitions API, first loads and reduced motion
@@ -14,8 +15,9 @@ import type { ReactNode } from "react";
 export function PageTransition({ children }: { children: ReactNode }) {
   return (
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
-      {/* One host element, so the page snapshots as a single layer. */}
-      <div>{children}</div>
+      {/* One opaque host element, so the page snapshots as a single layer
+          that fully covers the outgoing page during the wipe. */}
+      <div className="min-h-svh bg-bg">{children}</div>
     </ViewTransition>
   );
 }

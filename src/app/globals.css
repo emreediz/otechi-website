@@ -287,7 +287,8 @@ html[data-mode="light"] [data-theme="namaz"],
     backdrop-filter: blur(14px);
     transition:
       background-color 0.25s ease,
-      box-shadow 0.25s ease;
+      box-shadow 0.25s ease,
+      scale 0.15s ease;
   }
   .pill-lg {
     height: 2.75rem;
@@ -298,6 +299,10 @@ html[data-mode="light"] [data-theme="namaz"],
     .pill:hover {
       background-color: var(--pill-hover);
     }
+  }
+  .pill:active,
+  .icon-pill:active {
+    scale: 0.96;
   }
   .pill[data-active] {
     box-shadow: inset 0 0 0 1.5px var(--fg);
@@ -311,7 +316,9 @@ html[data-mode="light"] [data-theme="namaz"],
     border-radius: 9999px;
     background-color: var(--pill);
     color: var(--fg);
-    transition: background-color 0.25s ease;
+    transition:
+      background-color 0.25s ease,
+      scale 0.15s ease;
   }
   @media (hover: hover) {
     .icon-pill:hover {
@@ -356,6 +363,19 @@ html[data-mode="light"] [data-theme="namaz"],
   .menu-dialog[open] .menu-item {
     animation: rise 0.7s var(--ease-out-expo) both;
     animation-delay: calc(0.05s + var(--i, 3) * 0.045s);
+  }
+  .menu-dialog[open] .menu-from-left {
+    animation-name: slide-from-left;
+    animation-duration: 0.9s;
+    animation-delay: calc(0.18s + var(--i, 0) * 0.04s);
+  }
+  .menu-dialog[open] .menu-from-right {
+    animation-name: slide-from-right;
+    animation-duration: 0.9s;
+    animation-delay: calc(0.22s + var(--i, 0) * 0.06s);
+  }
+  .menu-dialog[open] [data-menu-frame] > * {
+    animation: frame-settle 1.2s var(--ease-out-expo) backwards;
   }
   html:has(.menu-dialog[open]) {
     overflow: hidden;
@@ -509,8 +529,118 @@ body:has([data-home-stage]) .site-footer {
   display: none;
 }
 
+@keyframes slide-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-3.5rem);
+  }
+}
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(3.5rem);
+  }
+}
+@keyframes frame-settle {
+  from {
+    scale: 1.12;
+  }
+}
+
 /* ------------------------------------------------------------------ *
- * Page transitions (React <ViewTransition>, see PageTransition.tsx).
+ * Menu open/close (lib/menuTransition.ts): the page shrinks — cropped,
+ * never squashed — into the menu's centre frame (`--mf-*` insets), and
+ * grows back out of it on close. Named layers that would sit above the
+ * menu during the switch (bar, cursor dot) are unnamed meanwhile.
+ * ------------------------------------------------------------------ */
+html.menu-vt .site-header,
+html.menu-vt body > .cursor-dot {
+  view-transition-name: none !important;
+}
+html.menu-vt .menu-dialog {
+  transition: none;
+}
+/* Leaving through a menu link (<Link transitionTypes={["menu-nav"]}>):
+   the menu leaves as its own layer, held in place under the incoming page,
+   which wipes up over it; the page you left is not shown again. (React
+   hides the root snapshot during route transitions, so the menu needs its
+   own name to stay visible.) */
+html:active-view-transition-type(menu-nav) .menu-dialog {
+  view-transition-name: menu-sheet;
+  transition: none;
+}
+html:active-view-transition-type(menu-nav)::view-transition-old(.page-exit) {
+  display: none;
+}
+::view-transition-group(menu-sheet) {
+  z-index: 1;
+  animation: none;
+}
+/* The bar would sit over the menu's own bar: bring it in only as the wipe
+   completes (the live cursor dot stays visible throughout). */
+html:active-view-transition-type(menu-nav)::view-transition-group(site-header) {
+  animation: bar-late 0.84s linear both;
+}
+@keyframes bar-late {
+  0%,
+  72% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+::view-transition-old(menu-sheet) {
+  animation: menu-sheet-hold 0.85s linear both;
+}
+@keyframes menu-sheet-hold {
+  from,
+  to {
+    opacity: 1;
+  }
+}
+html.menu-opening::view-transition-old(root) {
+  z-index: 2;
+  animation: menu-frame-in 0.85s var(--ease-in-out-quart) both;
+}
+html.menu-opening::view-transition-new(root) {
+  z-index: 1;
+  animation: none;
+}
+html.menu-closing::view-transition-new(root) {
+  z-index: 2;
+  animation: menu-frame-out 0.7s var(--ease-in-out-quart) both;
+}
+html.menu-closing::view-transition-old(root) {
+  z-index: 1;
+  animation: none;
+}
+@keyframes menu-frame-in {
+  0% {
+    clip-path: inset(0 0 0 0 round 0);
+  }
+  78% {
+    clip-path: inset(var(--mf-t) var(--mf-r) var(--mf-b) var(--mf-l) round 0.375rem);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(var(--mf-t) var(--mf-r) var(--mf-b) var(--mf-l) round 0.375rem);
+    opacity: 0;
+  }
+}
+@keyframes menu-frame-out {
+  from {
+    clip-path: inset(var(--mf-t) var(--mf-r) var(--mf-b) var(--mf-l) round 0.375rem);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Page transitions (React <ViewTransition>, see PageTransition.tsx): the
+ * old page sinks and dims while the new one wipes up from the bottom
+ * with rounded top corners.
  * ------------------------------------------------------------------ */
 ::view-transition {
   pointer-events: none;
@@ -519,11 +649,36 @@ body:has([data-home-stage]) .site-footer {
 ::view-transition-new(root) {
   animation: none;
 }
+::view-transition-group(.page-exit) {
+  z-index: 1;
+}
+::view-transition-group(.page-enter) {
+  z-index: 2;
+}
 ::view-transition-old(.page-exit) {
-  animation: vt-fade-out 160ms ease-in both;
+  animation: page-out 0.6s var(--ease-in-out-quart) both;
 }
 ::view-transition-new(.page-enter) {
-  animation: vt-rise-in 360ms var(--ease-out-expo) 80ms both;
+  animation: page-in 0.8s var(--ease-out-expo) 0.04s both;
+}
+@keyframes page-out {
+  to {
+    translate: 0 -6vh;
+    opacity: 0.2;
+    filter: brightness(0.5);
+  }
+}
+@keyframes page-in {
+  from {
+    /* Measured from the top of the page box: start just below the
+       viewport even on very long pages. */
+    clip-path: inset(min(100%, 100vh) 0 0 0 round 2.5rem 2.5rem 0 0);
+    translate: 0 10vh;
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0);
+    translate: 0 0;
+  }
 }
 ::view-transition-group(site-header) {
   animation: none;
@@ -534,17 +689,6 @@ body:has([data-home-stage]) .site-footer {
 }
 ::view-transition-new(site-header) {
   animation: none;
-}
-@keyframes vt-fade-out {
-  to {
-    opacity: 0;
-  }
-}
-@keyframes vt-rise-in {
-  from {
-    opacity: 0;
-    translate: 0 12px;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(*),
@@ -767,7 +911,8 @@ html.js [data-reveal]:not([data-shown]) .mock-grow {
     translate: none !important;
   }
   .glass-spin,
-  .glass-breathe {
+  .glass-breathe,
+  .menu-dialog .menu-item {
     animation: none !important;
   }
   html.js [data-reveal] .mock-pop {
