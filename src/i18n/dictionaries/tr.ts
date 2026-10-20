@@ -440,6 +440,7 @@ export const tr = {
         "Otechi, işletmeler, girişimler ve bireyler için dijital ürünler ve yazılım çözümleri geliştiren bir teknoloji stüdyosudur.",
     },
     title: "Hakkımızda",
+    titleLines: ["Fikirden yayına,", "tek süreçte."],
     lead: "Otechi, dijital ürünler ve yazılım çözümleri geliştiren bir teknoloji stüdyosudur.",
     paragraphs: [
       "İşletmeler, girişimler ve bireyler için fikirleri işlevsel, ölçeklenebilir ve iyi tasarlanmış dijital deneyimlere dönüştürürüz.",

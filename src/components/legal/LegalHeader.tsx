@@ -18,12 +18,12 @@ export function LegalHeader({
   intro?: string;
 }) {
   return (
-    <header className="border-b border-fg/10 bg-bg-subtle">
+    <header className="section-surface">
       <Container className="pb-12 pt-10 sm:pb-16 sm:pt-16">
         {eyebrow}
         <h1
           data-legal-part
-          className="mt-6 max-w-4xl text-heading text-balance break-words"
+          className="mt-6 max-w-4xl text-display-m text-balance break-words"
         >
           {title}
         </h1>

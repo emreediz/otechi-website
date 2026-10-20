@@ -433,6 +433,7 @@ export const en: Dictionary = {
         "Otechi is a technology studio building digital products and software solutions for businesses, startups and individuals.",
     },
     title: "About",
+    titleLines: ["From idea to launch,", "in one process."],
     lead: "Otechi is a technology studio building digital products and software solutions.",
     paragraphs: [
       "For businesses, startups and individuals, we turn ideas into digital experiences that are functional, scalable and well designed.",

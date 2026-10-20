@@ -22,7 +22,7 @@ export function OtherProducts({
         <li key={item.key}>
           <Link
             href={item.href}
-            className="card group flex h-full flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
+            className="card group flex h-full flex-col gap-6"
           >
             <span className="flex flex-col items-start gap-4">
               <Capsule color={item.color} icon={item.icon} className="[--h:2.75rem]">
@@ -32,7 +32,7 @@ export function OtherProducts({
                 {copy[item.key].title}
               </span>
             </span>
-            <span className="inline-flex shrink-0 items-center gap-2 font-semibold">
+            <span className="mt-auto inline-flex items-center gap-2 self-start font-semibold">
               <span className="border-b-[1.5px] border-brand pb-0.5">
                 {copy[item.key].cta}
               </span>
