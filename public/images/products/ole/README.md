@@ -6,7 +6,7 @@
 |---|---|
 | `ole-logo.png` | "ole" kelime markası |
 | `ole-glass-token-1.png`, `ole-glass-token-2.png` | 3B cam Ole jetonu |
-| `ole-home-page.PNG` | Uygulama ana ekranı |
+| `ole-home-page.PNG` | Uygulama ana ekranı ("Roots Plus" işletmesini içerir — sitede kullanılmaz) |
 | `ole-sadakat-sistemi.PNG` | Ödüller ekranı |
 | `ole-işletme-sayfası.PNG` | İşletme sayfası (maskot içerir — sitede kullanılmaz) |
 | `ole-bildirim.PNG` | "Seni Özledik" bildirimi (maskot içerir — sitede kullanılmaz) |
@@ -15,13 +15,13 @@
 ## `web/` — sitede kullanılan kopyalar
 
 Orijinallerden üretildi (macOS `sips` ya da tarayıcı canvas'ı; ek paket yok).
-Maskot, kişisel ad, gerçek görünümlü QR ve müşteri kodu bu kopyalarda yoktur.
+Maskot, kişisel ad, gerçek görünümlü QR, müşteri kodu ve Ole dışındaki işletmeler (ör. "Roots Plus") bu kopyalarda yoktur.
 
 | Dosya | Kaynak | İşlem |
 |---|---|---|
 | `token.webp` (640²) | `ole-glass-token-1.png` | Şeffaf WebP |
 | `logo.png` | `ole-logo.png` | Küçültülmüş eski kopya — artık kullanılmıyor |
-| `screen-home.jpg` (900×1947) | `ole-home-page.PNG` | Selamlamadaki kullanıcı adı kaldırıldı |
+| `screen-home.jpg` (900×1947) | `ole-home-page.PNG` | Selamlamadaki kullanıcı adı ve "Roots Plus" işletme kartı kaldırıldı |
 | `screen-loyalty.jpg` (900×1947) | `ole-sadakat-sistemi.PNG` | Küçültüldü |
 | `screen-business.jpg` (900×1947) | `ole-işletme-sayfası.PNG` | "Menü" kartındaki maskot kaldırıldı |
 | `screen-notification.jpg` (900×1947) | `ole-bildirim.PNG` | "Menü" kartındaki maskot kaldırıldı |
