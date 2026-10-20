@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 
 export type ContractBlock =
-  | { type: "h2" | "h3" | "p"; text: string }
-  | { type: "ul"; items: string[] };
+  { type: "h2" | "h3" | "p"; text: string } | { type: "ul"; items: string[] };
 
 // Matches http(s) URLs and email addresses so contact details in the source
 // text become clickable — the visible text is not altered, only wrapped.
@@ -28,7 +27,7 @@ function linkify(text: string, keyPrefix: string): ReactNode[] {
       <a
         key={`${keyPrefix}-${i++}`}
         href={isEmail ? `mailto:${matched}` : matched}
-        className="break-words text-accent underline decoration-1 underline-offset-2 hover:opacity-80"
+        className="break-words font-medium text-accent underline decoration-1 underline-offset-2 hover:decoration-2"
       >
         {matched}
       </a>,
@@ -53,16 +52,24 @@ function TextWithBreaks({ text }: { text: string }) {
   );
 }
 
-/** Renders a contract's structured blocks as plain, readable HTML — no PDF viewer. */
+/** Anchor id of the h2 at block index `i` (used by the table of contents). */
+export const blockId = (i: number) => `b-${i}`;
+
+/**
+ * Renders a contract's structured blocks as plain, readable HTML — no PDF
+ * viewer. The text and block order are never changed; the root carries
+ * `data-legal-part` for the legal-integrity check.
+ */
 export function ContractDocument({ blocks }: { blocks: ContractBlock[] }) {
   return (
-    <div className="space-y-6">
+    <div data-legal-part className="max-w-[68ch] space-y-6">
       {blocks.map((b, i) => {
         if (b.type === "h2") {
           return (
             <h2
               key={i}
-              className="mt-12 font-display text-xl font-bold tracking-tight first:mt-0 sm:text-2xl"
+              id={blockId(i)}
+              className="mt-14 scroll-mt-28 border-t border-fg/10 pt-8 text-xl font-semibold tracking-tight first:mt-0 first:border-t-0 first:pt-0 sm:text-2xl"
             >
               {b.text}
             </h2>
@@ -70,7 +77,7 @@ export function ContractDocument({ blocks }: { blocks: ContractBlock[] }) {
         }
         if (b.type === "h3") {
           return (
-            <h3 key={i} className="mt-8 font-display text-base font-semibold">
+            <h3 key={i} className="mt-8 text-base font-semibold">
               {b.text}
             </h3>
           );
@@ -79,7 +86,7 @@ export function ContractDocument({ blocks }: { blocks: ContractBlock[] }) {
           return (
             <ul key={i} className="list-disc space-y-2 pl-6 marker:text-accent">
               {b.items.map((item, j) => (
-                <li key={j} className="leading-relaxed text-fg-muted">
+                <li key={j} className="leading-[1.75] text-fg-muted">
                   <TextWithBreaks text={item} />
                 </li>
               ))}
@@ -87,7 +94,7 @@ export function ContractDocument({ blocks }: { blocks: ContractBlock[] }) {
           );
         }
         return (
-          <p key={i} className="leading-relaxed text-fg-muted">
+          <p key={i} className="leading-[1.75] text-fg-muted">
             <TextWithBreaks text={b.text} />
           </p>
         );

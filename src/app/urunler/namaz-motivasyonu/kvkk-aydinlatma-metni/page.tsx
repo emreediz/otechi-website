@@ -16,6 +16,11 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <ContractPageView title={title} lastUpdated={lastUpdated} blocks={blocks} />
+    <ContractPageView
+      doc="kvkk"
+      title={title}
+      lastUpdated={lastUpdated}
+      blocks={blocks}
+    />
   );
 }

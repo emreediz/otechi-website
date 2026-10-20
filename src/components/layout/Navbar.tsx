@@ -65,7 +65,7 @@ export function Navbar({
         aria-hidden="true"
         className="pointer-events-none absolute left-0 top-0 h-20 w-px"
       />
-      <header ref={headerRef} className="site-header sticky top-0 z-50 h-16">
+      <header ref={headerRef} className="site-header sticky top-0 z-50 h-16 print:hidden">
         <nav
           aria-label={dict.mainNav}
           className="site-header__bar mx-auto flex w-full items-center justify-between gap-4"

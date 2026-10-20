@@ -458,6 +458,8 @@ export const tr = {
   legal: {
     lastUpdatedLabel: "Son güncelleme",
     lastUpdatedValue: "Yakında",
+    toc: "İçindekiler",
+    related: "Diğer belgeler",
     privacy: {
       meta: {
         title: "Gizlilik Politikası — Otechi",

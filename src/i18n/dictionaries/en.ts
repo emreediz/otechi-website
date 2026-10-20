@@ -455,6 +455,8 @@ export const en: Dictionary = {
   legal: {
     lastUpdatedLabel: "Last updated",
     lastUpdatedValue: "Soon",
+    toc: "Contents",
+    related: "Other documents",
     privacy: {
       meta: {
         title: "Privacy Policy — Otechi",

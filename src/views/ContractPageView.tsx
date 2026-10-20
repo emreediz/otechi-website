@@ -1,45 +1,58 @@
-import { BRAND } from "@/config/brand";
+import { tr } from "@/i18n/dictionaries/tr";
+import type { NAMAZ_LEGAL } from "@/config/legalRoutes";
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
+import { LegalHeader } from "@/components/legal/LegalHeader";
+import { LegalToc } from "@/components/legal/LegalToc";
+import { RelatedDocs } from "@/components/legal/RelatedDocs";
+import { NamazBackLink } from "@/components/legal/NamazBackLink";
 import {
   ContractDocument,
+  blockId,
   type ContractBlock,
 } from "@/components/legal/ContractDocument";
 
 /**
  * Shared page shell for the Namaz Motivasyonu contract pages. Turkish-only,
- * full-width readable column, Namaz Motivasyonu color identity, no PDF viewer.
+ * Namaz Motivasyonu colours, plain readable HTML (no PDF viewer): header,
+ * table of contents, the verbatim document, then links to the other
+ * documents.
  */
 export function ContractPageView({
+  doc,
   title,
   lastUpdated,
   blocks,
 }: {
+  doc: Exclude<keyof typeof NAMAZ_LEGAL, "accountDeletion">;
   title: string;
   lastUpdated: string;
   blocks: ContractBlock[];
 }) {
+  const toc = blocks.flatMap((b, i) =>
+    b.type === "h2" ? [{ id: blockId(i), text: b.text }] : [],
+  );
+
   return (
     <div data-theme="namaz" className="bg-bg text-fg">
-      <section className="border-b border-border bg-bg-subtle">
-        <Container className="py-14 sm:py-20">
-          <p className="font-display text-sm font-semibold uppercase tracking-wide text-accent">
-            {BRAND.products.namaz}
-          </p>
-          <h1 className="mt-3 max-w-3xl font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-            {title}
-          </h1>
-          <p className="mt-4 text-sm text-fg-muted">
-            Son güncelleme: {lastUpdated}
-          </p>
-        </Container>
-      </section>
+      <LegalHeader
+        eyebrow={<NamazBackLink />}
+        title={title}
+        meta={`${tr.legal.lastUpdatedLabel}: ${lastUpdated}`}
+      />
 
-      <Section animate={false}>
-        <div className="mx-auto max-w-3xl">
-          <ContractDocument blocks={blocks} />
+      <Container className="py-12 sm:py-20">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+          <LegalToc
+            title={tr.legal.toc}
+            items={toc}
+            className="lg:col-span-3"
+          />
+          <div className="min-w-0 lg:col-span-8 lg:col-start-5">
+            <ContractDocument blocks={blocks} />
+            <RelatedDocs current={doc} className="mt-20" />
+          </div>
         </div>
-      </Section>
+      </Container>
     </div>
   );
 }
