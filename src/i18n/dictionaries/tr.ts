@@ -273,6 +273,15 @@ export const tr = {
     },
   },
 
+  // Labels shared by the product (case study) pages.
+  case: {
+    introLabel: "Giriş",
+    featuresLabel: "Öne çıkanlar",
+    startLabel: "Başlayın",
+    nextLabel: "Sonraki ürün",
+    supportLabel: "Destek",
+  },
+
   products: {
     meta: {
       title: "Ürünler — Otechi",
@@ -409,6 +418,8 @@ export const tr = {
         body: "Jeton ve ödül hareketlerini takip et.",
       },
     },
+    intro:
+      "Ole Panel, Ole kullanan işletmelerin günlük işlerini tek ekranda toplar: QR kod üretir, ödülleri doğrular, kampanya ve bildirimleri yönetir, tüm şubeleri izler.",
     appLink: {
       label: "Müşteri tarafı",
       title: "Müşterilerin Ole uygulamasında.",
@@ -431,6 +442,8 @@ export const tr = {
       lead: "Beş vakit namazını takip et, ilerlemeni gör, motivasyonunu koru.",
       capsules: ["Beş vakit", "İstatistikler", "Gruplar", "Seri"],
     },
+    intro:
+      "Namaz Motivasyonu, beş vakti sade bir ekranda takip etmeni sağlar. İstatistiklerle ilerlemeni görür, grubunla birlikte motive olursun.",
     features: {
       kicker: "Uygulamada",
       title: "Sade, sakin,",

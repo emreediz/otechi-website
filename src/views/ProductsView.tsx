@@ -1,24 +1,19 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
-import { localizedPath } from "@/i18n/routes";
-import { productCapsules, type ProductKey } from "@/lib/productCapsules";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { Kicker } from "@/components/ui/Kicker";
+import { IMG } from "@/config/assets";
+import { cn } from "@/lib/cn";
+import { showcaseItems, type ShowcaseKey } from "@/lib/showcase";
 import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
-import { Closing } from "@/components/content/Closing";
-import { Capsule } from "@/components/visual/Capsule";
-import { OleRewardCard } from "@/components/mock/OleMocks";
-import { PanelQrCard } from "@/components/mock/PanelMocks";
-import { NamazToday } from "@/components/mock/NamazMocks";
+import { EDGE, MockStage } from "@/components/case/Case";
+import { PanelDashboard } from "@/components/mock/PanelMocks";
 
 /**
- * Products: a short centred intro, then one tall card per product (coded
- * mock-up on top; name, one line, three facts and the link below).
+ * All products (like a work index): a large title, then one card per
+ * product — picture, name, tags and one line — the first one full width.
  */
 export function ProductsView({
   locale,
@@ -28,121 +23,84 @@ export function ProductsView({
   dict: Dictionary;
 }) {
   const t = dict.products;
+  const s = dict.home.stage;
   const copy = dict.home.products.items;
   const mock = dict.mock;
-  const capsules = productCapsules(locale);
-  const contactHref = localizedPath("contact", locale);
+  const items = showcaseItems(locale);
 
-  const visuals: Record<ProductKey, ReactNode> = {
-    ole: <OleRewardCard copy={mock.ole} filled={3} />,
-    panel: <PanelQrCard copy={mock.panel} />,
+  const media: Record<ShowcaseKey, ReactNode> = {
+    ole: (
+      <Image
+        src={IMG.photos.ole1.src}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.03]"
+      />
+    ),
+    panel: (
+      <MockStage tone="panel" className="transition-transform duration-1000 ease-out-expo group-hover:scale-[1.03]">
+        <PanelDashboard copy={mock.panel} campaignLive className="w-[150%] max-w-none shrink-0 scale-[0.62] md:w-[120%] md:scale-[0.8]" />
+      </MockStage>
+    ),
     namaz: (
-      <NamazToday copy={mock.namaz} done={[true, true, true, false, false]} />
+      <Image
+        src={IMG.photos.namaz1.src}
+        alt=""
+        fill
+        sizes="(min-width: 768px) 50vw, 100vw"
+        className="object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.03]"
+      />
     ),
   };
 
   return (
     <PageTransition>
-      <section className="pb-16 pt-16 text-center sm:pt-24">
-        <Container>
-          <Kicker className="hero-rise hero-rise-1">{t.kicker}</Kicker>
-          <h1 className="mt-6 text-display-l">
-            {t.titleLines.map((line) => (
-              <span key={line} className="hero-line">
-                <span>{line}</span>
-              </span>
-            ))}
-          </h1>
-          <p className="hero-rise hero-rise-3 mx-auto mt-6 max-w-[36ch] text-lead text-fg-muted">
-            {t.lead}
-          </p>
-        </Container>
-      </section>
+      <header className={cn(EDGE, "pb-14 pt-[clamp(8rem,16vw,13rem)]")}>
+        <h1 className="text-display-xl">
+          {t.titleLines.map((line) => (
+            <span key={line} className="hero-line">
+              <span>{line}</span>
+            </span>
+          ))}
+        </h1>
+        <p className="hero-rise hero-rise-3 mt-8 max-w-[36ch] text-lead text-fg-soft">
+          {t.lead}
+        </p>
+      </header>
 
-      <section className="pb-[clamp(5rem,11vw,9.5rem)]">
-        <Container>
-          <Reveal
-            variant="trigger"
-            className="grid gap-4 lg:grid-cols-3 lg:gap-5"
+      <Reveal
+        variant="trigger"
+        className={cn(EDGE, "grid gap-x-3 gap-y-14 pb-[clamp(5rem,11vw,10rem)] md:grid-cols-2")}
+      >
+        {items.map((item, i) => (
+          <article
+            key={item.key}
+            data-theme={item.key}
+            className={cn("stagger-item", i === 0 && "md:col-span-2")}
           >
-            {capsules.map((product) => {
-              const facts = t.facts[product.key];
-              return (
-                <article
-                  key={product.key}
-                  data-theme={product.key}
-                  className="card stagger-item flex flex-col !p-0"
-                >
-                  <div
-                    aria-hidden="true"
-                    className="grid h-[25rem] place-items-center overflow-hidden bg-[radial-gradient(80%_70%_at_50%_100%,var(--accent-soft),var(--surface))] p-6 [mask-image:linear-gradient(to_bottom,#000_82%,transparent)]"
-                  >
-                    <div className="origin-center scale-[0.9]">
-                      {visuals[product.key]}
-                    </div>
-                  </div>
-                  <div className="flex flex-1 flex-col p-6 sm:p-8">
-                    <Capsule
-                      color={product.color}
-                      icon={product.icon}
-                      className="self-start [--h:2.75rem]"
-                    >
-                      {product.label}
-                    </Capsule>
-                    <h2 className="mt-6 text-title text-balance">
-                      <span className="sr-only">{product.label} — </span>
-                      {copy[product.key].title}
-                    </h2>
-                    <p className="mt-2.5 text-fg-soft">
-                      {copy[product.key].body}
-                    </p>
-                    <dl className="mt-6 grid gap-2 border-t border-border pt-5 text-sm">
-                      {(["platform", "audience", "status"] as const).map(
-                        (key) => (
-                          <div key={key} className="flex justify-between gap-4">
-                            <dt className="text-fg-soft">
-                              {t.factLabels[key]}
-                            </dt>
-                            <dd className="text-right font-medium">
-                              {facts[key]}
-                            </dd>
-                          </div>
-                        ),
-                      )}
-                    </dl>
-                    <Link
-                      href={product.href}
-                      className="group mt-auto inline-flex min-h-11 items-center gap-2 self-start pt-8 font-semibold"
-                    >
-                      <span className="border-b-[1.5px] border-accent pb-0.5">
-                        {copy[product.key].cta}
-                      </span>
-                      <ArrowRight
-                        className="size-4 transition-transform group-hover:translate-x-1"
-                        aria-hidden="true"
-                      />
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </Reveal>
-          <p className="mt-8 text-center text-xs text-fg-faint">
-            {mock.caption}
-          </p>
-        </Container>
-      </section>
-
-      <Closing
-        lines={[dict.common.cta.kicker, dict.common.cta.title]}
-        capsules={capsules}
-        capsulesLabel={dict.home.hero.capsulesLabel}
-        action={
-          <Button href={contactHref} size="lg">
-            {dict.nav.cta}
-          </Button>
-        }
-      />
+            <Link href={item.href} className="group block">
+              <div
+                className={cn(
+                  "relative overflow-hidden rounded-md bg-surface",
+                  i === 0 ? "aspect-[4/3] md:aspect-[21/9]" : "aspect-[4/3]",
+                )}
+              >
+                {media[item.key]}
+              </div>
+              <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h2 className="text-heading">
+                  <span className="link-underline">{item.label}</span>
+                </h2>
+                <p className="text-sm text-fg-soft">{s.tags[item.key]}</p>
+              </div>
+              <p className="mt-2 max-w-[52ch] text-fg-soft">
+                {copy[item.key].body}
+              </p>
+            </Link>
+          </article>
+        ))}
+      </Reveal>
     </PageTransition>
   );
 }

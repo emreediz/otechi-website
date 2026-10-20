@@ -2,29 +2,30 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "dark" | "ghost";
+type Variant = "primary" | "secondary" | "accent" | "dark" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 // Focus ring comes from the global :focus-visible rule (globals.css).
 const base =
-  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-transparent font-semibold tracking-[-0.005em] " +
-  "transition-[background-color,border-color,color,transform,box-shadow] duration-150 ease-out-expo active:scale-[0.97] " +
+  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium " +
+  "transition-[background-color,color,opacity,transform] duration-200 active:scale-[0.97] " +
   "disabled:pointer-events-none disabled:opacity-45";
 
 const sizes: Record<Size, string> = {
-  sm: "h-11 px-4 text-[0.9rem]",
-  md: "h-12 px-[1.375rem] text-[0.975rem]",
-  lg: "h-14 px-7 text-[1.0625rem]",
+  sm: "h-9 px-4 text-sm",
+  md: "h-11 px-5 text-[0.95rem]",
+  lg: "h-12 px-6 text-base",
 };
 
 const variants: Record<Variant, string> = {
-  // Theme accent (orange · navy · green) with the matching text colour.
-  primary:
-    "bg-accent text-accent-fg shadow-[0_8px_22px_-6px_color-mix(in_oklab,var(--accent)_55%,transparent),inset_0_1px_0_rgb(255_255_255/0.25)] hover:-translate-y-px hover:bg-accent-hover",
-  secondary:
-    "border-border-strong bg-white text-fg shadow-xs hover:-translate-y-px hover:border-fg-faint",
-  dark: "bg-ole-navy text-white shadow-[0_6px_16px_-6px_rgb(0_13_38/0.5)] hover:-translate-y-px hover:bg-[#0b1a3a]",
-  ghost: "font-medium text-fg hover:bg-surface",
+  // Inverted pill: white on dark, black on light.
+  primary: "bg-fg text-bg hover:opacity-85",
+  // Translucent pill, like the bar's "Menu".
+  secondary: "bg-pill text-fg backdrop-blur hover:bg-pill-hover",
+  // Otechi orange with black text (AA).
+  accent: "bg-brand text-black hover:bg-[#ff7424]",
+  dark: "bg-ole-navy text-white hover:bg-[#0b1a3a]",
+  ghost: "text-fg hover:bg-pill",
 };
 
 type CommonProps = {

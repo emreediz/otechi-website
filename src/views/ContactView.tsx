@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
-import { productCapsules } from "@/lib/productCapsules";
-import { Container } from "@/components/ui/Container";
-import { Kicker } from "@/components/ui/Kicker";
+import { localizedPath } from "@/i18n/routes";
+import { cn } from "@/lib/cn";
+import { showcaseItems } from "@/lib/showcase";
+import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
-import { Capsule } from "@/components/visual/Capsule";
+import { FaqTabs } from "@/components/content/FaqTabs";
+import { EDGE } from "@/components/case/Case";
 
 /**
- * Contact: centred headline, phone and e-mail as two large cards (load-time
- * entrance only — the details never wait for JS), then the products as
- * capsule links.
+ * Contact: large title, e-mail and phone as very large links (load-time
+ * entrance only — the details never wait for JS), the FAQ and the products.
  */
 export function ContactView({
   locale,
@@ -21,69 +22,85 @@ export function ContactView({
   dict: Dictionary;
 }) {
   const t = dict.contact;
+  const faq = dict.home.faq;
+  const contactHref = localizedPath("contact", locale);
   const rows = [
-    { label: t.phoneLabel, value: t.phone, href: t.phoneHref, Icon: Phone },
-    { label: t.emailLabel, value: t.email, href: t.emailHref, Icon: Mail },
+    { label: t.emailLabel, value: t.email, href: t.emailHref },
+    { label: t.phoneLabel, value: t.phone, href: t.phoneHref },
   ];
 
   return (
     <PageTransition>
-      <section className="pb-[clamp(5rem,11vw,9.5rem)] pt-16 sm:pt-24">
-        <Container className="text-center">
-          <Kicker className="hero-rise hero-rise-1">{t.title}</Kicker>
-          <h1 className="mt-6 text-display-xl">
-            <span className="hero-line">
-              <span>{t.headline}</span>
-            </span>
-          </h1>
-          <p className="hero-rise hero-rise-3 mx-auto mt-6 max-w-[40ch] text-lead text-fg-muted">
-            {t.body}
-          </p>
-        </Container>
+      <header className={cn(EDGE, "pb-10 pt-[clamp(8rem,16vw,13rem)]")}>
+        <h1 className="text-display-xl">
+          <span className="hero-line">
+            <span>{t.headline}</span>
+          </span>
+        </h1>
+        <p className="hero-rise hero-rise-3 mt-8 max-w-[40ch] text-lead text-fg-soft">
+          {t.body}
+        </p>
+      </header>
 
-        <Container className="mt-14 sm:mt-20">
-          <ul className="hero-rise hero-rise-4 mx-auto grid max-w-5xl gap-4 md:grid-cols-2 lg:gap-5">
-            {rows.map(({ label, value, href, Icon }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="card group flex h-full flex-col gap-10 sm:!p-10"
-                >
-                  <span className="flex items-center justify-between">
-                    <span className="grid size-12 place-items-center rounded-full bg-accent-soft text-accent-ink">
-                      <Icon className="size-5" aria-hidden="true" />
-                    </span>
-                    <ArrowUpRight
-                      className="size-6 transition-transform duration-300 ease-out-expo group-hover:rotate-45 group-focus-visible:rotate-45"
-                      aria-hidden="true"
-                    />
+      <section className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)] pt-6")}>
+        <ul className="hero-rise hero-rise-4 border-t border-border">
+          {rows.map((row) => (
+            <li key={row.href} className="border-b border-border">
+              <a
+                href={row.href}
+                className="group flex items-center justify-between gap-6 py-6 sm:py-8"
+              >
+                <span className="min-w-0">
+                  <span className="block text-sm text-fg-soft">{row.label}</span>
+                  <span className="mt-1 block break-words text-display-m">
+                    {row.value}
                   </span>
-                  <span>
-                    <span className="block text-sm text-fg-soft">{label}</span>
-                    <span className="mt-1 block break-words text-title-l">
-                      {value}
-                    </span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </Container>
+                </span>
+                <ArrowUpRight
+                  className="size-8 shrink-0 transition-transform duration-500 ease-out-expo group-hover:rotate-45 group-focus-visible:rotate-45"
+                  strokeWidth={1.25}
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-        <Container className="mt-16 text-center sm:mt-24">
-          <p className="text-fg-soft">{t.secondary}</p>
-          <ul className="mt-6 flex flex-wrap justify-center gap-3">
-            {productCapsules(locale).map((p) => (
-              <li key={p.key}>
-                <Link href={p.href} className="capsule-link">
-                  <Capsule color={p.color} icon={p.icon} className="[--h:3.25rem]">
-                    {p.label}
-                  </Capsule>
+      <section className={cn(EDGE, "grid gap-8 pb-[clamp(5rem,11vw,10rem)] md:grid-cols-12")}>
+        <Reveal className="md:col-span-3 lg:col-span-2 lg:col-start-3">
+          <h2 className="text-sm text-fg-soft">{faq.kicker}</h2>
+        </Reveal>
+        <Reveal className="md:col-span-9 lg:col-span-7">
+          <FaqTabs
+            tabs={faq.tabs.map((tab) => ({
+              label: tab.label,
+              items: tab.items.map((item) => ({
+                q: item.q,
+                a: item.a,
+                link:
+                  "contactLink" in item && item.contactLink
+                    ? { href: contactHref, label: item.contactLink }
+                    : undefined,
+              })),
+            }))}
+          />
+        </Reveal>
+      </section>
+
+      <section className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)]")}>
+        <Reveal>
+          <h2 className="text-sm text-fg-soft">{t.secondary}</h2>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {showcaseItems(locale).map((item) => (
+              <li key={item.key}>
+                <Link href={item.href} className="pill pill-lg">
+                  {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </Container>
+        </Reveal>
       </section>
     </PageTransition>
   );

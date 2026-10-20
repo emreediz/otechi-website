@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { Container } from "@/components/ui/Container";
+import { cn } from "@/lib/cn";
+import { EDGE } from "@/components/case/Case";
 
 /**
  * Header for legal / document pages. Elements marked `data-legal-part` carry
@@ -18,8 +19,8 @@ export function LegalHeader({
   intro?: string;
 }) {
   return (
-    <header className="section-surface">
-      <Container className="pb-12 pt-10 sm:pb-16 sm:pt-16">
+    <header className="border-b border-border">
+      <div className={cn(EDGE, "pb-12 pt-[clamp(7.5rem,13vw,11rem)] sm:pb-16")}>
         {eyebrow}
         <h1
           data-legal-part
@@ -40,7 +41,7 @@ export function LegalHeader({
             {intro}
           </p>
         ) : null}
-      </Container>
+      </div>
     </header>
   );
 }

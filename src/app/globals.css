@@ -99,6 +99,11 @@
 /* ---------------------------------------------------------------- *
  * Palettes. Dark is the default; the toggle stores "light" on <html>.
  * ---------------------------------------------------------------- */
+:root {
+  /* Side padding of centred content columns (Container). */
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
 :root,
 [data-surface="dark"] {
   --bg: #000000;
@@ -256,7 +261,7 @@ html[data-mode="light"] [data-theme="namaz"],
     translate: 0 0.625rem;
     padding-inline: 0.3125rem;
     border-radius: 9999px;
-    background-color: color-mix(in oklab, var(--bg) 62%, transparent);
+    background-color: color-mix(in oklab, var(--bg) 86%, transparent);
     -webkit-backdrop-filter: blur(18px) saturate(1.4);
     backdrop-filter: blur(18px) saturate(1.4);
     box-shadow:

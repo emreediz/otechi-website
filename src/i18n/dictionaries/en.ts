@@ -266,6 +266,14 @@ export const en: Dictionary = {
     },
   },
 
+  case: {
+    introLabel: "Introduction",
+    featuresLabel: "Highlights",
+    startLabel: "Get started",
+    nextLabel: "Next product",
+    supportLabel: "Support",
+  },
+
   products: {
     meta: {
       title: "Products — Otechi",
@@ -402,6 +410,8 @@ export const en: Dictionary = {
         body: "Follow token and reward activity.",
       },
     },
+    intro:
+      "Ole Panel brings a business’s everyday Ole tasks onto one screen: generate QR codes, verify rewards, manage campaigns and notifications, and follow every branch.",
     appLink: {
       label: "For customers",
       title: "Your customers use the Ole app.",
@@ -424,6 +434,8 @@ export const en: Dictionary = {
       lead: "Track your five daily prayers, see your progress and keep your motivation.",
       capsules: ["Five prayers", "Statistics", "Groups", "Streak"],
     },
+    intro:
+      "Namaz Motivasyonu lets you follow the five daily prayers on one calm screen. See your progress in statistics and stay motivated with your group.",
     features: {
       kicker: "In the app",
       title: "Simple, calm,",
