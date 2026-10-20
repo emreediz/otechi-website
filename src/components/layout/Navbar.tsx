@@ -7,6 +7,7 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { localizedPath, type RouteKey } from "@/i18n/routes";
 import { cn } from "@/lib/cn";
+import { BRAND } from "@/config/brand";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/Button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -41,8 +42,10 @@ export function Navbar({
     const header = headerRef.current;
     const sentinel = sentinelRef.current;
     if (!header || !sentinel) return;
-    const io = new IntersectionObserver(([entry]) => {
-      header.toggleAttribute("data-scrolled", !entry.isIntersecting);
+    const io = new IntersectionObserver((entries) => {
+      // Entries can queue up; the newest one is the current state.
+      const latest = entries[entries.length - 1];
+      header.toggleAttribute("data-scrolled", !latest.isIntersecting);
     });
     io.observe(sentinel);
     return () => io.disconnect();
@@ -77,7 +80,7 @@ export function Navbar({
         >
           <Link
             href={localizedPath("home", locale)}
-            aria-label={dict.home}
+            aria-label={`${BRAND.company} – ${dict.home}`}
             className="inline-flex shrink-0 items-center py-2"
           >
             <Logo className="h-6 sm:h-7" eager />

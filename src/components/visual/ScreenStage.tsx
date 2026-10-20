@@ -14,7 +14,6 @@ export function ScreenStage({
   w,
   h,
   sizes = "(min-width: 1024px) 34rem, 92vw",
-  className,
 }: {
   kind: "phone" | "card" | "browser";
   src: string;
@@ -22,12 +21,9 @@ export function ScreenStage({
   w: number;
   h: number;
   sizes?: string;
-  className?: string;
 }) {
-  const stage = cn(
-    "clip-reveal relative flex justify-center overflow-hidden rounded-3xl bg-bg-subtle",
-    className,
-  );
+  const stage =
+    "clip-reveal relative flex justify-center overflow-hidden rounded-3xl bg-bg-subtle";
 
   if (kind === "browser") {
     return (

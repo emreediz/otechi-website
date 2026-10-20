@@ -18,16 +18,14 @@ export function NumberedList({
   items,
   columns = 3,
   big = false,
-  className,
 }: {
   items: NumberedItem[];
   columns?: keyof typeof COLUMNS;
   /** Large accent numbers (principles, steps) instead of small indexes. */
   big?: boolean;
-  className?: string;
 }) {
   return (
-    <ol className={cn("grid gap-x-8 gap-y-10", COLUMNS[columns], className)}>
+    <ol className={cn("grid gap-x-8 gap-y-10", COLUMNS[columns])}>
       {items.map((item, i) => (
         <li
           key={item.title ?? item.body}
@@ -43,8 +41,11 @@ export function NumberedList({
           >
             {String(i + 1).padStart(2, "0")}
           </span>
-          {item.title ? (
+          {/* Title + body is a small section (h3); a title alone is a list item. */}
+          {item.title && item.body ? (
             <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+          ) : item.title ? (
+            <p className="mt-4 text-lg font-semibold">{item.title}</p>
           ) : null}
           {item.body ? (
             <p

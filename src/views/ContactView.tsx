@@ -5,7 +5,6 @@ import { Container } from "@/components/ui/Container";
 import { Kicker } from "@/components/ui/Kicker";
 import { MaskedTitle } from "@/components/ui/MaskedTitle";
 import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { ContactRows } from "@/components/content/ContactRows";
 
@@ -32,17 +31,16 @@ export function ContactView({
             <p className="hero-rise hero-rise-3 max-w-md text-lead text-fg-muted lg:col-span-5">
               {t.body}
             </p>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <Reveal>
-                <ContactRows
-                  size="l"
-                  items={[
-                    { label: t.phoneLabel, value: t.phone, href: t.phoneHref },
-                    { label: t.emailLabel, value: t.email, href: t.emailHref },
-                  ]}
-                />
-              </Reveal>
-              <Reveal className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4">
+            {/* Load-time entrance only: the contact details never wait for JS. */}
+            <div className="hero-rise hero-rise-4 lg:col-span-6 lg:col-start-7">
+              <ContactRows
+                size="l"
+                items={[
+                  { label: t.phoneLabel, value: t.phone, href: t.phoneHref },
+                  { label: t.emailLabel, value: t.email, href: t.emailHref },
+                ]}
+              />
+              <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <p className="text-sm text-fg-muted">{t.secondary}</p>
                 <Button
                   href={localizedPath("products", locale)}
@@ -50,7 +48,7 @@ export function ContactView({
                 >
                   {t.cta}
                 </Button>
-              </Reveal>
+              </div>
             </div>
           </div>
         </Container>

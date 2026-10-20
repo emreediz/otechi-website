@@ -129,9 +129,9 @@ export function Footer({
             </Link>
             <p className="text-sm text-fg-muted">{footer.rights}</p>
           </div>
-          {/* "#top" scrolls to the document top (no element uses that id). */}
+          {/* Moves scroll and keyboard focus back to the start of the page. */}
           <a
-            href="#top"
+            href="#main"
             className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-fg-muted transition-colors hover:text-fg"
           >
             {footer.backToTop}

@@ -16,5 +16,3 @@ export const BRAND = {
     namaz: "Namaz Motivasyonu",
   },
 } as const;
-
-export type ProductKey = keyof typeof BRAND.products;

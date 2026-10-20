@@ -27,7 +27,7 @@ export default async function UrunlerLayout({
         {dict.nav.skipToContent}
       </a>
       <Navbar locale="tr" dict={dict.nav} contact={dict.contact} />
-      <main id="main" className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {children}
       </main>
       <Footer

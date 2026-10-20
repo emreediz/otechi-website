@@ -43,6 +43,7 @@ export function ChapterNav({
   return (
     <nav
       aria-label={label}
+      data-chapter-nav
       className="border-y border-fg/10 bg-bg/90 backdrop-blur-md lg:sticky lg:top-16 lg:z-30"
     >
       <Container>
@@ -53,7 +54,8 @@ export function ChapterNav({
                 href={`#${item.id}`}
                 aria-current={active === item.id ? "location" : undefined}
                 className={cn(
-                  "inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-3 text-sm font-medium transition-colors",
+                  // Inset focus ring: the scrolling row would clip an outside one.
+                  "inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-3 text-sm font-medium transition-colors focus-visible:outline-offset-[-2px]",
                   active === item.id
                     ? "text-fg"
                     : "text-fg-muted hover:text-fg",

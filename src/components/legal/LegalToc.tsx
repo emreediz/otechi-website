@@ -22,7 +22,7 @@ export function LegalToc({
         <li key={item.id} className="border-b border-fg/10">
           <a
             href={`#${item.id}`}
-            className="flex min-h-11 items-center py-2 text-sm leading-snug text-fg-muted transition-colors hover:text-fg"
+            className="flex min-h-11 items-center py-2 text-sm leading-snug text-fg-muted transition-colors hover:text-fg focus-visible:outline-offset-[-2px]"
           >
             {item.text}
           </a>

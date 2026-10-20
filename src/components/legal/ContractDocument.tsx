@@ -69,7 +69,7 @@ export function ContractDocument({ blocks }: { blocks: ContractBlock[] }) {
             <h2
               key={i}
               id={blockId(i)}
-              className="mt-14 scroll-mt-28 border-t border-fg/10 pt-8 text-xl font-semibold tracking-tight first:mt-0 first:border-t-0 first:pt-0 sm:text-2xl"
+              className="mt-14 border-t border-fg/10 pt-8 text-xl font-semibold tracking-tight first:mt-0 first:border-t-0 first:pt-0 sm:text-2xl"
             >
               {b.text}
             </h2>

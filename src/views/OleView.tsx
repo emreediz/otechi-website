@@ -228,7 +228,7 @@ export function OleView({
         {/* ------------------------------------------------ How it works */}
         <section
           id={a.how}
-          className="scroll-mt-28 border-t border-fg/10 py-24 sm:py-32"
+          className="border-t border-fg/10 py-24 sm:py-32"
         >
           <Container>
             <Reveal>
@@ -298,7 +298,7 @@ export function OleView({
         {/* ------------------------------------------------ Features */}
         <section
           id={a.features}
-          className="scroll-mt-28 border-t border-fg/10 py-24 sm:py-32"
+          className="border-t border-fg/10 py-24 sm:py-32"
         >
           <Container>
             <Reveal>
@@ -317,7 +317,7 @@ export function OleView({
         <section
           id={a.panel}
           data-surface="dark"
-          className="scroll-mt-28 py-24 sm:py-32"
+          className="py-24 sm:py-32"
         >
           <Container>
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
@@ -364,7 +364,7 @@ export function OleView({
         </section>
 
         {/* ------------------------------------------------ Integrations */}
-        <section id={a.integrations} className="scroll-mt-28 py-24 sm:py-32">
+        <section id={a.integrations} className="py-24 sm:py-32">
           <Container className="grid gap-12 lg:grid-cols-12 lg:gap-8">
             <Reveal className="lg:col-span-5">
               <SectionHead
@@ -447,7 +447,7 @@ export function OleView({
         <section
           id={a.pricing}
           data-surface="dark"
-          className="scroll-mt-28 py-24 sm:py-32"
+          className="py-24 sm:py-32"
         >
           <Container>
             <OlePricing t={t.pricing} newTab={newTab} locale={locale} />
@@ -492,7 +492,7 @@ export function OleView({
         {/* ------------------------------------------------ FAQ + documents */}
         <section
           id={a.faq}
-          className="scroll-mt-28 border-t border-fg/10 py-24 sm:py-32"
+          className="border-t border-fg/10 py-24 sm:py-32"
         >
           <Container className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
             <Reveal>

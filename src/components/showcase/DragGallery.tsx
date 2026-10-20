@@ -82,8 +82,8 @@ export function DragGallery({
     );
     const target =
       delta > 0
-        ? (points.find((pt) => pt > start + 1) ?? max)
-        : ([...points].reverse().find((pt) => pt < start - 1) ?? 0);
+        ? (points.find((pt) => pt > el.scrollLeft + 1) ?? max)
+        : ([...points].reverse().find((pt) => pt < el.scrollLeft - 1) ?? 0);
     setMode("settle");
     el.scrollTo({ left: target, behavior: scrollBehavior() });
     settleTimer.current = window.setTimeout(() => setMode("idle"), 600);

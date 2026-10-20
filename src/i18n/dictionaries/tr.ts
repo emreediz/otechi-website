@@ -174,7 +174,7 @@ export const tr = {
         },
         {
           q: "Şu anda hangi ürünler var?",
-          a: "İşletmeler için Ole ve bireyler için Namaz Motivasyonu. Yeni fikirler için geliştirmeye devam ediyoruz.",
+          a: "İşletmeler için Ole yayında; bireyler için Namaz Motivasyonu yakında mağazalarda. Yeni fikirler için geliştirmeye devam ediyoruz.",
         },
         {
           q: "Ole’yi nasıl kullanmaya başlarım?",
@@ -183,7 +183,7 @@ export const tr = {
         {
           q: "Sizinle nasıl iletişime geçebilirim?",
           a: "Bize telefon veya e-posta ile ulaşabilirsiniz; tüm iletişim bilgilerimiz İletişim sayfasında.",
-          contactLink: "İletişim sayfasına git",
+          contactLink: "İletişim sayfasına gidin",
         },
       ],
     },
@@ -377,7 +377,7 @@ export const tr = {
         },
         pos: {
           name: "Kasa entegrasyonu",
-          kind: "Simpra · Roxpos",
+          kind: "Simpra · Roxpos (yakında)",
           desc: "Hesap kapanınca jetonlar otomatik yüklenir.",
         },
       },
@@ -399,7 +399,7 @@ export const tr = {
     },
     integrations: {
       kicker: "Entegrasyonlar",
-      title: "Kasa sisteminle birlikte çalışır.",
+      title: "Kasa sisteminle entegre çalışabilir.",
       body: "Entegrasyonla panele girmen gerekmez; jetonlar hesap kapanınca otomatik yüklenir.",
       partners: [
         { name: "Simpra", status: "Entegre" },
@@ -430,7 +430,7 @@ export const tr = {
       plan: {
         name: "Sınırsız Paket",
         period: "Yıllık",
-        unit: "+ KDV / şube başına",
+        unit: "+ KDV / şube / yıl",
         included: [
           "Jeton ve ödül programı",
           "QR kod ile jeton kazandırma",
@@ -464,7 +464,7 @@ export const tr = {
         unit: "Ole kullanıcısı / yıl",
         yearly: "Yıllık tahmini ek ciro",
         monthly: "Aylık ortalama karşılığı:",
-        returningLabel: "Birden çok gelmesi beklenen müşteri sayısı",
+        returningLabel: "Birden çok kez gelmesi beklenen müşteri sayısı",
         returningUnit: "müşteri",
         audienceLabel: "Bildirimle kendini yeniden hatırlat",
         audienceUnit: "kişilik potansiyel kitle",
@@ -517,7 +517,7 @@ export const tr = {
         },
         {
           q: "Kasa sistemimle birlikte çalışır mı?",
-          a: "Simpra ile entegre çalışır; Roxpos entegrasyonu ise entegrasyon aşamasındadır. Diğer sistemler için entegrasyon talebinde bulunabilirsin.",
+          a: "Simpra ile entegre çalışır; Roxpos için entegrasyon süreci devam ediyor. Diğer sistemler için entegrasyon talebinde bulunabilirsin.",
         },
         {
           q: "Müşteriler ödeme yapıyor mu?",
@@ -525,7 +525,7 @@ export const tr = {
         },
         {
           q: "Komisyon alıyor musunuz?",
-          a: "Hayır. Ole satışlarından komisyon almaz; işletmeler yıllık abonelik öder.",
+          a: "Hayır. Ole, senin satışlarından komisyon almaz; işletmeler yıllık abonelik öder.",
         },
       ],
     },
@@ -611,7 +611,7 @@ export const tr = {
     },
     privacy: {
       title: "Gizlilik",
-      body: "Uygulamanın hangi verileri hangi amaçlarla işlediği ve nasıl sakladığı; Gizlilik Politikası, KVKK Aydınlatma Metni ve Kullanıcı Sözleşmesi’nde açıklanmıştır. Hesabını ve verilerini dilediğin zaman silebilirsin.",
+      body: "Uygulamanın hangi verileri hangi amaçlarla işlediği ve nasıl sakladığı; Gizlilik Politikası, KVKK Aydınlatma Metni ve Kullanıcı Sözleşmesi’nde açıklanmıştır. Hesabını uygulama içinden silebilirsin; hesabınla ilişkili veriler, yasal saklama yükümlülükleri saklı kalmak kaydıyla silinir.",
     },
     closing: {
       title: "Namaz Motivasyonu yakında mağazalarda.",

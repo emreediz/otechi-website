@@ -92,7 +92,7 @@ export function MobileMenu({
         <div className="flex h-16 items-center justify-between gap-4 px-5 sm:px-8">
           <Link
             href={localizedPath("home", locale)}
-            aria-label={dict.home}
+            aria-label={`${BRAND.company} – ${dict.home}`}
             onClick={close}
             className="inline-flex items-center py-2"
           >

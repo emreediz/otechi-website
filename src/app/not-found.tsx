@@ -48,12 +48,14 @@ export default function NotFound() {
             404
           </p>
           <h1 className="mt-6 max-w-3xl text-heading text-balance">
-            {tr.notFound.title}{" "}
+            <span lang="tr">{tr.notFound.title}</span>{" "}
             <span lang="en" className="text-fg-muted">
               {en.notFound.title}
             </span>
           </h1>
-          <p className="mt-4 max-w-xl text-fg-muted">{tr.notFound.body}</p>
+          <p lang="tr" className="mt-4 max-w-xl text-fg-muted">
+            {tr.notFound.body}
+          </p>
           <p lang="en" className="mt-1 max-w-xl text-fg-muted">
             {en.notFound.body}
           </p>

@@ -93,7 +93,11 @@ export function PricingCalculator({
         </label>
         <p className="mt-2 text-sm text-fg-muted">{labels.help}</p>
         <p className="mt-6 flex items-baseline gap-2">
-          <output htmlFor={id} className="text-4xl font-light tabular-nums">
+          <output
+            htmlFor={id}
+            aria-live="off"
+            className="text-4xl font-light tabular-nums"
+          >
             {fmt(members)}
           </output>
           <span className="text-sm text-fg-muted">{labels.unit}</span>

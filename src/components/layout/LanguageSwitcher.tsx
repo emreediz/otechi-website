@@ -36,14 +36,14 @@ export function LanguageSwitcher({
           <Link
             href={switchLocalePath(pathname, loc)}
             hrefLang={loc}
-            aria-label={name[loc]}
             aria-current={loc === current ? "true" : undefined}
             className={cn(
-              "inline-flex size-11 items-center justify-center rounded-full uppercase transition-colors",
+              "inline-flex size-11 items-center justify-center rounded-full transition-colors",
               loc === current ? "text-fg" : "text-fg-muted hover:text-fg",
             )}
           >
-            {loc}
+            {loc.toUpperCase()}
+            <span className="sr-only"> – {name[loc]}</span>
           </Link>
         </Fragment>
       ))}

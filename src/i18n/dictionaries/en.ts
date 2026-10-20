@@ -170,7 +170,7 @@ export const en: Dictionary = {
         },
         {
           q: "Which products are available right now?",
-          a: "Ole for businesses and Namaz Motivasyonu for individuals — and we keep building for new ideas.",
+          a: "Ole for businesses is live, and Namaz Motivasyonu for individuals is coming soon to the app stores — and we keep building for new ideas.",
         },
         {
           q: "How do I get started with Ole?",
@@ -220,7 +220,7 @@ export const en: Dictionary = {
     },
     namaz: {
       tagline: "An app for tracking the five daily prayers and staying motivated.",
-      points: ["Five daily prayers tracking", "Reminders", "Progress and motivation"],
+      points: ["Tracking the five daily prayers", "Reminders", "Progress and motivation"],
       facts: {
         platform: "iOS · Android",
         audience: "Individuals",
@@ -290,7 +290,7 @@ export const en: Dictionary = {
         items: [
           "Downloads the Ole app for free",
           "Scans the QR code or taps Ole NFC to earn tokens",
-          "Redeems the reward with “Ödülü Al” once the target is reached",
+          "Claims the reward in the app once the target is reached",
           "Discovers campaigns and redeems them with a 6-digit code",
           "Finds businesses by neighbourhood or name",
         ],
@@ -310,7 +310,7 @@ export const en: Dictionary = {
         },
         {
           title: "Verify with a code",
-          body: "When customers reach the target they tap “Ödülü Al” in the app and get a 6-digit code. Your staff verify it in the dashboard and hand over the reward.",
+          body: "When customers reach the target they claim the reward in the app and get a 6-digit code. Your staff verify it in the dashboard and hand over the reward.",
         },
         {
           title: "Invite them back",
@@ -371,7 +371,7 @@ export const en: Dictionary = {
         },
         pos: {
           name: "Till integration",
-          kind: "Simpra · Roxpos",
+          kind: "Simpra · Roxpos (coming soon)",
           desc: "Tokens are added automatically when the bill closes.",
         },
       },
@@ -393,7 +393,7 @@ export const en: Dictionary = {
     },
     integrations: {
       kicker: "Integrations",
-      title: "Works with your till.",
+      title: "Can integrate with your till.",
       body: "With an integration you don't need the dashboard at the counter — tokens are added automatically when the bill closes.",
       partners: [
         { name: "Simpra", status: "Integrated" },
@@ -424,7 +424,7 @@ export const en: Dictionary = {
       plan: {
         name: "Unlimited plan",
         period: "Yearly",
-        unit: "+ VAT / per branch",
+        unit: "+ VAT / branch / year",
         included: [
           "Token and reward programme",
           "Awarding tokens by QR code",
@@ -509,7 +509,7 @@ export const en: Dictionary = {
         },
         {
           q: "Does it work with my till?",
-          a: "Ole is integrated with Simpra, and the Roxpos integration is in progress. You can request an integration for other systems.",
+          a: "Ole is integrated with Simpra, and a Roxpos integration is in progress. You can request an integration for other systems.",
         },
         {
           q: "Do customers pay?",
@@ -538,7 +538,7 @@ export const en: Dictionary = {
       loyalty: "Ole app — rewards screen",
       qrForm: "Ole business dashboard — QR code generation form",
       verify: "Ole business dashboard — 6-digit code verification",
-      winback: "Ole notification — “Seni Özledik!” reminder",
+      winback: "Ole notification — a “We miss you!” reminder",
       nfc: "Ole NFC hardware",
       panel: "Ole business dashboard",
     },
@@ -546,7 +546,7 @@ export const en: Dictionary = {
 
   namaz: {
     meta: {
-      title: "Namaz Motivasyonu — five daily prayers tracking and motivation",
+      title: "Namaz Motivasyonu — track the five daily prayers and stay motivated",
       description:
         "Namaz Motivasyonu is a simple app for tracking the five daily prayers, with reminders, progress, and motivation.",
     },
@@ -566,7 +566,7 @@ export const en: Dictionary = {
       title: "What's inside",
       items: [
         {
-          title: "Five daily prayers tracking",
+          title: "Tracking the five daily prayers",
           body: "Mark the prayers you've done and see your consistency.",
         },
         {
@@ -603,7 +603,7 @@ export const en: Dictionary = {
     },
     privacy: {
       title: "Privacy",
-      body: "What data the app processes, why, and how it is stored is set out in the Privacy Policy, the KVKK Notice and the User Agreement (published in Turkish). You can delete your account and data at any time.",
+      body: "What data the app processes, why, and how it is stored is set out in the Privacy Policy, the KVKK Notice and the User Agreement (published in Turkish). You can delete your account in the app; the associated data is then deleted, subject to legal retention obligations.",
     },
     closing: {
       title: "Namaz Motivasyonu is coming to the app stores soon.",
