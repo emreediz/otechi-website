@@ -7,12 +7,14 @@
  *
  *  - Company / brand : "Otechi"      (never "OTECHI" / "otechi")
  *  - Product         : "Ole"         (never "OLE" / "ole")
+ *  - Product         : "Ole Panel"   (Ole's web panel for businesses)
  *  - Product         : "Namaz Motivasyonu" (kept identical in TR and EN for now)
  */
 export const BRAND = {
   company: "Otechi",
   products: {
     ole: "Ole",
+    olePanel: "Ole Panel",
     namaz: "Namaz Motivasyonu",
   },
 } as const;

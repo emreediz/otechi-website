@@ -15,6 +15,17 @@ export const tr = {
       kicker: "Bir fikriniz mi var?",
       title: "Birlikte üretelim.",
     },
+    // Store badges. "{app}" is replaced with the product name.
+    stores: {
+      appStore: {
+        lines: ["App Store’dan", "İndir"],
+        label: "{app} uygulamasını App Store’dan indir",
+      },
+      googlePlay: {
+        lines: ["Google Play’den", "İndir"],
+        label: "{app} uygulamasını Google Play’den indir",
+      },
+    },
   },
 
   nav: {
@@ -23,7 +34,7 @@ export const tr = {
     products: "Ürünler",
     about: "Hakkımızda",
     contact: "İletişim",
-    cta: "Ürünleri Keşfedin",
+    cta: "İletişime Geçin",
     openMenu: "Menüyü aç",
     closeMenu: "Menüyü kapat",
     language: "Dil",
@@ -35,7 +46,8 @@ export const tr = {
   },
 
   footer: {
-    tagline: "Yazılım ve dijital ürün stüdyosu.",
+    tagline: "Dijital ürünler ve yazılım geliştiren teknoloji stüdyosu.",
+    appsTitle: "Uygulamalarımız",
     productsTitle: "Ürünler",
     companyTitle: "Kurumsal",
     legalTitle: "Yasal",

@@ -13,26 +13,26 @@ import { Button } from "@/components/ui/Button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
 
-const NAV_ITEMS: { key: RouteKey; label: "products" | "about" | "contact" }[] =
-  [
-    { key: "products", label: "products" },
-    { key: "about", label: "about" },
-    { key: "contact", label: "contact" },
-  ];
+const NAV_ITEMS: { key: RouteKey; label: "products" | "about" }[] = [
+  { key: "products", label: "products" },
+  { key: "about", label: "about" },
+];
 
 /**
- * Sticky header. Once the page scrolls past a small sentinel the bar turns
- * into a floating pill (`.site-header[data-scrolled]` in globals.css). The
- * header keeps its 64px height, so nothing below it shifts.
+ * Fixed header with two islands (logo + nav, language + call to action).
+ * Transparent at the top of the page; once a small sentinel scrolls away the
+ * islands turn into frosted pills (`.site-header[data-scrolled]`).
  */
 export function Navbar({
   locale,
   dict,
   contact,
+  products,
 }: {
   locale: Locale;
   dict: Dictionary["nav"];
   contact: Dictionary["contact"];
+  products: { href: string; label: string }[];
 }) {
   const pathname = usePathname() || "/";
   const headerRef = useRef<HTMLElement | null>(null);
@@ -66,62 +66,69 @@ export function Navbar({
       <div
         ref={sentinelRef}
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-0 h-20 w-px"
+        className="pointer-events-none absolute left-0 top-0 h-6 w-px"
       />
       <header
         ref={headerRef}
         // Stays put during page transitions (globals.css).
         style={{ viewTransitionName: "site-header" }}
-        className="site-header sticky top-0 z-50 h-16 print:hidden"
+        className="site-header pointer-events-none fixed inset-x-0 top-0 z-50 print:hidden"
       >
         <nav
           aria-label={dict.mainNav}
-          className="site-header__bar mx-auto flex w-full items-center justify-between gap-4"
+          className="site-header__bar mx-auto flex w-full max-w-[calc(85rem+2*var(--gutter))] items-center justify-between gap-4 px-(--gutter)"
         >
-          <Link
-            href={localizedPath("home", locale)}
-            aria-label={`${BRAND.company} – ${dict.home}`}
-            className="inline-flex shrink-0 items-center py-2"
-          >
-            <Logo className="h-6 sm:h-7" eager />
-          </Link>
+          <div className="site-header__island pointer-events-auto flex items-center gap-6 rounded-full pl-2.5 pr-1.5 lg:gap-11">
+            <Link
+              href={localizedPath("home", locale)}
+              aria-label={`${BRAND.company} – ${dict.home}`}
+              className="inline-flex shrink-0 items-center rounded-[10px] px-1 py-1.5"
+            >
+              <Logo className="site-header__logo" eager />
+            </Link>
+            <div className="hidden items-center gap-1 md:flex">
+              {NAV_ITEMS.map((item) => {
+                const path = localizedPath(item.key, locale);
+                const active = inSection(path);
+                return (
+                  <Link
+                    key={item.key}
+                    href={path}
+                    aria-current={pathname === path ? "page" : undefined}
+                    className={cn(
+                      "inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 text-[0.95rem] font-medium transition-colors hover:bg-fg/[0.04] hover:text-fg",
+                      active ? "text-fg" : "text-fg-muted",
+                    )}
+                  >
+                    {active ? (
+                      <span
+                        aria-hidden="true"
+                        className="size-1.5 rounded-full bg-brand"
+                      />
+                    ) : null}
+                    {dict[item.label]}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
 
-          {/* Desktop nav */}
-          <div className="hidden items-center gap-1 md:flex">
-            {NAV_ITEMS.map((item) => {
-              const path = localizedPath(item.key, locale);
-              const active = inSection(path);
-              return (
-                <Link
-                  key={item.key}
-                  href={path}
-                  aria-current={pathname === path ? "page" : undefined}
-                  className={cn(
-                    "inline-flex min-h-11 items-center gap-1.5 rounded-full px-3 text-sm font-medium transition-colors",
-                    active ? "text-fg" : "text-fg-muted hover:text-fg",
-                  )}
-                >
-                  {active ? (
-                    <span
-                      aria-hidden="true"
-                      className="size-1.5 rounded-full bg-accent"
-                    />
-                  ) : null}
-                  <span className="link-underline">{dict[item.label]}</span>
-                </Link>
-              );
-            })}
-            <LanguageSwitcher dict={dict} className="ml-1" />
+          <div className="site-header__island pointer-events-auto flex items-center gap-1 rounded-full px-1.5">
+            <LanguageSwitcher dict={dict} />
             <Button
-              href={localizedPath("products", locale)}
-              size="md"
-              className="ml-2"
+              href={localizedPath("contact", locale)}
+              size="sm"
+              className="ml-1 hidden md:inline-flex"
             >
               {dict.cta}
             </Button>
+            <MobileMenu
+              locale={locale}
+              dict={dict}
+              contact={contact}
+              products={products}
+            />
           </div>
-
-          <MobileMenu locale={locale} dict={dict} contact={contact} />
         </nav>
       </header>
     </>

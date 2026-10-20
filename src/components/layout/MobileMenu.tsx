@@ -4,14 +4,13 @@ import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/Button";
-import { ContactRows } from "@/components/content/ContactRows";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 /**
@@ -24,10 +23,12 @@ export function MobileMenu({
   locale,
   dict,
   contact,
+  products,
 }: {
   locale: Locale;
   dict: Dictionary["nav"];
   contact: Dictionary["contact"];
+  products: { href: string; label: string }[];
 }) {
   const ref = useRef<HTMLDialogElement | null>(null);
   const pathname = usePathname();
@@ -47,26 +48,10 @@ export function MobileMenu({
   }, []);
 
   const items = [
-    {
-      href: localizedPath("products", locale),
-      label: dict.products,
-      children: [
-        {
-          href: localizedPath("productOle", locale),
-          label: BRAND.products.ole,
-        },
-        {
-          href: localizedPath("productNamaz", locale),
-          label: BRAND.products.namaz,
-        },
-      ],
-    },
-    { href: localizedPath("about", locale), label: dict.about, children: [] },
-    {
-      href: localizedPath("contact", locale),
-      label: dict.contact,
-      children: [],
-    },
+    { href: localizedPath("products", locale), label: dict.products },
+    ...products,
+    { href: localizedPath("about", locale), label: dict.about },
+    { href: localizedPath("contact", locale), label: dict.contact },
   ];
 
   return (
@@ -77,102 +62,88 @@ export function MobileMenu({
         aria-controls="mobile-menu"
         aria-label={dict.openMenu}
         onClick={() => ref.current?.showModal()}
-        className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium md:hidden"
+        className="inline-grid size-11 place-items-center rounded-full md:hidden"
       >
-        {dict.menu}
-        <Menu className="size-5" aria-hidden="true" />
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 8h16M4 16h16" />
+        </svg>
       </button>
 
       <dialog
         ref={ref}
         id="mobile-menu"
         aria-label={dict.mainNav}
-        className="menu-dialog m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto border-0 bg-bg p-0 text-fg"
+        className="menu-dialog pointer-events-auto m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto border-0 bg-bg p-0 text-fg"
       >
-        <div className="flex h-16 items-center justify-between gap-4 px-5 sm:px-8">
-          <Link
-            href={localizedPath("home", locale)}
-            aria-label={`${BRAND.company} – ${dict.home}`}
-            onClick={close}
-            className="inline-flex items-center py-2"
-          >
-            <Logo className="h-6 sm:h-7" />
-          </Link>
-          <button
-            type="button"
-            aria-label={dict.closeMenu}
-            onClick={close}
-            className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium"
-          >
-            {dict.close}
-            <X className="size-5" aria-hidden="true" />
-          </button>
-        </div>
+        <div className="flex min-h-full flex-col px-(--gutter) pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-3">
+          <div className="flex h-14 items-center justify-between px-1.5">
+            <Link
+              href={localizedPath("home", locale)}
+              aria-label={`${BRAND.company} – ${dict.home}`}
+              onClick={close}
+              className="inline-flex items-center py-2"
+            >
+              <Logo className="h-6" />
+            </Link>
+            <button
+              type="button"
+              aria-label={dict.closeMenu}
+              onClick={close}
+              className="inline-grid size-11 place-items-center rounded-full"
+            >
+              <X className="size-6" aria-hidden="true" />
+            </button>
+          </div>
 
-        <nav className="px-5 pb-10 pt-6 sm:px-8">
-          <ol className="border-t border-fg/15">
-            {items.map((item, i) => (
-              <li
-                key={item.href}
-                className="menu-item border-b border-fg/15 py-4"
-                style={{ "--i": i } as CSSProperties}
-              >
-                <Link
-                  href={item.href}
-                  onClick={close}
-                  aria-current={pathname === item.href ? "page" : undefined}
-                  className="flex min-h-12 items-baseline gap-4"
+          <nav className="mt-6">
+            <ul>
+              {items.map((item, i) => (
+                <li
+                  key={item.href}
+                  className="menu-item border-b border-border"
+                  style={{ "--i": i } as CSSProperties}
                 >
-                  <span className="text-xs tabular-nums text-fg-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-heading">{item.label}</span>
-                </Link>
-                {item.children.length ? (
-                  <ul className="mt-1 flex flex-col pl-9">
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          href={child.href}
-                          onClick={close}
-                          aria-current={
-                            pathname === child.href ? "page" : undefined
-                          }
-                          className="inline-flex min-h-11 items-center text-lg text-fg-muted hover:text-fg"
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-            ))}
-          </ol>
+                  <Link
+                    href={item.href}
+                    onClick={close}
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className="flex min-h-16 items-center justify-between gap-4 px-1 py-3 text-[1.75rem] font-semibold tracking-[-0.02em]"
+                  >
+                    {item.label}
+                    <ArrowRight
+                      className="size-5 text-fg-faint"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-          <ContactRows
-            className="menu-item mt-10"
-            items={[
-              {
-                label: contact.phoneLabel,
-                value: contact.phone,
-                href: contact.phoneHref,
-              },
-              {
-                label: contact.emailLabel,
-                value: contact.email,
-                href: contact.emailHref,
-              },
-            ]}
-          />
-
-          <div className="menu-item mt-8 flex flex-wrap items-center justify-between gap-4">
-            <LanguageSwitcher dict={dict} />
-            <Button href={localizedPath("products", locale)} onClick={close}>
+          <div className="menu-item mt-auto grid gap-3 pt-8">
+            <LanguageSwitcher dict={dict} className="justify-self-start" />
+            <Button
+              href={localizedPath("contact", locale)}
+              onClick={close}
+              size="lg"
+              className="w-full"
+            >
               {dict.cta}
             </Button>
+            <Button href={contact.emailHref} variant="secondary" size="lg" className="w-full">
+              {contact.email}
+            </Button>
           </div>
-        </nav>
+        </div>
       </dialog>
     </>
   );

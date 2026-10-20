@@ -1,4 +1,5 @@
 import { getDictionary } from "@/i18n/getDictionary";
+import { productLinks } from "@/lib/siteNav";
 import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -15,6 +16,7 @@ export default async function UrunlerLayout({
   children: React.ReactNode;
 }) {
   const dict = await getDictionary("tr");
+  const products = productLinks("tr");
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -26,17 +28,17 @@ export default async function UrunlerLayout({
       >
         {dict.nav.skipToContent}
       </a>
-      <Navbar locale="tr" dict={dict.nav} contact={dict.contact} />
-      <main id="main" tabIndex={-1} className="flex-1 outline-none">
+      <Navbar
+        locale="tr"
+        dict={dict.nav}
+        contact={dict.contact}
+        products={products}
+      />
+      {/* Top padding clears the fixed header (96px at the top of the page). */}
+      <main id="main" tabIndex={-1} className="flex-1 pt-24 outline-none">
         {children}
       </main>
-      <Footer
-        locale="tr"
-        footer={dict.footer}
-        nav={dict.nav}
-        contact={dict.contact}
-        namazDocs={dict.showcase.namaz}
-      />
+      <Footer locale="tr" dict={dict} products={products} />
     </div>
   );
 }

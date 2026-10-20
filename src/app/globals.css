@@ -1,142 +1,145 @@
 @import "tailwindcss";
 
 /*
-  Otechi design tokens.
-  - Default (:root)            -> Otechi brand: black / white / controlled orange
-  - [data-theme="ole"]         -> Ole: orange (#FD5E00) + navy (#000D26)
-  - [data-theme="namaz"]       -> Namaz Motivasyonu: green (#006B4D) + white, no orange
-  - [data-surface="dark"]      -> inverted band inside any theme (see below)
+  Otechi design tokens — the same visual language as the Ole site: white and
+  light-grey surfaces, navy ink (#000D26), Otechi/Ole orange, Poppins 600 with
+  tight tracking, large radii and soft navy shadows.
 
-  Contrast: filled orange buttons carry black (Otechi) or navy (Ole) text —
-  white on #FD5E00 is only ~3.1:1. Small text never uses orange on white.
+  - Default (:root)          -> Otechi / Ole: orange accent
+  - [data-theme="ole"]       -> Ole: orange accent
+  - [data-theme="panel"]     -> Ole Panel: navy accent
+  - [data-theme="namaz"]     -> Namaz Motivasyonu: green accent, no orange
+
+  Contrast: filled orange buttons carry navy text — white on #FD5E00 is only
+  ~3.1:1. Small text never uses orange on white.
 */
 
-/* Mouse-like pointers only: hover-revealed extras, custom cursors. */
+/* Mouse-like pointers only: hover-revealed extras, pointer parallax. */
 @custom-variant pointer-fine (@media (hover: hover) and (pointer: fine));
 
 @theme {
-  /* One family for the whole site (Poppins). Both tokens resolve to it so the
-     existing `font-display` / `font-sans` utilities keep working. */
   --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
-  /* Editorial type scale (fluid). Use as `text-display-l`, `text-row`, … */
-  --text-display-xl: clamp(2.5rem, 9vw, 8rem);
-  --text-display-xl--line-height: 0.98;
-  --text-display-xl--letter-spacing: -0.04em;
+  /* Type scale (fluid). Use as `text-display-xl`, `text-title`, … */
+  --text-display-xl: clamp(3rem, 9.2vw, 8.5rem);
+  --text-display-xl--line-height: 0.94;
+  --text-display-xl--letter-spacing: -0.045em;
   --text-display-xl--font-weight: 600;
-  --text-display-l: clamp(2.25rem, 8.6vw, 7rem);
-  --text-display-l--line-height: 1.02;
-  --text-display-l--letter-spacing: -0.035em;
+  --text-display-l: clamp(2.375rem, 6.6vw, 6rem);
+  --text-display-l--line-height: 0.98;
+  --text-display-l--letter-spacing: -0.045em;
   --text-display-l--font-weight: 600;
-  --text-display-m: clamp(2.25rem, 6vw, 5rem);
+  --text-display-m: clamp(2.125rem, 5.2vw, 4.25rem);
   --text-display-m--line-height: 1.02;
   --text-display-m--letter-spacing: -0.035em;
   --text-display-m--font-weight: 600;
-  --text-heading: clamp(1.9rem, 4.4vw, 3.5rem);
+  --text-heading: clamp(2rem, 4vw, 3.25rem);
   --text-heading--line-height: 1.05;
-  --text-heading--letter-spacing: -0.03em;
+  --text-heading--letter-spacing: -0.035em;
   --text-heading--font-weight: 600;
-  --text-statement: clamp(1.6rem, 3.6vw, 3.25rem);
-  --text-statement--line-height: 1.18;
-  --text-statement--letter-spacing: -0.02em;
+  --text-title-l: clamp(1.75rem, 3.2vw, 2.625rem);
+  --text-title-l--line-height: 1.05;
+  --text-title-l--letter-spacing: -0.03em;
+  --text-title-l--font-weight: 600;
+  --text-title: clamp(1.375rem, 2.2vw, 1.75rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.02em;
+  --text-title--font-weight: 600;
+  --text-statement: clamp(1.5rem, 2.75vw, 2.5rem);
+  --text-statement--line-height: 1.25;
+  --text-statement--letter-spacing: -0.025em;
   --text-statement--font-weight: 500;
-  --text-row: clamp(1.875rem, 5vw, 3.75rem);
-  --text-row--line-height: 1;
-  --text-row--letter-spacing: -0.025em;
-  --text-row--font-weight: 600;
-  --text-number: clamp(3rem, 8vw, 6.5rem);
-  --text-number--line-height: 0.92;
-  --text-number--letter-spacing: -0.04em;
-  --text-number--font-weight: 300;
-  --text-lead: clamp(1.0625rem, 1.4vw, 1.25rem);
-  --text-lead--line-height: 1.6;
+  --text-lead: clamp(1.0625rem, 1.5vw, 1.3125rem);
+  --text-lead--line-height: 1.5;
 
-  /* One easing family. `ease-out-expo` for reveals, `ease-in-out-quart`
-     for page/menu transitions. */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  /* Radii: cards, large panels, rounded page sections. */
+  --radius-card: 1.625rem;
+  --radius-panel: 2.25rem;
+  --radius-section: clamp(1.75rem, 4vw, 3.5rem);
+
+  /* Soft navy shadows. */
+  --shadow-xs: 0 1px 2px rgb(0 13 38 / 0.06);
+  --shadow-sm: 0 1px 2px rgb(0 13 38 / 0.04), 0 4px 12px rgb(0 13 38 / 0.05);
+  --shadow-md:
+    0 2px 6px rgb(0 13 38 / 0.04), 0 14px 32px -8px rgb(0 13 38 / 0.12);
+  --shadow-lg:
+    0 4px 10px rgb(0 13 38 / 0.04), 0 30px 70px -20px rgb(0 13 38 / 0.22);
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-subtle: var(--surface);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
+  --color-fg-soft: var(--fg-soft);
+  --color-fg-faint: var(--fg-faint);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
   --color-accent-fg: var(--accent-fg);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-ring: var(--ring);
-  /* Ole's own navy. */
+  /* Fixed brand colours (never theme-shift). */
+  --color-brand: #fd5e00;
   --color-ole-navy: #000d26;
-  /* Fixed dark surfaces for product tiles (do not theme-shift). */
+  --color-namaz: #006b4d;
   --color-tile-ole: #000d26;
   --color-tile-namaz: #06251c;
 }
 
 :root {
+  --gutter: clamp(1rem, 4vw, 2.5rem);
   --bg: #ffffff;
-  --bg-subtle: #f5f5f5;
-  --fg: #000000;
-  --fg-muted: #4a4a4a;
+  --surface: #f6f7f9;
+  --surface-2: #eef0f3;
+  --fg: #000d26;
+  --fg-muted: #3a4459;
+  --fg-soft: #6b7385;
+  --fg-faint: #9aa1af;
+  --border: #e6e8ec;
+  --border-strong: #d5d9e0;
   --accent: #fd5e00;
-  --accent-fg: #000000;
-  --border: #e5e5e5;
-  --ring: #000000;
-}
-
-[data-theme="ole"] {
-  --bg: #ffffff;
-  --bg-subtle: #fff7f1;
-  --fg: #111111;
-  --fg-muted: #5c5148;
-  --accent: #fd5e00;
+  --accent-hover: #e85600;
+  --accent-soft: #fff1e8;
   --accent-fg: #000d26;
-  --border: #f0dac9;
   --ring: #fd5e00;
 }
 
-[data-theme="namaz"] {
-  --bg: #ffffff;
-  --bg-subtle: #f6faf6;
-  --fg: #0f241c;
-  --fg-muted: #4b6357;
-  --accent: #006b4d;
+[data-theme="panel"] {
+  --accent: #000d26;
+  --accent-hover: #0b1a3a;
+  --accent-soft: #e9edf5;
   --accent-fg: #ffffff;
-  --border: #dceae3;
+  --ring: #000d26;
+}
+
+[data-theme="namaz"] {
+  --accent: #006b4d;
+  --accent-hover: #005a41;
+  --accent-soft: #e6f3ed;
+  --accent-fg: #ffffff;
   --ring: #006b4d;
 }
 
-/* Inverted band. Utilities such as `text-fg-muted` and `border-fg/15` follow
-   the surface automatically. Put `data-theme` on the page wrapper or a tile
-   root, never inside a dark surface. */
+/* Inverted band (legacy views; removed once nothing uses it). */
 [data-surface="dark"] {
-  --bg: #000000;
-  --bg-subtle: #111111;
+  --bg: #000d26;
+  --surface: #0a1a3a;
   --fg: #ffffff;
-  --fg-muted: rgb(255 255 255 / 0.68);
+  --fg-muted: rgb(255 255 255 / 0.72);
+  --fg-soft: rgb(255 255 255 / 0.72);
   --border: rgb(255 255 255 / 0.18);
   --ring: #ffffff;
 }
 
-:is([data-theme="ole"] [data-surface="dark"], [data-theme="ole"][data-surface="dark"]) {
-  --bg: #000d26;
-  --bg-subtle: #0a1a3a;
-  --ring: #fd5e00;
-}
-
-:is([data-theme="namaz"] [data-surface="dark"], [data-theme="namaz"][data-surface="dark"]) {
-  --bg: #006b4d;
-  --bg-subtle: #0a5c44;
-  /* .82 keeps small muted text ≥ 4.5:1 on the green band */
-  --fg-muted: rgb(255 255 255 / 0.82);
-  --accent: #ffffff;
-  --accent-fg: #006b4d;
-  --ring: #ffffff;
-}
-
-/* Base rules live in the base layer so Tailwind utilities (border colours,
-   rounded shapes, outlines) can override them. */
+/* Base rules live in the base layer so Tailwind utilities can override. */
 @layer base {
   * {
     border-color: var(--border);
@@ -144,6 +147,8 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    /* Anchors and focused elements stay clear of the fixed header. */
+    scroll-padding-top: 6.5rem;
   }
 
   body {
@@ -161,18 +166,13 @@
 
   :focus-visible {
     outline: 2px solid var(--ring);
-    outline-offset: 2px;
+    outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
     }
-  }
-
-  /* Anchors and focused elements stay clear of the sticky header. */
-  html {
-    scroll-padding-top: 5rem;
   }
 }
 
@@ -181,6 +181,7 @@
   html.js [data-reveal],
   html.js [data-reveal] .stagger-item,
   html.js .hero-rise,
+  html.js .hero-line > span,
   html.js .mask-word > span {
     opacity: 1 !important;
     transform: none !important;
@@ -191,51 +192,47 @@
 }
 
 /* ------------------------------------------------------------------ *
- * Site frame: header pill, link underline, mobile menu dialog.
+ * Site frame and shared pieces.
  * ------------------------------------------------------------------ */
 @layer components {
-  .site-header {
-    background-color: var(--bg);
-    border-bottom: 1px solid color-mix(in oklab, var(--fg) 10%, transparent);
-    transition:
-      background-color 0.4s ease,
-      border-color 0.4s ease;
-  }
-  .site-header[data-scrolled] {
-    background-color: transparent;
-    border-color: transparent;
-  }
-  /* Sizes live here (not in utilities) so the scrolled state can win. */
+  /* Fixed header with two "islands": transparent at the top of the page,
+     frosted white pills once the page scrolls (`data-scrolled`). */
   .site-header__bar {
-    max-width: 72rem;
-    height: 4rem;
-    padding-inline: 1.25rem;
-    transition:
-      max-width 0.55s var(--ease-out-expo),
-      height 0.55s var(--ease-out-expo),
-      translate 0.55s var(--ease-out-expo),
-      padding 0.55s var(--ease-out-expo),
-      border-radius 0.55s var(--ease-out-expo),
-      background-color 0.4s ease,
-      box-shadow 0.4s ease;
-  }
-  @media (min-width: 640px) {
-    .site-header__bar {
-      padding-inline: 2rem;
-    }
+    padding-block: 1.125rem;
+    transition: padding 0.6s var(--ease-out-expo);
   }
   .site-header[data-scrolled] .site-header__bar {
-    max-width: min(52rem, calc(100% - 1.5rem));
-    height: 3.25rem;
-    translate: 0 0.375rem;
-    padding-inline: 1rem 0.375rem;
-    border-radius: 9999px;
-    background-color: color-mix(in oklab, var(--bg) 86%, transparent);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
+    padding-block: 0.75rem;
+  }
+  .site-header__island {
+    height: 3.75rem;
+    border: 1px solid transparent;
+    background-color: rgb(255 255 255 / 0);
+    transition:
+      height 0.6s var(--ease-out-expo),
+      gap 0.6s var(--ease-out-expo),
+      padding 0.6s var(--ease-out-expo),
+      background-color 0.6s var(--ease-out-expo),
+      border-color 0.6s var(--ease-out-expo),
+      box-shadow 0.6s var(--ease-out-expo);
+  }
+  .site-header[data-scrolled] .site-header__island {
+    height: 3.5rem;
+    background-color: rgb(255 255 255 / 0.82);
+    border-color: rgb(0 13 38 / 0.08);
     box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--fg) 10%, transparent),
-      0 12px 32px -16px rgb(0 0 0 / 0.3);
+      0 1px 2px rgb(0 13 38 / 0.04),
+      0 10px 30px -12px rgb(0 13 38 / 0.18);
+    -webkit-backdrop-filter: saturate(1.6) blur(16px);
+    backdrop-filter: saturate(1.6) blur(16px);
+  }
+  /* Island under an open mobile menu stays solid. */
+  .site-header__logo {
+    height: 1.75rem;
+    transition: height 0.6s var(--ease-out-expo);
+  }
+  .site-header[data-scrolled] .site-header__logo {
+    height: 1.5rem;
   }
 
   /* Underline that draws in from the left on hover (text-bound). */
@@ -257,10 +254,10 @@
     opacity: 0;
     translate: 0 -0.75rem;
     transition:
-      opacity 0.35s var(--ease-out-expo),
-      translate 0.35s var(--ease-out-expo),
-      overlay 0.35s allow-discrete,
-      display 0.35s allow-discrete;
+      opacity 0.3s var(--ease-out-expo),
+      translate 0.3s var(--ease-out-expo),
+      overlay 0.3s allow-discrete,
+      display 0.3s allow-discrete;
   }
   .menu-dialog[open] {
     opacity: 1;
@@ -277,17 +274,135 @@
   }
   .menu-dialog[open] .menu-item {
     animation: rise 0.6s var(--ease-out-expo) both;
-    animation-delay: calc(0.08s + var(--i, 3) * 0.05s);
+    animation-delay: calc(0.06s + var(--i, 3) * 0.05s);
   }
   html:has(.menu-dialog[open]) {
     overflow: hidden;
+  }
+
+  /* Rounded light-grey page section (inset from the viewport edges). */
+  .section-surface {
+    margin-inline: clamp(0px, 1vw, 12px);
+    border-radius: var(--radius-section);
+    background-color: var(--surface);
+  }
+
+  /* Small pill label with an accent dot ("• Ürünler"). */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    background-color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--fg-muted);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: var(--accent);
+  }
+
+  /* Uppercase group label with a trailing hairline ("OLE ————"). */
+  .group-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: clamp(0.875rem, 1.3vw, 1.125rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .group-head::after {
+    content: "";
+    flex: 1 1 0%;
+    height: 1px;
+    background-color: color-mix(in oklab, var(--accent) 30%, transparent);
+  }
+
+  /* White content card. */
+  .card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    background-color: #fff;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    transition:
+      box-shadow 0.28s var(--ease-out-expo),
+      border-color 0.28s;
+  }
+  @media (hover: hover) {
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+  }
+
+  /* Glass capsule: three image slices (left cap, stretched middle, right
+     cap) behind live text. Slices: public/images/capsules. */
+  .capsule {
+    --h: clamp(2.875rem, 4.9vw, 4.5rem);
+    --cap-w: calc(var(--h) * 0.97);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--h) * 0.16);
+    height: var(--h);
+    min-width: calc(var(--cap-w) * 2);
+    padding: 0 calc(var(--h) * 0.5) 0 calc(var(--h) * 0.44);
+    border-radius: 9999px;
+    white-space: nowrap;
+    user-select: none;
+    background:
+      var(--cap-l) left center / auto 100% no-repeat,
+      var(--cap-r) right center / auto 100% no-repeat,
+      var(--cap-m) center / calc(100% - var(--cap-w) * 2) 100% no-repeat;
+    box-shadow: 0 16px 30px -18px var(--cap-drop);
+    color: #fff;
+    font-size: calc(var(--h) * 0.3);
+    font-weight: 500;
+    text-shadow: 0 1px 2px var(--cap-txt);
+  }
+  .capsule > svg {
+    width: calc(var(--h) * 0.32);
+    height: calc(var(--h) * 0.32);
+    flex: none;
+    filter: drop-shadow(0 1px 1px var(--cap-txt));
+  }
+  .capsule[data-color="orange"] {
+    --cap-l: url("/images/capsules/kapsul-turuncu-cam-left.webp");
+    --cap-m: url("/images/capsules/kapsul-turuncu-cam-mid.webp");
+    --cap-r: url("/images/capsules/kapsul-turuncu-cam-right.webp");
+    --cap-drop: rgb(200 70 0 / 0.38);
+    --cap-txt: rgb(110 30 0 / 0.45);
+  }
+  .capsule[data-color="navy"] {
+    --cap-l: url("/images/capsules/kapsul-lacivert-cam-left.webp");
+    --cap-m: url("/images/capsules/kapsul-lacivert-cam-mid.webp");
+    --cap-r: url("/images/capsules/kapsul-lacivert-cam-right.webp");
+    --cap-drop: rgb(0 13 38 / 0.38);
+    --cap-txt: rgb(0 0 20 / 0.55);
+  }
+  .capsule[data-color="green"] {
+    --cap-l: url("/images/capsules/kapsul-yesil-cam-left.webp");
+    --cap-m: url("/images/capsules/kapsul-yesil-cam-mid.webp");
+    --cap-r: url("/images/capsules/kapsul-yesil-cam-right.webp");
+    --cap-drop: rgb(0 70 50 / 0.4);
+    --cap-txt: rgb(0 40 28 / 0.55);
   }
 }
 
 /* ------------------------------------------------------------------ *
  * Page transitions (React <ViewTransition>, see PageTransition.tsx).
- * Old page fades out quickly; the new one fades in with a small rise.
- * The header is anchored; clicks pass through the transition overlay.
  * ------------------------------------------------------------------ */
 ::view-transition {
   pointer-events: none;
@@ -332,20 +447,10 @@
   }
 }
 
-/* The Contact page already shows the contact rows; skip the footer copy.
-   Unlayered on purpose: it must beat the block's own `grid` utility. */
-body:has([data-page="contact"]) .footer-contact {
-  display: none;
-}
-body:has([data-page="contact"]) .footer-contact + * {
-  border-top-width: 0;
-}
-
 /* ------------------------------------------------------------------ *
  * Motion — CSS + IntersectionObserver only, no animation library.
- * All initial-hidden states are gated behind `html.js` so content is
- * always visible if JS is unavailable, and neutralised under
- * prefers-reduced-motion below.
+ * Initial-hidden states are gated behind `html.js` (content stays visible
+ * without JS) and neutralised under prefers-reduced-motion below.
  * ------------------------------------------------------------------ */
 
 /* Scroll reveal (whole block rises in). */
@@ -353,21 +458,21 @@ html.js [data-reveal]:not([data-trigger]) {
   opacity: 0;
   transform: translateY(18px);
   transition:
-    opacity 0.55s ease,
-    transform 0.55s var(--ease-out-expo);
+    opacity 0.6s ease,
+    transform 0.6s var(--ease-out-expo);
 }
 html.js [data-reveal]:not([data-trigger])[data-shown] {
   opacity: 1;
   transform: none;
 }
 
-/* Staggered children (e.g. feature cards) inside a [data-trigger] reveal. */
+/* Staggered children inside a [data-trigger] reveal. */
 html.js [data-reveal] .stagger-item {
   opacity: 0;
   transform: translateY(14px);
   transition:
-    opacity 0.5s ease,
-    transform 0.5s var(--ease-out-expo);
+    opacity 0.55s ease,
+    transform 0.55s var(--ease-out-expo);
 }
 html.js [data-reveal][data-shown] .stagger-item {
   opacity: 1;
@@ -385,76 +490,63 @@ html.js [data-reveal][data-shown] .stagger-item:nth-child(4) {
 html.js [data-reveal][data-shown] .stagger-item:nth-child(5) {
   transition-delay: 0.24s;
 }
-html.js [data-reveal][data-shown] .stagger-item:nth-child(6) {
+html.js [data-reveal][data-shown] .stagger-item:nth-child(n + 6) {
   transition-delay: 0.3s;
 }
-html.js [data-reveal][data-shown] .stagger-item:nth-child(7) {
-  transition-delay: 0.36s;
-}
-html.js [data-reveal][data-shown] .stagger-item:nth-child(n + 8) {
-  transition-delay: 0.42s;
-}
 
-/* Calmer, slower motion for the Namaz Motivasyonu page: shorter travel
-   (before reveal only — the shown state above must still win). */
+/* Calmer motion for Namaz Motivasyonu (before reveal only). */
 html.js [data-calm] [data-reveal]:not([data-trigger]) {
   transition:
-    opacity 0.75s ease,
-    transform 0.75s var(--ease-out-expo);
+    opacity 0.8s ease,
+    transform 0.8s var(--ease-out-expo);
 }
 html.js [data-calm] [data-reveal]:not([data-trigger]):not([data-shown]) {
   transform: translateY(12px);
-}
-html.js [data-calm] [data-reveal] .stagger-item {
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s var(--ease-out-expo);
-}
-html.js [data-calm] [data-reveal]:not([data-shown]) .stagger-item {
-  transform: translateY(10px);
-}
-
-/* Media that opens upward when its reveal trigger scrolls in. */
-html.js [data-reveal] .clip-reveal {
-  clip-path: inset(0 0 100% 0 round 1.5rem);
-  transition: clip-path 1s var(--ease-out-expo);
-}
-html.js [data-reveal][data-shown] .clip-reveal {
-  clip-path: inset(0 0 0 0 round 1.5rem);
-}
-
-/* Scroll story (desktop): beats away from the centre are dimmed. */
-@media (min-width: 1024px) {
-  .scroll-story__copy {
-    transition: opacity 0.5s var(--ease-out-expo);
-  }
-  html.js .scroll-story > li:not([data-active]) .scroll-story__copy {
-    opacity: 0.4;
-  }
 }
 
 /* Hero entrance (above the fold — plays on load, not on scroll). */
 html.js .hero-rise {
   opacity: 0;
-  animation: rise 0.6s var(--ease-out-expo) forwards;
+  animation: rise 0.9s var(--ease-out-expo) forwards;
 }
 html.js .hero-rise-1 {
   animation-delay: 0.05s;
 }
 html.js .hero-rise-2 {
-  animation-delay: 0.13s;
+  animation-delay: 0.2s;
 }
 html.js .hero-rise-3 {
-  animation-delay: 0.21s;
+  animation-delay: 0.35s;
 }
 html.js .hero-rise-4 {
-  animation-delay: 0.29s;
+  animation-delay: 0.5s;
+}
+
+/* Display headline: each line rises in on load. */
+.hero-line {
+  display: block;
+}
+html.js .hero-line > span {
+  display: block;
+  animation: line-rise 1s var(--ease-out-expo) both;
+}
+html.js .hero-line:nth-child(2) > span {
+  animation-delay: 0.11s;
+}
+html.js .hero-line:nth-child(3) > span {
+  animation-delay: 0.22s;
+}
+@keyframes line-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.28em);
+  }
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -462,16 +554,36 @@ html.js .hero-rise-4 {
   }
 }
 
-/* ------------------------------------------------------------------ *
- * Editorial motion: masked headlines, scroll fill, tilt, scrollers
- * ------------------------------------------------------------------ */
+/* Capsules: pop in (delay `--d`), then float gently (offset `--fo`). */
+html.js .capsule-enter {
+  animation: capsule-in 1.2s var(--ease-out-expo) var(--d, 0s) both;
+}
+@keyframes capsule-in {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.7) rotate(-6deg);
+  }
+}
+.capsule-float {
+  display: block;
+  animation: capsule-float 9s ease-in-out var(--fo, 0s) infinite alternate;
+}
+@keyframes capsule-float {
+  from {
+    transform: translateY(-4px) rotate(-0.6deg);
+  }
+  to {
+    transform: translateY(4px) rotate(0.6deg);
+  }
+}
 
-/* Hero headline: each word slides up out of a clipping mask on load. */
+/* ------------------------------------------------------------------ *
+ * Legacy motion (Metalab-era views) — removed in the clean-up phase.
+ * ------------------------------------------------------------------ */
 .mask-word {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
-  /* room for descenders inside the mask */
   padding-bottom: 0.12em;
   margin-bottom: -0.12em;
 }
@@ -486,16 +598,10 @@ html.js .mask-word > span {
     transform: none;
   }
 }
-
-/* Scroll-linked text fill: `--p` (0..1) is set on the parent by JS,
-   each word carries its index `--i` out of `--n`. Defaults to filled. */
 .fill-word {
   opacity: clamp(0.16, calc(var(--p, 1) * (var(--n, 1) + 4) - var(--i, 0)), 1);
   transition: opacity 0.2s linear;
 }
-
-/* Pointer-driven tilt / parallax for product tiles. `--px` / `--py` are
-   -1..1, set by JS on the tile; both default to 0 (flat). */
 .tilt-layer {
   transform: perspective(900px)
     translate3d(calc(var(--px, 0) * 14px), calc(var(--py, 0) * 14px), 0)
@@ -503,8 +609,21 @@ html.js .mask-word > span {
   transition: transform 0.5s var(--ease-out-expo);
   will-change: transform;
 }
-
-/* Native horizontal scroller without a visible scrollbar. */
+html.js [data-reveal] .clip-reveal {
+  clip-path: inset(0 0 100% 0 round 1.5rem);
+  transition: clip-path 1s var(--ease-out-expo);
+}
+html.js [data-reveal][data-shown] .clip-reveal {
+  clip-path: inset(0 0 0 0 round 1.5rem);
+}
+@media (min-width: 1024px) {
+  .scroll-story__copy {
+    transition: opacity 0.5s var(--ease-out-expo);
+  }
+  html.js .scroll-story > li:not([data-active]) .scroll-story__copy {
+    opacity: 0.4;
+  }
+}
 .no-scrollbar {
   scrollbar-width: none;
 }
@@ -523,9 +642,13 @@ html.js .mask-word > span {
   }
   html.js [data-reveal],
   html.js [data-reveal] .stagger-item,
-  html.js .hero-rise {
+  html.js .hero-rise,
+  html.js .hero-line > span {
     opacity: 1 !important;
     transform: none !important;
+  }
+  .capsule-float {
+    animation: none !important;
   }
   html.js .mask-word > span {
     transform: none !important;

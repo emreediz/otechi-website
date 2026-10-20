@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
+/** Centred content column: 1240px plus the fluid gutter on each side. */
 export function Container({
   className,
   children,
@@ -9,7 +10,12 @@ export function Container({
   children: ReactNode;
 }) {
   return (
-    <div className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8", className)}>
+    <div
+      className={cn(
+        "mx-auto w-full max-w-[calc(77.5rem+2*var(--gutter))] px-(--gutter)",
+        className,
+      )}
+    >
       {children}
     </div>
   );

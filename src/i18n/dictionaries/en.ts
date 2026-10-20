@@ -12,6 +12,16 @@ export const en: Dictionary = {
       kicker: "Have an idea?",
       title: "Let's build it together.",
     },
+    stores: {
+      appStore: {
+        lines: ["Download on the", "App Store"],
+        label: "Download {app} on the App Store",
+      },
+      googlePlay: {
+        lines: ["Get it on", "Google Play"],
+        label: "Get {app} on Google Play",
+      },
+    },
   },
 
   nav: {
@@ -20,7 +30,7 @@ export const en: Dictionary = {
     products: "Products",
     about: "About",
     contact: "Contact",
-    cta: "Explore products",
+    cta: "Get in touch",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     language: "Language",
@@ -32,7 +42,8 @@ export const en: Dictionary = {
   },
 
   footer: {
-    tagline: "A software & digital product studio.",
+    tagline: "A technology studio building digital products and software.",
+    appsTitle: "Our apps",
     productsTitle: "Products",
     companyTitle: "Company",
     legalTitle: "Legal",
