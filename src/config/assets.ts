@@ -1,8 +1,8 @@
 /**
  * Web-optimised product imagery. Generated with `sips` into each product's
  * `web/` folder; the originals in the parent folders are never modified.
- * These screenshots are clean full-screen captures (no marketing banners),
- * so they are only resized, not cropped.
+ * These screenshots are full-screen captures (no marketing banners); see
+ * the Ole notes below for the few regions that were cleaned.
  */
 export const IMG = {
   home: {
@@ -21,7 +21,11 @@ export const IMG = {
     logo: "/images/products/ole/web/logo.png",
     logoW: 680,
     logoH: 380,
-    // Mobile app screens — 900 x 1947 (9 : 19.5)
+    // Mobile app screens — 900 x 1947 (9 : 19.5). Cleaned in the web copies
+    // (canvas edit, originals untouched): the mascot is removed from the
+    // business/notification "Menü" card and the user's name from the home
+    // greeting. The panel copy has the account name removed and the QR code
+    // and customer code blurred.
     screenHome: "/images/products/ole/web/screen-home.jpg",
     screenLoyalty: "/images/products/ole/web/screen-loyalty.jpg",
     screenNotification: "/images/products/ole/web/screen-notification.jpg",
