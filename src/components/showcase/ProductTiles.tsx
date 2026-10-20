@@ -31,18 +31,31 @@ export type ProductTile = {
  *
  * Pointer position is written straight to CSS variables on the tile (no React
  * state), so moving the mouse never re-renders.
+ *
+ * A single tile is laid out wide (copy left, art right) — used for the
+ * "other product" link at the end of a product page. `calm` turns off the
+ * tilt and the cursor bubble (Namaz Motivasyonu's quieter pages).
  */
 export function ProductTiles({
   tiles,
   exploreLabel,
+  calm = false,
 }: {
   tiles: ProductTile[];
   exploreLabel: string;
+  calm?: boolean;
 }) {
+  const wide = tiles.length === 1;
   return (
-    <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
+    <div className={cn("grid gap-5 sm:gap-6", !wide && "lg:grid-cols-2")}>
       {tiles.map((tile) => (
-        <Tile key={tile.theme} tile={tile} exploreLabel={exploreLabel} />
+        <Tile
+          key={tile.theme}
+          tile={tile}
+          exploreLabel={exploreLabel}
+          wide={wide}
+          calm={calm}
+        />
       ))}
     </div>
   );
@@ -51,9 +64,13 @@ export function ProductTiles({
 function Tile({
   tile,
   exploreLabel,
+  wide,
+  calm,
 }: {
   tile: ProductTile;
   exploreLabel: string;
+  wide: boolean;
+  calm: boolean;
 }) {
   const ref = useRef<HTMLAnchorElement | null>(null);
   const frame = useRef(0);
@@ -90,10 +107,14 @@ function Tile({
       ref={ref}
       href={tile.href}
       data-theme={tile.theme}
-      onPointerMove={onPointerMove}
-      onPointerLeave={onPointerLeave}
+      onPointerMove={calm ? undefined : onPointerMove}
+      onPointerLeave={calm ? undefined : onPointerLeave}
       className={cn(
-        "group relative isolate flex aspect-[3/4] flex-col overflow-hidden rounded-3xl text-white sm:aspect-square lg:aspect-[5/6] md:pointer-fine:cursor-none",
+        "group relative isolate flex aspect-[3/4] flex-col overflow-hidden rounded-3xl text-white",
+        wide
+          ? "sm:aspect-[16/10] lg:aspect-[16/7]"
+          : "sm:aspect-square lg:aspect-[5/6]",
+        !calm && "md:pointer-fine:cursor-none",
         dark,
       )}
     >
@@ -104,19 +125,30 @@ function Tile({
             src={tile.art.src}
             alt={tile.art.alt}
             fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="tilt-layer scale-110 object-cover"
+            sizes={wide ? "100vw" : "(min-width: 1024px) 50vw, 100vw"}
+            className={cn("scale-110 object-cover", !calm && "tilt-layer")}
           />
         </div>
       ) : (
-        <div className="absolute inset-x-0 top-[52%] -z-10 flex justify-center sm:top-[48%] lg:top-[47%] xl:top-[40%]">
+        <div
+          className={cn(
+            "absolute inset-x-0 top-[52%] -z-10 flex justify-center",
+            wide
+              ? "sm:inset-x-auto sm:right-[8%] sm:top-1/2 sm:w-[38%] sm:-translate-y-1/2 lg:w-[30%]"
+              : "sm:top-[48%] lg:top-[47%] xl:top-[40%]",
+          )}
+        >
           <Image
             src={tile.art.src}
             alt={tile.art.alt}
             width={tile.art.w}
             height={tile.art.h}
             sizes="(min-width: 1024px) 22rem, 60vw"
-            className="tilt-layer h-auto w-[44%] max-w-xs sm:w-[56%] drop-shadow-[0_30px_50px_rgba(0,0,0,0.45)]"
+            className={cn(
+              "h-auto w-[44%] max-w-xs drop-shadow-[0_30px_50px_rgba(0,0,0,0.45)]",
+              wide ? "sm:w-full" : "sm:w-[56%]",
+              !calm && "tilt-layer",
+            )}
           />
         </div>
       )}
@@ -154,7 +186,10 @@ function Tile({
       {/* Phone screens: peek at rest, rise on hover / keyboard focus */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-[68%] justify-center gap-3 transition-transform duration-700 ease-out-expo group-hover:translate-y-[38%] group-focus-visible:translate-y-[38%] sm:gap-4"
+        className={cn(
+          "pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-[68%] justify-center gap-3 transition-transform duration-700 ease-out-expo group-hover:translate-y-[38%] group-focus-visible:translate-y-[38%] sm:gap-4",
+          wide && "sm:justify-start sm:pl-8",
+        )}
       >
         {tile.screens.map((s, i) => (
           <Image
@@ -175,13 +210,15 @@ function Tile({
       </div>
 
       {/* Cursor bubble (mouse + hover only) */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-0 z-10 hidden size-24 -translate-x-1/2 -translate-y-1/2 scale-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-black opacity-0 transition-[scale,opacity] duration-300 md:flex md:group-hover:scale-100 md:group-hover:opacity-100"
-        style={{ left: "var(--cx, 50%)", top: "var(--cy, 50%)" }}
-      >
-        {exploreLabel}
-      </span>
+      {calm ? null : (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 z-10 hidden size-24 -translate-x-1/2 -translate-y-1/2 scale-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-black opacity-0 transition-[scale,opacity] duration-300 md:flex md:group-hover:scale-100 md:group-hover:opacity-100"
+          style={{ left: "var(--cx, 50%)", top: "var(--cy, 50%)" }}
+        >
+          {exploreLabel}
+        </span>
+      )}
     </Link>
   );
 }

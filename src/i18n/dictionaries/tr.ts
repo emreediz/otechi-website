@@ -7,6 +7,8 @@ export const tr = {
   common: {
     comingSoon: "Yakında",
     learnMore: "İncele",
+    // Screen-reader suffix for links that open in a new tab.
+    newTab: "(yeni sekmede açılır)",
     backToProducts: "Ürünlere dön",
     draftNotice:
       "Bu metin taslak hâlindedir ve yayın öncesi güncellenecektir.",
@@ -372,6 +374,7 @@ export const tr = {
         "Beş vakit namazını takip et, hatırlatıcılarla düzenli kıl, ilerlemeni gör ve motivasyonunu koru.",
       ctaAppStore: "App Store",
       ctaGooglePlay: "Google Play",
+      statement: "Yeniden başlamak her zaman mümkün.",
     },
     intro: {
       title: "Sıcak, teşvik edici bir yaklaşım",
@@ -391,6 +394,10 @@ export const tr = {
         {
           title: "İlerleme ve motivasyon",
           body: "İlerlemeni ve serini takip et, kendine hedefler koy.",
+        },
+        {
+          title: "Gruplar ve odalar",
+          body: "Grup ya da oda oluştur veya davet koduyla bir gruba katıl, arkadaşlarınla birlikte motive ol. Grupta görünen adın ve ilerlemen grup üyelerince görülebilir.",
         },
       ],
       note: "Özellikler, uygulamanın güncel sürümüne göre değişebilir.",
@@ -414,7 +421,7 @@ export const tr = {
     },
     privacy: {
       title: "Gizlilik",
-      body: "Uygulamanın işlediği veriler ve saklama yöntemi, yayın öncesi gizlilik politikamızda açıkça belirtilecektir.",
+      body: "Uygulamanın hangi verileri hangi amaçlarla işlediği ve nasıl sakladığı; Gizlilik Politikası, KVKK Aydınlatma Metni ve Kullanıcı Sözleşmesi’nde açıklanmıştır. Hesabını ve verilerini dilediğin zaman silebilirsin.",
     },
     closing: {
       title: "Namaz Motivasyonu yakında mağazalarda.",
@@ -597,7 +604,9 @@ export const tr = {
       artAlt: "Namaz Motivasyonu görseli",
       heroShotAlt: "Namaz Motivasyonu — Bugün ekranı",
       galleryTitle: "Uygulamadan kareler",
-      gallery: ["Bugün ekranı", "Grup ekranı"],
+      gallery: { today: "Bugün ekranı", group: "Grup ekranı" },
+      groupShotAlt: "Namaz Motivasyonu — grup ekranı",
+      dayTitle: "Bir günün içinde.",
       docsTitle: "Yasal Belgeler",
       docsNote: "Bu belgeler yalnızca Türkçe olarak yayımlanmıştır.",
       docs: {

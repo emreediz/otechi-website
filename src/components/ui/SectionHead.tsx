@@ -1,17 +1,17 @@
 import { Kicker } from "./Kicker";
 
-/** Kicker + section heading in the editorial `text-heading` size. */
+/** Optional kicker + section heading in the editorial `text-heading` size. */
 export function SectionHead({
   kicker,
   title,
 }: {
-  kicker: string;
+  kicker?: string;
   title: string;
 }) {
   return (
     <div className="max-w-3xl">
-      <Kicker>{kicker}</Kicker>
-      <h2 className="mt-5 text-heading text-balance">{title}</h2>
+      {kicker ? <Kicker className="mb-5">{kicker}</Kicker> : null}
+      <h2 className="text-heading text-balance">{title}</h2>
     </div>
   );
 }

@@ -7,6 +7,7 @@ export const en: Dictionary = {
   common: {
     comingSoon: "Coming soon",
     learnMore: "Learn more",
+    newTab: "(opens in a new tab)",
     backToProducts: "Back to products",
     draftNotice: "This text is a draft and will be updated before launch.",
     cta: {
@@ -368,6 +369,7 @@ export const en: Dictionary = {
         "Track your five daily prayers, keep a steady routine with reminders, see your progress, and stay motivated.",
       ctaAppStore: "App Store",
       ctaGooglePlay: "Google Play",
+      statement: "Starting again is always possible.",
     },
     intro: {
       title: "A warm, encouraging approach",
@@ -387,6 +389,10 @@ export const en: Dictionary = {
         {
           title: "Progress and motivation",
           body: "Follow your progress and streak, and set your own goals.",
+        },
+        {
+          title: "Groups and rooms",
+          body: "Create a group or room, or join one with an invite code, and stay motivated with friends. Your display name and progress are visible to the group's members.",
         },
       ],
       note: "Features may change with the current version of the app.",
@@ -410,7 +416,7 @@ export const en: Dictionary = {
     },
     privacy: {
       title: "Privacy",
-      body: "What data the app processes and how it's stored will be stated clearly in our privacy policy before launch.",
+      body: "What data the app processes, why, and how it is stored is set out in the Privacy Policy, the KVKK Notice and the User Agreement (published in Turkish). You can delete your account and data at any time.",
     },
     closing: {
       title: "Namaz Motivasyonu is coming to the app stores soon.",
@@ -588,7 +594,9 @@ export const en: Dictionary = {
       artAlt: "Namaz Motivasyonu key art",
       heroShotAlt: "Namaz Motivasyonu — Today screen",
       galleryTitle: "From the app",
-      gallery: ["Today screen", "Group screen"],
+      gallery: { today: "Today screen", group: "Group screen" },
+      groupShotAlt: "Namaz Motivasyonu — group screen",
+      dayTitle: "Through the day.",
       docsTitle: "Legal Documents",
       docsNote: "These documents are published in Turkish only.",
       docs: {

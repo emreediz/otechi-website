@@ -11,7 +11,7 @@ export type GalleryItem = {
   alt: string;
   w: number;
   h: number;
-  caption: string;
+  caption?: string;
   /** Phone screenshots get a device-like frame on a tinted backdrop. */
   screen?: "ole" | "namaz";
 };
@@ -160,9 +160,11 @@ export function DragGallery({
                 />
               )}
             </div>
-            <figcaption className="mt-3 text-sm text-fg-muted">
-              {item.caption}
-            </figcaption>
+            {item.caption ? (
+              <figcaption className="mt-3 text-sm text-fg-muted">
+                {item.caption}
+              </figcaption>
+            ) : null}
           </figure>
         ))}
       </div>
