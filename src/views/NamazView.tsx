@@ -18,12 +18,7 @@ import { DeviceFrame } from "@/components/visual/DeviceFrame";
 
 const FEATURE_ICONS = [CalendarCheck, BellRing, TrendingUp];
 
-export function NamazView({
-  dict,
-}: {
-  locale: Locale;
-  dict: Dictionary;
-}) {
+export function NamazView({ dict }: { locale: Locale; dict: Dictionary }) {
   const t = dict.namaz;
   const s = dict.showcase.namaz;
 

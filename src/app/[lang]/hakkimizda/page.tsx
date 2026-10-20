@@ -23,5 +23,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const locale = await resolveLocale(params);
   const dict = await getDictionary(locale);
-  return <AboutView dict={dict} />;
+  return <AboutView locale={locale} dict={dict} />;
 }

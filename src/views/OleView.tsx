@@ -226,7 +226,11 @@ export function OleView({
         <div className="mt-10">
           <PhoneGallery
             items={[
-              { src: IMG.ole.screenHome, alt: s.homeShotAlt, caption: s.gallery[0] },
+              {
+                src: IMG.ole.screenHome,
+                alt: s.homeShotAlt,
+                caption: s.gallery[0],
+              },
               {
                 src: IMG.ole.screenLoyalty,
                 alt: s.loyaltyShotAlt,

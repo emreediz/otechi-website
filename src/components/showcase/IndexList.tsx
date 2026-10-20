@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 const PREVIEW_W = 320;
 const PREVIEW_GAP = 28;
 
-export type WorkRow = {
+export type IndexRow = {
   id: string;
   name: string;
   suffix?: string;
@@ -22,14 +22,14 @@ export type WorkRow = {
 };
 
 /**
- * Editorial, numbered list of work.
+ * Editorial, numbered index (work, products, features).
  *
  * Desktop (mouse): hovering a row dims the others and shows a floating
  * preview image that follows the pointer. Touch / small screens: each row
  * shows a small inline thumbnail instead. The preview is decorative
  * (`aria-hidden`); the row link text carries the meaning.
  */
-export function WorkIndex({ rows }: { rows: WorkRow[] }) {
+export function IndexList({ rows }: { rows: IndexRow[] }) {
   const listRef = useRef<HTMLUListElement | null>(null);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const frame = useRef(0);

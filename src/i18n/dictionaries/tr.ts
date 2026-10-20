@@ -10,6 +10,11 @@ export const tr = {
     backToProducts: "Ürünlere dön",
     draftNotice:
       "Bu metin taslak hâlindedir ve yayın öncesi güncellenecektir.",
+    // Closing call to action (links to the Contact page).
+    cta: {
+      kicker: "Bir fikriniz mi var?",
+      title: "Birlikte üretelim.",
+    },
   },
 
   nav: {
@@ -187,8 +192,6 @@ export const tr = {
       title: "Ürünlerimize göz at.",
       ctaOle: "Ole’yi İncele",
       ctaNamaz: "Namaz Motivasyonu’nu İncele",
-      kicker: "Bir fikriniz mi var?",
-      contactTitle: "Birlikte üretelim.",
     },
   },
 
@@ -200,6 +203,13 @@ export const tr = {
     },
     title: "Ürünler",
     intro: "Otechi çatısı altında geliştirdiğimiz dijital ürünler.",
+    detailsKicker: "Ayrıntılar",
+    detailsTitle: "Ürünlere yakından bakış.",
+    factLabels: {
+      platform: "Platform",
+      audience: "Kimin için",
+      status: "Durum",
+    },
     ole: {
       tagline:
         "İşletmeler için dijital sadakat ve kampanya yönetim platformu.",
@@ -208,10 +218,20 @@ export const tr = {
         "Kampanya oluşturma ve yönetme",
         "Çoklu şube yönetimi",
       ],
+      facts: {
+        platform: "iOS · Android · Web paneli",
+        audience: "İşletmeler ve müşterileri",
+        status: "Şubat 2026’dan beri yayında",
+      },
     },
     namaz: {
       tagline: "Beş vakit namaz takibi ve motivasyon uygulaması.",
       points: ["Beş vakit takibi", "Hatırlatıcılar", "İlerleme ve motivasyon"],
+      facts: {
+        platform: "iOS · Android",
+        audience: "Bireyler",
+        status: "Yakında",
+      },
     },
   },
 
@@ -430,6 +450,10 @@ export const tr = {
         body: "Ürünleri yayınladıktan sonra da bakımını ve gelişimini sürdürürüz.",
       },
     ],
+    work: {
+      kicker: "Ne üretiyoruz",
+      title: "Geliştirdiğimiz ürünler.",
+    },
     valuesTitle: "Değerlerimiz",
     values: [
       "Sade ve anlaşılır tasarım",
@@ -444,6 +468,7 @@ export const tr = {
       description: "Otechi ile telefon veya e-posta üzerinden iletişime geçin.",
     },
     title: "İletişim",
+    headline: "Konuşalım.",
     body: "Sorularınız ve talepleriniz için bize telefon veya e-posta ile ulaşabilirsiniz.",
     phoneLabel: "Telefon",
     phone: "0 (232) 332 18 14",

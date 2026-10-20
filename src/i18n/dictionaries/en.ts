@@ -9,6 +9,10 @@ export const en: Dictionary = {
     learnMore: "Learn more",
     backToProducts: "Back to products",
     draftNotice: "This text is a draft and will be updated before launch.",
+    cta: {
+      kicker: "Have an idea?",
+      title: "Let's build it together.",
+    },
   },
 
   nav: {
@@ -185,8 +189,6 @@ export const en: Dictionary = {
       title: "Take a look at our products.",
       ctaOle: "Explore Ole",
       ctaNamaz: "Explore Namaz Motivasyonu",
-      kicker: "Have an idea?",
-      contactTitle: "Let's build it together.",
     },
   },
 
@@ -198,6 +200,13 @@ export const en: Dictionary = {
     },
     title: "Products",
     intro: "The digital products we build under Otechi.",
+    detailsKicker: "Details",
+    detailsTitle: "A closer look at each product.",
+    factLabels: {
+      platform: "Platform",
+      audience: "For",
+      status: "Status",
+    },
     ole: {
       tagline: "A digital loyalty and campaign platform for businesses.",
       points: [
@@ -205,10 +214,20 @@ export const en: Dictionary = {
         "Create and manage campaigns",
         "Multi-branch management",
       ],
+      facts: {
+        platform: "iOS · Android · Web dashboard",
+        audience: "Businesses and their customers",
+        status: "Live since February 2026",
+      },
     },
     namaz: {
       tagline: "An app for tracking the five daily prayers and staying motivated.",
       points: ["Five daily prayers tracking", "Reminders", "Progress and motivation"],
+      facts: {
+        platform: "iOS · Android",
+        audience: "Individuals",
+        status: "Coming soon",
+      },
     },
   },
 
@@ -427,6 +446,10 @@ export const en: Dictionary = {
         body: "We keep maintaining and evolving products after they launch.",
       },
     ],
+    work: {
+      kicker: "What we build",
+      title: "Products we've built.",
+    },
     valuesTitle: "What we value",
     values: [
       "Simple, clear design",
@@ -441,6 +464,7 @@ export const en: Dictionary = {
       description: "Get in touch with Otechi by phone or email.",
     },
     title: "Contact",
+    headline: "Let's talk.",
     body: "For any questions or requests, you can reach us by phone or email.",
     phoneLabel: "Phone",
     phone: "0 (232) 332 18 14",

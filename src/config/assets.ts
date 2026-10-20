@@ -26,12 +26,16 @@ export const IMG = {
     // business/notification "Menü" card and the user's name from the home
     // greeting. The panel copy has the account name removed and the QR code
     // and customer code blurred.
+    screenW: 900,
+    screenH: 1947,
     screenHome: "/images/products/ole/web/screen-home.jpg",
     screenLoyalty: "/images/products/ole/web/screen-loyalty.jpg",
     screenNotification: "/images/products/ole/web/screen-notification.jpg",
     screenBusiness: "/images/products/ole/web/screen-business.jpg",
     // Web management panel — 1800 x 1047 (~16 : 9.3)
     panel: "/images/products/ole/web/panel.jpg",
+    panelW: 1800,
+    panelH: 1047,
   },
   namaz: {
     // 3D key art (neon mihrab on deep green)
@@ -39,6 +43,8 @@ export const IMG = {
     artW: 900,
     artH: 900,
     // Mobile app screens — 900 x 1650
+    screenW: 900,
+    screenH: 1650,
     screenToday: "/images/products/namaz-motivasyonu/web/screen-today.jpg",
     screenGroup: "/images/products/namaz-motivasyonu/web/screen-group.jpg",
   },

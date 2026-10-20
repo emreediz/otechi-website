@@ -265,6 +265,15 @@
   }
 }
 
+/* The Contact page already shows the contact rows; skip the footer copy.
+   Unlayered on purpose: it must beat the block's own `grid` utility. */
+body:has([data-page="contact"]) .footer-contact {
+  display: none;
+}
+body:has([data-page="contact"]) .footer-contact + * {
+  border-top-width: 0;
+}
+
 /* ------------------------------------------------------------------ *
  * Motion — CSS + IntersectionObserver only, no animation library.
  * All initial-hidden states are gated behind `html.js` so content is

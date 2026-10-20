@@ -5,17 +5,23 @@ import type { Dictionary } from "@/i18n/getDictionary";
 import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import { IMG, type PhotoKey } from "@/config/assets";
+import { productTiles, workRows } from "@/lib/showcaseData";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Kicker } from "@/components/ui/Kicker";
 import { SectionHead } from "@/components/ui/SectionHead";
-import { MaskedTitle } from "@/components/ui/MaskedTitle";
 import { Reveal } from "@/components/motion/Reveal";
 import { Faq } from "@/components/content/Faq";
-import { ProductTiles } from "@/components/home/ProductTiles";
-import { WorkIndex } from "@/components/home/WorkIndex";
-import { DragGallery, type GalleryItem } from "@/components/home/DragGallery";
-import { ScrollFillText } from "@/components/home/ScrollFillText";
+import { PageIntro } from "@/components/content/PageIntro";
+import { NumberedList } from "@/components/content/NumberedList";
+import { ClosingCta } from "@/components/content/ClosingCta";
+import { ProductTiles } from "@/components/showcase/ProductTiles";
+import { IndexList } from "@/components/showcase/IndexList";
+import {
+  DragGallery,
+  type GalleryItem,
+} from "@/components/showcase/DragGallery";
+import { ScrollFillText } from "@/components/showcase/ScrollFillText";
 
 /** Gallery order: lifestyle photos interleaved with app screens. */
 const GALLERY: (
@@ -37,8 +43,6 @@ const GALLERY: (
   { photo: "namaz4" },
 ];
 
-const SCREEN_W = 900;
-
 export function HomeView({
   locale,
   dict,
@@ -48,10 +52,7 @@ export function HomeView({
 }) {
   const t = dict.home;
   const s = dict.showcase;
-  const c = dict.contact;
-
-  const oleHref = localizedPath("productOle", locale);
-  const namazHref = localizedPath("productNamaz", locale);
+  const tiles = productTiles(dict, locale);
   const contactHref = localizedPath("contact", locale);
 
   const galleryItems: GalleryItem[] = GALLERY.map((g) => {
@@ -68,8 +69,8 @@ export function HomeView({
     if ("panel" in g) {
       return {
         src: IMG.ole.panel,
-        w: 1800,
-        h: 1047,
+        w: IMG.ole.panelW,
+        h: IMG.ole.panelH,
         alt: t.gallery.items.olePanel,
         caption: `${BRAND.products.ole} — ${t.work.rows.olePanel.kind}`,
       };
@@ -81,10 +82,11 @@ export function HomeView({
         : g.screen === "namazToday"
           ? IMG.namaz.screenToday
           : IMG.namaz.screenGroup;
+    const dims = isOle ? IMG.ole : IMG.namaz;
     return {
       src,
-      w: SCREEN_W,
-      h: isOle ? 1947 : 1650,
+      w: dims.screenW,
+      h: dims.screenH,
       alt: t.gallery.items[g.screen],
       caption: `${isOle ? BRAND.products.ole : BRAND.products.namaz} — ${t.work.rows.ole.kind}`,
       screen: isOle ? "ole" : "namaz",
@@ -94,37 +96,31 @@ export function HomeView({
   return (
     <>
       {/* ------------------------------------------------ Hero */}
-      <section className="relative">
-        <Container className="pb-16 pt-14 sm:pb-24 sm:pt-24 lg:pt-32">
-          <Kicker className="hero-rise hero-rise-1">{t.hero.kicker}</Kicker>
-          <h1 className="mt-8 text-display-l sm:mt-10">
-            <MaskedTitle text={t.hero.title} highlight={t.hero.highlight} />
-          </h1>
-
-          <div className="mt-12 grid gap-8 border-t border-fg/15 pt-8 sm:mt-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
-            <p className="hero-rise hero-rise-3 max-w-xl text-base leading-relaxed text-fg-muted sm:text-lg">
-              {t.hero.subtitle}
-            </p>
-            <div className="hero-rise hero-rise-4 flex flex-wrap gap-3">
-              <Button href={localizedPath("products", locale)} size="lg">
-                {t.hero.ctaPrimary}
-              </Button>
-              <Button
-                href={localizedPath("about", locale)}
-                variant="secondary"
-                size="lg"
-              >
-                {t.hero.ctaSecondary}
-              </Button>
-            </div>
-          </div>
-
-          <p className="hero-rise hero-rise-4 mt-14 hidden items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-fg-muted md:flex">
-            <ArrowDown className="size-4 animate-bounce" aria-hidden="true" />
-            {t.hero.scroll}
-          </p>
-        </Container>
-      </section>
+      <PageIntro
+        kicker={t.hero.kicker}
+        title={t.hero.title}
+        highlight={t.hero.highlight}
+        lead={t.hero.subtitle}
+        actions={
+          <>
+            <Button href={localizedPath("products", locale)} size="lg">
+              {t.hero.ctaPrimary}
+            </Button>
+            <Button
+              href={localizedPath("about", locale)}
+              variant="secondary"
+              size="lg"
+            >
+              {t.hero.ctaSecondary}
+            </Button>
+          </>
+        }
+      >
+        <p className="hero-rise hero-rise-4 mt-14 hidden items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-fg-muted md:flex">
+          <ArrowDown className="size-4 animate-bounce" aria-hidden="true" />
+          {t.hero.scroll}
+        </p>
+      </PageIntro>
 
       {/* ------------------------------------------------ Products */}
       <section className="pb-24 sm:pb-32">
@@ -138,61 +134,7 @@ export function HomeView({
           <Reveal className="mt-10 sm:mt-14">
             <ProductTiles
               exploreLabel={t.products.explore}
-              tiles={[
-                {
-                  theme: "ole",
-                  index: "01",
-                  name: BRAND.products.ole,
-                  category: t.products.oleCategory,
-                  tagline: t.products.ole.tagline,
-                  href: oleHref,
-                  art: {
-                    src: IMG.ole.art,
-                    alt: s.ole.artAlt,
-                    w: IMG.ole.artW,
-                    h: IMG.ole.artH,
-                  },
-                  screens: [
-                    {
-                      src: IMG.ole.screenHome,
-                      w: SCREEN_W,
-                      h: 1947,
-                    },
-                    {
-                      src: IMG.ole.screenLoyalty,
-                      w: SCREEN_W,
-                      h: 1947,
-                    },
-                  ],
-                },
-                {
-                  theme: "namaz",
-                  index: "02",
-                  name: BRAND.products.namaz,
-                  category: t.products.namazCategory,
-                  tagline: t.products.namaz.tagline,
-                  href: namazHref,
-                  art: {
-                    src: IMG.namaz.art,
-                    alt: s.home.namazLogoAlt,
-                    w: IMG.namaz.artW,
-                    h: IMG.namaz.artH,
-                    cover: true,
-                  },
-                  screens: [
-                    {
-                      src: IMG.namaz.screenToday,
-                      w: SCREEN_W,
-                      h: 1650,
-                    },
-                    {
-                      src: IMG.namaz.screenGroup,
-                      w: SCREEN_W,
-                      h: 1650,
-                    },
-                  ],
-                },
-              ]}
+              tiles={[tiles.ole, tiles.namaz]}
             />
           </Reveal>
         </Container>
@@ -210,22 +152,7 @@ export function HomeView({
             className="mt-8 max-w-5xl text-statement"
           />
           <Reveal variant="trigger" className="mt-16 sm:mt-24">
-            <ul className="grid gap-x-8 gap-y-10 md:grid-cols-3">
-              {t.what.items.map((item, i) => (
-                <li
-                  key={item.title}
-                  className="stagger-item border-t border-fg/15 pt-6"
-                >
-                  <span className="text-xs tabular-nums tracking-widest text-fg-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                    {item.body}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <NumberedList items={t.what.items} />
           </Reveal>
         </Container>
       </section>
@@ -237,43 +164,7 @@ export function HomeView({
             <SectionHead kicker={t.work.kicker} title={t.work.title} />
           </Reveal>
           <Reveal className="mt-10 sm:mt-14">
-            <WorkIndex
-              rows={[
-                {
-                  id: "ole",
-                  name: BRAND.products.ole,
-                  kind: t.work.rows.ole.kind,
-                  desc: t.work.rows.ole.desc,
-                  href: oleHref,
-                  image: IMG.photos.ole1,
-                },
-                {
-                  id: "ole-panel",
-                  name: BRAND.products.ole,
-                  suffix: t.work.rows.olePanel.suffix,
-                  kind: t.work.rows.olePanel.kind,
-                  desc: t.work.rows.olePanel.desc,
-                  href: oleHref,
-                  image: { src: IMG.ole.panel, w: 1800, h: 1047 },
-                },
-                {
-                  id: "namaz",
-                  name: BRAND.products.namaz,
-                  kind: t.work.rows.namaz.kind,
-                  desc: t.work.rows.namaz.desc,
-                  href: namazHref,
-                  image: IMG.photos.namaz1,
-                },
-                {
-                  id: "next",
-                  name: t.work.rows.next.name,
-                  kind: t.work.rows.next.kind,
-                  desc: t.work.rows.next.desc,
-                  href: contactHref,
-                  image: IMG.photos.ole2,
-                },
-              ]}
-            />
+            <IndexList rows={workRows(dict, locale)} />
           </Reveal>
         </Container>
       </section>
@@ -311,19 +202,11 @@ export function HomeView({
 
           <Reveal variant="trigger" className="mt-16 sm:mt-20">
             <h3 className="mb-8 text-lg text-fg-muted">{t.approach.title}</h3>
-            <ol className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-              {t.approach.items.map((item, i) => (
-                <li
-                  key={item}
-                  className="stagger-item border-t border-fg/20 pt-6"
-                >
-                  <span className="font-display text-5xl font-semibold text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-4 leading-relaxed text-fg/80">{item}</p>
-                </li>
-              ))}
-            </ol>
+            <NumberedList
+              items={t.approach.items.map((body) => ({ body }))}
+              columns={4}
+              big
+            />
           </Reveal>
 
           <Reveal className="mt-20 flex flex-col gap-6 border-t border-fg/20 pt-10 md:flex-row md:items-center md:justify-between md:gap-16">
@@ -351,7 +234,7 @@ export function HomeView({
       <section className="py-24 sm:py-32">
         <Container>
           <Reveal className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
-            <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               {t.faq.title}
             </h2>
             <Faq
@@ -367,66 +250,28 @@ export function HomeView({
         </Container>
       </section>
 
-      {/* ------------------------------------------------ Closing / contact */}
-      <section className="border-t border-fg/10">
-        <Container className="py-24 sm:py-32">
-          <Reveal>
-            <Kicker>{t.closing.kicker}</Kicker>
-            <h2 className="mt-8">
-              <Link
-                href={contactHref}
-                className="group flex items-center justify-between gap-6"
-              >
-                <span className="text-display-xl transition-colors duration-300 group-hover:text-accent">
-                  {t.closing.contactTitle}
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-accent text-accent-fg transition-transform duration-500 ease-out-expo group-hover:rotate-45 sm:size-24"
-                >
-                  <ArrowUpRight className="size-6 sm:size-10" />
-                </span>
-              </Link>
-            </h2>
-          </Reveal>
-
-          <Reveal className="mt-16 grid gap-8 border-t border-fg/15 pt-8 sm:mt-24 sm:grid-cols-3">
-            <div>
-              <p className="text-sm text-fg-muted">{c.phoneLabel}</p>
-              <a
-                href={c.phoneHref}
-                className="mt-1 inline-block text-lg font-semibold hover:text-accent"
-              >
-                {c.phone}
-              </a>
-            </div>
-            <div>
-              <p className="text-sm text-fg-muted">{c.emailLabel}</p>
-              <a
-                href={c.emailHref}
-                className="mt-1 inline-block break-words text-lg font-semibold hover:text-accent"
-              >
-                {c.email}
-              </a>
-            </div>
-            <div className="flex flex-col items-start gap-1">
-              <p className="text-sm text-fg-muted">{t.closing.title}</p>
-              <Link
-                href={oleHref}
-                className="inline-flex min-h-9 items-center font-semibold hover:text-accent"
-              >
-                {t.closing.ctaOle}
-              </Link>
-              <Link
-                href={namazHref}
-                className="inline-flex min-h-9 items-center font-semibold hover:text-accent"
-              >
-                {t.closing.ctaNamaz}
-              </Link>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
+      {/* ------------------------------------------------ Closing */}
+      <ClosingCta
+        kicker={dict.common.cta.kicker}
+        title={dict.common.cta.title}
+        href={contactHref}
+      >
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-8">
+          <p className="text-sm text-fg-muted">{t.closing.title}</p>
+          <Link
+            href={tiles.ole.href}
+            className="inline-flex min-h-11 items-center font-semibold"
+          >
+            <span className="link-underline">{t.closing.ctaOle}</span>
+          </Link>
+          <Link
+            href={tiles.namaz.href}
+            className="inline-flex min-h-11 items-center font-semibold"
+          >
+            <span className="link-underline">{t.closing.ctaNamaz}</span>
+          </Link>
+        </div>
+      </ClosingCta>
     </>
   );
 }
