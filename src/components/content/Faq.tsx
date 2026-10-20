@@ -28,7 +28,7 @@ export function Faq({ items }: { items: QA[] }) {
           {item.link ? (
             <Link
               href={item.link.href}
-              className="mb-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-accent hover:gap-2.5"
+              className="mb-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-fg underline decoration-accent decoration-2 underline-offset-4 hover:gap-2.5"
             >
               {item.link.label}
               <ArrowRight className="size-4" aria-hidden="true" />

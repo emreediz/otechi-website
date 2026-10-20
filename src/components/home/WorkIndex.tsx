@@ -72,15 +72,15 @@ export function WorkIndex({ rows }: { rows: WorkRow[] }) {
               onFocus={() => setActive(null)}
               className={cn(
                 "group/row grid grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-1 py-6 transition-opacity duration-300 sm:gap-x-8 md:grid-cols-[3rem_1.4fr_1fr_auto] md:py-8",
-                active && active !== row.id && "md:opacity-25",
+                active && active !== row.id && "md:opacity-50",
               )}
             >
-              <span className="self-start pt-2 font-mono text-xs tracking-widest text-fg-muted md:self-center md:pt-0">
+              <span className="self-start pt-2 text-xs tabular-nums tracking-widest text-fg-muted md:self-center md:pt-0">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
               <span className="min-w-0">
-                <span className="block font-display text-3xl font-semibold leading-none tracking-tight transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-5xl md:group-hover/row:translate-x-3 lg:text-6xl">
+                <span className="block text-row transition-transform duration-500 ease-out-expo md:group-hover/row:translate-x-3">
                   {row.name}
                   {row.suffix ? (
                     <span className="text-fg-muted"> {row.suffix}</span>
@@ -126,7 +126,7 @@ export function WorkIndex({ rows }: { rows: WorkRow[] }) {
       >
         <div
           className={cn(
-            "relative -mt-28 h-56 w-80 overflow-hidden rounded-2xl shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)] transition-[opacity,scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+            "relative -mt-28 h-56 w-80 overflow-hidden rounded-2xl shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)] transition-[opacity,scale] duration-300 ease-out-expo",
             active ? "scale-100 opacity-100" : "scale-75 opacity-0",
           )}
         >

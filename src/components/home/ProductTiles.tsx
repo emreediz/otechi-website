@@ -93,7 +93,7 @@ function Tile({
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
       className={cn(
-        "group relative isolate flex aspect-[3/4] flex-col overflow-hidden rounded-3xl text-white sm:aspect-square lg:aspect-[5/6] md:cursor-none",
+        "group relative isolate flex aspect-[3/4] flex-col overflow-hidden rounded-3xl text-white sm:aspect-square lg:aspect-[5/6] md:pointer-fine:cursor-none",
         dark,
       )}
     >
@@ -131,14 +131,14 @@ function Tile({
       <div className="p-6 [text-shadow:0_1px_14px_rgba(0,0,0,0.55)] sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <p className="text-sm font-medium text-white/75">
-            <span className="mr-3 font-mono text-xs tracking-widest text-white/50">
+            <span className="mr-3 text-xs tabular-nums tracking-widest text-white/60">
               {tile.index}
             </span>
             {tile.category}
           </p>
           <span
             aria-hidden="true"
-            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-accent text-accent-fg transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45 group-focus-visible:rotate-45"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-accent text-accent-fg transition-transform duration-500 ease-out-expo group-hover:rotate-45 group-focus-visible:rotate-45"
           >
             <ArrowUpRight className="size-5" />
           </span>
@@ -154,7 +154,7 @@ function Tile({
       {/* Phone screens: peek at rest, rise on hover / keyboard focus */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-[68%] justify-center gap-3 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-[38%] group-focus-visible:translate-y-[38%] sm:gap-4"
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-[68%] justify-center gap-3 transition-transform duration-700 ease-out-expo group-hover:translate-y-[38%] group-focus-visible:translate-y-[38%] sm:gap-4"
       >
         {tile.screens.map((s, i) => (
           <Image
@@ -165,7 +165,7 @@ function Tile({
             height={s.h}
             sizes="(min-width: 1024px) 11rem, 32vw"
             className={cn(
-              "h-auto w-[32%] max-w-[11rem] rounded-[1.25rem] border-4 border-black/80 shadow-2xl transition-[rotate,translate] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+              "h-auto w-[32%] max-w-[11rem] rounded-[1.25rem] border-4 border-black/80 shadow-2xl transition-[rotate,translate] duration-700 ease-out-expo",
               i === 0
                 ? "-rotate-3 group-hover:-rotate-6"
                 : "translate-y-6 rotate-3 group-hover:translate-y-2 group-hover:rotate-6",

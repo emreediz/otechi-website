@@ -6,7 +6,8 @@ import "./globals.css";
 // Single type family for the whole site.
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800"],
+  // 300 for large figures and prices; 800 was never used.
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -27,7 +28,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className={poppins.variable} suppressHydrationWarning>
+    <html
+      lang="tr"
+      className={poppins.variable}
+      // Smooth anchor scrolling is on (globals.css); this tells Next.js to
+      // jump instantly to the top on route changes instead.
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="min-h-dvh">
         <script
           dangerouslySetInnerHTML={{

@@ -40,7 +40,7 @@ export function PageHero({
         >
           <div className="max-w-2xl">
             {kicker ? (
-              <p className="hero-rise hero-rise-1 font-display text-sm font-semibold uppercase tracking-wide text-accent">
+              <p className="hero-rise hero-rise-1 font-display text-sm font-semibold text-accent">
                 {kicker}
               </p>
             ) : null}

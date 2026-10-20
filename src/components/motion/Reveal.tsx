@@ -15,12 +15,10 @@ import type { ReactNode } from "react";
  */
 export function Reveal({
   variant = "fade",
-  delay = 0,
   className,
   children,
 }: {
   variant?: "fade" | "trigger";
-  delay?: number;
   className?: string;
   children: ReactNode;
 }) {
@@ -50,7 +48,6 @@ export function Reveal({
       data-reveal=""
       data-trigger={variant === "trigger" ? "" : undefined}
       data-shown={shown ? "" : undefined}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
       className={className}
     >
       {children}

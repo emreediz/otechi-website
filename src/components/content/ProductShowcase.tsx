@@ -38,7 +38,7 @@ export function ProductShowcase({
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div className={cn(reversed && "lg:order-2")}>
               {eyebrow ? (
-                <p className="font-display text-sm font-semibold uppercase tracking-wide text-accent">
+                <p className="font-display text-sm font-semibold text-accent">
                   {eyebrow}
                 </p>
               ) : null}

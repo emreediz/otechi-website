@@ -4,26 +4,17 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "./Container";
 
 export function Section({
-  id,
-  className,
-  containerClassName,
   subtle = false,
   animate = true,
   children,
 }: {
-  id?: string;
-  className?: string;
-  containerClassName?: string;
   subtle?: boolean;
   animate?: boolean;
   children: ReactNode;
 }) {
-  const inner = <Container className={containerClassName}>{children}</Container>;
+  const inner = <Container>{children}</Container>;
   return (
-    <section
-      id={id}
-      className={cn("py-16 sm:py-24", subtle && "bg-bg-subtle", className)}
-    >
+    <section className={cn("py-16 sm:py-24", subtle && "bg-bg-subtle")}>
       {animate ? <Reveal>{inner}</Reveal> : inner}
     </section>
   );

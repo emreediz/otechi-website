@@ -1,14 +1,15 @@
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
 import { ArrowDown, ArrowUpRight, MoveHorizontal } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import { IMG, type PhotoKey } from "@/config/assets";
-import { cn } from "@/lib/cn";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Kicker } from "@/components/ui/Kicker";
+import { SectionHead } from "@/components/ui/SectionHead";
+import { MaskedTitle } from "@/components/ui/MaskedTitle";
 import { Reveal } from "@/components/motion/Reveal";
 import { Faq } from "@/components/content/Faq";
 import { ProductTiles } from "@/components/home/ProductTiles";
@@ -96,8 +97,8 @@ export function HomeView({
       <section className="relative">
         <Container className="pb-16 pt-14 sm:pb-24 sm:pt-24 lg:pt-32">
           <Kicker className="hero-rise hero-rise-1">{t.hero.kicker}</Kicker>
-          <h1 className="mt-8 font-display text-[clamp(2.25rem,8.6vw,7rem)] font-semibold leading-[1.02] tracking-[-0.035em] sm:mt-10">
-            <HeroTitle title={t.hero.title} highlight={t.hero.highlight} />
+          <h1 className="mt-8 text-display-l sm:mt-10">
+            <MaskedTitle text={t.hero.title} highlight={t.hero.highlight} />
           </h1>
 
           <div className="mt-12 grid gap-8 border-t border-fg/15 pt-8 sm:mt-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
@@ -206,7 +207,7 @@ export function HomeView({
           </Reveal>
           <ScrollFillText
             text={s.home.studioBody}
-            className="mt-8 max-w-5xl font-display text-[clamp(1.6rem,3.6vw,3.25rem)] font-medium leading-[1.18] tracking-[-0.02em]"
+            className="mt-8 max-w-5xl text-statement"
           />
           <Reveal variant="trigger" className="mt-16 sm:mt-24">
             <ul className="grid gap-x-8 gap-y-10 md:grid-cols-3">
@@ -215,7 +216,7 @@ export function HomeView({
                   key={item.title}
                   className="stagger-item border-t border-fg/15 pt-6"
                 >
-                  <span className="font-mono text-xs tracking-widest text-accent">
+                  <span className="text-xs tabular-nums tracking-widest text-fg-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
@@ -299,42 +300,42 @@ export function HomeView({
       </section>
 
       {/* ------------------------------------------------ Approach (dark) */}
-      <section className="bg-black py-24 text-white sm:py-32">
+      <section data-surface="dark" className="py-24 sm:py-32">
         <Container>
           <Reveal>
-            <Kicker tone="dark">{t.approach.kicker}</Kicker>
-            <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.25rem,6vw,5rem)] font-semibold leading-[1.02] tracking-[-0.035em]">
+            <Kicker>{t.approach.kicker}</Kicker>
+            <h2 className="mt-8 max-w-4xl text-display-m">
               {s.home.studioTitle}
             </h2>
           </Reveal>
 
           <Reveal variant="trigger" className="mt-16 sm:mt-20">
-            <h3 className="mb-8 text-lg text-white/60">{t.approach.title}</h3>
+            <h3 className="mb-8 text-lg text-fg-muted">{t.approach.title}</h3>
             <ol className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
               {t.approach.items.map((item, i) => (
                 <li
                   key={item}
-                  className="stagger-item border-t border-white/20 pt-6"
+                  className="stagger-item border-t border-fg/20 pt-6"
                 >
                   <span className="font-display text-5xl font-semibold text-accent">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="mt-4 leading-relaxed text-white/80">{item}</p>
+                  <p className="mt-4 leading-relaxed text-fg/80">{item}</p>
                 </li>
               ))}
             </ol>
           </Reveal>
 
-          <Reveal className="mt-20 flex flex-col gap-6 border-t border-white/20 pt-10 md:flex-row md:items-center md:justify-between md:gap-16">
+          <Reveal className="mt-20 flex flex-col gap-6 border-t border-fg/20 pt-10 md:flex-row md:items-center md:justify-between md:gap-16">
             <div className="max-w-2xl">
               <h3 className="text-lg font-semibold">{t.aboutStrip.title}</h3>
-              <p className="mt-2 leading-relaxed text-white/60">
+              <p className="mt-2 leading-relaxed text-fg-muted">
                 {t.aboutStrip.body}
               </p>
             </div>
             <Link
               href={localizedPath("about", locale)}
-              className="group inline-flex min-h-11 shrink-0 items-center gap-3 self-start rounded-full border border-white/25 px-6 font-medium transition-colors hover:border-white hover:bg-white hover:text-black md:self-auto"
+              className="group inline-flex min-h-11 shrink-0 items-center gap-3 self-start rounded-full border border-fg/25 px-6 font-medium transition-colors hover:border-fg hover:bg-fg hover:text-bg md:self-auto"
             >
               {t.aboutStrip.cta}
               <ArrowUpRight
@@ -376,12 +377,12 @@ export function HomeView({
                 href={contactHref}
                 className="group flex items-center justify-between gap-6"
               >
-                <span className="font-display text-[clamp(2.5rem,9vw,8rem)] font-semibold leading-[0.98] tracking-[-0.04em] transition-colors duration-300 group-hover:text-accent">
+                <span className="text-display-xl transition-colors duration-300 group-hover:text-accent">
                   {t.closing.contactTitle}
                 </span>
                 <span
                   aria-hidden="true"
-                  className="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-accent text-accent-fg transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45 sm:size-24"
+                  className="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-accent text-accent-fg transition-transform duration-500 ease-out-expo group-hover:rotate-45 sm:size-24"
                 >
                   <ArrowUpRight className="size-6 sm:size-10" />
                 </span>
@@ -428,77 +429,4 @@ export function HomeView({
       </section>
     </>
   );
-}
-
-/** Small label with the Otechi orange dot. */
-function Kicker({
-  children,
-  tone = "light",
-  className,
-}: {
-  children: ReactNode;
-  tone?: "light" | "dark";
-  className?: string;
-}) {
-  return (
-    <p
-      className={cn(
-        "flex items-center gap-2.5 text-sm font-medium",
-        tone === "dark" ? "text-white/70" : "text-fg-muted",
-        className,
-      )}
-    >
-      <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
-      {children}
-    </p>
-  );
-}
-
-function SectionHead({ kicker, title }: { kicker: string; title: string }) {
-  return (
-    <div className="max-w-3xl">
-      <Kicker>{kicker}</Kicker>
-      <h2 className="mt-5 font-display text-[clamp(1.9rem,4.4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
-        {title}
-      </h2>
-    </div>
-  );
-}
-
-/**
- * Splits the headline into masked words that slide up on load; the words
- * of `highlight` are set in the accent colour. The spans keep the reading
- * order, so screen readers still get the plain sentence.
- */
-function HeroTitle({ title, highlight }: { title: string; highlight: string }) {
-  const hlStart = title.indexOf(highlight);
-  const hlEnd = hlStart === -1 ? -1 : hlStart + highlight.length;
-
-  // Split on spaces, keeping each word's offset so a word can be partly
-  // highlighted (e.g. "products." -> "products" + ".").
-  const words: { text: string; at: number }[] = [];
-  let pos = 0;
-  for (const text of title.split(" ")) {
-    if (text) words.push({ text, at: pos });
-    pos += text.length + 1;
-  }
-
-  return words.map(({ text, at }, i) => {
-    const from = Math.max(0, Math.min(text.length, hlStart - at));
-    const to = Math.max(0, Math.min(text.length, hlEnd - at));
-    return (
-      <span key={i}>
-        {i > 0 ? " " : null}
-        <span className="mask-word">
-          <span style={{ "--i": i } as CSSProperties}>
-            {text.slice(0, from)}
-            {to > from ? (
-              <span className="text-accent">{text.slice(from, to)}</span>
-            ) : null}
-            {text.slice(Math.max(from, to))}
-          </span>
-        </span>
-      </span>
-    );
-  });
 }
