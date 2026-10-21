@@ -577,6 +577,7 @@ export const en: Dictionary = {
 
   mock: {
     caption: "Illustrative UI",
+    percent: "{n}%",
     ole: {
       category: "Specialty coffee",
       rewardLabel: "Reward",
@@ -591,6 +592,12 @@ export const en: Dictionary = {
       campaignTitle: "Your first coffee’s on us",
       campaignBody: "For your first visit — pick a coffee and enjoy.",
       campaignDays: "30 days",
+      appLabel: "Customer app",
+      jeton: "Tokens",
+      moreCampaigns: "+1 more campaign",
+      address: "Bahçelievler, Karşıyaka",
+      distance: "0.7 km",
+      earned: "+1 token",
     },
     panel: {
       nav: ["Overview", "QR code", "Campaigns", "Notifications", "Branches", "Reports"],
@@ -624,6 +631,8 @@ export const en: Dictionary = {
       sendTitle: "Send a notification",
       branches: ["Main branch", "Kadıköy branch", "Beşiktaş branch"],
       allBranches: "All branches",
+      appLabel: "Business dashboard",
+      rewardRate: "Rewards redeemed",
     },
     namaz: {
       today: "Today",
@@ -638,6 +647,10 @@ export const en: Dictionary = {
       groupName: "Circle of Friends",
       groupMeta: "3 members · today’s prayers",
       invite: "Invite code",
+      appLabel: "Personal app",
+      intentLabel: "Today’s intention",
+      intent: "Take a step for yourself today.",
+      streakCount: "12",
     },
   },
 

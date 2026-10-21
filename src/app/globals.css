@@ -489,6 +489,73 @@ body > .cursor-dot {
   }
 }
 
+/* Product artworks (ProductArt.tsx): floating, drawing, growing, twinkling.
+   Offsets come from `--float-delay`, `--i` and `--twinkle-delay`. */
+.art-float {
+  animation: art-float 7s ease-in-out var(--float-delay, 0s) infinite alternate;
+}
+.art-float-slow {
+  animation: art-float-slow 9s ease-in-out var(--float-delay, 0s) infinite
+    alternate;
+}
+@keyframes art-float {
+  from {
+    transform: translateY(-1.6%) rotate(-3deg);
+  }
+  to {
+    transform: translateY(1.6%) rotate(3deg);
+  }
+}
+@keyframes art-float-slow {
+  from {
+    translate: 0 -1.5%;
+  }
+  to {
+    translate: 0 1.5%;
+  }
+}
+.art-pop {
+  animation: art-pop 0.9s var(--ease-out-expo) 0.5s both;
+}
+@keyframes art-pop {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+.art-draw {
+  animation: art-draw 1.6s var(--ease-out-expo) 0.2s both;
+}
+@keyframes art-draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.art-bar {
+  animation: art-bar 1s var(--ease-out-expo) both;
+  animation-delay: calc(0.2s + var(--i, 0) * 0.07s);
+}
+@keyframes art-bar {
+  from {
+    transform: scaleY(0);
+  }
+}
+.art-twinkle {
+  animation: art-twinkle 3.6s ease-in-out var(--twinkle-delay, 0s) infinite;
+}
+@keyframes art-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
 /* Home stage: slides cross-fade; their copy rises in. */
 .stage-slide {
   opacity: 0;
@@ -576,6 +643,32 @@ html:active-view-transition-type(menu-nav)::view-transition-old(.page-exit) {
   z-index: 1;
   animation: none;
 }
+/* Product pill in the menu (types menu-nav + menu-expand, large screens):
+   instead of wiping up, the new page grows out of the menu's centre frame
+   into full screen, as when the menu closes. The page snapshot is as tall
+   as the page, so the bottom inset is measured from the viewport bottom. */
+@media (min-width: 1024px) {
+  html:active-view-transition-type(menu-expand)::view-transition-new(.page-enter) {
+    animation: menu-expand 0.9s var(--ease-in-out-quart) both;
+  }
+}
+@keyframes menu-expand {
+  0% {
+    clip-path: inset(
+      var(--mf-t) var(--mf-r) calc(100% - 100vh + var(--mf-b)) var(--mf-l)
+        round 0.375rem
+    );
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 calc(100% - 100vh) 0 round 0);
+    opacity: 1;
+  }
+}
+
 /* The bar would sit over the menu's own bar: bring it in only as the wipe
    completes (the live cursor dot stays visible throughout). */
 html:active-view-transition-type(menu-nav)::view-transition-group(site-header) {
@@ -912,7 +1005,13 @@ html.js [data-reveal]:not([data-shown]) .mock-grow {
   }
   .glass-spin,
   .glass-breathe,
-  .menu-dialog .menu-item {
+  .menu-dialog .menu-item,
+  .art-float,
+  .art-float-slow,
+  .art-pop,
+  .art-draw,
+  .art-bar,
+  .art-twinkle {
     animation: none !important;
   }
   html.js [data-reveal] .mock-pop {

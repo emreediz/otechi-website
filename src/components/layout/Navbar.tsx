@@ -19,7 +19,7 @@ import { MenuOverlay } from "@/components/frame/MenuOverlay";
  * Fixed top bar: "Menu" on the left, the wordmark in the centre, the local
  * time, theme switch and e-mail on the right. Once a small sentinel scrolls
  * away the bar condenses into one centred pill (`.site-header[data-scrolled]`).
- * On the home page it always uses the dark palette (it sits on the stage).
+ * On the home and product pages it uses the dark palette (stage / cover).
  */
 export function Navbar({
   locale,
@@ -35,7 +35,11 @@ export function Navbar({
   const headerRef = useRef<HTMLElement | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const menuRef = useRef<HTMLDialogElement | null>(null);
-  const isHome = pathname === localizedPath("home", locale);
+  // Home and product pages open on a dark stage or cover: the bar uses the
+  // dark palette there in any mode.
+  const darkTop = (
+    ["home", "productOle", "productPanel", "productNamaz"] as const
+  ).some((key) => pathname === localizedPath(key, locale));
 
   useEffect(() => {
     const header = headerRef.current;
@@ -59,7 +63,7 @@ export function Navbar({
       />
       <header
         ref={headerRef}
-        data-surface={isHome ? "dark" : undefined}
+        data-surface={darkTop ? "dark" : undefined}
         // Stays put during page transitions (globals.css).
         style={{ viewTransitionName: "site-header" }}
         className="site-header pointer-events-none fixed inset-x-0 top-0 z-50 !bg-transparent print:hidden"

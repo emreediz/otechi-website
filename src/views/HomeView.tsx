@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
-import { IMG } from "@/config/assets";
 import { cn } from "@/lib/cn";
 import { GLASS, showcaseItems, type ShowcaseKey } from "@/lib/showcase";
 import { PageTransition } from "@/components/motion/PageTransition";
@@ -12,9 +11,12 @@ import {
   StageLink,
   type StageSlide,
 } from "@/components/stage/HomeStage";
-import { OleNotification } from "@/components/mock/OleMocks";
-import { PanelDashboard } from "@/components/mock/PanelMocks";
-import { NamazToday, NamazWeek } from "@/components/mock/NamazMocks";
+import {
+  ArtBackdrop,
+  NamazArt,
+  OleArt,
+  PanelArt,
+} from "@/components/visual/ProductArt";
 
 const rise = (i: number) => ({ "--i": i }) as CSSProperties;
 
@@ -42,33 +44,6 @@ function GlassBackdrop() {
         </div>
       </div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,transparent_35%,rgb(0_0_0/0.7)_100%),linear-gradient(to_top,rgb(0_0_0/0.7),transparent_55%)]" />
-    </div>
-  );
-}
-
-/** Full-bleed photo backdrop, darkened, with a tint from the bottom. */
-function PhotoBackdrop({
-  src,
-  tint,
-}: {
-  src: string;
-  tint: string;
-}) {
-  return (
-    <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-      <Image
-        src={src}
-        alt=""
-        fill
-        sizes="100vw"
-        className="stage-media object-cover brightness-[0.38] saturate-[0.85]"
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `linear-gradient(to top, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.2) 55%, rgb(0 0 0 / 0.55)), radial-gradient(70% 60% at 30% 80%, ${tint}, transparent 70%)`,
-        }}
-      />
     </div>
   );
 }
@@ -110,48 +85,15 @@ export function HomeView({
   const items = showcaseItems(locale);
 
   const backgrounds: Record<ShowcaseKey, ReactNode> = {
-    ole: <PhotoBackdrop src={IMG.photos.ole2.src} tint="rgb(253 94 0 / 0.28)" />,
+    ole: <ArtBackdrop kind="ole" />,
     panel: <GridBackdrop />,
-    namaz: <PhotoBackdrop src={IMG.namaz.art} tint="rgb(0 107 77 / 0.45)" />,
+    namaz: <ArtBackdrop kind="namaz" />,
   };
 
   const previews: Record<ShowcaseKey, ReactNode> = {
-    ole: (
-      <>
-        <Image
-          src={IMG.photos.ole4.src}
-          alt=""
-          fill
-          sizes="40vw"
-          className="object-cover"
-        />
-        <div className="absolute bottom-4 left-4 w-[min(20rem,80%)]">
-          <OleNotification copy={mock.ole} />
-        </div>
-      </>
-    ),
-    panel: (
-      <div className="absolute inset-0 grid place-items-center bg-[radial-gradient(90%_80%_at_70%_0%,#1d2b55,#05070d)] p-[6%]">
-        <PanelDashboard
-          copy={mock.panel}
-          campaignLive
-          className="w-[150%] max-w-none shrink-0 scale-[0.62] md:w-full md:scale-100"
-        />
-      </div>
-    ),
-    namaz: (
-      <div className="absolute inset-0 flex items-center justify-center gap-4 bg-[radial-gradient(90%_80%_at_30%_0%,#0d5a43,#03140e)] p-[5%]">
-        <NamazToday
-          copy={mock.namaz}
-          done={[true, true, true, false, false]}
-          className="origin-center shrink-0 scale-[0.5] md:scale-[0.82]"
-        />
-        <NamazWeek
-          copy={mock.namaz}
-          className="hidden origin-center scale-[0.82] lg:block"
-        />
-      </div>
-    ),
+    ole: <OleArt copy={mock} layout="landscape" />,
+    panel: <PanelArt copy={mock} layout="landscape" />,
+    namaz: <NamazArt copy={mock} layout="landscape" />,
   };
 
   const productSlides: StageSlide[] = items.map((item, i) => {

@@ -14,8 +14,12 @@ const FRAME = "[data-menu-frame]";
 /** The menu transition in flight; only it may clear the html classes. */
 let running: ViewTransition | null = null;
 
-/** Inset of the centre frame from each viewport edge, as CSS variables. */
-function setFrameVars(dialog: HTMLDialogElement) {
+/**
+ * Inset of the centre frame from each viewport edge, as CSS variables
+ * (`--mf-*`). Also used before a product link expands the frame into its
+ * page (`menu-expand` in globals.css).
+ */
+export function setFrameVars(dialog: HTMLDialogElement) {
   const r = dialog.querySelector(FRAME)?.getBoundingClientRect();
   if (!r || r.width === 0) return;
   const root = document.documentElement;

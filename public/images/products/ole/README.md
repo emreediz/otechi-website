@@ -20,6 +20,7 @@ Maskot, kişisel ad, gerçek görünümlü QR, müşteri kodu ve Ole dışındak
 | Dosya | Kaynak | İşlem |
 |---|---|---|
 | `token.webp` (640²) | `ole-glass-token-1.png` | Şeffaf WebP |
+| `token-1080.webp` (1080²) | `ole-glass-token-1.png` | Şeffaf WebP, yüksek çözünürlük (kapak ve menü grafikleri) |
 | `logo.png` | `ole-logo.png` | Küçültülmüş eski kopya — artık kullanılmıyor |
 | `screen-home.jpg` (900×1947) | `ole-home-page.PNG` | Selamlamadaki kullanıcı adı ve "Roots Plus" işletme kartı kaldırıldı |
 | `screen-loyalty.jpg` (900×1947) | `ole-sadakat-sistemi.PNG` | Küçültüldü |
@@ -31,6 +32,7 @@ Maskot, kişisel ad, gerçek görünümlü QR, müşteri kodu ve Ole dışındak
 | `panel-qr-form.jpg` (860×1020) | `ole-panel.png` | "QR Kod Üretimi" formu kırpımı |
 | `panel-verify.jpg` (860×714) | `ole-panel.png` | "Kod Doğrulama" kartı kırpımı |
 | `nfc.webp` (382×760) | Ole'nin kendi site görseli | Olduğu gibi |
+| `ole-coffee-photo.jpg` (402×506) | `ole-home-page.PNG` | "Ole Coffee" işletme kartının fotoğrafı (kırpım) |
 | `token.png` (760²) | `ole-glass-token-1.png` | Eski kopya — artık kullanılmıyor |
 
 Yollar ve boyutlar: `src/config/assets.ts`.

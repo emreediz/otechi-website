@@ -12,13 +12,21 @@ import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import { cn } from "@/lib/cn";
 import { GLASS, type ShowcaseItem, type ShowcaseKey } from "@/lib/showcase";
-import { closeMenu } from "@/lib/menuTransition";
+import {
+  ArtThumb,
+  NamazArt,
+  OleArt,
+  PanelArt,
+} from "@/components/visual/ProductArt";
+import { closeMenu, setFrameVars } from "@/lib/menuTransition";
 import { Logo } from "@/components/Logo";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { CityClock } from "./CityClock";
 import { ModeToggle } from "./ModeToggle";
 
 const NAV_TYPES = ["menu-nav"];
+// Product pills: on large screens the centre frame grows into the page.
+const EXPAND_TYPES = ["menu-nav", "menu-expand"];
 
 /**
  * Full-screen menu on a native modal <dialog> (focus trap, Esc and focus
@@ -170,8 +178,11 @@ export function MenuOverlay({
                 >
                   <Link
                     href={item.href}
-                    onClick={leave}
-                    transitionTypes={NAV_TYPES}
+                    onClick={(e) => {
+                      if (dialogRef.current) setFrameVars(dialogRef.current);
+                      leave(e);
+                    }}
+                    transitionTypes={EXPAND_TYPES}
                     onPointerEnter={() => setPreview(item.key)}
                     onPointerLeave={() => setPreview(null)}
                     onFocus={() => setPreview(item.key)}
@@ -225,22 +236,24 @@ export function MenuOverlay({
                 className="glass-spin w-[160%] max-w-none"
               />
             </div>
-            {items.map((item) => (
-              <Image
-                key={item.key}
-                src={item.image.src}
-                alt=""
-                width={item.image.w}
-                height={item.image.h}
-                sizes="36rem"
-                className={cn(
-                  "absolute inset-0 size-full object-cover transition-[opacity,scale] duration-700 ease-out-expo",
-                  preview === item.key
-                    ? "scale-100 opacity-100"
-                    : "scale-105 opacity-0",
-                )}
-              />
-            ))}
+            {items.map((item) => {
+              const Art = { ole: OleArt, panel: PanelArt, namaz: NamazArt }[
+                item.key
+              ];
+              return (
+                <div
+                  key={item.key}
+                  className={cn(
+                    "absolute inset-0 transition-[opacity,scale] duration-700 ease-out-expo",
+                    preview === item.key
+                      ? "scale-100 opacity-100"
+                      : "scale-105 opacity-0",
+                  )}
+                >
+                  <Art copy={dict.mock} layout="portrait" />
+                </div>
+              );
+            })}
           </div>
 
           {/* Right: announcements */}
@@ -271,14 +284,7 @@ export function MenuOverlay({
                     transitionTypes={NAV_TYPES}
                   className="mt-3 flex items-center gap-4"
                 >
-                  <Image
-                    src={item.image.src}
-                    alt=""
-                    width={item.image.w}
-                    height={item.image.h}
-                    sizes="5rem"
-                    className="size-16 shrink-0 rounded object-cover"
-                  />
+                  <ArtThumb kind={key} />
                   <span className="text-sm leading-snug text-fg-muted">
                     {nav.news[key]}
                   </span>

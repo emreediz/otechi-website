@@ -251,3 +251,63 @@ export function ProductRows({
     </ul>
   );
 }
+
+/**
+ * Product cover: the product artwork full screen (portrait art on phones
+ * and portrait tablets, landscape on landscape screens from md), the name
+ * very large on it (below it on phones), then the facts row. A product pill in the menu grows its preview frame into
+ * this cover (`menu-expand` in globals.css).
+ */
+export function CaseCover({
+  title,
+  meta,
+  portrait,
+  landscape,
+}: {
+  title: string;
+  meta: { label: string; value: string }[];
+  portrait: ReactNode;
+  landscape: ReactNode;
+}) {
+  return (
+    <header>
+      <div className="relative">
+        <div className="relative h-[82svh] overflow-hidden bg-black md:h-svh">
+          {/* Portrait art on phones and portrait tablets, landscape art
+              on landscape screens from md. */}
+          <div className="absolute inset-0 md:landscape:hidden">{portrait}</div>
+          <div className="absolute inset-0 max-md:hidden md:portrait:hidden">
+            {landscape}
+          </div>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.6),transparent_40%)] max-md:bg-[linear-gradient(to_top,rgb(0_0_0/0.5),transparent_25%)]"
+          />
+        </div>
+        <h1
+          className={cn(
+            EDGE,
+            "pt-8 text-display-xl md:absolute md:inset-x-0 md:bottom-[clamp(1.5rem,4vw,3.5rem)] md:pt-0 md:text-white",
+          )}
+        >
+          <span className="hero-line">
+            <span>{title}</span>
+          </span>
+        </h1>
+      </div>
+      <dl
+        className={cn(
+          EDGE,
+          "hero-rise hero-rise-3 grid gap-6 pb-4 pt-10 sm:grid-cols-3 md:grid-cols-[1fr_auto_auto] md:gap-x-[8vw] md:pt-12",
+        )}
+      >
+        {meta.map((m) => (
+          <div key={m.label}>
+            <dt className="font-medium">{m.label}</dt>
+            <dd className="mt-1 text-fg-soft">{m.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </header>
+  );
+}

@@ -11,6 +11,10 @@ export const IMG = {
     artH: 640,
     // Same token at 96px for small UI use (coded app mock-ups)
     token: "/images/products/ole/web/token-96.webp",
+    // Ole Coffee business card photo (crop of the app home screen, 402 x 506)
+    cafePhoto: "/images/products/ole/web/ole-coffee-photo.jpg",
+    cafePhotoW: 402,
+    cafePhotoH: 506,
     // "ole" wordmark (680 x 380)
     logo: "/images/products/ole/web/logo.png",
     logoW: 680,

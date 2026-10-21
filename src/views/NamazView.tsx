@@ -13,9 +13,8 @@ import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { StoreBadges } from "@/components/content/StoreBadges";
 import {
+  CaseCover,
   CaseFeatures,
-  CaseHero,
-  CaseMedia,
   CaseText,
   CaseTiles,
   EDGE,
@@ -27,10 +26,12 @@ import {
   NamazToday,
   NamazWeek,
 } from "@/components/mock/NamazMocks";
+import { NamazArt } from "@/components/visual/ProductArt";
 
 /**
- * Namaz Motivasyonu as a case study, calmer motion (`data-calm`): name and
- * facts, a full-bleed photo, introduction, app mock-ups and photos,
+ * Namaz Motivasyonu as a case study, calmer motion (`data-calm`): a
+ * full-screen cover (night sky, today's intention, the ring of the five
+ * prayers) with the name and facts, introduction, app mock-ups and photos,
  * highlights, store badges, privacy and the Turkish-only documents, then
  * the next product.
  */
@@ -60,25 +61,16 @@ export function NamazView({
   return (
     <PageTransition>
       <article data-theme="namaz" data-calm="true">
-        <CaseHero
+        <CaseCover
           title={BRAND.products.namaz}
           meta={[
             { label: labels.audience, value: facts.audience },
             { label: labels.platform, value: facts.platform },
             { label: labels.status, value: facts.status },
           ]}
+          portrait={<NamazArt copy={mock} layout="portrait" cover />}
+          landscape={<NamazArt copy={mock} layout="landscape" cover />}
         />
-
-        <CaseMedia>
-          <Image
-            src={IMG.photos.namaz1.src}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        </CaseMedia>
 
         <CaseText label={c.introLabel}>
           <p className="text-statement text-balance">{t.intro}</p>

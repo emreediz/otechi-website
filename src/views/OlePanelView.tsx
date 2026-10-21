@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import {
+  CaseCover,
   CaseFeatures,
-  CaseHero,
   CaseMedia,
   CaseText,
   CaseTiles,
@@ -25,10 +25,12 @@ import {
   PanelQrCard,
   PanelVerifyCard,
 } from "@/components/mock/PanelMocks";
+import { PanelArt } from "@/components/visual/ProductArt";
 
 /**
- * Ole Panel as a case study: name and facts, the coded dashboard full
- * width, the introduction, media tiles, highlights, how to start, and the
+ * Ole Panel as a case study: a full-screen cover (the glass token among
+ * dashboard graphics) with the name and facts, the introduction, the coded
+ * dashboard full width, media tiles, highlights, how to start, and the
  * next product.
  */
 export function OlePanelView({
@@ -50,14 +52,23 @@ export function OlePanelView({
   return (
     <PageTransition>
       <article data-theme="panel">
-        <CaseHero
+        <CaseCover
           title={BRAND.products.olePanel}
           meta={[
             { label: labels.audience, value: facts.audience },
             { label: labels.platform, value: facts.platform },
             { label: labels.status, value: facts.status },
           ]}
+          portrait={<PanelArt copy={mock} layout="portrait" cover />}
+          landscape={<PanelArt copy={mock} layout="landscape" cover priority />}
         />
+
+        <CaseText label={c.introLabel}>
+          <p className="text-statement text-balance">{t.intro}</p>
+          <p className="mt-6 max-w-[46ch] text-lead text-fg-soft">
+            {t.hero.lead}
+          </p>
+        </CaseText>
 
         <CaseMedia>
           <MockStage tone="panel" className="p-[5%] sm:p-[6%]">
@@ -69,12 +80,6 @@ export function OlePanelView({
           </MockStage>
         </CaseMedia>
 
-        <CaseText label={c.introLabel}>
-          <p className="text-statement text-balance">{t.intro}</p>
-          <p className="mt-6 max-w-[46ch] text-lead text-fg-soft">
-            {t.hero.lead}
-          </p>
-        </CaseText>
 
         <CaseTiles
           tiles={[

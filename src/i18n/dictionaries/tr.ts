@@ -587,6 +587,8 @@ export const tr = {
   // Strings inside the coded app mock-ups (illustrative UI, sample data).
   mock: {
     caption: "Temsili arayüz",
+    // Percent in the artworks: "%60" in Turkish.
+    percent: "%{n}",
     ole: {
       category: "3. nesil kahveci",
       rewardLabel: "Ödül",
@@ -601,6 +603,12 @@ export const tr = {
       campaignTitle: "İlk kahven bizden",
       campaignBody: "İlk ziyaretine özel; kahveni seç, keyfini çıkar.",
       campaignDays: "30 gün",
+      appLabel: "Müşteri uygulaması",
+      jeton: "Jeton",
+      moreCampaigns: "+1 kampanya daha",
+      address: "Bahçelievler Mah., Karşıyaka",
+      distance: "0.7 km",
+      earned: "+1 jeton",
     },
     panel: {
       nav: ["Genel bakış", "QR kod", "Kampanyalar", "Bildirimler", "Şubeler", "Raporlar"],
@@ -634,6 +642,8 @@ export const tr = {
       sendTitle: "Bildirim gönder",
       branches: ["Merkez şube", "Kadıköy şubesi", "Beşiktaş şubesi"],
       allBranches: "Tüm şubeler",
+      appLabel: "İşletme paneli",
+      rewardRate: "Ödül kullanımı",
     },
     namaz: {
       today: "Bugün",
@@ -648,6 +658,10 @@ export const tr = {
       groupName: "Dostluk Halkası",
       groupMeta: "3 üye · bugünkü namaz durumu",
       invite: "Davet kodu",
+      appLabel: "Kişisel uygulama",
+      intentLabel: "Bugünün niyeti",
+      intent: "Bugün kendin için bir adım at.",
+      streakCount: "12",
     },
   },
 

@@ -12,8 +12,8 @@ import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { StoreBadges } from "@/components/content/StoreBadges";
 import {
+  CaseCover,
   CaseFeatures,
-  CaseHero,
   CaseMedia,
   CaseText,
   CaseTiles,
@@ -21,17 +21,14 @@ import {
   MockStage,
   NextProduct,
 } from "@/components/case/Case";
-import {
-  OleCampaignCard,
-  OleNotification,
-  OleRewardCard,
-} from "@/components/mock/OleMocks";
+import { OleCampaignCard, OleRewardCard } from "@/components/mock/OleMocks";
+import { OleArt } from "@/components/visual/ProductArt";
 import { QrPattern } from "@/components/mock/PanelMocks";
 import { cn } from "@/lib/cn";
 
 /**
- * Ole as a case study: name and facts, a full-bleed café photo with a live
- * notification, the introduction, media tiles (coded mock-ups and photos),
+ * Ole as a case study: a full-screen cover (glass token and the Ole Coffee
+ * business card) with the name and facts, the introduction, media tiles (coded mock-ups and photos),
  * highlights, how to start, and the next product. External links come from
  * `config/ole.ts` (main domain only).
  */
@@ -54,28 +51,16 @@ export function OleView({
   return (
     <PageTransition>
       <article data-theme="ole">
-        <CaseHero
+        <CaseCover
           title={BRAND.products.ole}
           meta={[
             { label: labels.audience, value: facts.audience },
             { label: labels.platform, value: facts.platform },
             { label: labels.status, value: facts.status },
           ]}
+          portrait={<OleArt copy={mock} layout="portrait" cover />}
+          landscape={<OleArt copy={mock} layout="landscape" cover priority />}
         />
-
-        <CaseMedia>
-          <Image
-            src={IMG.photos.ole1.src}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute bottom-[8%] right-[5%] w-[min(20rem,70vw)]">
-            <OleNotification copy={mock.ole} />
-          </div>
-        </CaseMedia>
 
         <CaseText label={c.introLabel}>
           <p className="text-statement text-balance">{t.intro}</p>
