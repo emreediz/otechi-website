@@ -55,6 +55,8 @@ export function AboutView({
             width={GLASS.w}
             height={GLASS.h}
             sizes="80vw"
+            loading="eager"
+            fetchPriority="high"
             className="glass-spin w-[min(120svh,90vw)] max-w-none brightness-90"
           />
         </div>

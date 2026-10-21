@@ -7,11 +7,11 @@
 export const OLE_BASE = "https://oletr.com";
 
 /**
- * The new Ole site's demo-request page is not live on oletr.com yet
- * (checked 2026-10-20: 404), so the demo link opens the home page for now.
- * Re-check before publishing and set this to `true` once it is live.
+ * The new Ole site's pages (the demo request form) are live on oletr.com
+ * (checked 2026-10-21: /demo-talep/ answers 200 with the form). Set to
+ * `false` to send these links to the home page instead.
  */
-const NEW_PAGES_LIVE = false;
+const NEW_PAGES_LIVE = true;
 const newPage = (path: string) => `${OLE_BASE}${NEW_PAGES_LIVE ? path : "/"}`;
 
 export const OLE_LINKS = {

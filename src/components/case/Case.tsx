@@ -311,3 +311,295 @@ export function CaseCover({
     </header>
   );
 }
+
+/** Large feature words sliding by (pauses for reduced motion). */
+export function Marquee({ words }: { words: string[] }) {
+  const row = (hidden: boolean) => (
+    <div
+      aria-hidden={hidden || undefined}
+      className="flex shrink-0 items-center gap-[4vw] pr-[4vw]"
+    >
+      {words.map((w, i) => (
+        <span key={i} className="flex items-center gap-[4vw]">
+          <span
+            className={cn(
+              "whitespace-nowrap text-display-l",
+              i % 2 === 1 && "text-transparent [-webkit-text-stroke:1.5px_var(--fg)]",
+            )}
+          >
+            {w}
+          </span>
+          <span aria-hidden="true" className="size-3 rounded-full bg-accent" />
+        </span>
+      ))}
+    </div>
+  );
+  return (
+    <section className="marquee overflow-hidden border-y border-border py-[clamp(2rem,4vw,3.5rem)]">
+      <div className="marquee-track flex w-max">
+        {row(false)}
+        {row(true)}
+      </div>
+    </section>
+  );
+}
+
+/** Highlights grid: dark product-tinted cards with a visual and a line. */
+export function Bento({
+  label,
+  children,
+}: {
+  label: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className={cn(EDGE, "py-[clamp(5rem,11vw,10rem)]")}>
+      <Reveal>
+        <h2 className="text-sm text-fg-soft">{label}</h2>
+      </Reveal>
+      <Reveal
+        variant="trigger"
+        className="mt-10 grid auto-rows-[minmax(17rem,auto)] gap-3 md:auto-rows-[minmax(22rem,auto)] md:grid-cols-2 lg:grid-cols-6"
+      >
+        {children}
+      </Reveal>
+    </section>
+  );
+}
+
+export function BentoCard({
+  title,
+  body,
+  visual,
+  stat,
+  tone,
+  bleed = false,
+  side = false,
+  link,
+  className,
+}: {
+  title: string;
+  body: string;
+  visual?: ReactNode;
+  /** Big figure instead of a visual (e.g. "₺0"). */
+  stat?: string;
+  tone: "ole" | "panel" | "namaz";
+  /** Text first; the visual places itself and runs off the card's edges. */
+  bleed?: boolean;
+  /** Wide cards: text beside the visual on large screens. */
+  side?: boolean;
+  link?: { href: string; label: string };
+  className?: string;
+}) {
+  const bg = {
+    ole: "bg-[radial-gradient(100%_80%_at_70%_0%,#5a2200_0%,#1a0800_60%,#090302_100%)]",
+    panel: "bg-[radial-gradient(100%_80%_at_70%_0%,#1d3577_0%,#0a1430_60%,#03060e_100%)]",
+    namaz: "bg-[radial-gradient(100%_80%_at_30%_0%,#13684c_0%,#062a20_60%,#020d0a_100%)]",
+  }[tone];
+  const lift =
+    "transition-transform duration-700 ease-out-expo group-hover:-translate-y-1";
+  return (
+    <article
+      data-surface="dark"
+      className={cn(
+        "stagger-item group relative flex flex-col overflow-hidden rounded-md text-white",
+        side && "lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]",
+        bg,
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          "relative min-w-0 flex-1",
+          bleed
+            ? "order-2 min-h-[17rem] sm:min-h-[20rem]"
+            : "grid place-items-center p-6 sm:p-8",
+          side && "lg:order-2",
+        )}
+      >
+        {stat ? (
+          <p className="text-[clamp(7rem,28vw,10rem)] font-light leading-none tracking-[-0.05em] transition-transform duration-700 ease-out-expo group-hover:scale-105 md:text-[clamp(5rem,12vw,10rem)]">
+            {stat}
+          </p>
+        ) : bleed ? (
+          <div aria-hidden="true" className={cn("absolute inset-0", lift)}>
+            {visual}
+          </div>
+        ) : (
+          <div
+            aria-hidden="true"
+            className={cn(
+              "grid w-full min-w-0 grid-cols-[minmax(0,1fr)] place-items-center",
+              lift,
+            )}
+          >
+            {visual}
+          </div>
+        )}
+      </div>
+      <div
+        className={cn(
+          "relative p-6 sm:p-8",
+          bleed ? "order-1 pb-0 sm:pb-0" : "pt-0 sm:pt-0",
+          side && "lg:order-1 lg:flex lg:flex-col lg:justify-end lg:pb-8 lg:pt-8",
+        )}
+      >
+        <h3 className="text-title">{title}</h3>
+        <p className="mt-2 max-w-[40ch] text-white/70">{body}</p>
+        {link ? (
+          <Link
+            href={link.href}
+            className="mt-5 inline-flex items-center gap-2 font-medium"
+          >
+            <span className="link-underline">{link.label}</span>
+            <ArrowRight
+              className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </Link>
+        ) : null}
+      </div>
+    </article>
+  );
+}
+
+/**
+ * Cards fanned out from the centre, the middle one in front. The side
+ * cards move out by `--fan-x` (share of a card's width) and down by
+ * `--fan-y`, and spread a little further on hover of the bento card.
+ */
+export function Fan({
+  items,
+  className,
+  itemClassName,
+}: {
+  items: ReactNode[];
+  className?: string;
+  itemClassName?: string;
+}) {
+  const mid = (items.length - 1) / 2;
+  return (
+    <div className={cn("relative", className)}>
+      {items.map((item, i) => {
+        const k = i - mid;
+        return (
+          <div
+            key={i}
+            className={cn(
+              "absolute left-1/2 top-0 transition-[translate,rotate] duration-700 ease-out-expo",
+              itemClassName,
+            )}
+            style={{
+              translate: `calc(-50% + ${k} * var(--fan-x, 50%)) calc(${Math.abs(k)} * var(--fan-y, 1.5rem))`,
+              rotate: `${k * 6}deg`,
+              zIndex: 10 - Math.abs(k),
+            }}
+          >
+            {item}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * Closing call to action on a product-coloured panel: a statement and
+ * actions on the left; on the right an artwork piece that places itself
+ * (absolutely) and may run off the panel's edges.
+ */
+export function CaseStart({
+  label,
+  statement,
+  actions,
+  art,
+  tone,
+}: {
+  label: string;
+  statement: string;
+  actions: ReactNode;
+  art: ReactNode;
+  tone: "ole" | "panel" | "namaz";
+}) {
+  const bg = {
+    ole: "bg-[radial-gradient(90%_90%_at_85%_50%,#ff7a1a_0%,#a33a00_30%,#2a0d00_70%,#0b0401_100%)]",
+    panel: "bg-[radial-gradient(90%_90%_at_85%_50%,#2f55b8_0%,#122760_35%,#050b1c_75%)]",
+    namaz: "bg-[radial-gradient(90%_90%_at_85%_40%,#25a77a_0%,#0b4a36_40%,#020d0a_80%)]",
+  }[tone];
+  return (
+    <section className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)]")}>
+      <Reveal>
+        <div
+          data-surface="dark"
+          className={cn(
+            "relative grid overflow-hidden rounded-md text-white lg:grid-cols-[1.2fr_1fr]",
+            bg,
+          )}
+        >
+          <div className="relative z-10 p-6 sm:p-12 lg:p-16">
+            <h2 className="text-sm text-white/70">{label}</h2>
+            <p className="mt-6 max-w-[16ch] text-display-m text-balance">
+              {statement}
+            </p>
+            <div className="mt-10">{actions}</div>
+          </div>
+          <div
+            aria-hidden="true"
+            className="relative h-48 overflow-hidden sm:h-80 lg:h-auto"
+          >
+            {art}
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+/**
+ * Two photographs under a small label ("Real moments"), the first wider
+ * on tablets and up, with an optional floating product chip over it.
+ */
+export function Moments({
+  label,
+  photos,
+  chip,
+}: {
+  label: string;
+  photos: { src: string }[];
+  chip?: ReactNode;
+}) {
+  return (
+    <section className="pb-[clamp(5rem,11vw,10rem)]">
+      <Reveal className={EDGE}>
+        <h2 className="mb-8 text-sm text-fg-soft">{label}</h2>
+      </Reveal>
+      <Reveal
+        variant="trigger"
+        className={cn(EDGE, "grid gap-3 md:grid-cols-[1.4fr_1fr]")}
+      >
+        {photos.map((p, i) => (
+          <div
+            key={p.src}
+            className="stagger-item relative aspect-[4/5] overflow-hidden rounded-md bg-surface md:aspect-auto md:h-[min(44vw,42rem)]"
+          >
+            <Image
+              src={p.src}
+              alt=""
+              fill
+              sizes={i === 0 ? "(min-width: 768px) 58vw, 100vw" : "(min-width: 768px) 42vw, 100vw"}
+              className="media-settle object-cover"
+            />
+            {i === 0 && chip ? (
+              <div
+                aria-hidden="true"
+                className="art-float-slow absolute bottom-5 left-5 right-5 sm:bottom-8 sm:left-8 sm:right-auto"
+              >
+                {chip}
+              </div>
+            ) : null}
+          </div>
+        ))}
+      </Reveal>
+    </section>
+  );
+}

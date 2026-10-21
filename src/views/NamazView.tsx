@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Flame, Moon } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { BRAND } from "@/config/brand";
@@ -13,27 +12,35 @@ import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { StoreBadges } from "@/components/content/StoreBadges";
 import {
+  Bento,
+  BentoCard,
   CaseCover,
-  CaseFeatures,
+  CaseStart,
   CaseText,
-  CaseTiles,
   EDGE,
-  MockStage,
+  Fan,
+  Marquee,
+  Moments,
   NextProduct,
 } from "@/components/case/Case";
+import { StepStory } from "@/components/case/StepStory";
+import { namazScenes } from "@/components/case/Scenes";
 import {
+  NamazDelete,
+  NamazFive,
   NamazGroup,
+  NamazMonth,
   NamazToday,
   NamazWeek,
+  NamazYear,
 } from "@/components/mock/NamazMocks";
 import { NamazArt } from "@/components/visual/ProductArt";
 
 /**
- * Namaz Motivasyonu as a case study, calmer motion (`data-calm`): a
- * full-screen cover (night sky, today's intention, the ring of the five
- * prayers) with the name and facts, introduction, app mock-ups and photos,
- * highlights, store badges, privacy and the Turkish-only documents, then
- * the next product.
+ * Namaz Motivasyonu as a case study, calmer motion (`data-calm`): artwork
+ * cover, introduction, "how it works" with live scenes, feature words,
+ * highlights, real moments, how to start, privacy and the Turkish-only
+ * documents, then the next product.
  */
 export function NamazView({
   locale,
@@ -43,9 +50,11 @@ export function NamazView({
   dict: Dictionary;
 }) {
   const t = dict.namaz;
+  const b = t.bento;
   const c = dict.case;
   const s = dict.showcase.namaz;
   const mock = dict.mock;
+  const n = mock.namaz;
   const facts = dict.products.facts.namaz;
   const labels = dict.products.factLabels;
   const newTab = dict.common.newTab;
@@ -79,55 +88,100 @@ export function NamazView({
           </p>
         </CaseText>
 
-        <CaseTiles
-          tiles={[
-            <MockStage key="today" tone="namaz">
-              <NamazToday
-                copy={mock.namaz}
-                done={[true, true, true, false, false]}
-              />
-            </MockStage>,
-            <Image
-              key="photo"
-              src={IMG.photos.namaz3.src}
-              alt=""
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />,
-          ]}
-        />
-        <CaseTiles
-          className="mt-3"
-          tiles={[
-            <MockStage key="week" tone="namaz">
-              <NamazWeek copy={mock.namaz} />
-            </MockStage>,
-            <MockStage key="group" tone="namaz">
-              <NamazGroup copy={mock.namaz} />
-            </MockStage>,
-          ]}
+        <StepStory
+          label={c.howLabel}
+          stepLabel={c.stepLabel}
+          steps={t.steps}
+          scenes={namazScenes(mock)}
+          tone="namaz"
         />
 
-        <CaseFeatures label={c.featuresLabel} items={t.features.beats} />
+        <Marquee words={t.marquee} />
 
-        <section className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)]")}>
-          <Reveal className="grid gap-8 md:grid-cols-12">
-            <h2 className="text-sm text-fg-soft md:col-span-3 lg:col-span-2 lg:col-start-3">
-              {c.startLabel}
-            </h2>
-            <div className="md:col-span-9 lg:col-span-7">
-              <p className="text-statement text-balance">
-                {BRAND.products.namaz} {t.closing.title}
-              </p>
-              <StoreBadges
-                items={storeBadges(dict, "namaz")}
-                newTabLabel={newTab}
-                className="mt-8"
+        <Bento label={c.featuresLabel}>
+          <BentoCard
+            tone="namaz"
+            bleed
+            className="md:col-span-2 lg:col-span-4 lg:min-h-[34rem]"
+            title={b.stats.title}
+            body={b.stats.body}
+            visual={
+              <Fan
+                className="absolute inset-x-0 top-8 [--fan-x:42%] [--fan-y:1.25rem] group-hover:[--fan-x:50%] sm:top-10 sm:[--fan-x:62%] sm:group-hover:[--fan-x:70%]"
+                itemClassName="w-[15rem] sm:w-[17rem]"
+                items={[
+                  <NamazWeek key="week" copy={n} />,
+                  <NamazMonth key="month" copy={n} className="shadow-2xl" />,
+                  <NamazYear key="year" copy={n} />,
+                ]}
               />
-            </div>
-          </Reveal>
-        </section>
+            }
+          />
+          <BentoCard
+            tone="namaz"
+            className="lg:col-span-2"
+            title={b.groups.title}
+            body={b.groups.body}
+            visual={<NamazGroup copy={n} />}
+          />
+          <BentoCard
+            tone="namaz"
+            className="lg:col-span-3"
+            title={b.five.title}
+            body={b.five.body}
+            visual={<NamazFive copy={n} />}
+          />
+          <BentoCard
+            tone="namaz"
+            side
+            className="md:col-span-2 lg:col-span-3"
+            title={b.privacy.title}
+            body={b.privacy.body}
+            visual={<NamazDelete copy={n} className="w-[19rem]" />}
+          />
+        </Bento>
+
+        <Moments
+          label={c.momentsLabel}
+          photos={[IMG.photos.namaz1, IMG.photos.namaz3]}
+          chip={
+            <span className="flex w-max items-center gap-2 rounded-full border border-white/20 bg-[#06281e]/70 px-4 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-md">
+              <Moon className="size-4 text-[#8fe3c4]" aria-hidden="true" />
+              {n.prayers[4]}
+              <span className="tabular-nums text-white/70">{n.times[4]}</span>
+            </span>
+          }
+        />
+
+        <CaseStart
+          tone="namaz"
+          label={c.startLabel}
+          statement={`${BRAND.products.namaz} ${t.closing.title}`}
+          actions={
+            <StoreBadges
+              items={storeBadges(dict, "namaz")}
+              newTabLabel={newTab}
+              size="fluid"
+              variant="glass"
+            />
+          }
+          art={
+            <>
+              <div className="art-float-slow absolute left-[8%] top-8 w-[min(19rem,80%)] -rotate-3 lg:top-[20%]">
+                <NamazToday copy={n} done={[true, true, true, true, true]} className="shadow-2xl" />
+              </div>
+              {/* Solid tint: it may sit over the white card. Phones: hidden
+                  (no room beside the card). */}
+              <div className="art-float absolute right-[4%] top-4 flex max-w-[15rem] rotate-3 items-center gap-3 rounded-2xl border border-white/15 bg-[#06281e]/90 px-5 py-4 shadow-2xl max-sm:hidden sm:top-12 lg:top-[6%]">
+                <Flame className="size-8 shrink-0 text-[#8fe3c4] drop-shadow-[0_0_12px_#2bc78f]" />
+                <span className="text-4xl font-light tabular-nums tracking-[-0.04em]">
+                  {n.streakCount}
+                </span>
+                <span className="text-xs leading-snug text-white/75">{n.streak}</span>
+              </div>
+            </>
+          }
+        />
 
         {/* Privacy & documents */}
         <section className={cn(EDGE, "border-t border-border py-[clamp(4rem,9vw,8rem)]")}>

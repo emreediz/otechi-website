@@ -214,8 +214,8 @@ export const tr = {
             },
             {
               q: "Sizinle nasıl iletişime geçebilirim?",
-              a: "Bize telefon veya e-posta ile ulaşabilirsiniz; tüm iletişim bilgilerimiz İletişim sayfasında.",
-              contactLink: "İletişim sayfasına gidin",
+              a: "Bize telefon veya e-posta ile ulaşabilirsiniz; tüm iletişim bilgilerimiz bu sayfanın başında.",
+              contactLink: "İletişim bilgilerine gidin",
             },
           ],
         },
@@ -271,11 +271,16 @@ export const tr = {
 
   // Labels shared by the product (case study) pages.
   case: {
+    howLabel: "Nasıl çalışır?",
+    stepLabel: "Adım",
+    momentsLabel: "Gerçek anlar",
     introLabel: "Giriş",
     featuresLabel: "Öne çıkanlar",
-    startLabel: "Başlayın",
+    startLabel: "Başla",
     nextLabel: "Sonraki ürün",
     supportLabel: "Destek",
+    forBusiness: "İşletmeler için",
+    forCustomers: "Müşteriler için",
   },
 
   products: {
@@ -347,9 +352,22 @@ export const tr = {
         body: "Kampanyaların, Ole’deki işletme sayfanda müşterine görünür.",
       },
     },
+    steps: [
+      { title: "Okut.", body: "Siparişini verirken QR’ı okut ya da telefonunu Ole NFC’ye yaklaştır." },
+      { title: "Biriktir.", body: "Her ziyarette jeton kazanırsın; hedefe ulaşınca ödülün hazır." },
+      { title: "Ödülünü al.", body: "Kasada kodunu göster, ödülünü al." },
+      { title: "Geri gel.", body: "Bir süredir uğramadıysan işletmen seni bir hatırlatmayla bekler." },
+    ],
+    marquee: ["Jeton", "Ödül", "Kampanya", "Bildirim", "QR", "NFC"],
+    free: {
+      value: "₺0",
+      title: "Müşteriler için ücretsiz.",
+      body: "Uygulamayı indirmek ve kullanmak ücretsiz.",
+    },
     panelLink: {
       label: "İşletme tarafı",
       title: "Hepsini tek panelden yönet.",
+      body: "QR kod üretimi, ödül doğrulama, kampanyalar, bildirimler ve tüm şubeler Ole Panel’de.",
       cta: "Ole Panel’i incele",
     },
     facts: {
@@ -416,6 +434,18 @@ export const tr = {
     },
     intro:
       "Ole Panel, Ole kullanan işletmelerin günlük işlerini tek ekranda toplar: QR kod üretir, ödülleri doğrular, kampanya ve bildirimleri yönetir, tüm şubeleri izler.",
+    steps: [
+      { title: "QR üret.", body: "Şubeyi ve jeton sayısını seç, kodu müşterine okut." },
+      { title: "Doğrula.", body: "Müşterinin 6 haneli kodunu gir, ödülü teslim et." },
+      { title: "Yayınla.", body: "Kampanyanı oluştur, tek tıkla yayına al." },
+      { title: "İzle.", body: "Jeton ve ödül hareketlerini tüm şubelerinde takip et." },
+    ],
+    marquee: ["QR kod", "Doğrulama", "Kampanyalar", "Bildirimler", "Şubeler", "Raporlar"],
+    noCommission: {
+      value: "%0",
+      title: "Komisyon yok.",
+      body: "Abonelik modeli; satışlarından pay alınmaz.",
+    },
     appLink: {
       label: "Müşteri tarafı",
       title: "Müşterilerin Ole uygulamasında.",
@@ -458,6 +488,32 @@ export const tr = {
           body: "Grup ya da oda kur, davet koduyla katıl; birlikte motive ol.",
         },
       ],
+    },
+    steps: [
+      { title: "İşaretle.", body: "Kıldığın vakti tek dokunuşla işaretle." },
+      { title: "Gör.", body: "Günlük ilerlemen halkada dolar; haftan istatistiklerde." },
+      { title: "Sürdür.", body: "Tam günler serini büyütür; motivasyonun görünür olur." },
+      { title: "Birlikte.", body: "Grubunu kur, davet koduyla arkadaşlarını çağır." },
+    ],
+    marquee: ["Beş vakit", "İstatistik", "Seri", "Gruplar", "Odalar", "Motivasyon"],
+    bento: {
+      stats: {
+        title: "İstatistikler.",
+        body: "Haftalık, aylık ve yıllık ilerlemeni tek bakışta gör.",
+      },
+      groups: {
+        title: "Gruplar ve odalar.",
+        body: "Davet koduyla katıl, birlikte motive ol.",
+      },
+      five: {
+        value: "5",
+        title: "Beş vakit, tek ekranda.",
+        body: "Günün namazlarını sade bir listede takip et.",
+      },
+      privacy: {
+        title: "Gizlilik.",
+        body: "Hesabını ve verilerini uygulamanın içinden silebilirsin.",
+      },
     },
     privacy: {
       title: "Gizlilik",
@@ -609,6 +665,27 @@ export const tr = {
       address: "Bahçelievler Mah., Karşıyaka",
       distance: "0.7 km",
       earned: "+1 jeton",
+      codeLabel: "Ödül kodun",
+      codeHint: "Kasada göster",
+      earlier: "1 sa",
+      rewardNotifBody: "5 jetonunu topladın; kahve ikramın kasada seni bekliyor.",
+      newCampaignTitle: "Yeni kampanya",
+      newCampaignBody: "Doğum gününe tatlı ikramı seni bekliyor.",
+      // More sample campaigns for the highlights deck (after the welcome one).
+      otherCampaigns: [
+        {
+          badge: "Doğum günü",
+          title: "Doğum gününe tatlı ikramı",
+          body: "Doğum gününde tatlın bizden.",
+          days: "7 gün",
+        },
+        {
+          badge: "Hafta içi",
+          title: "Hafta içi kahve kampanyası",
+          body: "Pazartesiden cumaya kahvende sana özel ikram.",
+          days: "14 gün",
+        },
+      ],
     },
     panel: {
       nav: ["Genel bakış", "QR kod", "Kampanyalar", "Bildirimler", "Şubeler", "Raporlar"],
@@ -644,6 +721,8 @@ export const tr = {
       allBranches: "Tüm şubeler",
       appLabel: "İşletme paneli",
       rewardRate: "Ödül kullanımı",
+      branchTitle: "Şubelere göre jeton",
+      thisWeek: "Bu hafta",
     },
     namaz: {
       today: "Bugün",
@@ -662,6 +741,21 @@ export const tr = {
       intentLabel: "Bugünün niyeti",
       intent: "Bugün kendin için bir adım at.",
       streakCount: "12",
+      percent: "%{n}",
+      fullDays: "tam gün",
+      monthTitle: "Aylık kayıt oranı",
+      yearTitle: "Yıllık kayıt oranı",
+      months: ["O", "Ş", "M", "N", "M", "H", "T", "A", "E", "E", "K", "A"],
+      prayersLabel: "vakit",
+      settingsTitle: "Ayarlar",
+      settings: [
+        { label: "Dil", value: "Türkçe" },
+        { label: "Tema", value: "Açık" },
+      ],
+      deleteTitle: "Hesabı sil",
+      deleteBody: "Hesabın ve hesabınla ilişkili veriler silinir.",
+      cancel: "Vazgeç",
+      joined: "{name} katıldı",
     },
   },
 

@@ -131,7 +131,8 @@ function Token({
         width={small ? IMG.ole.artW : TOKEN.w}
         height={small ? IMG.ole.artH : TOKEN.h}
         sizes={small ? "10vw" : "50vw"}
-        priority={priority}
+        loading={priority ? "eager" : undefined}
+        fetchPriority={priority ? "high" : undefined}
         className="w-full drop-shadow-[0_3cqmin_6cqmin_rgb(253_94_0/0.45)]"
       />
     </Float>

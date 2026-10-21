@@ -19,9 +19,9 @@ export type StageSlide = {
 
 /**
  * Home stage: one full screen, no scrolling. The intro (glass logo and
- * headline) shows by default; hovering or focusing a product pill on the
- * left swaps the whole stage to that product's preview, and the pill links
- * to its page.
+ * headline) shows by default; hovering a product pill on the left (mouse)
+ * or focusing it from the keyboard swaps the whole stage to that product's
+ * preview, and the pill links to its page. A tap just opens the page.
  */
 export function HomeStage({
   intro,
@@ -98,7 +98,7 @@ export function HomeStage({
         aria-label={label}
         className="absolute bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-[clamp(1rem,2vw,1.75rem)] z-10 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
       >
-        <ul className="grid justify-items-start gap-1.5 md:gap-2">
+        <ul className="grid justify-items-start gap-2">
           {slides.map((slide, i) => (
             <li key={slide.key}>
               <Link
@@ -107,10 +107,14 @@ export function HomeStage({
                   if (e.pointerType === "mouse") setPeek(i + 1);
                 }}
                 onPointerLeave={() => setPeek(null)}
-                onFocus={() => setPeek(i + 1)}
+                onFocus={(e) => {
+                  // Keyboard only: a tap also focuses the link on Android,
+                  // which would flash the slide while the page opens.
+                  if (e.currentTarget.matches(":focus-visible")) setPeek(i + 1);
+                }}
                 onBlur={() => setPeek(null)}
                 data-active={shown === i + 1 ? "" : undefined}
-                className="pill md:h-11 md:px-5 md:text-[1.0625rem]"
+                className="pill h-10 md:h-11 md:px-5 md:text-[1.0625rem]"
                 style={{ "--i": i } as CSSProperties}
               >
                 {slide.label}

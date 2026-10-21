@@ -120,7 +120,7 @@ export function PanelDashboard({
             ))}
           </ul>
 
-          <div className="mt-3 grid gap-3 sm:mt-4 md:grid-cols-[1.1fr_1fr]">
+          <div className="mt-3 grid gap-3 sm:mt-4 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
             <div className="rounded-xl border border-border p-3">
               <p className="text-xs font-semibold">{copy.chartTitle}</p>
               <div
@@ -385,6 +385,59 @@ export function PanelBranches({
           >
             <Store className="size-3.5" aria-hidden="true" />
             {b}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Sample tokens given this week per branch (same order as the names). */
+const BRANCH_TOKENS = [412, 286, 174];
+
+/** Ole Panel — branches compared: tokens given this week, as bars. */
+export function PanelBranchCompare({
+  copy,
+  className,
+}: {
+  copy: PanelCopy;
+  className?: string;
+}) {
+  const max = Math.max(...BRANCH_TOKENS);
+  return (
+    <div
+      data-surface="light"
+      className={cn(
+        "w-full max-w-[22rem] rounded-[1.375rem] bg-white p-5 text-left shadow-lg ring-1 ring-fg/5",
+        className,
+      )}
+    >
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-sm font-semibold">{copy.branchTitle}</p>
+        <span className="shrink-0 rounded-full bg-surface px-2 py-0.5 text-[0.6875rem] text-fg-soft">
+          {copy.thisWeek}
+        </span>
+      </div>
+      <ul className="mt-4 grid gap-3.5">
+        {copy.branches.map((b, i) => (
+          <li key={b} className="text-xs">
+            <div className="flex items-center gap-2">
+              <Store className="size-3.5 text-fg-soft" aria-hidden="true" />
+              <span className="min-w-0 flex-1 truncate text-fg-muted">{b}</span>
+              <span className="font-semibold tabular-nums">{BRANCH_TOKENS[i]}</span>
+            </div>
+            <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface-2">
+              <div
+                className={cn(
+                  "mock-grow h-full origin-left rounded-full transition-transform duration-1000 ease-out-expo",
+                  i === 0 ? "bg-brand" : "bg-ole-navy/70",
+                )}
+                style={{
+                  transform: `scaleX(${BRANCH_TOKENS[i] / max})`,
+                  transitionDelay: `${0.2 + i * 0.12}s`,
+                }}
+              />
+            </div>
           </li>
         ))}
       </ul>

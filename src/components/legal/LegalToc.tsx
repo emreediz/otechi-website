@@ -10,10 +10,13 @@ export type TocItem = { id: string; text: string };
 export function LegalToc({
   title,
   items,
+  id,
   className,
 }: {
   title: string;
   items: TocItem[];
+  /** Anchor for the phone "Contents" button (TocJump). */
+  id?: string;
   className?: string;
 }) {
   const list = (
@@ -32,7 +35,7 @@ export function LegalToc({
   );
 
   return (
-    <nav aria-label={title} className={cn("print:hidden", className)}>
+    <nav id={id} aria-label={title} className={cn("print:hidden", className)}>
       <details className="group rounded-2xl border border-fg/10 px-4 lg:hidden">
         <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between text-sm font-semibold [&::-webkit-details-marker]:hidden">
           {title}

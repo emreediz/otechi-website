@@ -13,6 +13,7 @@ import { openMenu } from "@/lib/menuTransition";
 import { Logo } from "@/components/Logo";
 import { CityClock } from "@/components/frame/CityClock";
 import { ModeToggle } from "@/components/frame/ModeToggle";
+import { LanguageMenu } from "@/components/frame/LanguageMenu";
 import { MenuOverlay } from "@/components/frame/MenuOverlay";
 
 /**
@@ -96,8 +97,13 @@ export function Navbar({
               locale={locale}
               className="mr-1 hidden text-sm sm:inline"
             />
+            <LanguageMenu label={nav.language} />
             <ModeToggle label={nav.themeLight} />
-            <a href={dict.contact.emailHref} aria-label={nav.mail} className="icon-pill">
+            <a
+              href={dict.contact.emailHref}
+              aria-label={nav.mail}
+              className="icon-pill max-[359px]:hidden"
+            >
               <Mail className="size-4" aria-hidden="true" />
             </a>
           </div>

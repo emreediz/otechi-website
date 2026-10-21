@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
-import { localizedPath } from "@/i18n/routes";
 import { cn } from "@/lib/cn";
 import { showcaseItems } from "@/lib/showcase";
 import { Reveal } from "@/components/motion/Reveal";
@@ -23,7 +22,8 @@ export function ContactView({
 }) {
   const t = dict.contact;
   const faq = dict.home.faq;
-  const contactHref = localizedPath("contact", locale);
+  // The FAQ lives on this page: its "contact" link jumps to the details.
+  const contactHref = "#contact-details";
   const rows = [
     { label: t.emailLabel, value: t.email, href: t.emailHref },
     { label: t.phoneLabel, value: t.phone, href: t.phoneHref },
@@ -42,7 +42,10 @@ export function ContactView({
         </p>
       </header>
 
-      <section className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)] pt-6")}>
+      <section
+        id="contact-details"
+        className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)] pt-6")}
+      >
         <ul className="hero-rise hero-rise-4 border-t border-border">
           {rows.map((row) => (
             <li key={row.href} className="border-b border-border">

@@ -15,6 +15,9 @@
 
 /* Mouse-like pointers only: hover previews, cursor dot, parallax. */
 @custom-variant pointer-fine (@media (hover: hover) and (pointer: fine));
+/* Short screens: phones in landscape, and wide but very short windows. */
+@custom-variant short-phone (@media (max-width: 767px) and (max-height: 500px));
+@custom-variant short-wide (@media (min-width: 768px) and (max-height: 520px));
 
 @theme {
   --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
@@ -304,6 +307,22 @@ html[data-mode="light"] [data-theme="namaz"],
   .icon-pill:active {
     scale: 0.96;
   }
+  /* Touch: the 34px pills get an invisible 40px hit area. */
+  .pill,
+  .icon-pill {
+    position: relative;
+  }
+  .pill::after,
+  .icon-pill::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+  }
+  /* ::after is placed from the padding box: add the 1px border back. */
+  .pill.border::after {
+    inset: -4px;
+  }
   .pill[data-active] {
     box-shadow: inset 0 0 0 1.5px var(--fg);
     background-color: transparent;
@@ -399,6 +418,19 @@ html[data-mode="light"] [data-surface="dark"] .logo-on-dark {
 }
 html[data-mode="light"] [data-surface="dark"] .logo-on-light {
   display: none;
+}
+
+/* Language picker: flags drop down one after another. */
+.lang-drop {
+  animation: lang-drop 0.35s var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 0.05s);
+}
+@keyframes lang-drop {
+  from {
+    opacity: 0;
+    translate: 0 -0.5rem;
+    scale: 0.8;
+  }
 }
 
 /* Cursor dot: replaces the system cursor on fine pointers once the dot
@@ -556,6 +588,161 @@ body > .cursor-dot {
   }
 }
 
+/* "How it works" (StepStory): steps away from the middle are dimmed on
+   large screens; the sticky stage cross-fades scenes; scene parts rise in
+   and the mock-ups' pops/bars replay each time a scene becomes active. */
+@media (min-width: 1024px) {
+  .story-step {
+    opacity: 0.32;
+    transition: opacity 0.6s var(--ease-out-expo);
+  }
+  .story-step[data-active] {
+    opacity: 1;
+  }
+}
+.story-scene {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.6s var(--ease-out-expo),
+    visibility 0s linear 0.6s;
+}
+.story-scene[data-active] {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.6s var(--ease-out-expo),
+    visibility 0s;
+}
+.story-scene .scene-in {
+  opacity: 0;
+  translate: 0 28px;
+  scale: 0.97;
+  transition:
+    opacity 0.7s ease,
+    translate 0.9s var(--ease-out-expo),
+    scale 0.9s var(--ease-out-expo);
+}
+.story-scene[data-active] .scene-in {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition-delay: calc(0.12s + var(--i, 0) * 0.14s);
+}
+/* Until its scene is active, a pop waits (it overrides `html.js .mock-pop`
+   so the animation really restarts each time the scene becomes active). */
+html.js .story-scene:not([data-active]) .mock-pop,
+.story-scene .mock-bar {
+  animation: none;
+}
+.story-scene[data-active] .mock-pop {
+  animation: mock-pop 0.6s var(--ease-out-expo) both;
+  animation-delay: calc(0.35s + var(--i, 0) * 0.1s);
+}
+.story-scene:not([data-active]) .mock-draw {
+  stroke-dashoffset: 100 !important;
+}
+.story-scene[data-active] .mock-bar {
+  animation: art-bar 1s var(--ease-out-expo) both;
+  animation-delay: calc(0.35s + var(--i, 0) * 0.07s);
+}
+.story-scene .scene-pop {
+  opacity: 0;
+}
+.story-scene[data-active] .scene-pop {
+  opacity: 1;
+  animation: art-pop 0.8s var(--ease-out-expo) 0.9s both;
+}
+/* Small screens: a step's own scene is always shown; its parts play once
+   it has been seen (StepStory sets `data-active`). Without JS they show
+   at rest. */
+.story-scene.story-inline {
+  opacity: 1;
+  visibility: visible;
+}
+html:not(.js) .story-inline .scene-in,
+html:not(.js) .story-inline .scene-pop {
+  opacity: 1;
+  translate: none;
+  scale: none;
+}
+/* Ole "Scan": a token flies from the QR code / NFC into the "+1 token"
+   bubble, which bumps as it lands. The token sits on the bubble; the
+   flight starts `--fly-x` / `--fly-y` away. */
+.token-fly {
+  opacity: 0;
+}
+.story-scene[data-active] .token-fly {
+  animation: token-fly 2.6s var(--ease-in-out-quart) 1.4s infinite;
+}
+@keyframes token-fly {
+  0% {
+    opacity: 0;
+    transform: translate(var(--fly-x), var(--fly-y)) scale(0.7);
+  }
+  12% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(30deg);
+  }
+  62%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4) rotate(40deg);
+  }
+}
+.story-scene[data-active] .bubble-bump {
+  animation: bubble-bump 2.6s var(--ease-out-expo) 1.4s infinite;
+}
+@keyframes bubble-bump {
+  0%,
+  52% {
+    scale: 1;
+  }
+  60% {
+    scale: 1.14;
+  }
+  80%,
+  100% {
+    scale: 1;
+  }
+}
+/* Ole "Scan": rings pinging out of the NFC stand. */
+.story-scene[data-active] .nfc-ping {
+  animation: nfc-ping 2.6s ease-out 1.4s infinite;
+}
+.nfc-ping {
+  opacity: 0;
+}
+@keyframes nfc-ping {
+  0% {
+    opacity: 0.7;
+    scale: 0.4;
+  }
+  70%,
+  100% {
+    opacity: 0;
+    scale: 1.6;
+  }
+}
+
+/* Feature words sliding by. */
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+/* Pause while pointed at or touched. */
+.marquee:hover .marquee-track,
+.marquee:active .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Home stage: slides cross-fade; their copy rises in. */
 .stage-slide {
   opacity: 0;
@@ -643,19 +830,17 @@ html:active-view-transition-type(menu-nav)::view-transition-old(.page-exit) {
   z-index: 1;
   animation: none;
 }
-/* Product pill in the menu (types menu-nav + menu-expand, large screens):
-   instead of wiping up, the new page grows out of the menu's centre frame
-   into full screen, as when the menu closes. The page snapshot is as tall
-   as the page, so the bottom inset is measured from the viewport bottom. */
-@media (min-width: 1024px) {
-  html:active-view-transition-type(menu-expand)::view-transition-new(.page-enter) {
-    animation: menu-expand 0.9s var(--ease-in-out-quart) both;
-  }
+/* Product pill in the menu (types menu-nav + menu-expand): instead of
+   wiping up, the new page grows out of the menu's frame into full screen,
+   as when the menu closes. The page snapshot is as tall as the page, so
+   its bottom edge is placed from the top (`--mf-bt`, `--mf-vh`). */
+html:active-view-transition-type(menu-expand)::view-transition-new(.page-enter) {
+  animation: menu-expand 0.9s var(--ease-in-out-quart) both;
 }
 @keyframes menu-expand {
   0% {
     clip-path: inset(
-      var(--mf-t) var(--mf-r) calc(100% - 100vh + var(--mf-b)) var(--mf-l)
+      var(--mf-t) var(--mf-r) calc(100% - var(--mf-bt)) var(--mf-l)
         round 0.375rem
     );
     opacity: 0;
@@ -664,7 +849,7 @@ html:active-view-transition-type(menu-nav)::view-transition-old(.page-exit) {
     opacity: 1;
   }
   100% {
-    clip-path: inset(0 0 calc(100% - 100vh) 0 round 0);
+    clip-path: inset(0 0 calc(100% - var(--mf-vh)) 0 round 0);
     opacity: 1;
   }
 }
@@ -713,17 +898,23 @@ html.menu-closing::view-transition-old(root) {
     clip-path: inset(0 0 0 0 round 0);
   }
   78% {
-    clip-path: inset(var(--mf-t) var(--mf-r) var(--mf-b) var(--mf-l) round 0.375rem);
+    clip-path: inset(
+      var(--mf-t) var(--mf-r) calc(100% - var(--mf-bt)) var(--mf-l) round 0.375rem
+    );
     opacity: 1;
   }
   100% {
-    clip-path: inset(var(--mf-t) var(--mf-r) var(--mf-b) var(--mf-l) round 0.375rem);
+    clip-path: inset(
+      var(--mf-t) var(--mf-r) calc(100% - var(--mf-bt)) var(--mf-l) round 0.375rem
+    );
     opacity: 0;
   }
 }
 @keyframes menu-frame-out {
   from {
-    clip-path: inset(var(--mf-t) var(--mf-r) var(--mf-b) var(--mf-l) round 0.375rem);
+    clip-path: inset(
+      var(--mf-t) var(--mf-r) calc(100% - var(--mf-bt)) var(--mf-l) round 0.375rem
+    );
   }
   to {
     clip-path: inset(0 0 0 0 round 0);
@@ -927,6 +1118,23 @@ html.js [data-reveal][data-shown] .mock-pop {
 html.js [data-reveal]:not([data-shown]) .mock-grow {
   transform: scaleX(0) !important;
 }
+/* An SVG stroke drawn to its own `stroke-dashoffset` (pathLength 100). */
+.mock-draw {
+  transition: stroke-dashoffset 1.6s var(--ease-out-expo) 0.3s;
+}
+html.js [data-reveal]:not([data-shown]) .mock-draw {
+  stroke-dashoffset: 100 !important;
+}
+/* A sheet or card that rises into place. */
+.mock-rise {
+  transition:
+    translate 0.9s var(--ease-out-expo) 0.4s,
+    opacity 0.6s ease 0.4s;
+}
+html.js [data-reveal]:not([data-shown]) .mock-rise {
+  translate: 0 70%;
+  opacity: 0;
+}
 
 /* Accordion (FAQ): +/− sign, answer opens by animating grid rows. */
 .faq-sign {
@@ -998,14 +1206,23 @@ html.js [data-reveal]:not([data-shown]) .mock-grow {
   html.js [data-reveal] .stagger-item,
   html.js .hero-rise,
   html.js .hero-line > span,
-  .stage-slide .stage-rise {
+  .stage-slide .stage-rise,
+  .story-scene .scene-in,
+  .story-scene .scene-pop,
+  html.js [data-reveal] .mock-rise {
     opacity: 1 !important;
     transform: none !important;
     translate: none !important;
+    scale: none !important;
+    transition-delay: 0s !important;
   }
   .glass-spin,
   .glass-breathe,
   .menu-dialog .menu-item,
+  .marquee-track,
+  .story-scene .token-fly,
+  .story-scene .bubble-bump,
+  .story-scene .nfc-ping,
   .art-float,
   .art-float-slow,
   .art-pop,

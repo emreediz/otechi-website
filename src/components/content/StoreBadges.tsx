@@ -54,22 +54,33 @@ function StoreIcon({ store, className }: { store: Store; className?: string }) {
 
 /**
  * Dark App Store / Google Play badges (open in a new tab). `size="sm"` is
- * the compact footer variant.
+ * the compact footer variant, `size="fluid"` is compact (two side by side)
+ * on phones and large from `sm`; `variant="glass"` sits on coloured panels.
  */
 export function StoreBadges({
   items,
   newTabLabel,
   size = "lg",
+  variant = "solid",
   className,
 }: {
   items: StoreBadgeItem[];
   newTabLabel?: string;
-  size?: "sm" | "lg";
+  size?: "sm" | "lg" | "fluid";
+  variant?: "solid" | "glass";
   className?: string;
 }) {
   const lg = size === "lg";
+  const fluid = size === "fluid";
   return (
-    <ul className={cn("flex flex-wrap gap-3", lg && "gap-4", className)}>
+    <ul
+      className={cn(
+        "flex flex-wrap gap-3",
+        lg && "gap-4",
+        fluid && "max-sm:grid max-sm:grid-cols-2 max-sm:gap-2 sm:gap-4",
+        className,
+      )}
+    >
       {items.map((item) => (
         <li key={item.store}>
           <a
@@ -77,29 +88,42 @@ export function StoreBadges({
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "inline-flex items-center border border-white/10 bg-ole-navy text-white shadow-[0_0_0_1px_#000d26,0_6px_16px_-10px_rgb(0_13_38/0.45)] transition-[transform,box-shadow,border-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-brand/75 hover:shadow-[0_0_0_1px_rgb(253_94_0/0.75),0_10px_22px_-12px_rgb(0_13_38/0.5)]",
-              lg
-                ? "h-[3.875rem] w-[12.5rem] gap-3 rounded-[17px] px-5"
-                : "h-11 gap-2 rounded-xl px-3",
+              "inline-flex items-center border text-white transition-[translate,box-shadow,border-color,background-color] duration-300 ease-out-expo hover:-translate-y-0.5",
+              variant === "glass"
+                ? "border-white/20 bg-black/35 backdrop-blur-md hover:border-white/50 hover:bg-black/50"
+                : "border-white/10 bg-ole-navy shadow-[0_0_0_1px_#000d26,0_6px_16px_-10px_rgb(0_13_38/0.45)] hover:border-brand/75 hover:shadow-[0_0_0_1px_rgb(253_94_0/0.75),0_10px_22px_-12px_rgb(0_13_38/0.5)]",
+              lg && "h-[3.875rem] min-w-[12.5rem] gap-3 rounded-[17px] px-5",
+              size === "sm" && "h-11 gap-2 rounded-xl px-3",
+              fluid &&
+                "h-12 w-full gap-2 rounded-xl px-3 sm:h-[3.875rem] sm:w-auto sm:min-w-[12.5rem] sm:gap-3 sm:rounded-[17px] sm:px-5",
             )}
           >
             <StoreIcon
               store={item.store}
-              className={cn("shrink-0", lg ? "size-7" : "size-[1.125rem]")}
+              className={cn(
+                "shrink-0",
+                lg && "size-7",
+                size === "sm" && "size-[1.125rem]",
+                fluid && "size-5 sm:size-7",
+              )}
             />
             <span aria-hidden="true" className="grid text-left leading-[1.15]">
               <span
                 className={cn(
                   "whitespace-nowrap text-white/80",
-                  lg ? "text-xs" : "text-[0.625rem]",
+                  lg && "text-xs",
+                  size === "sm" && "text-[0.6875rem]",
+                  fluid && "text-[0.6875rem] sm:text-xs",
                 )}
               >
                 {item.lines[0]}
               </span>
               <span
                 className={cn(
-                  "font-semibold tracking-[-0.01em]",
-                  lg ? "text-xl" : "text-[0.8125rem]",
+                  "whitespace-nowrap font-semibold tracking-[-0.01em]",
+                  lg && "text-xl",
+                  size === "sm" && "text-[0.8125rem]",
+                  fluid && "text-[0.8125rem] sm:text-xl",
                 )}
               >
                 {item.lines[1]}

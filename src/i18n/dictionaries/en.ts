@@ -208,8 +208,8 @@ export const en: Dictionary = {
             },
             {
               q: "How can I contact you?",
-              a: "You can reach us by phone or email — all our contact details are on the Contact page.",
-              contactLink: "Go to the Contact page",
+              a: "You can reach us by phone or email — all our contact details are at the top of this page.",
+              contactLink: "Go to our contact details",
             },
           ],
         },
@@ -263,11 +263,16 @@ export const en: Dictionary = {
   },
 
   case: {
+    howLabel: "How it works",
+    stepLabel: "Step",
+    momentsLabel: "Real moments",
     introLabel: "Introduction",
     featuresLabel: "Highlights",
     startLabel: "Get started",
     nextLabel: "Next product",
     supportLabel: "Support",
+    forBusiness: "For businesses",
+    forCustomers: "For customers",
   },
 
   products: {
@@ -339,9 +344,22 @@ export const en: Dictionary = {
         body: "Your campaigns show up on your business page in Ole.",
       },
     },
+    steps: [
+      { title: "Scan.", body: "Scan the QR code when you order, or tap your phone on Ole NFC." },
+      { title: "Collect.", body: "Every visit earns tokens; at the target, your reward is ready." },
+      { title: "Redeem.", body: "Show your code at the till and collect your reward." },
+      { title: "Come back.", body: "Haven’t visited for a while? The business welcomes you back with a reminder." },
+    ],
+    marquee: ["Tokens", "Rewards", "Campaigns", "Notifications", "QR", "NFC"],
+    free: {
+      value: "₺0",
+      title: "Free for customers.",
+      body: "Downloading and using the app is free.",
+    },
     panelLink: {
       label: "For businesses",
       title: "Run it all from one dashboard.",
+      body: "QR codes, reward checks, campaigns, notifications and every branch, in Ole Panel.",
       cta: "Explore Ole Panel",
     },
     facts: {
@@ -408,6 +426,18 @@ export const en: Dictionary = {
     },
     intro:
       "Ole Panel brings a business’s everyday Ole tasks onto one screen: generate QR codes, verify rewards, manage campaigns and notifications, and follow every branch.",
+    steps: [
+      { title: "Generate a QR.", body: "Pick the branch and the tokens, and let your customer scan it." },
+      { title: "Verify.", body: "Enter the customer’s 6-digit code and hand over the reward." },
+      { title: "Publish.", body: "Create a campaign and put it live in one click." },
+      { title: "Follow.", body: "Track token and reward activity across all your branches." },
+    ],
+    marquee: ["QR codes", "Verification", "Campaigns", "Notifications", "Branches", "Reports"],
+    noCommission: {
+      value: "0%",
+      title: "No commission.",
+      body: "A subscription — no cut of your sales.",
+    },
     appLink: {
       label: "For customers",
       title: "Your customers use the Ole app.",
@@ -450,6 +480,32 @@ export const en: Dictionary = {
           body: "Create a group or room, join with an invite code, and keep each other motivated.",
         },
       ],
+    },
+    steps: [
+      { title: "Mark.", body: "Mark a prayer with a single tap once you’ve performed it." },
+      { title: "See.", body: "Your day fills the ring; your week shows in the statistics." },
+      { title: "Keep going.", body: "Full days grow your streak, so your motivation stays visible." },
+      { title: "Together.", body: "Start a group and invite friends with a code." },
+    ],
+    marquee: ["Five prayers", "Statistics", "Streaks", "Groups", "Rooms", "Motivation"],
+    bento: {
+      stats: {
+        title: "Statistics.",
+        body: "See your weekly, monthly and yearly progress at a glance.",
+      },
+      groups: {
+        title: "Groups and rooms.",
+        body: "Join with an invite code and keep each other going.",
+      },
+      five: {
+        value: "5",
+        title: "Five prayers, one screen.",
+        body: "Follow the day’s prayers in a simple list.",
+      },
+      privacy: {
+        title: "Privacy.",
+        body: "You can delete your account and data from within the app.",
+      },
     },
     privacy: {
       title: "Privacy",
@@ -598,6 +654,26 @@ export const en: Dictionary = {
       address: "Bahçelievler, Karşıyaka",
       distance: "0.7 km",
       earned: "+1 token",
+      codeLabel: "Your reward code",
+      codeHint: "Show it at the till",
+      earlier: "1h",
+      rewardNotifBody: "You’ve collected 5 tokens — your free coffee is waiting at the till.",
+      newCampaignTitle: "New campaign",
+      newCampaignBody: "A birthday dessert is waiting for you.",
+      otherCampaigns: [
+        {
+          badge: "Birthday",
+          title: "A birthday dessert",
+          body: "Your dessert’s on us on your birthday.",
+          days: "7 days",
+        },
+        {
+          badge: "Weekdays",
+          title: "Weekday coffee offer",
+          body: "A treat with your coffee, Monday to Friday.",
+          days: "14 days",
+        },
+      ],
     },
     panel: {
       nav: ["Overview", "QR code", "Campaigns", "Notifications", "Branches", "Reports"],
@@ -633,6 +709,8 @@ export const en: Dictionary = {
       allBranches: "All branches",
       appLabel: "Business dashboard",
       rewardRate: "Rewards redeemed",
+      branchTitle: "Tokens by branch",
+      thisWeek: "This week",
     },
     namaz: {
       today: "Today",
@@ -651,6 +729,21 @@ export const en: Dictionary = {
       intentLabel: "Today’s intention",
       intent: "Take a step for yourself today.",
       streakCount: "12",
+      percent: "{n}%",
+      fullDays: "full days",
+      monthTitle: "Monthly log rate",
+      yearTitle: "Yearly log rate",
+      months: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+      prayersLabel: "prayers",
+      settingsTitle: "Settings",
+      settings: [
+        { label: "Language", value: "English" },
+        { label: "Theme", value: "Light" },
+      ],
+      deleteTitle: "Delete account",
+      deleteBody: "Your account and its associated data will be deleted.",
+      cancel: "Cancel",
+      joined: "{name} joined",
     },
   },
 

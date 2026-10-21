@@ -13,3 +13,9 @@ export const ogLocale: Record<Locale, string> = {
   tr: "tr_TR",
   en: "en_US",
 };
+
+/** Each language's name in its own language (language picker labels). */
+export const localeNames: Record<Locale, string> = {
+  tr: "Türkçe",
+  en: "English",
+};

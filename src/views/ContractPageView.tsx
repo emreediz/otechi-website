@@ -5,6 +5,7 @@ import { LegalHeader } from "@/components/legal/LegalHeader";
 import { LegalToc } from "@/components/legal/LegalToc";
 import { RelatedDocs } from "@/components/legal/RelatedDocs";
 import { NamazBackLink } from "@/components/legal/NamazBackLink";
+import { TocJump } from "@/components/legal/TocJump";
 import {
   ContractDocument,
   blockId,
@@ -45,6 +46,7 @@ export function ContractPageView({
         <Container className="py-12 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
             <LegalToc
+              id="icindekiler"
               title={tr.legal.toc}
               items={toc}
               className="lg:col-span-3"
@@ -55,6 +57,7 @@ export function ContractPageView({
             </div>
           </div>
         </Container>
+        <TocJump targetId="icindekiler" label={tr.legal.toc} />
       </div>
     </PageTransition>
   );

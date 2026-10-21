@@ -35,12 +35,14 @@ export function ProductsView({
         alt=""
         fill
         sizes="100vw"
+        loading="eager"
+        fetchPriority="high"
         className="object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.03]"
       />
     ),
     panel: (
       <MockStage tone="panel" className="transition-transform duration-1000 ease-out-expo group-hover:scale-[1.03]">
-        <PanelDashboard copy={mock.panel} campaignLive className="w-[150%] max-w-none shrink-0 scale-[0.62] md:w-[120%] md:scale-[0.8]" />
+        <PanelDashboard copy={mock.panel} campaignLive className="w-[150%] max-w-none shrink-0 scale-[0.62] md:w-[170%] md:scale-[0.55] lg:w-[150%] lg:scale-[0.65]" />
       </MockStage>
     ),
     namaz: (
@@ -57,7 +59,8 @@ export function ProductsView({
   return (
     <PageTransition>
       <header className={cn(EDGE, "pb-14 pt-[clamp(8rem,16vw,13rem)]")}>
-        <h1 className="text-display-xl">
+        {/* Below 375px the long Turkish word needs a smaller size. */}
+        <h1 className="text-display-xl max-[374px]:text-[length:min(3.5rem,14.5vw)]">
           {t.titleLines.map((line) => (
             <span key={line} className="hero-line">
               <span>{line}</span>

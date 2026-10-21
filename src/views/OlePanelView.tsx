@@ -2,36 +2,39 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { BRAND } from "@/config/brand";
 import { OLE_LINKS } from "@/config/ole";
-import { cn } from "@/lib/cn";
 import { showcaseItems } from "@/lib/showcase";
 import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import {
+  Bento,
+  BentoCard,
   CaseCover,
-  CaseFeatures,
-  CaseMedia,
+  CaseStart,
   CaseText,
-  CaseTiles,
-  EDGE,
-  MockStage,
+  Marquee,
   NextProduct,
 } from "@/components/case/Case";
+import { StepStory } from "@/components/case/StepStory";
+import { panelScenes } from "@/components/case/Scenes";
 import {
-  PanelBranches,
-  PanelCampaignsCard,
+  PanelBranchCompare,
   PanelDashboard,
   PanelNotifyCard,
-  PanelQrCard,
-  PanelVerifyCard,
 } from "@/components/mock/PanelMocks";
 import { PanelArt } from "@/components/visual/ProductArt";
+import { cn } from "@/lib/cn";
+
+/** Where the KPI tiles sit in the closing panel's art (one per KPI). */
+const KPI_TILES = [
+  "left-[4%] top-6 -rotate-3 art-float-slow sm:left-[6%] lg:top-[10%]",
+  "left-[50%] top-14 rotate-2 art-float sm:left-[40%] sm:top-32 lg:left-[42%] lg:top-[30%]",
+  "left-[20%] top-40 -rotate-1 art-float-slow max-sm:hidden sm:left-[14%] sm:top-60 lg:left-[10%] lg:top-[56%]",
+];
 
 /**
- * Ole Panel as a case study: a full-screen cover (the glass token among
- * dashboard graphics) with the name and facts, the introduction, the coded
- * dashboard full width, media tiles, highlights, how to start, and the
- * next product.
+ * Ole Panel (the business dashboard) as a case study: artwork cover,
+ * introduction, "how it works" with live scenes, feature words,
+ * highlights, how to start and the next product. Navy accent.
  */
 export function OlePanelView({
   locale,
@@ -70,78 +73,101 @@ export function OlePanelView({
           </p>
         </CaseText>
 
-        <CaseMedia>
-          <MockStage tone="panel" className="p-[5%] sm:p-[6%]">
-            <PanelDashboard
-              copy={mock.panel}
-              campaignLive
-              className="w-full max-w-5xl"
-            />
-          </MockStage>
-        </CaseMedia>
-
-
-        <CaseTiles
-          tiles={[
-            <MockStage key="qr" tone="panel">
-              <PanelQrCard copy={mock.panel} />
-            </MockStage>,
-            <MockStage key="verify" tone="panel">
-              <PanelVerifyCard copy={mock.panel} />
-            </MockStage>,
-          ]}
+        <StepStory
+          label={c.howLabel}
+          stepLabel={c.stepLabel}
+          steps={t.steps}
+          scenes={panelScenes(mock)}
+          tone="panel"
         />
-        <CaseTiles
-          className="mt-3"
-          tiles={[
-            <MockStage key="campaigns" tone="panel">
-              <PanelCampaignsCard copy={mock.panel} />
-            </MockStage>,
-            <MockStage key="notify" tone="panel" className="gap-4">
-              <div className="grid w-full max-w-[19rem] gap-4">
-                <PanelNotifyCard copy={mock.panel} />
-                <PanelBranches copy={mock.panel} />
+
+        <Marquee words={t.marquee} />
+
+        <Bento label={c.featuresLabel}>
+          <BentoCard
+            tone="panel"
+            bleed
+            side
+            className="md:col-span-2 lg:col-span-6 lg:min-h-[34rem]"
+            title={f.reports.title}
+            body={f.reports.body}
+            visual={
+              // Phones: anchored right (crop on the sidebar); large screens:
+              // clearly running off the right edge.
+              <div className="absolute right-4 top-8 w-[44rem] origin-top-right scale-[0.8] sm:left-8 sm:right-auto sm:top-10 sm:origin-top-left sm:scale-100 lg:left-[6%] lg:top-14 lg:scale-[1.12] xl:scale-[1.2]">
+                <PanelDashboard copy={mock.panel} campaignLive />
               </div>
-            </MockStage>,
-          ]}
-        />
+            }
+          />
+          <BentoCard
+            tone="panel"
+            className="lg:col-span-2"
+            stat={t.noCommission.value}
+            title={t.noCommission.title}
+            body={t.noCommission.body}
+          />
+          <BentoCard
+            tone="panel"
+            className="lg:col-span-2"
+            title={f.branches.title}
+            body={f.branches.body}
+            visual={<PanelBranchCompare copy={mock.panel} />}
+          />
+          <BentoCard
+            tone="panel"
+            className="md:col-span-2 lg:col-span-2"
+            title={f.notify.title}
+            body={f.notify.body}
+            visual={<PanelNotifyCard copy={mock.panel} />}
+          />
+        </Bento>
 
-        <CaseFeatures
-          label={c.featuresLabel}
-          items={[f.qr, f.verify, f.campaigns, f.notify, f.branches, f.reports]}
-        />
-
-        <section className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)]")}>
-          <Reveal className="grid gap-8 md:grid-cols-12">
-            <h2 className="text-sm text-fg-soft md:col-span-3 lg:col-span-2 lg:col-start-3">
-              {c.startLabel}
-            </h2>
-            <div className="md:col-span-9 lg:col-span-7">
-              <p className="text-statement text-balance">
-                {t.closing.lines.join(" ")}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button
-                  href={OLE_LINKS.panel}
-                  external
-                  newTabLabel={newTab}
-                  size="lg"
-                >
-                  {t.hero.ctaPanel}
-                </Button>
-                <Button
-                  href={OLE_LINKS.demo}
-                  external
-                  newTabLabel={newTab}
-                  variant="secondary"
-                  size="lg"
-                >
-                  {t.hero.ctaDemo}
-                </Button>
-              </div>
+        <CaseStart
+          tone="panel"
+          label={c.startLabel}
+          statement={t.closing.lines.join(" ")}
+          actions={
+            <div className="flex flex-wrap gap-3">
+              <Button
+                href={OLE_LINKS.panel}
+                external
+                newTabLabel={newTab}
+                size="lg"
+              >
+                {t.hero.ctaPanel}
+              </Button>
+              <Button
+                href={OLE_LINKS.demo}
+                external
+                newTabLabel={newTab}
+                variant="secondary"
+                size="lg"
+              >
+                {t.hero.ctaDemo}
+              </Button>
             </div>
-          </Reveal>
-        </section>
+          }
+          art={mock.panel.kpis.map((k, i) => (
+            <div
+              key={k.label}
+              className={cn(
+                "absolute w-[46%] rounded-2xl border border-white/15 bg-white/10 p-4 shadow-2xl backdrop-blur-md sm:w-[min(14rem,60%)] sm:p-5",
+                KPI_TILES[i],
+              )}
+            >
+              <p className="text-4xl font-light tabular-nums tracking-[-0.04em] sm:text-5xl">
+                {k.value}
+              </p>
+              <p className="mt-2 text-sm text-white/75">{k.label}</p>
+              <span className="mt-4 block h-1 overflow-hidden rounded-full bg-white/15">
+                <span
+                  className="block h-full rounded-full bg-brand"
+                  style={{ width: `${[72, 46, 60][i]}%` }}
+                />
+              </span>
+            </div>
+          ))}
+        />
 
         <NextProduct label={c.nextLabel} item={items[2]} />
       </article>

@@ -134,7 +134,7 @@ export function Footer({
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-xs text-fg-faint">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-xs text-fg-soft">
           <p>{footer.rights}</p>
           {/* Moves scroll and keyboard focus back to the start of the page. */}
           <a

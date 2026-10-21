@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { Mail } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
@@ -8,29 +9,43 @@ import { OLE_LINKS } from "@/config/ole";
 import { showcaseItems } from "@/lib/showcase";
 import { storeBadges } from "@/lib/stores";
 import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { StoreBadges } from "@/components/content/StoreBadges";
 import {
+  Bento,
+  BentoCard,
   CaseCover,
-  CaseFeatures,
-  CaseMedia,
+  CaseStart,
   CaseText,
-  CaseTiles,
-  EDGE,
-  MockStage,
+  Marquee,
+  Moments,
   NextProduct,
 } from "@/components/case/Case";
-import { OleCampaignCard, OleRewardCard } from "@/components/mock/OleMocks";
+import { StepStory } from "@/components/case/StepStory";
+import { oleScenes } from "@/components/case/Scenes";
+import {
+  OleCampaignCard,
+  OleNotification,
+  OleRewardCard,
+} from "@/components/mock/OleMocks";
+import { PanelDashboard } from "@/components/mock/PanelMocks";
 import { OleArt } from "@/components/visual/ProductArt";
-import { QrPattern } from "@/components/mock/PanelMocks";
-import { cn } from "@/lib/cn";
+
+/** Small label above a group of actions in the closing panel. */
+function ActionGroup({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div>
+      <p className="mb-3 text-sm text-white/70">{label}</p>
+      {children}
+    </div>
+  );
+}
 
 /**
- * Ole as a case study: a full-screen cover (glass token and the Ole Coffee
- * business card) with the name and facts, the introduction, media tiles (coded mock-ups and photos),
- * highlights, how to start, and the next product. External links come from
- * `config/ole.ts` (main domain only).
+ * Ole (customer app) as a case study: artwork cover, introduction, "how it
+ * works" with live scenes, feature words, highlights, real moments, how to
+ * start and the next product. External links come from `config/ole.ts`
+ * (main domain only).
  */
 export function OleView({
   locale,
@@ -41,12 +56,13 @@ export function OleView({
 }) {
   const t = dict.ole;
   const c = dict.case;
+  const f = t.features;
   const mock = dict.mock;
+  const o = mock.ole;
   const facts = dict.products.facts.ole;
   const labels = dict.products.factLabels;
   const newTab = dict.common.newTab;
   const items = showcaseItems(locale);
-  const f = t.features;
 
   return (
     <PageTransition>
@@ -69,95 +85,165 @@ export function OleView({
           </p>
         </CaseText>
 
-        <CaseTiles
-          tiles={[
-            <MockStage key="reward" tone="ole">
-              <OleRewardCard copy={mock.ole} filled={3} />
-            </MockStage>,
-            <Image
-              key="photo"
-              src={IMG.photos.ole3.src}
-              alt=""
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />,
-          ]}
+        <StepStory
+          label={c.howLabel}
+          stepLabel={c.stepLabel}
+          steps={t.steps}
+          scenes={oleScenes(mock)}
+          tone="ole"
         />
-        <CaseTiles
-          className="mt-3"
-          tiles={[
-            <Image
-              key="photo"
-              src={IMG.photos.ole4.src}
-              alt=""
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />,
-            <MockStage key="scan" tone="ole" className="gap-6">
-              <div className="flex items-center gap-8">
-                <QrPattern className="size-32 rounded-2xl bg-white p-3" />
-                <Image
-                  src={IMG.ole.nfc}
-                  alt={t.alt.nfc}
-                  width={IMG.ole.nfcW}
-                  height={IMG.ole.nfcH}
-                  sizes="8rem"
-                  className="h-52 w-auto -rotate-6 drop-shadow-[0_20px_30px_rgb(0_0_0/0.5)]"
+
+        <Marquee words={t.marquee} />
+
+        <Bento label={c.featuresLabel}>
+          <BentoCard
+            tone="ole"
+            bleed
+            className="min-h-[30rem] md:col-span-2 lg:col-span-3 lg:min-h-[33rem]"
+            title={f.campaign.title}
+            body={f.campaign.body}
+            visual={
+              // A deck: older campaigns peek out above the newest.
+              <div className="absolute inset-x-0 top-8 grid justify-items-center [--deck-y:5rem] group-hover:[--deck-y:5.5rem] sm:top-10">
+                {[o.otherCampaigns[1], o.otherCampaigns[0], undefined].map(
+                  (campaign, i) => (
+                    <div
+                      key={i}
+                      className="w-[min(22rem,calc(100%-3rem))] transition-[translate] duration-700 ease-out-expo [grid-area:1/1]"
+                      style={{
+                        translate: `${[-5, 4, 0][i]}% calc(${i} * var(--deck-y))`,
+                        rotate: `${[-3, 2, 0][i]}deg`,
+                      }}
+                    >
+                      <OleCampaignCard
+                        copy={o}
+                        campaign={campaign}
+                        className={i === 2 ? "shadow-2xl" : undefined}
+                      />
+                    </div>
+                  ),
+                )}
+              </div>
+            }
+          />
+          <BentoCard
+            tone="ole"
+            className="lg:col-span-3"
+            title={f.notify.title}
+            body={f.notify.body}
+            visual={
+              <div className="grid w-full max-w-[21rem] gap-3 lg:scale-[1.2]">
+                <OleNotification
+                  copy={o}
+                  title={o.newCampaignTitle}
+                  body={o.newCampaignBody}
                 />
+                {/* Older notifications stacked under the newest. */}
+                <div className="relative pb-5">
+                  <OleNotification
+                    copy={o}
+                    time={o.earlier}
+                    className="absolute inset-x-0 top-0 translate-y-5 scale-[0.88] opacity-40"
+                  />
+                  <OleNotification
+                    copy={o}
+                    time={o.earlier}
+                    className="absolute inset-x-0 top-0 translate-y-2.5 scale-[0.94] opacity-70"
+                  />
+                  <OleNotification
+                    copy={o}
+                    title={o.rewardReady}
+                    body={o.rewardNotifBody}
+                    time={o.earlier}
+                    className="relative"
+                  />
+                </div>
               </div>
-            </MockStage>,
-          ]}
+            }
+          />
+          <BentoCard
+            tone="ole"
+            className="lg:col-span-2"
+            stat={t.free.value}
+            title={t.free.title}
+            body={t.free.body}
+          />
+          <BentoCard
+            tone="ole"
+            bleed
+            className="md:col-span-2 lg:col-span-4"
+            title={t.panelLink.title}
+            body={t.panelLink.body}
+            link={{ href: items[1].href, label: t.panelLink.cta }}
+            visual={
+              // Phones: anchored right, so the crop falls on the sidebar
+              // and the highlighted bar stays in view.
+              <div className="absolute right-4 top-8 w-[44rem] origin-top-right scale-[0.8] sm:left-8 sm:right-auto sm:top-10 sm:origin-top-left sm:scale-100 lg:left-[12%] lg:-rotate-2">
+                <PanelDashboard copy={mock.panel} campaignLive />
+              </div>
+            }
+          />
+        </Bento>
+
+        <Moments
+          label={c.momentsLabel}
+          photos={[IMG.photos.ole3, IMG.photos.ole4]}
+          chip={
+            <span className="flex w-max items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#c24a00] shadow-lg">
+              <Image src={IMG.ole.token} alt="" width={96} height={96} className="size-5" />
+              {o.earned}
+            </span>
+          }
         />
 
-        <CaseFeatures
-          label={c.featuresLabel}
-          items={[f.reward, f.scan, f.notify, f.campaign]}
-        />
-
-        <CaseMedia className="h-[min(80svh,46vw)]">
-          <MockStage tone="ole">
-            <OleCampaignCard copy={mock.ole} className="scale-[1.15]" />
-          </MockStage>
-        </CaseMedia>
-
-        <section className={cn(EDGE, "py-[clamp(5rem,11vw,10rem)]")}>
-          <Reveal className="grid gap-8 md:grid-cols-12">
-            <h2 className="text-sm text-fg-soft md:col-span-3 lg:col-span-2 lg:col-start-3">
-              {c.startLabel}
-            </h2>
-            <div className="md:col-span-9 lg:col-span-7">
-              <p className="text-statement text-balance">
-                {t.closing.lines.join(" ")}
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Button
-                  href={OLE_LINKS.demo}
-                  external
+        <CaseStart
+          tone="ole"
+          label={c.startLabel}
+          statement={t.closing.lines.join(" ")}
+          actions={
+            <div className="grid gap-8">
+              <ActionGroup label={c.forBusiness}>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button
+                    href={OLE_LINKS.demo}
+                    external
+                    newTabLabel={newTab}
+                    size="lg"
+                  >
+                    {t.hero.ctaDemo}
+                  </Button>
+                  <Button
+                    href={`mailto:${OLE_LINKS.supportEmail}`}
+                    variant="secondary"
+                    size="lg"
+                  >
+                    <Mail className="size-4" aria-hidden="true" />
+                    <span className="sr-only">{c.supportLabel}: </span>
+                    {OLE_LINKS.supportEmail}
+                  </Button>
+                </div>
+              </ActionGroup>
+              <ActionGroup label={c.forCustomers}>
+                <StoreBadges
+                  items={storeBadges(dict, "ole")}
                   newTabLabel={newTab}
-                  size="lg"
-                >
-                  {t.hero.ctaDemo}
-                </Button>
-                <Button
-                  href={`mailto:${OLE_LINKS.supportEmail}`}
-                  variant="secondary"
-                  size="lg"
-                >
-                  <Mail className="size-4" aria-hidden="true" />
-                  <span className="sr-only">{c.supportLabel}: </span>
-                  {OLE_LINKS.supportEmail}
-                </Button>
-              </div>
-              <StoreBadges
-                items={storeBadges(dict, "ole")}
-                newTabLabel={newTab}
-                className="mt-6"
-              />
+                  size="fluid"
+                  variant="glass"
+                />
+              </ActionGroup>
             </div>
-          </Reveal>
-        </section>
+          }
+          art={
+            <>
+              <div className="art-float-slow absolute left-[8%] top-8 w-[min(19rem,80%)] -rotate-6 lg:top-[14%]">
+                <OleRewardCard copy={o} filled={5} className="shadow-2xl" />
+              </div>
+              <div className="art-float absolute left-[24%] top-40 w-[22rem] rotate-3 max-sm:hidden sm:top-48 lg:left-[30%] lg:top-[52%]">
+                <OleCampaignCard copy={o} campaign={o.otherCampaigns[0]} className="shadow-2xl" />
+              </div>
+            </>
+          }
+        />
 
         <NextProduct label={c.nextLabel} item={items[1]} />
       </article>

@@ -96,6 +96,8 @@ export function HomeView({
     namaz: <NamazArt copy={mock} layout="landscape" />,
   };
 
+  // On phones a slide's name and text sit in one column above the pills
+  // (so they never overlap); from md each is placed on its own.
   const productSlides: StageSlide[] = items.map((item, i) => {
     const copy = t.products.items[item.key];
     const flip = i % 2 === 1;
@@ -105,9 +107,16 @@ export function HomeView({
       href: item.href,
       background: backgrounds[item.key],
       content: (
-        <div className="absolute inset-0" data-theme={item.key}>
+        // Keyed: HomeStage renders it next to the background, and the dev
+        // RSC payload may send it as a separate (lazy) chunk.
+        <div key="content" className="absolute inset-0" data-theme={item.key}>
           <p
-            className="stage-rise absolute left-4 top-[15%] hidden text-sm text-fg-muted md:block md:left-[26%] md:top-[20%]"
+            className={cn(
+              "stage-rise absolute left-4 top-[15%] hidden text-sm text-fg-muted md:block md:left-[26%] md:top-[20%]",
+              // Stop before the preview card.
+              flip ? "md:right-[58%]" : "md:right-[45%]",
+              "short-wide:hidden",
+            )}
             style={rise(0)}
           >
             {s.tags[item.key]}
@@ -115,35 +124,49 @@ export function HomeView({
           <div
             className={
               flip
-                ? "stage-rise absolute right-4 top-[13%] aspect-[4/3] w-[62vw] overflow-hidden rounded-md shadow-lg md:left-[44%] md:right-auto md:top-[12%] md:aspect-[16/10] md:w-[36vw] md:max-w-[38rem]"
-                : "stage-rise absolute right-4 top-[13%] aspect-[4/3] w-[62vw] overflow-hidden rounded-md shadow-lg md:right-[5vw] md:top-[12%] md:aspect-[16/10] md:w-[38vw] md:max-w-[40rem]"
+                ? "stage-rise absolute right-4 top-[13%] [@media(max-width:767px)_and_(max-height:700px)]:hidden short-wide:hidden aspect-[4/3] w-[62vw] overflow-hidden rounded-md shadow-lg md:left-[44%] md:right-auto md:top-[12%] md:aspect-[16/10] md:w-[36vw] md:max-w-[38rem]"
+                : "stage-rise absolute right-4 top-[13%] [@media(max-width:767px)_and_(max-height:700px)]:hidden short-wide:hidden aspect-[4/3] w-[62vw] overflow-hidden rounded-md shadow-lg md:right-[5vw] md:top-[12%] md:aspect-[16/10] md:w-[38vw] md:max-w-[40rem]"
             }
             style={rise(1)}
           >
             {previews[item.key]}
           </div>
-          <h2
-            className={cn(
-              "stage-rise absolute left-4 top-[45%]",
-              item.label.length > 12 ? "text-display-l" : "text-display-xl",
-              flip ? "md:left-[38%] md:top-[60%]" : "md:left-[8%] md:top-[62%]",
-            )}
-            style={rise(2)}
-          >
-            <Link href={item.href}>{item.label}</Link>
-          </h2>
-          <div
-            className={cn(
-              "stage-rise absolute bottom-[calc(12.75rem+env(safe-area-inset-bottom))] left-4 right-4 max-w-[22rem] text-sm leading-relaxed text-fg-muted md:left-auto md:max-w-[17rem]",
-              flip
-                ? "md:bottom-[9%] md:right-[6vw]"
-                : "md:bottom-auto md:right-[4vw] md:top-[calc(12%+min(38vw,40rem)*0.625+1.5rem)]",
-            )}
-            style={rise(3)}
-          >
-            <p>{copy.body}</p>
-            <div className="mt-2 text-fg">
-              <StageLink href={item.href}>{s.open}</StageLink>
+          <div className="absolute bottom-[calc(12.75rem+env(safe-area-inset-bottom))] left-4 right-4 short-phone:bottom-6 short-phone:left-auto short-phone:w-[min(50%,22rem)] md:contents">
+            <h2
+              className={cn(
+                "stage-rise md:absolute",
+                // From md the size also follows the screen height, so the
+                // name stays on screen on short laptop windows.
+                item.label.length > 12
+                  ? "text-display-l md:text-[length:min(var(--text-display-l),11svh)]"
+                  : "text-display-xl md:text-[length:min(var(--text-display-xl),14svh)]",
+                // A right edge clear of the text column, so long names wrap
+                // instead of running under it.
+                // Never above the preview's bottom edge (short windows).
+                flip
+                  ? "md:left-[38%] md:right-[calc(6vw+19rem)] md:top-[max(60%,calc(12%+min(36vw,38rem)*0.625+1.5rem))]"
+                  : "md:left-[max(8%,16rem)] md:right-[calc(4vw+19rem)] md:top-[max(62%,calc(12%+min(38vw,40rem)*0.625+1.5rem))]",
+                // Short wide screens: clear of the pills on the left.
+                "short-wide:left-[34%] short-wide:right-4 short-wide:top-[48%]",
+              )}
+              style={rise(2)}
+            >
+              <Link href={item.href}>{item.label}</Link>
+            </h2>
+            <div
+              className={cn(
+                "stage-rise mt-4 max-w-[22rem] text-sm leading-relaxed text-fg-muted md:absolute md:mt-0 md:max-w-[17rem]",
+                flip
+                  ? "md:bottom-[9%] md:right-[6vw]"
+                  : "md:right-[4vw] md:top-[calc(12%+min(38vw,40rem)*0.625+1.5rem)]",
+                "short-wide:hidden",
+              )}
+              style={rise(3)}
+            >
+              <p>{copy.body}</p>
+              <div className="mt-2 text-fg">
+                <StageLink href={item.href}>{s.open}</StageLink>
+              </div>
             </div>
           </div>
         </div>

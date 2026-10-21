@@ -109,12 +109,21 @@ export function OleRewardCard({
   );
 }
 
-/** Ole push notification ("We miss you!"), iOS-style banner. */
+/**
+ * Ole push notification, iOS-style banner: "We miss you!" unless another
+ * `title` / `body` / `time` is given.
+ */
 export function OleNotification({
   copy,
+  title = copy.notifTitle,
+  body = copy.notifBody,
+  time = copy.now,
   className,
 }: {
   copy: OleCopy;
+  title?: string;
+  body?: string;
+  time?: string;
   className?: string;
 }) {
   return (
@@ -131,21 +140,33 @@ export function OleNotification({
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline justify-between gap-2 text-xs">
           <span className="truncate font-semibold">{DEMO_BUSINESS}</span>
-          <span className="shrink-0 text-fg-faint">{copy.now}</span>
+          <span className="shrink-0 text-fg-faint">{time}</span>
         </div>
-        <p className="mt-0.5 text-sm font-semibold">{copy.notifTitle}</p>
-        <p className="text-xs leading-relaxed text-fg-soft">{copy.notifBody}</p>
+        <p className="mt-0.5 text-sm font-semibold">{title}</p>
+        <p className="text-xs leading-relaxed text-fg-soft">{body}</p>
       </div>
     </div>
   );
 }
 
-/** Ole business page — a campaign card ("Welcome: first coffee on us"). */
+type Campaign = OleCopy["otherCampaigns"][number];
+
+/**
+ * Ole business page — a campaign card: "Welcome: first coffee on us"
+ * unless another `campaign` is given.
+ */
 export function OleCampaignCard({
   copy,
+  campaign = {
+    badge: copy.campaignBadge,
+    title: copy.campaignTitle,
+    body: copy.campaignBody,
+    days: copy.campaignDays,
+  },
   className,
 }: {
   copy: OleCopy;
+  campaign?: Campaign;
   className?: string;
 }) {
   return (
@@ -171,16 +192,16 @@ export function OleCampaignCard({
           <p className="truncate text-sm font-semibold">{DEMO_BUSINESS}</p>
         </div>
         <p className="mt-3 text-[0.9375rem] font-semibold leading-snug">
-          {copy.campaignTitle}
+          {campaign.title}
         </p>
         <p className="mt-1 text-xs leading-relaxed text-fg-soft">
-          {copy.campaignBody}
+          {campaign.body}
         </p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold text-[#c24a00]">
           <span className="whitespace-nowrap rounded-full bg-accent-soft px-2 py-0.5">
-            {copy.campaignBadge}
+            {campaign.badge}
           </span>
-          <span className="tabular-nums">{copy.campaignDays}</span>
+          <span className="tabular-nums">{campaign.days}</span>
         </div>
       </div>
     </div>

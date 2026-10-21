@@ -51,10 +51,10 @@ export function FaqTabs({ tabs }: { tabs: FaqTab[] }) {
               onClick={() => setActive(i)}
               onKeyDown={(e) => onKey(e, i)}
               className={cn(
-                "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                "min-h-10 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                 active === i
                   ? "border-accent bg-accent-soft font-semibold text-fg"
-                  : "border-border bg-white text-fg-muted hover:border-border-strong hover:text-fg",
+                  : "border-border bg-transparent text-fg-muted hover:border-border-strong hover:text-fg",
               )}
             >
               {tab.label}

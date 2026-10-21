@@ -20,13 +20,16 @@ import {
 } from "@/components/visual/ProductArt";
 import { closeMenu, setFrameVars } from "@/lib/menuTransition";
 import { Logo } from "@/components/Logo";
-import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { CityClock } from "./CityClock";
 import { ModeToggle } from "./ModeToggle";
+import { LanguageMenu } from "./LanguageMenu";
 
 const NAV_TYPES = ["menu-nav"];
 // Product pills: on large screens the centre frame grows into the page.
 const EXPAND_TYPES = ["menu-nav", "menu-expand"];
+/** Product pills: compact on phones (room for the frame), large from lg. */
+const MENU_PILL =
+  "pill h-10 px-4 text-[0.9375rem] lg:h-11 lg:px-5 lg:text-[1.0625rem]";
 
 /**
  * Full-screen menu on a native modal <dialog> (focus trap, Esc and focus
@@ -78,8 +81,15 @@ export function MenuOverlay({
       e.preventDefault();
       closeMenu(dialog);
     };
+    // A product picked by touch keeps its art in the frame until the menu
+    // has closed; start fresh next time.
+    const onClose = () => setPreview(null);
     dialog.addEventListener("cancel", onCancel);
-    return () => dialog.removeEventListener("cancel", onCancel);
+    dialog.addEventListener("close", onClose);
+    return () => {
+      dialog.removeEventListener("cancel", onCancel);
+      dialog.removeEventListener("close", onClose);
+    };
   }, [dialogRef]);
 
   const links = [
@@ -102,11 +112,13 @@ export function MenuOverlay({
       className="menu-dialog pointer-events-auto m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overflow-x-hidden border-0 bg-bg p-0 text-fg"
     >
       <div className="flex min-h-full flex-col overflow-x-clip">
-        {/* Bar (mirrors the site bar) */}
-        <div className="grid h-[3.75rem] shrink-0 grid-cols-[1fr_auto_1fr] items-center px-[clamp(1rem,2vw,1.75rem)]">
+        {/* Bar (mirrors the site bar); stays on top while the menu scrolls
+            on short screens, so "Close" is always in reach. */}
+        <div className="sticky top-0 z-10 grid h-[3.75rem] shrink-0 grid-cols-[1fr_auto_1fr] items-center bg-bg px-[clamp(1rem,2vw,1.75rem)]">
           <div>
             <button
               type="button"
+              data-menu-close=""
               onClick={closeAnimated}
               className="pill border border-fg !bg-transparent"
             >
@@ -129,18 +141,21 @@ export function MenuOverlay({
               locale={locale}
               className="mr-1 hidden text-sm sm:inline"
             />
+            <LanguageMenu label={nav.language} />
             <ModeToggle label={nav.themeLight} />
             <a
               href={dict.contact.emailHref}
               aria-label={nav.mail}
-              className="icon-pill"
+              className="icon-pill max-[359px]:hidden"
             >
               <Mail className="size-4" aria-hidden="true" />
             </a>
           </div>
         </div>
 
-        <div className="grid flex-1 gap-12 px-[clamp(1rem,2vw,1.75rem)] pb-10 pt-10 lg:grid-cols-[1fr_minmax(0,36rem)_1fr] lg:gap-10 lg:pt-6">
+        {/* Phones and tablets: links and products on the left, the frame
+            beside them, announcements below. Large screens: three columns. */}
+        <div className="grid flex-1 grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-12 px-[clamp(1rem,2vw,1.75rem)] pb-10 pt-10 lg:grid-cols-[1fr_minmax(0,36rem)_1fr] lg:gap-10 lg:pt-6">
           {/* Left: pages + products */}
           <nav aria-label={nav.mainNav} className="flex flex-col lg:justify-center">
             <ul className="grid gap-1">
@@ -184,11 +199,17 @@ export function MenuOverlay({
                     }}
                     transitionTypes={EXPAND_TYPES}
                     onPointerEnter={() => setPreview(item.key)}
-                    onPointerLeave={() => setPreview(null)}
+                    // Touch: show the product in the frame as soon as the
+                    // finger lands (iOS doesn't focus links on tap), and keep
+                    // it there while the page grows out of the frame.
+                    onPointerDown={() => setPreview(item.key)}
+                    onPointerLeave={(e) => {
+                      if (e.pointerType === "mouse") setPreview(null);
+                    }}
                     onFocus={() => setPreview(item.key)}
                     onBlur={() => setPreview(null)}
                     data-active={preview === item.key ? "" : undefined}
-                    className="pill pill-lg"
+                    className={MENU_PILL}
                   >
                     {item.label}
                   </Link>
@@ -202,24 +223,19 @@ export function MenuOverlay({
                   href={localizedPath("products", locale)}
                   onClick={leave}
                     transitionTypes={NAV_TYPES}
-                  className="pill pill-lg"
+                  className={MENU_PILL}
                 >
                   {nav.allProducts}
                 </Link>
               </li>
             </ul>
-
-            <LanguageSwitcher
-              dict={nav}
-              className="menu-item menu-from-left mt-10 -ml-3 [--i:9]"
-            />
           </nav>
 
           {/* Centre: preview */}
           <div
             aria-hidden="true"
             data-menu-frame=""
-            className="relative hidden overflow-hidden rounded-md bg-black lg:block lg:max-h-[calc(100dvh-7.5rem)]"
+            className="relative min-h-[16rem] overflow-hidden rounded-md bg-black lg:max-h-[calc(100dvh-7.5rem)]"
           >
             <div
               className={cn(
@@ -257,7 +273,10 @@ export function MenuOverlay({
           </div>
 
           {/* Right: announcements */}
-          <aside aria-label={nav.newsTitle} className="flex flex-col gap-2 lg:justify-center">
+          <aside
+            aria-label={nav.newsTitle}
+            className="col-span-2 flex flex-col gap-2 lg:col-span-1 lg:justify-center"
+          >
             {news.map(({ key, item }, i) => (
               <article
                 key={key}
@@ -272,8 +291,21 @@ export function MenuOverlay({
                   <button
                     type="button"
                     aria-label={`${nav.dismiss}: ${item.label}`}
-                    onClick={() => setDismissed((d) => [...d, key])}
-                    className="-m-1.5 grid size-8 shrink-0 place-items-center rounded-full text-fg-soft hover:bg-surface-2 hover:text-fg"
+                    onClick={(e) => {
+                      const aside = e.currentTarget.closest("aside");
+                      setDismissed((d) => [...d, key]);
+                      // Keep focus in the menu: the next announcement's
+                      // dismiss button, or "Close".
+                      requestAnimationFrame(() => {
+                        const next =
+                          aside?.querySelector<HTMLButtonElement>("button") ??
+                          dialogRef.current?.querySelector<HTMLButtonElement>(
+                            "[data-menu-close]",
+                          );
+                        next?.focus();
+                      });
+                    }}
+                    className="-m-2.5 grid size-10 shrink-0 place-items-center rounded-full text-fg-soft hover:bg-surface-2 hover:text-fg"
                   >
                     <X className="size-4" aria-hidden="true" />
                   </button>
