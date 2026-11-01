@@ -34,10 +34,12 @@ sağlayıcı hesabı / hukuk metni). Kanıt gelmeden hiçbiri çözülmüş say�
      mı? İmzalandıysa tarihi ve Kurul'a bildirim tarihi.
   2. İmzalanamayacaksa hangi yol seçilecek: verinin Türkiye'de barındırılması,
      sağlayıcı değişikliği ya da başka bir araç?
-  3. Supabase panelinde bölgenin eu-central-1 olduğunu gösteren ekran
-     görüntüsü (Project Settings → General). Bölge şu an yalnızca senin
-     beyanına dayanıyor.
-  4. Supabase'le DPA (veri işleme sözleşmesi) imzalandı mı?
+- **Bilinenler:** Frankfurt (eu-central-1) bölgesi kullanıcı tarafından
+  doğrulandı. Supabase DPA'sı Hizmet Şartları'nın parçası ve AB SCC'lerini
+  içeriyor; KVKK'yı adıyla anmıyor. Expo politikası SCC ve EU-U.S. DPF'ye
+  dayanıyor, yayımlanmış DPA'sı bulunamadı (bkz. "Sağlayıcı belgeleri").
+  Bunlar KVKK m. 9 kapsamında yeterli bir araç olduğunu göstermez; uzman
+  hukuki değerlendirme gerekir.
 - **İşlem yeri:** Sağlayıcı hesapları (sözleşmeler), Kurul bildirimi, sonra
   hukuk metni (Gizlilik §9, KVKK §7'ye seçilen araç yazılır).
 
@@ -61,73 +63,55 @@ sağlayıcı hesabı / hukuk metni). Kanıt gelmeden hiçbiri çözülmüş say�
 
 ### 3. Apple sunucu tanıması ve Expo için hukuki sebep — yayına engel
 
-- **Eksik:** Hangi KVKK m. 5 şartının uygulandığı ve sağlayıcının rolü
-  (veri işleyen mi, ayrı veri sorumlusu mu) metinde yok:
-  - "Yazıya dökme yalnızca cihazda" kapalıyken ses Apple'a gider.
-  - Expo güncelleme kontrolünde IP adresi ve sürüm bilgisi işlenir.
-- **Senden gereken:**
-  1. "Yazıya dökme yalnızca cihazda" ayarı varsayılan olarak açık kalacak mı?
-     Kalacaksa sunucu tanıması kullanıcının bilerek açtığı bir özellik olur.
-  2. Sunucu tanıması "kullanıcının istediği özellik" (m. 5/2-c) olarak mı
-     yazılsın, açık rızaya mı bağlansın? Ses özel nitelikli veri içerebileceği
-     için 2. maddedeki kararla birlikte verilmeli.
-  3. Expo güncelleme kontrolü için meşru menfaat (m. 5/2-f) mi, sözleşmenin
-     ifası (m. 5/2-c) mı?
-- **İşlem yeri:** Hukuk metni (KVKK §4 ve §6, Gizlilik §5 ve §8). Ayar
-  ekranına açıklama gerekiyorsa uygulama.
+- **Karar verildi (2 Kasım 2026):** "Yazıya dökme yalnızca cihazda" varsayılan
+  olarak açık kalır; kullanıcı kapatmadıkça sunucu tanımasına geçilmez. Metinler
+  zaten böyle (Gizlilik §5, KVKK §5, Sözleşme §8).
+- **Hâlâ açık:** Sunucu tanıması (ayar kapatıldığında) ve Expo güncelleme
+  kontrolü için KVKK m. 5 şartı ile sağlayıcının rolü (veri işleyen mi, ayrı
+  veri sorumlusu mu). Ses özel nitelikli veri içerebileceği için 2. maddeyle
+  birlikte değerlendirilmeli. Uzman hukuki değerlendirme.
+- **İşlem yeri:** Hukuk metni (KVKK §4 ve §6, Gizlilik §5 ve §8).
 
 ### 4. Saklama süreleri (kısmen açık) — yayına engel
 
-Silinen kayıtlar, sürüm geçmişi ve hesap silme tanımlı. Eksik olanlar:
+Silinen kayıtlar, sürüm geçmişi, hesap silme ve sözleşme kabul kayıtları
+tanımlı. Silme izleri (`kalici_silinenler`) için "hesap silinene kadar" ölçütü
+kullanıcı tarafından onaylandı (2 Kasım 2026); Gizlilik §10, KVKK §8 ve Sözleşme
+§14 bununla uyumlu. Eksik olanlar (metinlerde süre verilmedi):
 
-- **Çıkıştan sonra cihazda kalan veri (`iz-<id>.db` ve dosyalar).**
-  - Karar: Metne "uygulama kaldırılana veya hesap silinene kadar cihazda
-    kalır" ölçütü yazılsın mı? Bu, uygulamanın bugünkü davranışı.
-  - İşlem yeri: Hukuk metni.
-- **Silme izleri (`kalici_silinenler`, yalnızca kimlik ve zaman).**
-  - Karar: Metinlerdeki "hesap silinene kadar" ölçütü onaylanıyor mu?
-  - İşlem yeri: Hukuk metni (onay yeterli).
+- **Çıkıştan sonra cihazda kalan veri (`iz-<id>.db` ve dosyalar).** Ölçüt
+  kararı bekliyor; metin yalnızca çıkışın veriyi silmediğini söylüyor.
 - **Silinen hesap özetleri ve kilit satırları (`silinen_hesaplar`,
-  `hesap_silmeleri`).**
-  - Ne kadar tutulacakları tanımlı değil; şu an süresiz.
-  - Karar: Bir süre seçilecek mi (ör. "X ay sonra silinir")? Seçilirse
-    sunucuya temizlik işi eklenmeli; bu Supabase işi ve bu görevin
-    kapsamı dışında.
-  - İşlem yeri: Önce sağlayıcı (Supabase), sonra hukuk metni.
-- **Sağlayıcı yedekleri ve loglar.**
-  - Gereken bilgi: Supabase planının adı ve bu planın yedek ve log saklama
-    süreleri (panelde Database → Backups ve Logs).
-  - Süre bilinmeden metin "taahhüt edilmez" demeye devam eder.
-  - İşlem yeri: Sağlayıcı hesabı, sonra hukuk metni.
+  `hesap_silmeleri`).** Şu an süresiz. Süre seçilirse sunucuda temizlik işi
+  gerekir (Supabase; bu işin kapsamı dışında).
+- **Sağlayıcı yedekleri ve loglar.** Plana bağlı; aşağıdaki "Sağlayıcı
+  belgeleri" bölümüne bakın. Projenin planı bilinmeden süre yazılmaz.
 
-### 5. Uygulamada belge bağlantıları ve kabul akışı — mağaza öncesi
+### 5. Uygulamada belge bağlantıları ve kabul akışı — kuruldu, etkin değil
 
-- **Eksik:** Uygulamada Gizlilik Politikası, KVKK ve Kullanıcı Sözleşmesi
-  bağlantısı yok. Kayıt ve giriş ekranında kabul adımı da yok. App Store
-  5.1.1(i), gizlilik politikasının uygulama içinden kolay erişilebilir olmasını
-  istiyor. Sözleşme §13 ve §17 bir kabul ve onay mekanizması varsayıyor.
-- **Senden gereken:**
-  1. Kabul nasıl olacak?
-     - (a) Kayıtta işaret kutusu,
-     - (b) "Devam ederek … kabul edersin" metni,
-     - (c) yalnızca Ayarlar'da bağlantı.
-  2. Kabul, Apple ile giriş akışında da istenecek mi?
-  3. Kabul edilen sürüm (tarih) sunucuda saklanacak mı?
-  4. Bağlantılar hangi adreslere gidecek? Sayfalar henüz yayında değil.
-- **İşlem yeri:** Uygulama (Ayarlar bağlantıları, kayıt ekranı, gerekirse
-  kabul kaydı) ve App Store Connect (Privacy Policy URL).
+- **Durum (iz-app `74d679f`, `eb2c19b`; yalnızca okunarak):** Ayarlar → Hukuki,
+  giriş/kayıt ekranında bağlantılar, Kullanıcı Sözleşmesi için önceden
+  işaretlenmemiş kabul kutusu, `sozlesme_kabulleri` kaydı. Sunucuda dört belge
+  `yayinda=false`, `surum='taslak'`; kabul zorunluluğu kapalı. Bugün kabul
+  kaydı toplanmıyor. Cihazda hiçbiri denenmedi (DEVIR-NOTU).
+- **Metinlere eklendi (2 Kasım 2026):** Kabul kayıtları (sürüm, sunucu zamanı,
+  kaynak, platform, uygulama sürümü, dil) Gizlilik §3.6, §4, §10, §11 ve KVKK
+  §3.5, §4.1, §8, §12'de. Amaç: sözleşme kabulünün ve sürümünün takibi. KVKK'da
+  §4.1'in mevcut sözleşmenin kurulması/ifası şartı (m. 5/2-c) altına
+  konuldu; yeni şart eklenmedi. Hesap silinince kayıtlar da silinir;
+  sonrasında saklama süresi veya gerekçe yazılmadı. İfade "kabul ettiğinizde
+  kaydedilir" biçiminde; bugün toplanıyormuş gibi yazılmadı.
+- **Açık:** Kabul kaydının hesap silindikten sonra kanıt olarak tutulması
+  istenirse bu ayrı karar ve uzman hukuki değerlendirme gerektirir (şu an
+  istenmedi).
+- **Sürüm eşleştirmesi (yayında yapılacak):** Uygulamadaki `surum` değeri,
+  kullanıcının kabul ettiği belirli metni göstermeli. Sitedeki "Son
+  güncelleme" tarihi son düzenleme tarihidir, yürürlük tarihi değildir;
+  yürürlük tarihi henüz belirlenmedi. Yayında, verilen `surum` değerinin
+  hangi site commit'indeki `terms.ts` metnine karşılık geldiği kaydedilmeli.
+  Biçimlerin birebir aynı olması gerekmez.
 
-### 6. Apple Standard EULA mı, özel EULA mı — mağaza öncesi
-
-- **Eksik:** App Store Connect'te hangi lisansın kullanılacağı belirlenmedi.
-  Kullanıcı Sözleşmesi Apple EULA'sının yerine geçmiş sayılmadı.
-- **Senden gereken:** Standard EULA kalacak mı? Kalacaksa sözleşme bunu
-  tamamlayıcı metin olarak kalır. Yoksa Kullanıcı Sözleşmesi özel EULA olarak
-  mı girilecek?
-- **İşlem yeri:** App Store Connect. Özel EULA seçilirse hukuk metninde §12
-  güncellenir.
-
-### 7. Şifre sıfırlama e-postası (Custom SMTP) — genel kullanıma açılmadan önce
+### 6. Şifre sıfırlama e-postası (Custom SMTP) — bu tur kapsam dışı, çözülmedi
 
 - **Eksik:** E-postalar şu an yalnızca Supabase ekip üyelerine gidiyor
   (DEVIR-NOTU §10). SMTP sağlayıcısı seçilince bu sağlayıcı yeni bir veri
@@ -137,24 +121,67 @@ Silinen kayıtlar, sürüm geçmişi ve hesap silme tanımlı. Eksik olanlar:
 - **İşlem yeri:** Sağlayıcı hesabı (Supabase Auth → SMTP), sonra hukuk metni
   (Gizlilik §8 sağlayıcılar, KVKK §6 ve §7).
 
-### 8. Veri sorumlusu bilgileri ve VERBİS — doğrulama
+### 7. VERBİS — açık
 
-- **Eksik:** Oğuzhan Menek, adres ve info@oletr.com senin metninde verildi;
-  İz deposunda geçmiyor. VERBİS kaydı veya muafiyeti hakkında bilgi yok.
-- **Senden gereken:**
-  1. İz'i sunan kişi gerçekten Oğuzhan Menek mi (şahıs olarak)? Adres güncel
-     mi?
-  2. VERBİS'te kayıt var mı? Muafiyet değerlendirmesinde özel nitelikli
-     veri işlemenin ana faaliyet sayılıp sayılmadığı 2. maddedeki karara
-     bağlı.
-- **İşlem yeri:** Hukuk metni (Gizlilik §2, KVKK §1, Sözleşme §1 ve §19).
-  VERBİS ayrı bir işlem.
+- **Eksik:** VERBİS kaydı veya muafiyeti hakkında bilgi yok. Muafiyet, özel
+  nitelikli veri işlemenin ana faaliyet sayılıp sayılmadığına (2. madde)
+  bağlı. Veri sorumlusu bilgileri kullanıcı tarafından verildi; yeniden
+  sorulmaz.
+- **İşlem yeri:** VERBİS (ayrı işlem); uzman hukuki değerlendirme.
 
-### 9. Cihazda henüz denenmeyenler — metne eklemek için (yayına engel değil)
+### 8. Cihazda henüz denenmeyenler — metne eklemek için (yayına engel değil)
 
-Metinler bunları çalışıyor gibi anlatmıyor. Cihazda doğrulanırsa eklenebilir.
+Metinler bunları çalışıyor gibi anlatmıyor. Hukuk belgeleri akışı (bağlantılar,
+kabul kutusu, kabul ekranı) da cihazda denenmedi; yalnızca deneme ortamında
+yayına alınarak denenmeli.
 - **Senden gereken:** Cihaz testi sonucu.
 - **İşlem yeri:** Uygulama testi, sonra hukuk metni.
+
+## Sağlayıcı belgeleri (resmî kaynaklar, 2 Kasım 2026'da okundu)
+
+**Supabase**
+- DPA: [supabase.com/legal/dpa](https://supabase.com/legal/dpa). Hizmet
+  Şartları'nın parçasıdır; ayrı imza gerekmez ("acceptance of the Agreement
+  shall have the same effect as signing the SCCs"). AB SCC'leri (2021/914),
+  İngiltere ve İsviçre ekleri içerir. Schedule 2 §4, diğer ülkelerin
+  mevzuatı için SCC'lerin gerekli değişikliklerle uygulanacağını ve başka bir
+  aktarım aracı onaylanırsa ek sözleşme yapılacağını söylüyor. Türkiye/KVKK
+  adıyla geçmiyor; bunun KVKK standart sözleşmesi yerine geçip geçmediği
+  uzman hukuki değerlendirme konusu (1. madde).
+- Sözleşme bitince veriler silinir (DPA §11); yedekler için ayrı silme süresi
+  verilmiyor. Alt işleyenler:
+  [supabase.com/legal/customer-resources/subprocessor-list](https://supabase.com/legal/customer-resources/subprocessor-list).
+- Yedekler ([docs](https://supabase.com/docs/guides/platform/backups),
+  [fiyatlandırma](https://supabase.com/pricing)): Free plan otomatik günlük
+  yedek yok; Pro 7 gün, Team 14 gün, Enterprise 30 güne kadar/özel. PITR ek
+  hizmet (Pro ve üstü).
+- Log saklama ([fiyatlandırma](https://supabase.com/pricing)): Free 1 gün,
+  Pro 7 gün, Team 28 gün, Enterprise 90 gün.
+
+**Expo (EAS Update)**
+- [expo.dev/privacy](https://expo.dev/privacy) (21 Ekim 2025): EAS Update için
+  son kullanıcının işletim sistemi ve güncellemenin indirilip indirilmediğini
+  anlamak için rastgele belirteçler toplanabilir; IP adresi genel olarak
+  otomatik toplanan veriler arasında. Aktarım için "standard contractual
+  clauses or other appropriate legal mechanisms" ve EU-U.S. Data Privacy
+  Framework. Saklama: "reasonably necessary" süre; somut süre yok.
+- Expo için yayımlanmış ayrı bir DPA bulunamadı; Expo'nun veri işleyen mi
+  veri sorumlusu mu olduğu politikada belirtilmiyor.
+- Alt işleyen listesi: [expo.dev/privacy/subprocessors](https://expo.dev/privacy/subprocessors)
+  (7 Ağustos 2023, güncelliği belirsiz).
+
+**Apple (konuşma tanıma)**
+- [SFSpeechRecognizer belgesi](https://developer.apple.com/documentation/speech/sfspeechrecognizer):
+  sunucu tanıması ağ tabanlı bir hizmettir ("speech recognition is a
+  network-based service"); kullanıcıdan "speech recognition using Apple's
+  servers" için izin istenmeli. Apple'ın bu sesleri ne kadar sakladığına dair
+  geliştirici belgesinde süre yok.
+
+**Hesaba özel olup erişilemeyenler (senden veya panelden):**
+- İz Supabase projesinin planı (yedek ve log süresi buna bağlı) ve PITR açık mı.
+- Expo hesabında özel bir DPA veya kurumsal sözleşme var mı.
+- Apple Developer Program sözleşmesinde konuşma tanıma verisine ilişkin
+  hükümler (hesaba bağlı belge).
 
 ## Çözülen konular (2 Kasım 2026)
 
@@ -178,11 +205,14 @@ cihaz testleri commit `f8e2e15`. Yalnızca okunarak; Supabase'e erişilmedi.
   ulaşınca başlar; çevrimdışı silmede eşitlenince başlar (`sunucu_silinme`,
   sunucu tetikleyicisi). Gizlilik §10, KVKK §8, Kullanıcı Sözleşmesi §14 ve
   Hesap Silme sayfası aynı anlamda yazıldı.
+- **Apple Standard EULA (2 Kasım 2026).** App Store Connect'te Apple'ın
+  standart lisansı kullanılacak. Kullanıcı Sözleşmesi özel EULA'ya
+  dönüştürülmedi; §12 bunu açıkça söylüyor.
 - **"Ücretsiz" (2 Kasım 2026).** Mevcut sürümün ücretsiz olduğu kullanıcı
   tarafından doğrulanmış ürün kararıdır (Kullanıcı Sözleşmesi §5). Kodda
   uygulama içi satın alma veya abonelik bağımlılığı da yok.
 
-## Ek: cihazda henüz denenmeyenlerin ayrıntısı (Açık konular 9)
+## Ek: cihazda henüz denenmeyenlerin ayrıntısı (Açık konular 8)
 
 DEVIR-NOTU'ya göre yalnızca kodla test edildi; doğrulanınca metinlere
 eklenebilir:
@@ -206,12 +236,12 @@ eklenebilir:
 Kaynak: kullanıcının ilettiği metin. İz deposu (`iz-app`, yalnızca okunarak) ve
 diğer üç İz sayfasıyla karşılaştırıldı.
 
-**Uygulamada kabul akışı yok** (Açık konular 5). Sayfa, kullanıcının sözleşmeyi
-uygulamada kabul ettiği şeklinde sunulmadı. Apple EULA: Açık konular 6.
+**Uygulamada kabul akışı o tarihte yoktu**; şimdi kuruldu ama etkin değil (Açık konular 5). Sayfa, kullanıcının sözleşmeyi
+uygulamada kabul ettiği şeklinde sunulmadı. Apple EULA: Çözülen konular.
 
 **Diğer sayfalarla farklar:** 30 günün başlangıcı ve "ücretsiz" çözüldü (bkz.
 Çözülen konular). Açık rıza: Açık konular 2. Kabul akışı: Açık konular 5.
-Apple EULA: Açık konular 6.
+Apple EULA: Çözülen konular.
 
 **Kodla doğrulananlar:** "Bildirimlerde içeriği gizle" yalnızca hatırlatıcı
 bildirimlerinde kullanılıyor, widget'a uygulanmıyor
@@ -220,8 +250,8 @@ bildirimlerinde kullanılıyor, widget'a uygulanmıyor
 
 ## Kullanıcının verdiği bilgiler
 
-- **Veri sorumlusu bilgileri:** Açık konular 8.
-- **Ana veritabanı bölgesi (eu-central-1):** Açık konular 1.3.
+- **Veri sorumlusu bilgileri:** Kullanıcı verdi (Oğuzhan Menek, adres, info@oletr.com). VERBİS: Açık konular 7.
+- **Ana veritabanı bölgesi (eu-central-1):** Kullanıcı tarafından doğrulandı.
 - **"Ücretsiz":** Kullanıcı tarafından doğrulandı (Çözülen konular).
 
 ## Diğer notlar

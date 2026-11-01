@@ -97,6 +97,25 @@ export const blocks: ContractBlock[] = [
     ],
   },
 
+  { type: "h3", text: "3.5. Sözleşme kabul bilgileri" },
+  {
+    type: "p",
+    text: "Kullanıcı Sözleşmesi’ni uygulamada kabul ettiğinizde hesabınızla ilişkili olarak kaydedilen bilgiler:",
+  },
+  {
+    type: "ul",
+    items: [
+      "Kabul edilen sözleşme sürümü.",
+      "Kabulün sunucu saatine göre zamanı.",
+      "Kabulün kaynağı (kayıt, Apple ile giriş, mevcut hesapta ilk kabul veya sözleşme güncellemesi).",
+      "Platform, uygulama sürümü ve uygulama dili.",
+    ],
+  },
+  {
+    type: "p",
+    text: "Gizlilik Politikası ve bu Aydınlatma Metni bilgilendirme amaçlıdır; bu metinlere verilen bağlantıların açılması kabul veya açık rıza olarak kaydedilmez.",
+  },
+
   { type: "h2", text: "4. İşleme Amaçları ve Hukuki Sebepleri" },
   {
     type: "p",
@@ -110,6 +129,10 @@ export const blocks: ContractBlock[] = [
   {
     type: "p",
     text: "Notlar, günlükler, ek dosyalar, içerik sürümleri ve işlem tercihleri; kullanıcının istediği içerik oluşturma, düzenleme, saklama, senkronizasyon, çakışma yönetimi, hatırlatıcı ve widget işlevlerinin sunulması amacıyla işlenir.",
+  },
+  {
+    type: "p",
+    text: "Sözleşme kabul bilgileri, Kullanıcı Sözleşmesi’nin kabul edildiğinin ve kabul edilen sürümün takibi amacıyla işlenir.",
   },
   {
     type: "p",
@@ -224,6 +247,10 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
+    text: "Sözleşme kabul bilgileri hesap süresince saklanır ve hesap silindiğinde silinir.",
+  },
+  {
+    type: "p",
     text: "Çevrimdışı cihazlardaki kopyaların güncellenmesi veya temizlenmesi, cihazın yeniden bağlantı kurmasına bağlıdır. Hesaptan çıkış yapmak, o hesaba ait yerel veritabanını ve dosyaları cihazdan silmez.",
   },
   {
@@ -298,7 +325,7 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Hesap silme kalıcıdır ve geri alınamaz; tek tek silinen kayıtlar için geçerli 30 günlük geri getirme süresi uygulanmaz. Notlarınız ve hatırlatıcıları, günlük sayfalarınız, sürüm geçmişi ve “Son silinenler”deki kayıtlar, fotoğraf, çizim ve ses kayıtlarınız, profil adınız ile hesap ve giriş bilgileriniz sunucudan silinir.",
+    text: "Hesap silme kalıcıdır ve geri alınamaz; tek tek silinen kayıtlar için geçerli 30 günlük geri getirme süresi uygulanmaz. Notlarınız ve hatırlatıcıları, günlük sayfalarınız, sürüm geçmişi ve “Son silinenler”deki kayıtlar, fotoğraf, çizim ve ses kayıtlarınız, profil adınız, sözleşme kabul kayıtlarınız ile hesap ve giriş bilgileriniz sunucudan silinir.",
   },
   {
     type: "p",

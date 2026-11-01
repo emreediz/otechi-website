@@ -204,7 +204,7 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Uygulamanın edinildiği mağazanın uygulanabilir kullanım ve lisans koşulları da kendi kapsamları içinde geçerlidir.",
+    text: "Uygulamanın edinildiği mağazanın uygulanabilir kullanım ve lisans koşulları da kendi kapsamları içinde geçerlidir. App Store’dan edinilen İz için Apple’ın standart lisans sözleşmesi (Licensed Application End User License Agreement) geçerlidir. Bu Kullanıcı Sözleşmesi, App Store için özel bir lisans sözleşmesi olarak kullanılmaz; Apple’ın lisans koşullarına ek olarak İz hizmetinin kullanım koşullarını düzenler.",
   },
 
   { type: "h2", text: "13. Gizlilik ve Kişisel Veriler" },
@@ -236,7 +236,7 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Eski çevrimdışı kopyaların silinen içeriği yeniden oluşturmasını önlemek için içerik barındırmayan sınırlı teknik silinme izleri tutulabilir. Ayrıntılar Gizlilik Politikası’nda açıklanır.",
+    text: "Eski çevrimdışı kopyaların silinen içeriği yeniden oluşturmasını önlemek için içerik barındırmayan sınırlı teknik silinme izleri (kaydın kimliği ve silinme zamanı) hesap silinene kadar tutulur. Ayrıntılar Gizlilik Politikası’nda açıklanır.",
   },
 
   { type: "h2", text: "15. Hesabın Silinmesi" },

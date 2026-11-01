@@ -85,6 +85,16 @@ export const blocks: ContractBlock[] = [
     text: "Senkronizasyon kayıtlarında, kaydı son değiştiren cihazın türü (iPhone veya iPad) tutulur; bu bilgi cihaza özgü bir tanımlayıcı değildir. Dil ve tema tercihleri, bildirim ve kilit ayarları, oturum bilgileri ve hizmetin güvenli çalışması için gerekli bağlantı ve işlem kayıtları işlenebilir.",
   },
 
+  { type: "h3", text: "3.6. Sözleşme kabul kayıtları" },
+  {
+    type: "p",
+    text: "Kullanıcı Sözleşmesi’ni uygulamada kabul ettiğinizde, hesabınızla ilişkili olarak şu bilgiler kaydedilir: kabul edilen sözleşme sürümü, kabulün sunucu saatine göre zamanı, kabulün kaynağı (kayıt, Apple ile giriş, mevcut hesapta ilk kabul veya sözleşme güncellemesi), platform, uygulama sürümü ve uygulama dili.",
+  },
+  {
+    type: "p",
+    text: "Gizlilik Politikası ve KVKK Aydınlatma Metni bilgilendirme amaçlıdır. Bu metinlere verilen bağlantıların açılması, kabul veya açık rıza olarak kaydedilmez.",
+  },
+
   { type: "h2", text: "4. Verilerin Kullanım Amaçları" },
   { type: "p", text: "Kişisel veriler aşağıdaki amaçlarla işlenir:" },
   {
@@ -96,6 +106,7 @@ export const blocks: ContractBlock[] = [
       "İçerikleri cihazda saklamak ve aynı hesaba bağlı cihazlar arasında senkronize etmek.",
       "Çevrimdışı değişiklikleri ve çakışan sürümleri yönetmek.",
       "Hatırlatıcıları ve widget özelliklerini sunmak.",
+      "Kullanıcı Sözleşmesi’nin kabul edildiğini ve hangi sürümünün kabul edildiğini takip etmek.",
       "Kullanıcı taleplerini yanıtlamak.",
       "Yetkisiz erişimi ve kötüye kullanımı önlemek.",
       "Yasal yükümlülükleri yerine getirmek.",
@@ -223,6 +234,10 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
+    text: "Sözleşme kabul kayıtları hesap süresince saklanır ve hesap silindiğinde silinir.",
+  },
+  {
+    type: "p",
     text: "Dikte amacıyla oluşturulan geçici ses dosyaları, transkript ilgili nota veya günlüğe güvenle kaydedildikten sonra silinir. Başarısız işlemlerde yeniden deneme için tutulan geçici kayıtlar, ilgili işlem kaldırılana veya tamamlanana kadar cihazda kalabilir.",
   },
   {
@@ -259,6 +274,7 @@ export const blocks: ContractBlock[] = [
       "Sürüm geçmişi ve “Son silinenler”deki kayıtlar.",
       "Fotoğraflar, çizimler ve ses kayıtları.",
       "Profil adı.",
+      "Sözleşme kabul kayıtları.",
       "Hesap ve giriş bilgileri.",
     ],
   },
