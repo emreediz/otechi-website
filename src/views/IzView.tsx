@@ -63,6 +63,7 @@ export function IzView({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const docs = [
     { href: IZ_LEGAL.privacy, label: s.docs.privacy },
     { href: IZ_LEGAL.kvkk, label: s.docs.kvkk },
+    { href: IZ_LEGAL.terms, label: s.docs.terms },
     { href: IZ_LEGAL.accountDeletion, label: s.docs.accountDeletion },
   ];
 

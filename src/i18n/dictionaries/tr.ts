@@ -937,6 +937,7 @@ export const tr = {
       docs: {
         privacy: "Gizlilik Politikası",
         kvkk: "KVKK Aydınlatma Metni",
+        terms: "Kullanıcı Sözleşmesi",
         accountDeletion: "Hesap ve Verileri Silme",
       },
     },

@@ -5,9 +5,9 @@ Politikası ve İz KVKK Aydınlatma Metni'ndeki **editör notları sayfalara
 alınmadı**; çözülmemiş konular burada tutulur.
 
 - Sayfalar: `/urunler/iz/gizlilik-politikasi`, `/urunler/iz/kvkk-aydinlatma-metni`,
-  `/urunler/iz/hesap-silme`
+  `/urunler/iz/kullanici-sozlesmesi`, `/urunler/iz/hesap-silme`
 - Metinler: `src/content/legal/iz/privacy.ts`, `src/content/legal/iz/kvkk.ts`,
-  `src/app/urunler/iz/hesap-silme/page.tsx`
+  `src/content/legal/iz/terms.ts`, `src/app/urunler/iz/hesap-silme/page.tsx`
 - Durum: `IZ_LEGAL_DRAFT = true` (`src/config/legalRoutes.ts`). Sayfalar
   `noindex`, sitemap dışında ve üstlerinde "inceleme aşamasındadır" uyarısı var.
   Aşağıdaki **yayına engel** maddeler çözülmeden bayrak `false` yapılmamalı.
@@ -85,6 +85,39 @@ eklenebilir:
   cihazdan kaldırılma iddiası kurmuyor; yalnızca eski kopyanın sunucuya yeniden
   yüklenemediğini söylüyor (canlıda `IZ410` ile doğrulandı).
 
+## Kullanıcı Sözleşmesi (2 Kasım 2026)
+
+Kaynak: kullanıcının ilettiği metin. İz deposu (`iz-app`, yalnızca okunarak) ve
+diğer üç İz sayfasıyla karşılaştırıldı.
+
+**Uygulamada kabul akışı yok.** İz'de sözleşme, gizlilik politikası veya KVKK
+metnine bağlantı ya da "kabul ediyorum" adımı bulunmuyor (`src/dil/*.ts`,
+giriş ve kayıt ekranları). Sayfa, kullanıcının sözleşmeyi uygulamada kabul
+ettiği şeklinde sunulmadı. Metindeki "Bu sözleşmenin kabulü…" (§13) ve
+"mevzuatın gerektirdiği durumlarda ayrıca onay alınır" (§17) ifadeleri bir kabul
+ve onay mekanizması varsayıyor. Kayıt ekranına bağlantı ve kabul adımı ayrı bir
+uygulama işi.
+
+**Apple Standard EULA.** Bu metin Apple'ın standart lisans sözleşmesinin yerine
+geçmiş sayılmadı; App Store Connect'te özel EULA tanımlanıp tanımlanmayacağı
+ayrı bir karar. §12 yalnızca mağaza koşullarının da geçerli olduğunu söylüyor.
+
+**Diğer sayfalarla farklar (çözülmedi, karar bekliyor):**
+- **30 günün başlangıcı.** Sözleşme §14: "silme işlemi sunucuya ulaştıktan
+  sonra". Gizlilik §10, KVKK §8 ve Hesap Silme sayfası: "silindiği andan
+  itibaren, sunucu saatine göre". Kod (`sunucu_silinme`, sunucu tetikleyicisi)
+  sözleşmedeki ifadeyle uyumlu: çevrimdışı silinen kayıtta süre, silme sunucuya
+  ulaşınca başlar. Diğer üç metnin buna göre netleştirilmesi önerilir.
+- **Açık rıza.** Sözleşme §13 "ayrı açık rıza gerektiren işlemler ayrıca
+  değerlendirilir" diyor; yayına engel madde 2 (özel nitelikli veriler, açık rıza
+  akışı yok) açık.
+- **"Ücretsiz" (§5).** Kullanıcıdan alınan bilgi; mağaza fiyatı depoda yok.
+
+**Kodla doğrulananlar:** "Bildirimlerde içeriği gizle" yalnızca hatırlatıcı
+bildirimlerinde kullanılıyor, widget'a uygulanmıyor
+(`hatirlatici/HatirlaticiYoneticisi.tsx`); `expo-updates` bağımlılığı var
+(§12); reklam, analitik veya yapay zekâ SDK'sı yok (§6).
+
 ## Kullanıcıdan alınan ve depoda doğrulanamayan bilgiler
 
 - **Veri sorumlusu bilgileri:** Oğuzhan Menek, info@oletr.com ve adres. Kullanıcı
@@ -102,9 +135,6 @@ eklenebilir:
 - Şifre sıfırlama e-postaları Custom SMTP kurulana kadar yalnızca Supabase ekip
   üyelerine ulaşıyor (DEVIR-NOTU §10). Genel kullanıma açılmadan önce
   tamamlanmalı.
-- Kullanıcı Sözleşmesi sayfası henüz yok. Metni gelince `IZ_LEGAL` içine
-  eklenmeli; ilgili bağlantılar (ürün sayfası, footer, "Diğer belgeler")
-  yalnızca var olan belgeleri gösteriyor.
 - Apple ile açılan hesap yalnızca iOS'tan silinebilir (Android'de `apple_kod_yok`).
   Android sürümü yok; çıkarsa Hesap Silme sayfası güncellenmeli.
 

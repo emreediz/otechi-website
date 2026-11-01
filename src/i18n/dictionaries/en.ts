@@ -921,6 +921,7 @@ export const en: Dictionary = {
       docs: {
         privacy: "Privacy Policy",
         kvkk: "Data Protection Notice (KVKK)",
+        terms: "User Agreement",
         accountDeletion: "Account & data deletion",
       },
     },
