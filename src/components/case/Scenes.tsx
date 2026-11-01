@@ -25,6 +25,13 @@ import {
   TODAY,
   weekFull,
 } from "@/components/mock/NamazMocks";
+import {
+  IzDevices,
+  IzJournal,
+  IzNote,
+  IzStreak,
+  IzVoice,
+} from "@/components/mock/IzMocks";
 
 type Mock = Dictionary["mock"];
 
@@ -280,5 +287,34 @@ export function namazScenes(mock: Mock): ReactNode[] {
         </In>
       ))}
     </div>,
+  ];
+}
+
+/* ----------------------------------------------------------------- İz */
+
+export function izScenes(mock: Mock): ReactNode[] {
+  const z = mock.iz;
+  return [
+    // 1. Take notes: blocks, to-dos, a tag and a reminder.
+    <In key="note" i={0} className="w-[20rem]">
+      <IzNote copy={z} done={[true, true, false]} />
+    </In>,
+    // 2. Journal: today's page, the mood, the writing streak.
+    <div key="journal" className="grid w-[20rem] justify-items-center gap-4">
+      <In i={0} className="w-full">
+        <IzJournal copy={z} mood={0} />
+      </In>
+      <In i={1}>
+        <IzStreak copy={z} />
+      </In>
+    </div>,
+    // 3. Voice: a recording and its transcript.
+    <In key="voice" i={0} className="w-[20rem]">
+      <IzVoice copy={z} />
+    </In>,
+    // 4. Anywhere: iPhone and iPad in sync.
+    <In key="devices" i={0} className="pb-8">
+      <IzDevices copy={z} />
+    </In>,
   ];
 }

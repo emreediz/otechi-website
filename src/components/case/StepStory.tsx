@@ -5,13 +5,14 @@ import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { EDGE } from "./Case";
 
-export type SceneTone = "ole" | "panel" | "namaz";
+export type SceneTone = "ole" | "panel" | "namaz" | "iz";
 
 /** Soft glow behind the scene, in the product colour. */
 const GLOW: Record<SceneTone, string> = {
   ole: "bg-[radial-gradient(42%_38%_at_50%_50%,rgb(255_140_60/0.28),transparent_70%)]",
   panel: "bg-[radial-gradient(42%_38%_at_50%_50%,rgb(91_124_250/0.3),transparent_70%)]",
   namaz: "bg-[radial-gradient(42%_38%_at_50%_50%,rgb(43_199_143/0.26),transparent_70%)]",
+  iz: "bg-[radial-gradient(42%_38%_at_50%_50%,rgb(163_145_255/0.28),transparent_70%)]",
 };
 
 const TONE: Record<SceneTone, string> = {
@@ -20,6 +21,7 @@ const TONE: Record<SceneTone, string> = {
     "bg-[radial-gradient(90%_75%_at_70%_0%,#22408f_0%,#0b1838_50%,#03060e_100%)]",
   namaz:
     "bg-[radial-gradient(90%_75%_at_50%_0%,#1f8f68_0%,#0b4a36_40%,#020d0a_100%)]",
+  iz: "bg-[radial-gradient(90%_75%_at_50%_0%,#5b43d6_0%,#2a2160_40%,#0d0b16_100%)]",
 };
 
 /** Dark, product-coloured stage that centres a coded scene. */

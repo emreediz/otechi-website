@@ -14,6 +14,7 @@ import { cn } from "@/lib/cn";
 import { GLASS, type ShowcaseItem, type ShowcaseKey } from "@/lib/showcase";
 import {
   ArtThumb,
+  IzArt,
   NamazArt,
   OleArt,
   PanelArt,
@@ -217,7 +218,7 @@ export function MenuOverlay({
               ))}
               <li
                 className="menu-item menu-from-left"
-                style={{ "--i": 8 } as CSSProperties}
+                style={{ "--i": 5 + items.length } as CSSProperties}
               >
                 <Link
                   href={localizedPath("products", locale)}
@@ -253,7 +254,12 @@ export function MenuOverlay({
               />
             </div>
             {items.map((item) => {
-              const Art = { ole: OleArt, panel: PanelArt, namaz: NamazArt }[
+              const Art = {
+                ole: OleArt,
+                panel: PanelArt,
+                namaz: NamazArt,
+                iz: IzArt,
+              }[
                 item.key
               ];
               return (

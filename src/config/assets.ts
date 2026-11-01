@@ -69,6 +69,15 @@ export const IMG = {
     // Statistics screen (app capture, cropped to the same 900 x 1650 frame)
     screenStats: "/images/products/namaz-motivasyonu/web/screen-stats.jpg",
   },
+  iz: {
+    // App logo (notebook page + microphone), transparent rounded tile.
+    // Resized with `sips` from the İz app repo's assets/images/acilis-logo.png
+    // (1024px original, not modified).
+    logo: "/images/products/iz/web/logo.png",
+    logoW: 640,
+    logoH: 640,
+    logoSmall: "/images/products/iz/web/logo-96.png",
+  },
   // Lifestyle photography — web copies (max 1400px, JPEG) generated with
   // `sips` into `photo assets/web/`; the PNG originals are never modified.
   photos: {

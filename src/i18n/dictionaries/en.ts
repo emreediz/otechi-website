@@ -95,6 +95,7 @@ export const en: Dictionary = {
         ole: "Mobile app · Loyalty · Campaigns",
         panel: "Web dashboard · Management · Reports",
         namaz: "Mobile app · Tracking · Statistics",
+        iz: "Mobile app · Notes · Journal",
       },
     },
     intro: {
@@ -125,6 +126,12 @@ export const en: Dictionary = {
           title: "Five prayers at a glance.",
           body: "Mark the prayers you’ve performed, see your progress in statistics and stay motivated with your group.",
           cta: "Explore Namaz Motivasyonu",
+        },
+        iz: {
+          label: "Mobile app",
+          title: "Leave a trace of today.",
+          body: "Your notes, journal, photos and voice notes, in one place on iPhone and iPad.",
+          cta: "Explore İz",
         },
       },
       title2: "Our products",
@@ -279,11 +286,11 @@ export const en: Dictionary = {
     meta: {
       title: "Products — Otechi",
       description:
-        "The digital products we build under Otechi: Ole and Ole Panel for businesses, Namaz Motivasyonu for individuals.",
+        "The digital products we build under Otechi: Ole and Ole Panel for businesses, Namaz Motivasyonu and İz for individuals.",
     },
     kicker: "Products",
     titleLines: ["Products", "we’ve built."],
-    lead: "Three apps for businesses and individuals, all live today.",
+    lead: "Apps we build for businesses and individuals.",
     factLabels: {
       platform: "Platform",
       audience: "Who it's for",
@@ -304,6 +311,11 @@ export const en: Dictionary = {
         platform: "iOS · Android",
         audience: "Individuals",
         status: "On the App Store and Google Play",
+      },
+      iz: {
+        platform: "iPhone · iPad",
+        audience: "Individuals",
+        status: "Coming soon to the App Store",
       },
     },
   },
@@ -513,6 +525,99 @@ export const en: Dictionary = {
     },
     closing: {
       title: "is on the App Store and Google Play.",
+    },
+  },
+
+  iz: {
+    meta: {
+      title: "İz — notes and journal app",
+      description:
+        "İz is a personal notes and journal app for iPhone and iPad that keeps your notes, journal, photos, drawings and voice notes in one place.",
+    },
+    hero: {
+      lead: "Your notes and journal, with you on iPhone and iPad.",
+    },
+    intro:
+      "İz is a personal notes and journal app. Jot down what’s on your mind, open a journal page for every day, and leave a trace of it with photos, drawings and your voice.",
+    steps: [
+      {
+        title: "Take notes.",
+        body: "Write in paragraph, bullet and to-do blocks; tag, pin and set reminders.",
+      },
+      {
+        title: "Keep a journal.",
+        body: "One page for every day. Start from the day’s prompt, pick your mood, keep your writing streak going.",
+      },
+      {
+        title: "Say it out loud.",
+        body: "Press and hold to record a voice note; speech recognition turns it into text.",
+      },
+      {
+        title: "Open it anywhere.",
+        body: "Your notes and journal stay with your account and sync between iPhone and iPad.",
+      },
+    ],
+    marquee: ["Notes", "Journal", "Voice notes", "Drawing", "Photos", "Widgets"],
+    bento: {
+      devices: {
+        title: "iPhone and iPad.",
+        body: "One app, two devices. On iPad the sidebar, list and editor sit side by side.",
+      },
+      signIn: {
+        title: "With Apple or with email.",
+        body: "Sign in with Apple or create an account with your email. Forgot your password? Reset it with a link sent to your inbox.",
+      },
+      media: {
+        title: "Photos and drawings.",
+        body: "Take a photo or pick one from your library and add a caption; draw with your finger or Apple Pencil.",
+      },
+      voice: {
+        title: "Voice, turned into text.",
+        body: "Record voice notes with the microphone; speech recognition transcribes them. “On device only” is on by default.",
+      },
+      widgets: {
+        title: "Widgets.",
+        body: "Notes, voice note, today’s page, latest drawing and your next reminder on the Lock Screen.",
+      },
+      lock: {
+        title: "Locked with Face ID.",
+        body: "Lock İz and your journal with Face ID, Touch ID or your device passcode.",
+      },
+    },
+    useCases: {
+      label: "When to use it",
+      items: [
+        {
+          title: "End-of-day journal",
+          body: "Open today’s page, pick your mood, write a few lines — add a photo if you like.",
+        },
+        {
+          title: "Never lose a thought",
+          body: "Take a quick note from Home, tick off to-dos, set a timed reminder.",
+        },
+        {
+          title: "Talk instead of typing",
+          body: "Record a voice note on the go and edit the transcript later.",
+        },
+        {
+          title: "Draw on iPad, see it on iPhone",
+          body: "A page you draw with Apple Pencil opens on your other device too, through your account.",
+        },
+      ],
+    },
+    languages: {
+      label: "Languages",
+      body: "The app is in Turkish, English and Spanish, and can follow your device’s language.",
+    },
+    privacy: {
+      title: "Privacy",
+      body: "İz has no ads, user behaviour analytics or third-party crash reporting tools. Your entries are stored with your account and synced between your devices; reminder notifications are scheduled on your device. You can send account and data deletion requests to info@oletr.com.",
+    },
+    closing: {
+      // Follows the product name: "İz / is coming soon to the App Store."
+      title: "is coming soon to the App Store.",
+      soon: "Coming soon to the App Store",
+      soonNote: "For iPhone and iPad",
     },
   },
 
@@ -745,6 +850,41 @@ export const en: Dictionary = {
       cancel: "Cancel",
       joined: "{name} joined",
     },
+    iz: {
+      appLabel: "Notes & journal",
+      welcome: "Leave a trace of today.",
+      noteTitle: "Weekend",
+      noteText: "A slow morning, a long walk.",
+      todos: ["Finish the book", "Call Mum", "Pick the photos"],
+      tag: "#personal",
+      reminder: "Saturday 10:00",
+      pinned: "Pinned",
+      dayName: "Saturday",
+      dayNumber: "1",
+      prompt: "What made you smile today?",
+      journalText: "Went for an early walk; the air was cool and my head was clear.",
+      moodLabel: "Mood",
+      moods: ["Calm", "Happy", "Thoughtful", "Tired", "Anxious"],
+      streak: "{n}-day writing streak",
+      streakCount: "9",
+      voiceTitle: "Voice note",
+      voiceDuration: "0:42",
+      transcriptLabel: "Transcribed",
+      transcript: "After the meeting, rework the deck and send it by Friday.",
+      onDevice: "On device only",
+      photoCaption: "Evening at the beach",
+      drawing: "Latest drawing",
+      widgetNotes: "Notes",
+      widgetToday: "Today’s page",
+      widgetReminder: "Next reminder",
+      lockTitle: "İz is locked",
+      lockBody: "Use Face ID to unlock",
+      apple: "Sign in with Apple",
+      email: "Continue with email",
+      forgot: "Forgot password",
+      synced: "Synced",
+      devices: ["iPhone", "iPad"],
+    },
   },
 
   showcase: {
@@ -770,6 +910,17 @@ export const en: Dictionary = {
         kvkk: "Data Protection Notice (KVKK)",
         terms: "User Agreement",
         accountDeletion: "Account & data deletion",
+      },
+    },
+    iz: {
+      logoAlt: "İz app icon",
+      docsTitle: "Legal Documents",
+      docsNote: "These documents are published in Turkish only.",
+      draftNote:
+        "These documents are under review and may change before release.",
+      docs: {
+        privacy: "Privacy Policy",
+        kvkk: "Data Protection Notice (KVKK)",
       },
     },
   },

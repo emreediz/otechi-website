@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
 import { locales } from "@/i18n/config";
 import { allRouteKeys, localizedPath } from "@/i18n/routes";
-import { NAMAZ_LEGAL } from "@/config/legalRoutes";
+import { IZ_LEGAL, IZ_LEGAL_DRAFT, NAMAZ_LEGAL } from "@/config/legalRoutes";
 
 export const dynamic = "force-static";
 
@@ -24,7 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Namaz Motivasyonu contract pages: fixed, Turkish-only URLs (no /tr or /en,
   // no language alternates).
-  const contractEntries = Object.values(NAMAZ_LEGAL).map((path) => ({
+  // İz documents join once they are final (IZ_LEGAL_DRAFT).
+  const contractPaths = [
+    ...Object.values(NAMAZ_LEGAL),
+    ...(IZ_LEGAL_DRAFT ? [] : Object.values(IZ_LEGAL)),
+  ];
+  const contractEntries = contractPaths.map((path) => ({
     url: site.url + path,
     lastModified: now,
   }));

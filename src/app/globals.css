@@ -6,7 +6,7 @@
   - html[data-mode="light"]       -> light: white / black (theme toggle)
   - [data-surface="dark"|"light"] -> force one palette inside any mode
                                      (home stage, menu, coded app mock-ups)
-  - [data-theme="ole"|"panel"|"namaz"] -> product accent
+  - [data-theme="ole"|"panel"|"namaz"|"iz"] -> product accent
 
   Poppins everywhere; large display type uses the light weight (300).
   Contrast: filled orange buttons carry black text — white on #FD5E00 is
@@ -95,6 +95,9 @@
   --color-brand: #fd5e00;
   --color-ole-navy: #000d26;
   --color-namaz: #006b4d;
+  /* İz: the app's lavender accent and paper (cream) colours. */
+  --color-iz: #5b43d6;
+  --color-iz-paper: #f7f3ec;
   --color-tile-ole: #000d26;
   --color-tile-namaz: #06251c;
 }
@@ -180,6 +183,14 @@ html[data-mode="light"] [data-surface="dark"] {
   --accent-fg: #00140d;
   --accent-ink: #4fd3a2;
 }
+[data-theme="iz"] {
+  /* The app's dark-theme accent (#A391FF) on black. */
+  --accent: #a391ff;
+  --accent-hover: #b8aaff;
+  --accent-fg: #15131e;
+  --accent-soft: rgb(163 145 255 / 0.16);
+  --accent-ink: #c4b8ff;
+}
 html[data-mode="light"] [data-theme="panel"],
 [data-surface="light"] [data-theme="panel"] {
   --accent: #000d26;
@@ -191,6 +202,15 @@ html[data-mode="light"] [data-theme="namaz"],
   --accent: #006b4d;
   --accent-ink: #006b4d;
   --accent-soft: #e6f3ed;
+}
+/* The app's light-theme accent (#5B43D6, 6.6:1 on white). */
+html[data-mode="light"] [data-theme="iz"],
+[data-surface="light"] [data-theme="iz"] {
+  --accent: #5b43d6;
+  --accent-hover: #4630b5;
+  --accent-fg: #ffffff;
+  --accent-ink: #4630b5;
+  --accent-soft: #ece9fc;
 }
 
 @layer base {

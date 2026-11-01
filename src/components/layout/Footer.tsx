@@ -4,14 +4,14 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { localizedPath, type RouteKey } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
-import { NAMAZ_LEGAL } from "@/config/legalRoutes";
+import { IZ_LEGAL, NAMAZ_LEGAL } from "@/config/legalRoutes";
 import { storeBadges } from "@/lib/stores";
 import { Logo } from "@/components/Logo";
 import { Container } from "@/components/ui/Container";
 import { StoreBadges } from "@/components/content/StoreBadges";
 
 /**
- * Site footer: brand column (tagline, e-mail, app store links) and four
+ * Site footer: brand column (tagline, e-mail, app store links) and five
  * link columns, then a hairline and the copyright row.
  */
 export function Footer({
@@ -25,6 +25,7 @@ export function Footer({
 }) {
   const { footer, nav, contact } = dict;
   const namazDocs = dict.showcase.namaz;
+  const izDocs = dict.showcase.iz;
   const link = (key: RouteKey) => localizedPath(key, locale);
 
   const columns: {
@@ -62,6 +63,15 @@ export function Footer({
         },
       ],
     },
+    {
+      // İz documents (Turkish-only pages; only those that exist).
+      title: `${BRAND.products.iz} ${footer.docsLabel}`,
+      note: locale === "en" ? izDocs.docsNote : undefined,
+      links: [
+        { label: izDocs.docs.privacy, href: IZ_LEGAL.privacy },
+        { label: izDocs.docs.kvkk, href: IZ_LEGAL.kvkk },
+      ],
+    },
   ];
 
   const apps = [
@@ -72,7 +82,7 @@ export function Footer({
   return (
     <footer className="site-footer pb-10 pt-14 sm:pt-[5.5rem] print:hidden">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(4,1fr)] lg:gap-10">
+        <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(5,1fr)] lg:gap-10">
           <div className="max-w-sm">
             <Link
               href={link("home")}
@@ -110,7 +120,7 @@ export function Footer({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:col-span-4 lg:grid-cols-subgrid">
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-subgrid">
             {columns.map((col) => (
               <nav key={col.title} aria-label={col.title}>
                 <h2 className="text-sm font-semibold">{col.title}</h2>

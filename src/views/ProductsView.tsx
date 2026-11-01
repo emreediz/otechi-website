@@ -10,6 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { EDGE, MockStage } from "@/components/case/Case";
 import { PanelDashboard } from "@/components/mock/PanelMocks";
+import { IzArt } from "@/components/visual/ProductArt";
 
 /**
  * All products (like a work index): a large title, then one card per
@@ -54,6 +55,11 @@ export function ProductsView({
         className="object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.03]"
       />
     ),
+    iz: (
+      <div className="absolute inset-0 transition-transform duration-1000 ease-out-expo group-hover:scale-[1.03]">
+        <IzArt copy={mock} layout="landscape" />
+      </div>
+    ),
   };
 
   return (
@@ -80,13 +86,22 @@ export function ProductsView({
           <article
             key={item.key}
             data-theme={item.key}
-            className={cn("stagger-item", i === 0 && "md:col-span-2")}
+            className={cn(
+              "stagger-item",
+              // First card full width; so is the last one when it would
+              // otherwise sit alone in its row.
+              (i === 0 || (i === items.length - 1 && items.length % 2 === 0)) &&
+                "md:col-span-2",
+            )}
           >
             <Link href={item.href} className="group block">
               <div
                 className={cn(
                   "relative overflow-hidden rounded-md bg-surface",
-                  i === 0 ? "aspect-[4/3] md:aspect-[21/9]" : "aspect-[4/3]",
+                  i === 0 ||
+                    (i === items.length - 1 && items.length % 2 === 0)
+                    ? "aspect-[4/3] md:aspect-[21/9]"
+                    : "aspect-[4/3]",
                 )}
               >
                 {media[item.key]}

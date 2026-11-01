@@ -3,7 +3,7 @@ import { localizedPath } from "@/i18n/routes";
 import { BRAND } from "@/config/brand";
 import { IMG } from "@/config/assets";
 
-export type ShowcaseKey = "ole" | "panel" | "namaz";
+export type ShowcaseKey = "ole" | "panel" | "namaz" | "iz";
 
 export type ShowcaseImage = { src: string; w: number; h: number };
 
@@ -23,7 +23,7 @@ export const GLASS: ShowcaseImage = {
   h: 1254,
 };
 
-/** Ole, Ole Panel and Namaz Motivasyonu, in menu order. */
+/** Ole, Ole Panel, Namaz Motivasyonu and İz, in menu order. */
 export function showcaseItems(locale: Locale): ShowcaseItem[] {
   return [
     {
@@ -43,6 +43,12 @@ export function showcaseItems(locale: Locale): ShowcaseItem[] {
       label: BRAND.products.namaz,
       href: localizedPath("productNamaz", locale),
       image: { src: IMG.namaz.art, w: IMG.namaz.artW, h: IMG.namaz.artH },
+    },
+    {
+      key: "iz",
+      label: BRAND.products.iz,
+      href: localizedPath("productIz", locale),
+      image: { src: IMG.iz.logo, w: IMG.iz.logoW, h: IMG.iz.logoH },
     },
   ];
 }

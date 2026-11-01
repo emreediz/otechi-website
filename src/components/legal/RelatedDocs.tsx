@@ -1,32 +1,41 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { tr } from "@/i18n/dictionaries/tr";
-import { localizedPath } from "@/i18n/routes";
-import { BRAND } from "@/config/brand";
-import { NAMAZ_LEGAL } from "@/config/legalRoutes";
+import {
+  LEGAL_DOCS,
+  type LegalDocKey,
+  type LegalProduct,
+} from "@/config/legalRoutes";
+import { legalProductPage } from "@/components/legal/NamazBackLink";
 import { cn } from "@/lib/cn";
 
-type DocKey = keyof typeof NAMAZ_LEGAL;
-const ORDER: DocKey[] = ["privacy", "kvkk", "terms", "accountDeletion"];
+const ORDER: LegalDocKey[] = ["privacy", "kvkk", "terms", "accountDeletion"];
 
 /**
- * After a Namaz Motivasyonu document: links to the other documents, account
- * deletion and the product page. These pages are Turkish-only, so the labels
- * come straight from the Turkish dictionary. Hidden when printing.
+ * After a product's document (Namaz Motivasyonu, İz): links to the other
+ * documents, account deletion and the product page. These pages are
+ * Turkish-only, so the labels come straight from the Turkish dictionary.
+ * Hidden when printing.
  */
 export function RelatedDocs({
   current,
+  product = "namaz",
   className,
 }: {
-  current: DocKey;
+  current: LegalDocKey;
+  product?: LegalProduct;
   className?: string;
 }) {
+  const docs = LEGAL_DOCS[product];
+  const labels: Partial<Record<LegalDocKey, string>> = tr.showcase[product].docs;
+  // Only documents that exist (no links to pages that aren't written yet).
   const rows = [
-    ...ORDER.filter((k) => k !== current).map((k) => ({
-      href: NAMAZ_LEGAL[k],
-      label: tr.showcase.namaz.docs[k],
-    })),
-    { href: localizedPath("productNamaz", "tr"), label: BRAND.products.namaz },
+    ...ORDER.flatMap((k) => {
+      const href = docs[k];
+      const label = labels[k];
+      return k !== current && href && label ? [{ href, label }] : [];
+    }),
+    legalProductPage(product),
   ];
 
   return (

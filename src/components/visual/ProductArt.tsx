@@ -703,6 +703,120 @@ export function NamazArt({ copy, layout, cover, className }: ArtProps) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* İz — notes & journal: the app icon, a note page and the day's mood. */
+/* ------------------------------------------------------------------ */
+
+const IZ_MOODS = ["#7662c7", "#fd5e00", "#ffc545", "#5170ff", "#a51313"];
+
+export function IzArt({ copy, layout, cover, priority, className }: ArtProps) {
+  const z = copy.iz;
+  const portrait = layout === "portrait";
+
+  // A sheet of the notebook: lavender band, binding dots, title, lines.
+  const page = (
+    <div className="overflow-hidden rounded-[3cqmin] bg-[#faf8f7] text-left text-[#111116] shadow-[0_3cqmin_8cqmin_-1cqmin_rgb(0_0_0/0.55)]">
+      <div className="h-[2.2cqmin] bg-[#7662c7]" />
+      <div className="flex justify-between px-[3cqmin] pt-[1.6cqmin]">
+        {Array.from({ length: 10 }, (_, i) => (
+          <span key={i} className="size-[1.1cqmin] rounded-full bg-[#a6a6a6]" />
+        ))}
+      </div>
+      <div className="px-[3.6cqmin] pb-[3.6cqmin] pt-[2cqmin]">
+        <p className="text-[max(2.2cqmin,10px)] font-medium text-[#5b43d6]">
+          {z.dayName} {z.dayNumber}
+        </p>
+        <p className="mt-[1cqmin] text-[max(3.6cqmin,13px)] font-semibold leading-tight tracking-[-0.02em]">
+          {z.prompt}
+        </p>
+        <p className="mt-[1.4cqmin] text-[max(2.4cqmin,10px)] leading-snug text-[#45454f]">
+          {z.journalText}
+        </p>
+        <div className="mt-[2.4cqmin] flex flex-wrap gap-[1.2cqmin]">
+          {z.moods.slice(0, 3).map((m, i) => (
+            <span
+              key={m}
+              className="rounded-full px-[2cqmin] py-[0.7cqmin] text-[max(2cqmin,9px)] font-medium"
+              style={
+                i === 0
+                  ? { background: IZ_MOODS[0], color: "#fff" }
+                  : { boxShadow: "inset 0 0 0 1px #e1e1e7", color: "#45454f" }
+              }
+            >
+              {m}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const streak = (
+    <p className="inline-flex items-center gap-[1.4cqmin] whitespace-nowrap rounded-full bg-white/10 px-[3cqmin] py-[1.4cqmin] text-[max(2.6cqmin,10px)] text-white backdrop-blur">
+      <span className="size-[1.8cqmin] rounded-full bg-[#ffc545] shadow-[0_0_1.6cqmin_#fd5e00]" />
+      {z.streak.replace("{n}", z.streakCount)}
+    </p>
+  );
+
+  return (
+    <Stage
+      layout={layout}
+      cover={cover}
+      label={z.appLabel}
+      className={className}
+      bg="bg-[radial-gradient(110%_80%_at_50%_0%,#5b43d6_0%,#2a2160_35%,#15131e_70%,#0b0a10_100%)]"
+      decor={
+        // Faint ruled lines, like the logo's notebook page.
+        <div className="absolute inset-0 bg-[linear-gradient(transparent_calc(100%-1px),rgb(255_255_255/0.06)_calc(100%-1px))] bg-[size:100%_56px] [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
+      }
+    >
+      {/* The app icon */}
+      <Float
+        slow
+        className={
+          portrait
+            ? "left-1/2 top-[6%] w-[46cqw] -translate-x-1/2"
+            : "left-[8%] top-1/2 w-[34cqw] -translate-y-1/2"
+        }
+      >
+        <div className="absolute inset-[10%] rounded-full bg-[#a391ff]/35 blur-[8cqmin]" />
+        <Image
+          src={IMG.iz.logo}
+          alt=""
+          width={IMG.iz.logoW}
+          height={IMG.iz.logoH}
+          sizes={portrait ? "40vw" : "30vw"}
+          loading={priority ? "eager" : undefined}
+          fetchPriority={priority ? "high" : undefined}
+          className="relative w-full drop-shadow-[0_3cqmin_6cqmin_rgb(10_6_30/0.6)]"
+        />
+      </Float>
+
+      {/* Today's journal page */}
+      <Float
+        delay="-2s"
+        className={
+          portrait
+            ? "left-1/2 top-[52%] w-[72cqw] -translate-x-1/2 rotate-[-2deg]"
+            : "right-[7%] top-[14%] w-[42cqw] rotate-[2deg]"
+        }
+      >
+        {page}
+      </Float>
+
+      <div
+        className={
+          portrait
+            ? "absolute inset-x-0 bottom-[5%] flex justify-center"
+            : "absolute bottom-[12%] right-[9%]"
+        }
+      >
+        {streak}
+      </div>
+    </Stage>
+  );
+}
+
 /** Tiny square thumbnail for the menu news cards. */
 export function ArtThumb({ kind }: { kind: "ole" | "panel" | "namaz" }) {
   const bg = {
@@ -769,7 +883,27 @@ export function ArtThumb({ kind }: { kind: "ole" | "panel" | "namaz" }) {
 }
 
 /** Full-screen, quiet backdrop for the home stage (no cards, no text). */
-export function ArtBackdrop({ kind }: { kind: "ole" | "namaz" }) {
+export function ArtBackdrop({ kind }: { kind: "ole" | "namaz" | "iz" }) {
+  if (kind === "iz") {
+    return (
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 overflow-hidden bg-[radial-gradient(80%_70%_at_75%_10%,#5b43d6_0%,#2a2160_35%,#15131e_68%,#050408_100%)]"
+      >
+        <div className="stage-media absolute -right-[6%] top-1/2 w-[min(62vw,62svh)] -translate-y-1/2 opacity-35 blur-[3px]">
+          <Image
+            src={IMG.iz.logo}
+            alt=""
+            width={IMG.iz.logoW}
+            height={IMG.iz.logoH}
+            sizes="62vw"
+            className="w-full"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.75),transparent_55%)]" />
+      </div>
+    );
+  }
   if (kind === "ole") {
     return (
       <div

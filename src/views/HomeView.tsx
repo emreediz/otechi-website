@@ -13,6 +13,7 @@ import {
 } from "@/components/stage/HomeStage";
 import {
   ArtBackdrop,
+  IzArt,
   NamazArt,
   OleArt,
   PanelArt,
@@ -88,16 +89,19 @@ export function HomeView({
     ole: <ArtBackdrop kind="ole" />,
     panel: <GridBackdrop />,
     namaz: <ArtBackdrop kind="namaz" />,
+    iz: <ArtBackdrop kind="iz" />,
   };
 
   const previews: Record<ShowcaseKey, ReactNode> = {
     ole: <OleArt copy={mock} layout="landscape" />,
     panel: <PanelArt copy={mock} layout="landscape" />,
     namaz: <NamazArt copy={mock} layout="landscape" />,
+    iz: <IzArt copy={mock} layout="landscape" />,
   };
 
   // On phones a slide's name and text sit in one column above the pills
-  // (so they never overlap); from md each is placed on its own.
+  // (so they never overlap; the offset clears four pills); from md each is
+  // placed on its own.
   const productSlides: StageSlide[] = items.map((item, i) => {
     const copy = t.products.items[item.key];
     const flip = i % 2 === 1;
@@ -131,7 +135,7 @@ export function HomeView({
           >
             {previews[item.key]}
           </div>
-          <div className="absolute bottom-[calc(12.75rem+env(safe-area-inset-bottom))] left-4 right-4 short-phone:bottom-6 short-phone:left-auto short-phone:w-[min(50%,22rem)] md:contents">
+          <div className="absolute bottom-[calc(15.75rem+env(safe-area-inset-bottom))] left-4 right-4 short-phone:bottom-6 short-phone:left-auto short-phone:w-[min(50%,22rem)] md:contents">
             <h2
               className={cn(
                 "stage-rise md:absolute",

@@ -1,5 +1,5 @@
 import type { Locale } from "./config";
-import { NAMAZ_LEGAL } from "@/config/legalRoutes";
+import { IZ_LEGAL, NAMAZ_LEGAL } from "@/config/legalRoutes";
 
 /**
  * Every page in the site, keyed by a stable id. The URL path segments are
@@ -12,6 +12,7 @@ export type RouteKey =
   | "productOle"
   | "productPanel"
   | "productNamaz"
+  | "productIz"
   | "about"
   | "contact"
   | "privacy"
@@ -30,6 +31,7 @@ const paths: Record<RouteKey, Record<Locale, string>> = {
     tr: "/tr/urunler/namaz-motivasyonu",
     en: "/en/products/namaz-motivasyonu",
   },
+  productIz: { tr: "/tr/urunler/iz", en: "/en/products/iz" },
   about: { tr: "/tr/hakkimizda", en: "/en/about" },
   contact: { tr: "/tr/iletisim", en: "/en/contact" },
   privacy: { tr: "/tr/gizlilik", en: "/en/privacy" },
@@ -65,8 +67,8 @@ export function localeFromPath(pathname: string): Locale {
 
 /**
  * Given the current pathname, return the equivalent page in `target` locale.
- * The Turkish-only Namaz Motivasyonu documents stay put for TR and go to the
- * product page for EN. Anything else unknown falls back to the home page.
+ * The Turkish-only Namaz Motivasyonu and İz documents stay put for TR and go
+ * to their product page for EN. Anything else unknown falls back to the home page.
  */
 export function switchLocalePath(pathname: string, target: Locale): string {
   const p = normalize(pathname);
@@ -74,6 +76,9 @@ export function switchLocalePath(pathname: string, target: Locale): string {
   if (key) return paths[key][target];
   if ((Object.values(NAMAZ_LEGAL) as string[]).includes(p)) {
     return target === "tr" ? p : paths.productNamaz.en;
+  }
+  if ((Object.values(IZ_LEGAL) as string[]).includes(p)) {
+    return target === "tr" ? p : paths.productIz.en;
   }
   return paths.home[target];
 }

@@ -14,5 +14,6 @@ export function productLinks(locale: Locale) {
       href: localizedPath("productNamaz", locale),
       label: BRAND.products.namaz,
     },
+    { href: localizedPath("productIz", locale), label: BRAND.products.iz },
   ];
 }

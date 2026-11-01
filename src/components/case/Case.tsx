@@ -9,6 +9,9 @@ import { Reveal } from "@/components/motion/Reveal";
 /** Page gutter shared with the top bar (edge-aligned layout). */
 export const EDGE = "px-[clamp(1rem,2vw,1.75rem)]";
 
+/** Product colour of a tinted stage, card or panel. */
+export type CaseTone = "ole" | "panel" | "namaz" | "iz";
+
 /**
  * Case-study header: the product name very large, then a row of facts
  * (label above value) along the bottom of the first screen.
@@ -117,7 +120,7 @@ export function MockStage({
   children,
   className,
 }: {
-  tone: "ole" | "panel" | "namaz";
+  tone: CaseTone;
   children: ReactNode;
   className?: string;
 }) {
@@ -125,6 +128,7 @@ export function MockStage({
     ole: "bg-[radial-gradient(90%_80%_at_30%_100%,#7a2d00,#120600_70%)]",
     panel: "bg-[radial-gradient(90%_80%_at_70%_0%,#1d2b55,#05070d_70%)]",
     namaz: "bg-[radial-gradient(90%_80%_at_30%_0%,#0d5a43,#03140e_70%)]",
+    iz: "bg-[radial-gradient(90%_80%_at_30%_0%,#3b2d86,#0d0b16_70%)]",
   }[tone];
   return (
     <div
@@ -206,13 +210,18 @@ export function NextProduct({
   );
 }
 
-/** Products as large rows (name, tags, arrow), picture on hover. */
+/**
+ * Products as large rows (name, tags, arrow), picture on hover
+ * (`previews={false}` turns the hover pictures off).
+ */
 export function ProductRows({
   items,
   tags,
+  previews = true,
 }: {
   items: ShowcaseItem[];
   tags: Record<ShowcaseItem["key"], string>;
+  previews?: boolean;
 }) {
   return (
     <ul className="border-t border-border">
@@ -233,18 +242,20 @@ export function ProductRows({
               strokeWidth={1.25}
               aria-hidden="true"
             />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute right-[14%] top-1/2 z-10 hidden aspect-[4/3] w-[16rem] -translate-y-1/2 -rotate-2 overflow-hidden rounded-md opacity-0 transition-[opacity,rotate] duration-500 ease-out-expo group-hover:rotate-0 group-hover:opacity-100 pointer-fine:block"
-            >
-              <Image
-                src={item.image.src}
-                alt=""
-                fill
-                sizes="16rem"
-                className="object-cover"
-              />
-            </span>
+            {previews ? (
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute right-[14%] top-1/2 z-10 hidden aspect-[4/3] w-[16rem] -translate-y-1/2 -rotate-2 overflow-hidden rounded-md opacity-0 transition-[opacity,rotate] duration-500 ease-out-expo group-hover:rotate-0 group-hover:opacity-100 pointer-fine:block"
+              >
+                <Image
+                  src={item.image.src}
+                  alt=""
+                  fill
+                  sizes="16rem"
+                  className="object-cover"
+                />
+              </span>
+            ) : null}
           </Link>
         </li>
       ))}
@@ -383,7 +394,7 @@ export function BentoCard({
   visual?: ReactNode;
   /** Big figure instead of a visual (e.g. "₺0"). */
   stat?: string;
-  tone: "ole" | "panel" | "namaz";
+  tone: CaseTone;
   /** Text first; the visual places itself and runs off the card's edges. */
   bleed?: boolean;
   /** Wide cards: text beside the visual on large screens. */
@@ -395,6 +406,7 @@ export function BentoCard({
     ole: "bg-[radial-gradient(100%_80%_at_70%_0%,#5a2200_0%,#1a0800_60%,#090302_100%)]",
     panel: "bg-[radial-gradient(100%_80%_at_70%_0%,#1d3577_0%,#0a1430_60%,#03060e_100%)]",
     namaz: "bg-[radial-gradient(100%_80%_at_30%_0%,#13684c_0%,#062a20_60%,#020d0a_100%)]",
+    iz: "bg-[radial-gradient(100%_80%_at_30%_0%,#4a3aa8_0%,#1c1640_60%,#0d0b16_100%)]",
   }[tone];
   const lift =
     "transition-transform duration-700 ease-out-expo group-hover:-translate-y-1";
@@ -519,12 +531,13 @@ export function CaseStart({
   statement: string;
   actions: ReactNode;
   art: ReactNode;
-  tone: "ole" | "panel" | "namaz";
+  tone: CaseTone;
 }) {
   const bg = {
     ole: "bg-[radial-gradient(90%_90%_at_85%_50%,#ff7a1a_0%,#a33a00_30%,#2a0d00_70%,#0b0401_100%)]",
     panel: "bg-[radial-gradient(90%_90%_at_85%_50%,#2f55b8_0%,#122760_35%,#050b1c_75%)]",
     namaz: "bg-[radial-gradient(90%_90%_at_85%_40%,#25a77a_0%,#0b4a36_40%,#020d0a_80%)]",
+    iz: "bg-[radial-gradient(90%_90%_at_85%_40%,#7662c7_0%,#3b2d86_40%,#0d0b16_80%)]",
   }[tone];
   return (
     <section className={cn(EDGE, "pb-[clamp(5rem,11vw,10rem)]")}>

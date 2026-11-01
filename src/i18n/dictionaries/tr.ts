@@ -1,6 +1,6 @@
 // Turkish copy. This file is the source of truth for the dictionary shape;
 // `en.ts` must provide the same keys (enforced by the `Dictionary` type).
-// Brand names ("Otechi", "Ole", "Namaz Motivasyonu") live in src/config/brand.ts
+// Brand names ("Otechi", "Ole", "Namaz Motivasyonu", "İz") live in src/config/brand.ts
 // and are injected by components — never write them into this file.
 
 export const tr = {
@@ -101,6 +101,7 @@ export const tr = {
         ole: "Mobil uygulama · Sadakat · Kampanyalar",
         panel: "Web paneli · Yönetim · Raporlar",
         namaz: "Mobil uygulama · Takip · İstatistikler",
+        iz: "Mobil uygulama · Not · Günlük",
       },
     },
     intro: {
@@ -131,6 +132,12 @@ export const tr = {
           title: "Beş vakit, tek bakışta.",
           body: "Kıldığın vakitleri işaretle, istatistiklerle ilerlemeni gör, grubunla birlikte motive ol.",
           cta: "Namaz Motivasyonu’nu inceleyin",
+        },
+        iz: {
+          label: "Mobil uygulama",
+          title: "Bugünden bir iz bırak.",
+          body: "Notların, günlüğün, fotoğrafların ve sesli notların; iPhone ve iPad’inde tek yerde.",
+          cta: "İz’i inceleyin",
         },
       },
       // Older product tiles (product pages) — replaced in the next phase.
@@ -287,11 +294,11 @@ export const tr = {
     meta: {
       title: "Ürünler — Otechi",
       description:
-        "Otechi çatısı altında geliştirdiğimiz dijital ürünler: işletmeler için Ole ve Ole Panel, bireyler için Namaz Motivasyonu.",
+        "Otechi çatısı altında geliştirdiğimiz dijital ürünler: işletmeler için Ole ve Ole Panel, bireyler için Namaz Motivasyonu ve İz.",
     },
     kicker: "Ürünler",
     titleLines: ["Geliştirdiğimiz", "ürünler."],
-    lead: "İşletmeler ve bireyler için yayında olan üç uygulama.",
+    lead: "İşletmeler ve bireyler için geliştirdiğimiz uygulamalar.",
     factLabels: {
       platform: "Platform",
       audience: "Kimin için",
@@ -312,6 +319,11 @@ export const tr = {
         platform: "iOS · Android",
         audience: "Bireyler",
         status: "App Store ve Google Play’de",
+      },
+      iz: {
+        platform: "iPhone · iPad",
+        audience: "Bireyler",
+        status: "Yakında App Store’da",
       },
     },
   },
@@ -522,6 +534,101 @@ export const tr = {
     closing: {
       // Follows the product name: "Namaz Motivasyonu / App Store ve …".
       title: "App Store ve Google Play’de.",
+    },
+  },
+
+  // İz product page. Every claim is checked against the İz app repo
+  // (features, permissions, widgets, sign-in); no prices or user counts.
+  iz: {
+    meta: {
+      title: "İz — not ve günlük uygulaması",
+      description:
+        "İz; notlarını, günlüğünü, fotoğraflarını, çizimlerini ve sesli notlarını tek yerde tutan, iPhone ve iPad için kişisel not ve günlük uygulaması.",
+    },
+    hero: {
+      lead: "Notların ve günlüğün, iPhone ve iPad’inde seninle.",
+    },
+    intro:
+      "İz, kişisel not ve günlük uygulamasıdır. Aklındakini hızlıca not alır, her güne bir günlük sayfası açar; fotoğrafla, çizimle ve sesle o günden bir iz bırakırsın.",
+    steps: [
+      {
+        title: "Not al.",
+        body: "Paragraf, madde ve yapılacak bloklarıyla yaz; etiketle, sabitle, hatırlatıcı kur.",
+      },
+      {
+        title: "Günlüğünü yaz.",
+        body: "Her güne bir sayfa. Günün önerisiyle başla, ruh hâlini seç, yazma serini sürdür.",
+      },
+      {
+        title: "Sesle anlat.",
+        body: "Basılı tutup sesli not kaydet; konuşma tanıma sesini yazıya döksün.",
+      },
+      {
+        title: "Her cihazda aç.",
+        body: "Hesabına bağlı notların ve günlüğün iPhone ile iPad arasında eşitlenir.",
+      },
+    ],
+    marquee: ["Notlar", "Günlük", "Sesli not", "Çizim", "Fotoğraf", "Widget"],
+    bento: {
+      devices: {
+        title: "iPhone ve iPad.",
+        body: "Tek uygulama, iki cihaz. iPad’de kenar çubuğu, liste ve düzenleyici yan yana durur.",
+      },
+      signIn: {
+        title: "Apple ile ya da e-postayla.",
+        body: "Apple ile giriş yap veya e-postayla hesap oluştur. Şifreni unutursan e-postana gelen bağlantıyla yenile.",
+      },
+      media: {
+        title: "Fotoğraf ve çizim.",
+        body: "Kameradan çek ya da galeriden seç, açıklama ekle; parmağınla veya Apple Pencil ile çiz.",
+      },
+      voice: {
+        title: "Ses, yazıya dönsün.",
+        body: "Mikrofonla sesli not kaydet; konuşma tanıma notunu yazıya döker. “Yalnızca cihazda” ayarı varsayılan olarak açıktır.",
+      },
+      widgets: {
+        title: "Widget’lar.",
+        body: "Notlar, sesli not, bugünün sayfası, son çizim ve kilit ekranında sıradaki hatırlatıcı.",
+      },
+      lock: {
+        title: "Face ID ile kilit.",
+        body: "İz’i ve günlüğünü Face ID, Touch ID veya cihaz parolasıyla kilitle.",
+      },
+    },
+    useCases: {
+      label: "Kullanım anları",
+      items: [
+        {
+          title: "Gün sonu günlüğü",
+          body: "Günün sayfasını aç, ruh hâlini seç, birkaç satır yaz; istersen bir fotoğraf ekle.",
+        },
+        {
+          title: "Aklına geleni kaçırma",
+          body: "Ana sayfadan hızlı not al, yapılacakları işaretle, saatli hatırlatıcı kur.",
+        },
+        {
+          title: "Yazmak yerine konuş",
+          body: "Yoldayken sesli not kaydet; yazıya dökülen notunu sonra düzenle.",
+        },
+        {
+          title: "iPad’de çiz, iPhone’da gör",
+          body: "Apple Pencil ile çizdiğin sayfa, hesabınla diğer cihazında da açılır.",
+        },
+      ],
+    },
+    languages: {
+      label: "Diller",
+      body: "Uygulama arayüzü Türkçe, İngilizce ve İspanyolca; istersen cihazının dilini izler.",
+    },
+    privacy: {
+      title: "Gizlilik",
+      body: "İz’de reklam, kullanıcı davranış analitiği veya üçüncü taraf hata raporlama aracı bulunmaz. Kayıtların hesabına bağlı olarak saklanır ve cihazların arasında eşitlenir; hatırlatıcı bildirimleri cihazında planlanır. Hesap ve veri silme taleplerini info@oletr.com adresine iletebilirsin.",
+    },
+    closing: {
+      // Follows the product name: "İz / yakında App Store’da."
+      title: "yakında App Store’da.",
+      soon: "Yakında App Store’da",
+      soonNote: "iPhone ve iPad için",
     },
   },
 
@@ -757,6 +864,42 @@ export const tr = {
       cancel: "Vazgeç",
       joined: "{name} katıldı",
     },
+    // İz mock-ups (sample content; the moods are the app's own five).
+    iz: {
+      appLabel: "Not ve günlük",
+      welcome: "Bugünden bir iz bırak.",
+      noteTitle: "Hafta sonu",
+      noteText: "Yavaş bir sabah, uzun bir yürüyüş.",
+      todos: ["Kitabı bitir", "Annemi ara", "Fotoğrafları seç"],
+      tag: "#kişisel",
+      reminder: "Cumartesi 10:00",
+      pinned: "Sabitlendi",
+      dayName: "Cumartesi",
+      dayNumber: "1",
+      prompt: "Bugün seni ne gülümsetti?",
+      journalText: "Sabah erkenden yürüdüm; hava serindi, kafam berrak.",
+      moodLabel: "Ruh hâli",
+      moods: ["Huzurlu", "Mutlu", "Düşünceli", "Yorgun", "Kaygılı"],
+      streak: "{n} gündür yazıyorsun",
+      streakCount: "9",
+      voiceTitle: "Sesli not",
+      voiceDuration: "0:42",
+      transcriptLabel: "Yazıya döküldü",
+      transcript: "Toplantıdan sonra sunumu düzenle, cumaya kadar gönder.",
+      onDevice: "Yalnızca cihazda",
+      photoCaption: "Sahilde akşam",
+      drawing: "Son çizim",
+      widgetNotes: "Notlar",
+      widgetToday: "Bugünün sayfası",
+      widgetReminder: "Sıradaki hatırlatıcı",
+      lockTitle: "İz kilitli",
+      lockBody: "Açmak için Face ID kullan",
+      apple: "Apple ile giriş yap",
+      email: "E-postayla devam et",
+      forgot: "Şifremi unuttum",
+      synced: "Eşitlendi",
+      devices: ["iPhone", "iPad"],
+    },
   },
 
   showcase: {
@@ -782,6 +925,18 @@ export const tr = {
         kvkk: "KVKK Aydınlatma Metni",
         terms: "Kullanıcı Sözleşmesi",
         accountDeletion: "Hesap ve Verileri Silme",
+      },
+    },
+    iz: {
+      logoAlt: "İz uygulama simgesi",
+      docsTitle: "Yasal Belgeler",
+      docsNote: "Bu belgeler yalnızca Türkçe olarak yayımlanmıştır.",
+      // Shown while IZ_LEGAL_DRAFT is true (product page and documents).
+      draftNote:
+        "Bu metin inceleme aşamasındadır ve yayın öncesinde güncellenebilir.",
+      docs: {
+        privacy: "Gizlilik Politikası",
+        kvkk: "KVKK Aydınlatma Metni",
       },
     },
   },
