@@ -611,7 +611,7 @@ export const en: Dictionary = {
     },
     privacy: {
       title: "Privacy",
-      body: "İz has no ads, user behaviour analytics or third-party crash reporting tools. Your entries are stored with your account and synced between your devices; reminder notifications are scheduled on your device. You can send account and data deletion requests to info@oletr.com.",
+      body: "İz has no ads, user behaviour analytics or third-party crash reporting tools. Your entries are stored with your account and synced between your devices; reminder notifications are scheduled on your device. You can permanently delete your account from the app’s Settings; if you can’t access the app, write to info@oletr.com.",
     },
     closing: {
       // Follows the product name: "İz / is coming soon to the App Store."
@@ -921,6 +921,7 @@ export const en: Dictionary = {
       docs: {
         privacy: "Privacy Policy",
         kvkk: "Data Protection Notice (KVKK)",
+        accountDeletion: "Account & data deletion",
       },
     },
   },

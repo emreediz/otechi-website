@@ -13,7 +13,7 @@ export const NAMAZ_LEGAL = {
 /**
  * İz contract pages — same structure as Namaz Motivasyonu (fixed,
  * Turkish-only URLs). Only the documents that exist are listed here; the
- * User Agreement and account-deletion page will be added with their texts.
+ * User Agreement will be added with its text.
  *
  * The texts are under review: open points that block publication are kept in
  * content/contracts/iz/inceleme-notu.md (never on the page). Until they are
@@ -23,6 +23,7 @@ export const NAMAZ_LEGAL = {
 export const IZ_LEGAL = {
   privacy: "/urunler/iz/gizlilik-politikasi",
   kvkk: "/urunler/iz/kvkk-aydinlatma-metni",
+  accountDeletion: "/urunler/iz/hesap-silme",
 } as const;
 
 /** Flip to `false` once the İz documents are final (indexing + sitemap). */

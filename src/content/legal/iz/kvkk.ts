@@ -7,7 +7,7 @@ import type { ContractBlock } from "@/components/legal/ContractDocument";
 // (yayına engel; sayfa bu yüzden IZ_LEGAL_DRAFT ile noindex ve sitemap dışında).
 
 export const title = "İZ KVKK AYDINLATMA METNİ";
-export const lastUpdated = "1 Kasım 2026";
+export const lastUpdated = "2 Kasım 2026";
 
 export const blocks: ContractBlock[] = [
   { type: "h2", text: "1. Veri Sorumlusunun Kimliği" },
@@ -212,7 +212,15 @@ export const blocks: ContractBlock[] = [
   { type: "h2", text: "8. Saklama ve Silme" },
   {
     type: "p",
-    text: "Hesap bilgileri ve kullanıcı içerikleri, hizmetin sunulması için gerekli süre boyunca saklanır. Silinen kayıtların geri alınması ve silmenin diğer cihazlara aktarılması amacıyla bazı kayıtlar geçici olarak tutulabilir.",
+    text: "Hesap bilgileri ve kullanıcı içerikleri, hizmetin sunulması için gerekli süre boyunca saklanır.",
+  },
+  {
+    type: "p",
+    text: "Tek bir not veya günlük sayfasını sildiğinizde kayıt “Son silinenler” bölümüne taşınır ve silindiği andan itibaren, sunucu saatine göre 30 gün boyunca geri getirilebilir. Süre dolduğunda kayıt, ekleri ve sürüm geçmişiyle birlikte, sunucuda günde bir kez çalışan temizliğin süre dolduktan sonraki ilk çalışmasında kalıcı olarak silinir. Önceki sürümler (düzenleme geçmişi) 30 gün boyunca tutulur.",
+  },
+  {
+    type: "p",
+    text: "Kalıcı olarak silinen kayıtların içeriği tutulmaz; silmenin cihazlara aktarılabilmesi için yalnızca kaydın kimliği ve silinme zamanı, hesap silinene kadar saklanır.",
   },
   {
     type: "p",
@@ -220,11 +228,15 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Geçici dikte kayıtları, transkript başarıyla kaydedildiğinde temizlenir. Yeniden deneme bekleyen kayıtlar ve sürüm geçmişleri de saklama ve silme değerlendirmesine dahildir.",
+    text: "Geçici dikte kayıtları, transkript başarıyla kaydedildiğinde temizlenir. Yeniden deneme bekleyen kayıtlar da saklama ve silme değerlendirmesine dahildir.",
   },
   {
     type: "p",
     text: "Yasal saklama gerektiren kayıtlar, ilgili amaç ve süreyle sınırlı olarak tutulur.",
+  },
+  {
+    type: "p",
+    text: "Hizmet sağlayıcıların yedek veya teknik kopyalarında kalabilecek veriler, ilgili sağlayıcının saklama ve silme döngülerine tabidir; bu kopyalar için belirli bir silinme süresi taahhüt edilmez.",
   },
 
   { type: "h2", text: "9. Özel Nitelikli Kişisel Veriler" },
@@ -282,11 +294,23 @@ export const blocks: ContractBlock[] = [
   { type: "h2", text: "12. Hesap ve Veri Silme Talepleri" },
   {
     type: "p",
-    text: "Hesabınızın veya kişisel verilerinizin silinmesine ilişkin taleplerinizi info@oletr.com adresine iletebilirsiniz.",
+    text: "Hesabınızı uygulama içinden, Ayarlar ekranının Hesap bölümündeki “Hesabı sil” seçeneğiyle silebilirsiniz. E-posta ile açtığınız hesapta şifrenizi yeniden girmeniz, Apple ile açtığınız hesapta Apple ile yeniden onay vermeniz ve ardından son onayı vermeniz istenir. Apple ile açılan hesapta İz’in “Apple ile giriş” yetkisi de iptal edilir.",
   },
   {
     type: "p",
-    text: "Uygulamayı cihazdan kaldırmak, sunucudaki hesabı ve içerikleri kendiliğinden silmez.",
+    text: "Hesap silme kalıcıdır ve geri alınamaz; tek tek silinen kayıtlar için geçerli 30 günlük geri getirme süresi uygulanmaz. Notlarınız ve hatırlatıcıları, günlük sayfalarınız, sürüm geçmişi ve “Son silinenler”deki kayıtlar, fotoğraf, çizim ve ses kayıtlarınız, profil adınız ile hesap ve giriş bilgileriniz sunucudan silinir.",
+  },
+  {
+    type: "p",
+    text: "Diğer cihazlarınızdaki kopyalar, bu cihazlar internete bağlanıp İz açıldığında kaldırılır. Silme işlemi yarıda kalırsa tamamlanmış gösterilmez ve yeniden denenmesi gerekir. Ayrıntılar İz Hesap ve Verileri Silme sayfasında yer alır.",
+  },
+  {
+    type: "p",
+    text: "Uygulamaya erişemiyorsanız veya silmeyle ilgili bir sorun yaşarsanız taleplerinizi info@oletr.com adresine iletebilirsiniz.",
+  },
+  {
+    type: "p",
+    text: "Uygulamayı cihazdan kaldırmak, sunucudaki hesabı ve içerikleri silmez.",
   },
 
   { type: "h2", text: "13. Başvuru Yöntemi" },

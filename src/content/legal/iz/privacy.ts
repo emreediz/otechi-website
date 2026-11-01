@@ -7,7 +7,7 @@ import type { ContractBlock } from "@/components/legal/ContractDocument";
 // yüzden IZ_LEGAL_DRAFT ile noindex ve sitemap dışında).
 
 export const title = "İZ GİZLİLİK POLİTİKASI";
-export const lastUpdated = "1 Kasım 2026";
+export const lastUpdated = "2 Kasım 2026";
 
 export const blocks: ContractBlock[] = [
   { type: "h2", text: "1. Genel Bilgilendirme" },
@@ -203,7 +203,19 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Silinen not ve günlükler, geri alma ve cihazlar arasında silmenin eşitlenmesi amacıyla geçici olarak tutulabilir. Çevrimdışı cihazlardaki kopyaların temizlenmesi, cihazın yeniden bağlantı kurmasına bağlıdır.",
+    text: "Tek bir not veya günlük sayfası silindiğinde kayıt, Arşiv’deki “Son silinenler” bölümüne taşınır ve silindiği andan itibaren, sunucu saatine göre 30 gün boyunca geri getirilebilir.",
+  },
+  {
+    type: "p",
+    text: "30 günlük süre dolduğunda kayıt, ekleri (fotoğraf, çizim ve ses kayıtları) ve sürüm geçmişiyle birlikte, sunucuda günde bir kez çalışan temizliğin süre dolduktan sonraki ilk çalışmasında kalıcı olarak silinir. Temizlik tamamlanamazsa sonraki çalışmada yeniden denenir.",
+  },
+  {
+    type: "p",
+    text: "Not ve günlüklerin önceki sürümleri (düzenleme geçmişi) 30 gün boyunca tutulur; daha eski sürümler aynı temizlikle silinir.",
+  },
+  {
+    type: "p",
+    text: "Kalıcı olarak silinen bir kaydın içeriği tutulmaz. Silmenin cihazlara aktarılabilmesi için yalnızca kaydın kimliği ve silinme zamanı, hesap silinene kadar saklanır. Bu sayede uzun süre çevrimdışı kalan bir cihaz, kalıcı olarak silinmiş bir kaydın eski kopyasını sunucuya yeniden yükleyemez. Çevrimdışı cihazlardaki kopyaların güncellenmesi, cihazın yeniden bağlantı kurmasına bağlıdır.",
   },
   {
     type: "p",
@@ -219,7 +231,7 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Hizmet sağlayıcıların yedek veya teknik kopyalarında kalan veriler, uygulanabilir saklama ve silme döngüleri kapsamında temizlenir. Sağlayıcı süreçleri doğrulanmadan bütün kopyalar için belirli bir silinme süresi taahhüt edilmez.",
+    text: "Hizmet sağlayıcıların yedek veya teknik kopyalarında kalabilecek veriler, ilgili sağlayıcının saklama ve silme döngülerine tabidir. Bu kopyalar için belirli bir silinme süresi taahhüt edilmez.",
   },
   {
     type: "p",
@@ -229,11 +241,50 @@ export const blocks: ContractBlock[] = [
   { type: "h2", text: "11. Hesap Silme ve Başvurular" },
   {
     type: "p",
-    text: "Kullanıcılar hesap ve kişisel veri silme taleplerini info@oletr.com adresine iletebilir. Talepler, gerekli kimlik doğrulaması yapılarak ilgili mevzuat kapsamında değerlendirilir.",
+    text: "Kullanıcılar hesaplarını uygulama içinden, Ayarlar ekranının Hesap bölümündeki “Hesabı sil” seçeneğiyle silebilir. E-posta ile açılan hesaplarda şifrenin yeniden girilmesi, Apple ile açılan hesaplarda Apple ile yeniden onay verilmesi ve ardından son onay istenir. Apple ile açılan hesaplar iPhone veya iPad’deki İz uygulamasından silinir; Apple onayı tamamlanmazsa hesap silinmez.",
   },
   {
     type: "p",
-    text: "Uygulamayı cihazdan kaldırmak, bulut hesabını ve sunucudaki verileri kendiliğinden silmez.",
+    text: "Hesap silme kalıcıdır ve geri alınamaz. Tek tek silinen kayıtlar için geçerli 30 günlük geri getirme süresi hesap silmede uygulanmaz.",
+  },
+  {
+    type: "p",
+    text: "Hesap silindiğinde aşağıdaki veriler sunucudan kalıcı olarak silinir:",
+  },
+  {
+    type: "ul",
+    items: [
+      "Notlar ve hatırlatıcıları.",
+      "Günlük sayfaları ve sürümleri.",
+      "Sürüm geçmişi ve “Son silinenler”deki kayıtlar.",
+      "Fotoğraflar, çizimler ve ses kayıtları.",
+      "Profil adı.",
+      "Hesap ve giriş bilgileri.",
+    ],
+  },
+  {
+    type: "p",
+    text: "Apple ile açılan hesaplarda İz’in Apple hesabındaki “Apple ile giriş” yetkisi de iptal edilir.",
+  },
+  {
+    type: "p",
+    text: "Silme işleminin yapıldığı cihazdaki yerel kopya kaldırılır. Diğer cihazlardaki kopyalar, bu cihazlar internete bağlanıp İz açıldığında silinmenin algılanmasıyla kaldırılır; o zamana kadar çevrimdışı cihazda kalır.",
+  },
+  {
+    type: "p",
+    text: "Silme işlemi yarıda kalırsa uygulama işlemi tamamlanmış göstermez. Bu durumda hesap yeni kayıtların eşitlenmesine kapalı kalır ve silmenin yeniden denenmesi gerekir.",
+  },
+  {
+    type: "p",
+    text: "Diğer cihazların silinmeyi algılayabilmesi için hesap kimliğinden türetilen bir özet değer saklanır. Bu değer içerik, e-posta adresi veya ad içermez.",
+  },
+  {
+    type: "p",
+    text: "Adımların ayrıntısı İz Hesap ve Verileri Silme sayfasında yer alır. Uygulamaya erişilemiyorsa veya silmeyle ilgili bir sorun yaşanırsa hesap ve kişisel veri silme talepleri info@oletr.com adresine iletilebilir. Talepler, gerekli kimlik doğrulaması yapılarak ilgili mevzuat kapsamında değerlendirilir.",
+  },
+  {
+    type: "p",
+    text: "Uygulamayı cihazdan kaldırmak, hesabı ve sunucudaki verileri silmez.",
   },
 
   { type: "h2", text: "12. Güvenlik" },

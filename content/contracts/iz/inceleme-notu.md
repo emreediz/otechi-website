@@ -4,13 +4,15 @@ Bu dosya siteye yayımlanmaz (`content/` klasörü build'e girmez). İz Gizlilik
 Politikası ve İz KVKK Aydınlatma Metni'ndeki **editör notları sayfalara
 alınmadı**; çözülmemiş konular burada tutulur.
 
-- Sayfalar: `/urunler/iz/gizlilik-politikasi`, `/urunler/iz/kvkk-aydinlatma-metni`
-- Metinler: `src/content/legal/iz/privacy.ts`, `src/content/legal/iz/kvkk.ts`
+- Sayfalar: `/urunler/iz/gizlilik-politikasi`, `/urunler/iz/kvkk-aydinlatma-metni`,
+  `/urunler/iz/hesap-silme`
+- Metinler: `src/content/legal/iz/privacy.ts`, `src/content/legal/iz/kvkk.ts`,
+  `src/app/urunler/iz/hesap-silme/page.tsx`
 - Durum: `IZ_LEGAL_DRAFT = true` (`src/config/legalRoutes.ts`). Sayfalar
   `noindex`, sitemap dışında ve üstlerinde "inceleme aşamasındadır" uyarısı var.
   Aşağıdaki **yayına engel** maddeler çözülmeden bayrak `false` yapılmamalı.
 
-Doğrulama kaynağı: İz uygulama deposu (`iz-app`, commit `692ceaf`, 1 Kasım 2026),
+Doğrulama kaynağı: İz uygulama deposu (`iz-app`, commit `692ceaf` 1 Kasım 2026; hesap silme için `f8e2e15` 2 Kasım 2026),
 yalnızca okunarak. Supabase projesine veya canlı kuruluma erişilmedi; kodun
 varlığı canlıda çalıştığının kanıtı sayılmadı.
 
@@ -31,40 +33,57 @@ varlığı canlıda çalıştığının kanıtı sayılmadı.
    "Yazıya dökme yalnızca cihazda" kapalıyken) ve Expo güncelleme kontrolleri
    için hukuki sebep, amaç ve sağlayıcının rolü (veri işleyen / ayrı veri
    sorumlusu) netleştirilmeli. (KVKK §4 editör notu.)
-4. **Uygulama içi hesap silme çalışmıyor.** Kodda Ayarlar → Hesap → "Hesabı sil"
-   akışı ve `hesabi-sil` Edge Function'ı var. Ancak `docs/DEVIR-NOTU.md` §11'e
-   göre:
-   - Fonksiyon **dağıtılmamış**.
-   - Apple jeton iptali için gereken sırlar (`APPLE_TEAM_ID`, `APPLE_CLIENT_ID`,
-     `APPLE_KEY_ID`, `APPLE_PRIVATE_KEY`) tanımlanmamış.
-   - Akış cihazda **denenmemiş**.
-
-   Bu yüzden metinlerde yalnızca e-posta ile talep yolu anlatıldı. Uygulama
-   içindeki düğme şu an "Hesap silme hizmeti henüz kurulmadı" hatası verir.
-   App Store yönergesi 5.1.1(v) uygulama içi silmeyi zorunlu tutar; e-posta yolu
-   bunun yerine geçmez. Akış uçtan uca çalışır hâle gelince adımlar Gizlilik
-   §11'e, KVKK §12'ye ve ayrı Hesap Silme sayfasına eklenmeli.
-5. **30 günlük sunucu temizliği kapalı.** `eski_silinenleri_temizle` fonksiyonu
-   uygulanmış (migration `20261031090000`), ancak pg_cron zamanlaması **kapalı**
-   (DEVIR-NOTU §11). Sonuç olarak şunlar sunucuda süresiz kalır:
-   - Silindi olarak işaretlenen kayıtlar.
-   - 30 günden eski `kayit_gecmisi` sürümleri.
-   - Silinen eklerin depodaki dosyaları.
-
-   Metinlerde 30 gün sözü verilmedi. Ancak **uygulamanın kendi metni**
-   (`sonSilinenlerAciklama`) "30 gün burada durur, sonra kalıcı olarak silinir"
-   diyor ve sunucu tarafında bu doğru değil. Ayrıca depo dosyalarının SQL ile
-   silinmesi engellenirse temizlik yalnızca kayıtları siler (DEVIR-NOTU, "Bilinen
-   sınırlar").
-6. **Saklama süreleri.** Şunlar için somut süre veya süreyi belirleyen ölçüt yok:
-   - Normal kayıtlar, Son Silinenler, sürüm geçmişi (`kayit_gecmisi`,
-     `gunluk_surumleri`) ve medya.
+4. **Saklama süreleri (kısmen çözüldü).** Silinen kayıtlar (30 gün + günlük
+   temizlik), 30 günden eski sürüm geçmişi ve hesap silme artık metinlerde
+   tanımlı. Hâlâ somut süre veya ölçüt yok:
    - Hesaptan çıkıştan sonra cihazda kalan yerel veritabanı (`iz-<id>.db`) ve
      dosyalar.
-   - Teknik kayıtlar ve sağlayıcı yedekleri.
+   - Kalıcı silinen kayıtların izleri (`kalici_silinenler`, yalnızca kimlik ve
+     zaman; metinlerde "hesap silinene kadar").
+   - Silinen hesapların özetleri (`silinen_hesaplar`, kimliğin SHA-256 özeti)
+     ve `hesap_silmeleri` kilit satırları: ne kadar tutulacağı tanımsız.
+     Metinlerde süre verilmedi.
+   - Teknik kayıtlar (loglar) ve sağlayıcı yedekleri. DEVIR-NOTU: projede
+     erişilebilir yedek ve PITR görünmüyor, plan doğrulanmadı; bu "yedek yok"
+     anlamına gelmez. Metinlerde süre taahhüt edilmedi.
 
-   Supabase'de erişilebilir yedek görünmemesi yedek olmadığı anlamına gelmez;
-   sağlayıcı yedek süreleri doğrulanmadı. (Gizlilik §10, KVKK §8 editör notları.)
+## Çözülen konular (2 Kasım 2026)
+
+Kaynak: `iz-app` `docs/DEVIR-NOTU.md` → "Hesap silme ve 30 günlük temizlik",
+cihaz testleri commit `f8e2e15`. Yalnızca okunarak; Supabase'e erişilmedi.
+
+- **Uygulama içi hesap silme (eski madde 4).** `hesabi-sil` dağıtıldı, Apple
+  sırları tanımlı, canlı şemada test edildi. Cihazda denendi (kullanıcı, 2 Kasım
+  2026, hepsi başarılı): e-posta hesabında yanlış şifre engellendi, doğru şifreyle
+  silindi; ikinci cihaz çevrimdışıyken içerik korundu, bağlanınca silinmeyi
+  algılayıp oturumu kapattı ve yerel içeriği temizledi; Apple hesabında iptal
+  hesabı korudu, tamamlanınca hesap silindi ve İz Apple ile giriş listesinden
+  kalktı. Gizlilik §11, KVKK §12 ve `/urunler/iz/hesap-silme` buna göre yazıldı.
+  App Store 5.1.1(v) uygulama içi silme şartı karşılanıyor.
+- **30 günlük sunucu temizliği (eski madde 5).** pg_cron `iz_temizlik` her gün
+  03:17 UTC; `temizlik` fonksiyonu canlıda deneme hesaplarıyla test edildi
+  (31 günlük not ve dosyası silindi, 29 günlük kaldı). Uygulamanın
+  `sonSilinenlerAciklama` metni artık sunucu davranışıyla uyumlu. Gizlilik §10,
+  KVKK §8 güncellendi.
+
+## Cihazda henüz denenmeyenler (metinlerde çalışıyor gibi anlatılmadı)
+
+DEVIR-NOTU'ya göre yalnızca kodla test edildi; doğrulanınca metinlere
+eklenebilir:
+- Hesap silindikten sonra planlı bildirimlerin (not hatırlatıcıları, günlük
+  hatırlatıcısı) iptali. Metinlerde bildirim iptalinden söz edilmedi.
+- Cihazdaki veritabanı, medya ve dikte dosyalarının silindiğinin dosya düzeyinde
+  denetimi. Metinler yalnızca cihazdaki kopyanın kaldırıldığını söylüyor (cihaz
+  testinde görülen davranış); dosya düzeyinde temizlik ayrıca iddia edilmedi.
+- Silme hata mesajlarının tamamı (bağlantı, tamamlanmadı, Apple yapılandırma).
+  Metinler yalnızca yarım kalan silmenin başarılı gösterilmediğini ve yeniden
+  deneme gerektiğini söylüyor (`tamamlanmadi` yolu sunucu ve kod testleriyle
+  doğrulandı).
+- Eski hesapsız `iz.db`'nin kaldırılması, aynı cihazdaki etkin olmayan ikinci
+  hesabın silinmesi, Son silinenler metinleri, 30 günlük temizliğin cihazdaki
+  yansıması (silinme izinin çekilmesi). Metinler tek kayıt temizliği için
+  cihazdan kaldırılma iddiası kurmuyor; yalnızca eski kopyanın sunucuya yeniden
+  yüklenemediğini söylüyor (canlıda `IZ410` ile doğrulandı).
 
 ## Kullanıcıdan alınan ve depoda doğrulanamayan bilgiler
 
@@ -83,9 +102,11 @@ varlığı canlıda çalıştığının kanıtı sayılmadı.
 - Şifre sıfırlama e-postaları Custom SMTP kurulana kadar yalnızca Supabase ekip
   üyelerine ulaşıyor (DEVIR-NOTU §10). Genel kullanıma açılmadan önce
   tamamlanmalı.
-- Kullanıcı Sözleşmesi ve Hesap Silme sayfaları henüz yok. Metinleri gelince
-  `IZ_LEGAL` içine eklenmeli; ilgili bağlantılar (ürün sayfası, footer, "Diğer
-  belgeler") yalnızca var olan belgeleri gösteriyor.
+- Kullanıcı Sözleşmesi sayfası henüz yok. Metni gelince `IZ_LEGAL` içine
+  eklenmeli; ilgili bağlantılar (ürün sayfası, footer, "Diğer belgeler")
+  yalnızca var olan belgeleri gösteriyor.
+- Apple ile açılan hesap yalnızca iOS'tan silinebilir (Android'de `apple_kod_yok`).
+  Android sürümü yok; çıkarsa Hesap Silme sayfası güncellenmeli.
 
 ## Metinlerde yapılan düzeltmeler (kodla karşılaştırma sonucu)
 
@@ -105,9 +126,9 @@ varlığı canlıda çalıştığının kanıtı sayılmadı.
   yapılır; uygulama yalnızca sonucu alır.
 - **İki metin arasına karşılıklı atıf eklendi.** Gizlilik §13 başvuru yöntemi
   için KVKK'ya, KVKK §15 ayrıntılar için Gizlilik'e yönlendiriyor.
-- **İz ürün sayfasındaki ifade düzeltildi (TR/EN).** "Hesabını uygulamanın
-  içinden silebilirsin" yerine "silme taleplerini info@oletr.com adresine
-  iletebilirsin" yazıldı.
+- **İz ürün sayfasındaki silme cümlesi (TR/EN).** 1 Kasım'da e-posta yoluna
+  çevrilmişti; 2 Kasım'da uygulama içi silme doğrulandığı için "Ayarlar'dan
+  kalıcı olarak silebilirsin; erişemiyorsan info@oletr.com" oldu.
 
 ## Kodla doğrulanan ifadeler
 

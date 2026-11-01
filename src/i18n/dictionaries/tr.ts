@@ -622,7 +622,7 @@ export const tr = {
     },
     privacy: {
       title: "Gizlilik",
-      body: "İz’de reklam, kullanıcı davranış analitiği veya üçüncü taraf hata raporlama aracı bulunmaz. Kayıtların hesabına bağlı olarak saklanır ve cihazların arasında eşitlenir; hatırlatıcı bildirimleri cihazında planlanır. Hesap ve veri silme taleplerini info@oletr.com adresine iletebilirsin.",
+      body: "İz’de reklam, kullanıcı davranış analitiği veya üçüncü taraf hata raporlama aracı bulunmaz. Kayıtların hesabına bağlı olarak saklanır ve cihazların arasında eşitlenir; hatırlatıcı bildirimleri cihazında planlanır. Hesabını uygulamanın Ayarlar ekranından kalıcı olarak silebilirsin; uygulamaya erişemiyorsan info@oletr.com adresine yazabilirsin.",
     },
     closing: {
       // Follows the product name: "İz / yakında App Store’da."
@@ -937,6 +937,7 @@ export const tr = {
       docs: {
         privacy: "Gizlilik Politikası",
         kvkk: "KVKK Aydınlatma Metni",
+        accountDeletion: "Hesap ve Verileri Silme",
       },
     },
   },

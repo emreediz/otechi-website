@@ -70,6 +70,7 @@ export function Footer({
       links: [
         { label: izDocs.docs.privacy, href: IZ_LEGAL.privacy },
         { label: izDocs.docs.kvkk, href: IZ_LEGAL.kvkk },
+        { label: izDocs.docs.accountDeletion, href: IZ_LEGAL.accountDeletion },
       ],
     },
   ];
