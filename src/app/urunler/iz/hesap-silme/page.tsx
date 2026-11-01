@@ -137,7 +137,9 @@ export default function Page() {
                 <p>
                   Hesabını silmeden tek bir notu ya da günlük sayfasını
                   sildiğinde kayıt, Arşiv’deki “Son silinenler” bölümüne
-                  taşınır ve 30 gün boyunca geri getirilebilir.
+                  taşınır ve 30 gün boyunca geri getirilebilir. Bu süre, silme
+                  işleminin sunucuya ulaşmasıyla başlar; çevrimdışıyken
+                  sildiğin kayıtlarda işlem sunucuya eşitlendiğinde başlar.
                 </p>
                 <p>
                   30 gün dolduğunda kayıt, ekleri ve sürüm geçmişiyle birlikte,

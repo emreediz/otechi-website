@@ -203,7 +203,7 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Tek bir not veya günlük sayfası silindiğinde kayıt, Arşiv’deki “Son silinenler” bölümüne taşınır ve silindiği andan itibaren, sunucu saatine göre 30 gün boyunca geri getirilebilir.",
+    text: "Tek bir not veya günlük sayfası silindiğinde kayıt, Arşiv’deki “Son silinenler” bölümüne taşınır ve 30 gün boyunca geri getirilebilir. 30 günlük geri getirme süresi, silme işleminin sunucuya ulaşmasıyla başlar. Çevrimdışı yapılan silmelerde bu süre, işlem sunucuya eşitlendiğinde başlar.",
   },
   {
     type: "p",

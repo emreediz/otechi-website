@@ -216,7 +216,7 @@ export const blocks: ContractBlock[] = [
   },
   {
     type: "p",
-    text: "Tek bir not veya günlük sayfasını sildiğinizde kayıt “Son silinenler” bölümüne taşınır ve silindiği andan itibaren, sunucu saatine göre 30 gün boyunca geri getirilebilir. Süre dolduğunda kayıt, ekleri ve sürüm geçmişiyle birlikte, sunucuda günde bir kez çalışan temizliğin süre dolduktan sonraki ilk çalışmasında kalıcı olarak silinir. Önceki sürümler (düzenleme geçmişi) 30 gün boyunca tutulur.",
+    text: "Tek bir not veya günlük sayfasını sildiğinizde kayıt “Son silinenler” bölümüne taşınır ve 30 gün boyunca geri getirilebilir. Bu süre, silme işleminin sunucuya ulaşmasıyla başlar; çevrimdışı yaptığınız silmelerde işlem sunucuya eşitlendiğinde başlar. Süre dolduğunda kayıt, ekleri ve sürüm geçmişiyle birlikte, sunucuda günde bir kez çalışan temizliğin süre dolduktan sonraki ilk çalışmasında kalıcı olarak silinir. Önceki sürümler (düzenleme geçmişi) 30 gün boyunca tutulur.",
   },
   {
     type: "p",
