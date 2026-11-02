@@ -3,9 +3,9 @@ import type { ContractBlock } from "@/components/legal/ContractDocument";
 // İz Kullanıcı Sözleşmesi.
 // Kaynak: kullanıcının ilettiği metin (2 Kasım 2026). İz uygulama deposu ve
 // diğer İz hukuk sayfalarıyla karşılaştırılarak dil ve tutarlılık bakımından
-// düzenlendi; yeni özellik, garanti veya süre eklenmedi. Uygulamada sözleşme
-// kabul akışı yok; bu sayfa kabul edildiği şeklinde sunulmaz. Açık konular:
-// content/contracts/iz/inceleme-notu.md (sayfa IZ_LEGAL_DRAFT ile noindex).
+// düzenlendi; yeni özellik, garanti veya süre eklenmedi. Hukukçu onayıyla
+// yayında (IZ_LEGAL_DRAFT = false: indekslenir, sitemap'te, uyarı yok). Onay
+// öncesi inceleme kaydı: content/contracts/iz/inceleme-notu.md (arşiv).
 
 export const title = "İZ KULLANICI SÖZLEŞMESİ";
 export const lastUpdated = "2 Kasım 2026";

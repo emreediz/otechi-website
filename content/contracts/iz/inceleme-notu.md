@@ -1,23 +1,29 @@
-# İz yasal metinleri — inceleme notu
+# İz yasal metinleri — inceleme notu (ARŞİV)
 
-Bu dosya siteye yayımlanmaz (`content/` klasörü build'e girmez). İz Gizlilik
-Politikası ve İz KVKK Aydınlatma Metni'ndeki **editör notları sayfalara
-alınmadı**; çözülmemiş konular burada tutulur.
+> **Arşiv — güncel değildir.** İz'in dört hukuk metni (Gizlilik Politikası,
+> KVKK Aydınlatma Metni, Kullanıcı Sözleşmesi, Hesap ve Verileri Silme)
+> hukukçu tarafından onaylandı (kullanıcının bildirimi, 2 Kasım 2026) ve
+> sitede yayın durumuna alındı: `IZ_LEGAL_DRAFT = false`
+> (`src/config/legalRoutes.ts`); sayfalar indekslenir, sitemap'tedir ve
+> "inceleme aşamasındadır" uyarısı göstermez.
+>
+> Aşağıdaki içerik, onay öncesindeki inceleme sürecinin kaydıdır. "Açık
+> konular" ve "yayına engel" ifadeleri o tarihteki durumu anlatır; bu dosya
+> bugünkü yayın durumunu veya hukuki değerlendirmeyi yansıtmaz. Hukuki
+> değerlendirme hukukçunun onayına dayanır, bu nota değil.
+
+Bu dosya siteye yayımlanmaz (`content/` klasörü build'e girmez).
 
 - Sayfalar: `/urunler/iz/gizlilik-politikasi`, `/urunler/iz/kvkk-aydinlatma-metni`,
   `/urunler/iz/kullanici-sozlesmesi`, `/urunler/iz/hesap-silme`
 - Metinler: `src/content/legal/iz/privacy.ts`, `src/content/legal/iz/kvkk.ts`,
   `src/content/legal/iz/terms.ts`, `src/app/urunler/iz/hesap-silme/page.tsx`
-- Durum: `IZ_LEGAL_DRAFT = true` (`src/config/legalRoutes.ts`). Sayfalar
-  `noindex`, sitemap dışında ve üstlerinde "inceleme aşamasındadır" uyarısı var.
-  "Açık konular" listesinde **yayına engel** işaretli maddeler çözülmeden bayrak
-  `false` yapılmamalı.
 
 Doğrulama kaynağı: İz uygulama deposu (`iz-app`, commit `692ceaf` 1 Kasım 2026; hesap silme için `f8e2e15` 2 Kasım 2026),
 yalnızca okunarak. Supabase projesine veya canlı kuruluma erişilmedi; kodun
 varlığı canlıda çalıştığının kanıtı sayılmadı.
 
-## Açık konular (tek liste, 2 Kasım 2026)
+## Onay öncesi açık konular (arşiv, 2 Kasım 2026)
 
 Her madde: eksik olan ne, senden ne gerekiyor, işlem nerede (uygulama /
 sağlayıcı hesabı / hukuk metni). Kanıt gelmeden hiçbiri çözülmüş sayılmaz.

@@ -13,7 +13,8 @@ import { RelatedDocs } from "@/components/legal/RelatedDocs";
 // İz – Hesap ve Verileri Silme. Same layout as the Namaz Motivasyonu page.
 // Source: İz app repo (docs/DEVIR-NOTU.md "Hesap silme ve 30 günlük temizlik",
 // device tests in commit f8e2e15, app copy in src/dil/tr.ts). Only behaviour
-// verified on the server or on a device is described; open points live in
+// verified on the server or on a device is described. Approved by legal
+// counsel; pre-approval review record (archive):
 // content/contracts/iz/inceleme-notu.md.
 
 const PAGE_TITLE = "İz – Hesap ve Verileri Silme";
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   description:
     "İz uygulamasında hesabınızı ve hesapla ilişkili verilerinizi kalıcı olarak nasıl sileceğiniz.",
   alternates: { canonical: IZ_LEGAL.accountDeletion },
-  // Under review: out of search results until the open points are resolved.
+  // Indexed unless the İz documents are put back in draft (IZ_LEGAL_DRAFT).
   robots: { index: !IZ_LEGAL_DRAFT, follow: true },
 };
 

@@ -14,10 +14,9 @@ export const NAMAZ_LEGAL = {
  * İz contract pages — same structure as Namaz Motivasyonu (fixed,
  * Turkish-only URLs).
  *
- * The texts are under review: open points that block publication are kept in
- * content/contracts/iz/inceleme-notu.md (never on the page). Until they are
- * resolved the pages are `noindex`, out of the sitemap and show a short
- * "under review" notice (see IZ_LEGAL_DRAFT).
+ * The texts were approved by legal counsel; the pages are indexed, in the
+ * sitemap and show no "under review" notice. Setting IZ_LEGAL_DRAFT back to
+ * `true` restores the draft state (noindex, out of the sitemap, notice).
  */
 export const IZ_LEGAL = {
   privacy: "/urunler/iz/gizlilik-politikasi",
@@ -26,8 +25,8 @@ export const IZ_LEGAL = {
   accountDeletion: "/urunler/iz/hesap-silme",
 } as const;
 
-/** Flip to `false` once the İz documents are final (indexing + sitemap). */
-export const IZ_LEGAL_DRAFT = true;
+/** `true` = draft: noindex, out of the sitemap, "under review" notice. */
+export const IZ_LEGAL_DRAFT = false;
 
 /** Products with their own contract pages. */
 export type LegalProduct = "namaz" | "iz";

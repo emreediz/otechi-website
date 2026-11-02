@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Namaz Motivasyonu contract pages: fixed, Turkish-only URLs (no /tr or /en,
   // no language alternates).
-  // İz documents join once they are final (IZ_LEGAL_DRAFT).
+  // İz documents are listed unless they are in draft (IZ_LEGAL_DRAFT).
   const contractPaths = [
     ...Object.values(NAMAZ_LEGAL),
     ...(IZ_LEGAL_DRAFT ? [] : Object.values(IZ_LEGAL)),

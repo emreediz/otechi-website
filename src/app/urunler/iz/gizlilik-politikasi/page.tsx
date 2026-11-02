@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "İz kişisel not ve günlük uygulamasında kişisel verilerin nasıl işlendiğini açıklayan gizlilik politikası.",
   alternates: { canonical: IZ_LEGAL.privacy },
-  // Under review: out of search results until the open points are resolved.
+  // Indexed unless the İz documents are put back in draft (IZ_LEGAL_DRAFT).
   robots: { index: !IZ_LEGAL_DRAFT, follow: true },
 };
 

@@ -2,9 +2,9 @@ import type { ContractBlock } from "@/components/legal/ContractDocument";
 
 // İz Gizlilik Politikası.
 // Kaynak: kullanıcının ilettiği taslak (1 Kasım 2026). İz uygulama deposuyla
-// karşılaştırılarak düzeltildi; editör notları sayfaya alınmadı. Çözülmemiş
-// konular: content/contracts/iz/inceleme-notu.md (yayına engel; sayfa bu
-// yüzden IZ_LEGAL_DRAFT ile noindex ve sitemap dışında).
+// karşılaştırılarak düzeltildi; editör notları sayfaya alınmadı. Hukukçu
+// onayıyla yayında (IZ_LEGAL_DRAFT = false: indekslenir, sitemap'te, uyarı
+// yok). Onay öncesi inceleme kaydı: content/contracts/iz/inceleme-notu.md (arşiv).
 
 export const title = "İZ GİZLİLİK POLİTİKASI";
 export const lastUpdated = "2 Kasım 2026";
