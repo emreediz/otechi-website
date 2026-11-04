@@ -6,6 +6,7 @@ import { showcaseItems } from "@/lib/showcase";
 import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CookieNotice } from "@/components/layout/CookieNotice";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -41,6 +42,7 @@ export default async function LocaleLayout({
         {children}
       </main>
       <Footer locale={locale} dict={dict} products={products} />
+      <CookieNotice locale={locale} dict={dict} />
     </div>
   );
 }

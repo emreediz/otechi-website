@@ -47,6 +47,7 @@ export function Footer({
         { label: footer.privacy, href: link("privacy") },
         { label: footer.terms, href: link("terms") },
         { label: footer.kvkk, href: link("kvkk") },
+        { label: footer.cookies, href: link("cookies") },
       ],
     },
     {

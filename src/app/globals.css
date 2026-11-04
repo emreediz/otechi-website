@@ -453,6 +453,20 @@ html[data-mode="light"] [data-surface="dark"] .logo-on-light {
   }
 }
 
+/* First-visit cookie notice (CookieNotice.tsx): rises in from below. */
+@media (prefers-reduced-motion: no-preference) {
+  .cookie-notice {
+    animation: cookie-notice-in 0.5s var(--ease-out-expo) both;
+    animation-delay: 0.6s;
+  }
+}
+@keyframes cookie-notice-in {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}
+
 /* Cursor dot: replaces the system cursor on fine pointers once the dot
    component has mounted (`html.has-dot`). The menu dialog sits in the top
    layer and carries its own dot (CursorDot.tsx moves every `.cursor-dot`). */

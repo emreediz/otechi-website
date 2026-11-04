@@ -69,10 +69,18 @@ export const tr = {
     privacy: "Gizlilik Politikası",
     terms: "Kullanım Şartları",
     kvkk: "KVKK Aydınlatma Metni",
+    cookies: "Çerez Politikası",
     contactTitle: "İletişim",
     // Follows the product name: "Namaz Motivasyonu belgeleri".
     docsLabel: "belgeleri",
     backToTop: "Başa dön",
+  },
+  // First-visit notice (informational: the site sets no cookies).
+  cookieNotice: {
+    label: "Çerez bildirimi",
+    text: "Bu site çerez kullanmaz. Toplu ziyaret ölçümü için çerezsiz Cloudflare Web Analytics kullanılır.",
+    policy: "Çerez Politikası",
+    dismiss: "Anladım",
   },
   notFound: {
     title: "Sayfa bulunamadı.",
@@ -744,6 +752,17 @@ export const tr = {
         { heading: "Aktarım", body: "Bu bölüm hazırlanıyor." },
         { heading: "Haklarınız ve başvuru", body: "Bu bölüm hazırlanıyor." },
       ],
+    },
+    // Cookie Policy: the document text lives in src/content/legal/otechi/cookies.ts.
+    cookies: {
+      meta: {
+        title: "Çerez Politikası — Otechi",
+        description:
+          "otechi.com web sitesinde çerezler, yerel depolama ve benzer teknolojilerin kullanımı.",
+      },
+      // Shown while COOKIE_POLICY_DRAFT is true.
+      draftNote:
+        "Bu metin inceleme aşamasındadır; kesinleşmeden önce değişebilir.",
     },
   },
 

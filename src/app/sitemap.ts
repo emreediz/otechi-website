@@ -2,14 +2,24 @@ import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
 import { locales } from "@/i18n/config";
 import { allRouteKeys, localizedPath } from "@/i18n/routes";
-import { IZ_LEGAL, IZ_LEGAL_DRAFT, NAMAZ_LEGAL } from "@/config/legalRoutes";
+import {
+  COOKIE_POLICY_DRAFT,
+  IZ_LEGAL,
+  IZ_LEGAL_DRAFT,
+  NAMAZ_LEGAL,
+} from "@/config/legalRoutes";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const localizedEntries = allRouteKeys.flatMap((key) =>
+  // The Cookie Policy stays out of the sitemap while under review.
+  const routeKeys = allRouteKeys.filter(
+    (key) => !(key === "cookies" && COOKIE_POLICY_DRAFT),
+  );
+
+  const localizedEntries = routeKeys.flatMap((key) =>
     locales.map((locale) => ({
       url: site.url + localizedPath(key, locale),
       lastModified: now,

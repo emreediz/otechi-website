@@ -17,7 +17,8 @@ export type RouteKey =
   | "contact"
   | "privacy"
   | "terms"
-  | "kvkk";
+  | "kvkk"
+  | "cookies";
 
 const paths: Record<RouteKey, Record<Locale, string>> = {
   home: { tr: "/tr", en: "/en" },
@@ -37,6 +38,7 @@ const paths: Record<RouteKey, Record<Locale, string>> = {
   privacy: { tr: "/tr/gizlilik", en: "/en/privacy" },
   terms: { tr: "/tr/kullanim-sartlari", en: "/en/terms" },
   kvkk: { tr: "/tr/kvkk", en: "/en/kvkk" },
+  cookies: { tr: "/tr/cerez-politikasi", en: "/en/cookie-policy" },
 };
 
 export const allRouteKeys = Object.keys(paths) as RouteKey[];

@@ -64,9 +64,16 @@ export const en: Dictionary = {
     privacy: "Privacy Policy",
     terms: "Terms of Use",
     kvkk: "Data Protection Notice (KVKK)",
+    cookies: "Cookie Policy",
     contactTitle: "Contact",
     docsLabel: "documents",
     backToTop: "Back to top",
+  },
+  cookieNotice: {
+    label: "Cookie notice",
+    text: "This site does not use cookies. Aggregate visits are measured with cookieless Cloudflare Web Analytics.",
+    policy: "Cookie Policy",
+    dismiss: "Got it",
   },
   notFound: {
     title: "Page not found.",
@@ -733,6 +740,15 @@ export const en: Dictionary = {
         { heading: "Transfers", body: "This section is in progress." },
         { heading: "Your rights and how to apply", body: "This section is in progress." },
       ],
+    },
+    cookies: {
+      meta: {
+        title: "Cookie Policy — Otechi",
+        description:
+          "How the otechi.com website uses cookies, local storage and similar technologies.",
+      },
+      draftNote:
+        "This text is under review and may change before it is finalised.",
     },
   },
 

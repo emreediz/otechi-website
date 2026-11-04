@@ -28,6 +28,15 @@ export const IZ_LEGAL = {
 /** `true` = draft: noindex, out of the sitemap, "under review" notice. */
 export const IZ_LEGAL_DRAFT = false;
 
+/**
+ * Otechi Cookie Policy (/tr/cerez-politikasi, /en/cookie-policy).
+ * Approved by legal counsel: indexed, in the sitemap, no "under review"
+ * notice. Setting this back to `true` restores the draft state (noindex,
+ * out of the sitemap, notice). Pre-approval review record:
+ * content/contracts/otechi/inceleme-notu.md (archive).
+ */
+export const COOKIE_POLICY_DRAFT = false;
+
 /** Products with their own contract pages. */
 export type LegalProduct = "namaz" | "iz";
 export type LegalDocKey = keyof typeof NAMAZ_LEGAL;

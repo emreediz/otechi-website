@@ -4,6 +4,7 @@ import { showcaseItems } from "@/lib/showcase";
 import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CookieNotice } from "@/components/layout/CookieNotice";
 
 /**
  * Layout for fixed, non-localized routes under /urunler/* (currently the
@@ -35,6 +36,7 @@ export default async function UrunlerLayout({
         {children}
       </main>
       <Footer locale="tr" dict={dict} products={products} />
+      <CookieNotice locale="tr" dict={dict} />
     </div>
   );
 }
